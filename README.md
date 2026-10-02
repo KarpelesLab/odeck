@@ -96,4 +96,12 @@ Inter-sheet nets are declared in `tools/schgen/nets.py`.
 
 ## License
 
-TBD.
+- **Hardware** — everything under `hardware/` (schematics, sheet sources, PCB, symbols, footprints, 3D
+  models we created) and the hardware documentation in `docs/`: **CERN-OHL-P v2**
+  ([LICENSE-HARDWARE](LICENSE-HARDWARE)).
+  Copyright © 2026 Mark Karpeles and the odeck contributors.
+- **Software** — `tools/` and future firmware: **MIT** ([LICENSE-SOFTWARE](LICENSE-SOFTWARE)).
+
+Not covered: third-party datasheets in `docs/datasheets/` (copyright of their manufacturers, included for
+reference), footprints/3D models derived from KiCad's libraries or LCSC/EasyEDA (their own terms), and vendor
+firmware/libraries (e.g. Infineon's PD stack), which are fetched at build time and never committed.
