@@ -26,7 +26,7 @@ NETS = [
     "HUB_P2_TXP_IC", "HUB_P2_TXN_IC",
     # P4 -> U801 (RTL8156BG), P6 -> U1001 (RP2350)
     "ETH_SS_TXP", "ETH_SS_TXN", "ETH_SS_RXP", "ETH_SS_RXN", "ETH_DP", "ETH_DN", "HUB_P4_TXP_IC", "HUB_P4_TXN_IC",
-    "ETH_TXP_IC", "ETH_TXN_IC", "MCU_USB_DP", "MCU_USB_DN",
+    "ETH_TXP_IC", "ETH_TXN_IC", "MCU_USB_DP", "MCU_USB_DN", "USB_DP_IC", "USB_DM_IC",
     # hub 25 MHz crystal
     "HUB_XI", "HUB_XO",
 ]
@@ -174,7 +174,7 @@ def hub_left(r):
     """Hub ports 1 (GL3224 card reader) and 2 (USB-A 1), left side of U601 (pins 5-20)."""
     pin = lambda k: r.pad("U601", k)
     xt = pin(5)[0] - 0.51                      # pad toe x (164.65)
-    LA, LC, LB = 108.05, 108.75, 109.45        # L6 lanes (centre y) of A (CR USB2), C (CR RX), B (CR TX)
+    LA, LC, LB = 108.05, 108.95, 109.85        # L6 lanes (centre y) of A (CR USB2), C (CR RX), B (CR TX)
     # ---------------- A: CR_DP/DN (pins 5/6): L1 west lane -> swap vias -> L6
     xa = 159.3
     path = [(xt, 95.0), (xa + 0.4, 95.0), (xa, 95.4), (xa, 106.0)]
@@ -186,7 +186,7 @@ def hub_left(r):
     r.via("CR_DN", *vdn); r.via("CR_DP", *vdp)
     # L6 west lane, then south at x 137.27 into U901 pins 4/5
     u4, u5 = r.pad_of_net("U901", "CR_DN"), r.pad_of_net("U901", "CR_DP")
-    xs = 137.27
+    xs = 137.72                                # leaves toe-via room for U901 pins 1/2 at x 137.15
     path = [(157.6, LA), (xs + 0.5, LA), (xs, LA + 0.5), (xs, u4[1] - 0.35)]
     Lf, Rt = H.pair_lines(path, W1, G1)        # heading west: right = north = DN
     dn6 = [vdn, (158.4, vdn[1]), (158.4 - (Rt[0][1] - vdn[1]), Rt[0][1])] + Rt + [(u4[0] + 0.38, u4[1]), u4]
@@ -215,12 +215,13 @@ def hub_left(r):
     cap_leg(r, "HUB_P1_TXP_IC", icp, F, W1, ok); cap_leg(r, "HUB_P1_TXN_IC", icn, F, W1, ok)
     H.log("P1 HUB_P1_TX_IC (U601->cap)", icp, icn)
     xbo = 161.6
-    vbn, vbp = (161.95, 109.0), (161.4, 109.75)
+    vbn, vbp = (161.95, 109.0), (161.4, 110.2)
     p0 = [pfar, (pfar[0], pfar[1] + 0.4)] if ok else [(pfar[0], pfar[1] + 0.75)]
     n0 = [nfar, (nfar[0], nfar[1] + 0.4)] if ok else [(nfar[0], nfar[1] + 0.75)]
     bp1 = p0 + [(xbo - 0.14, p0[-1][1] + (xbo - 0.14 - pfar[0])), (xbo - 0.14, 108.6), (vbp[0], 108.66), vbp]
     bn1 = n0 + [(xbo + 0.14, n0[-1][1] + (nfar[0] - xbo - 0.14)), (xbo + 0.14, 108.4), vbn]
     r.via("CR_SS_TXN", *vbn); r.via("CR_SS_TXP", *vbp)
+    H.gvia(r, 160.75, 110.55)                    # return via for the L1 -> L6 change
     # L6: west on lane LB (N north), south at x 141.5, west into pins 10/11
     t10, t11 = r.pad_of_net("U901", "CR_SS_TXN"), r.pad_of_net("U901", "CR_SS_TXP")
     xs = 141.5
@@ -289,7 +290,7 @@ def hub_left(r):
     xd = 163.6
     xc = (e6[0] + e4[0]) / 2
     ytop = e6[1] - 2.0
-    path = [(xd, 99.4), (xd, ytop - (xd - xc)), (xc, ytop)]
+    path = [(xd, 99.4), (xd, 111.4), (xd - 4.2, 115.6), (xc + 1.0, 115.6), (xc, ytop)]
     Lf, Rt = H.pair_lines(path, W3, G3)        # heading south: left = east = DN
     dp3 = [vdp, (Rt[0][0] + 0.18, vdp[1]), (Rt[0][0], vdp[1] + 0.18)] + Rt
     dn3 = [vdn, (Lf[0][0], vdn[1] + (vdn[0] - Lf[0][0]))] + Lf
@@ -313,7 +314,7 @@ def hub_left(r):
     H.log("P2 HUB_P2_TX_IC (U601->cap)", icp, icn)
     d10, d9 = r.pad("D701", 10), r.pad("D701", 9)
     xT = (d10[0] + d9[0]) / 2
-    yw = 110.6
+    yw = 111.2
     path = [(xe, pfar[1] + 1.0), (xe, yw - 0.4), (xe - 0.4, yw), (xT + 0.4, yw), (xT, yw + 0.4), (xT, d10[1] - 1.0)]
     Lf, Rt = H.pair_lines(path, W1, G1)        # heading south: right = west = P
     P = ([pfar, (pfar[0], pfar[1] + 0.3)] if ok else [(pfar[0], pfar[1] + 0.75)]) + Rt
@@ -323,7 +324,7 @@ def hub_left(r):
     # ---------------- F: P2 RX (pins 19/20) -> J701 via D701
     d7, d6 = r.pad("D701", 7), r.pad("D701", 6)
     xR = (d7[0] + d6[0]) / 2
-    yf = 111.3
+    yf = 111.9
     path = [(xt - 0.2, 100.74), (164.2, 100.74), (163.8, 101.14), (163.8, 103.2), (164.25, 103.65),
             (164.25, yf - 0.4), (163.85, yf), (xR + 0.4, yf), (xR, yf + 0.4), (xR, d7[1] - 1.0)]
     Lf, Rt = H.pair_lines(path, W1, G1)        # heading west: right = north = P
@@ -411,7 +412,7 @@ def p4_p6(r):
         far836 = max((r.pad("C836", 1), r.pad("C836", 2)), key=lambda q: abs(q[0] - vtn[0]))
         u43, u44 = r.pad_of_net("U801", "ETH_TXP_IC"), r.pad_of_net("U801", "ETH_TXN_IC")
         H.draw(r, "ETH_TXP_IC", [far835, (u43[0] - 0.75, far835[1]), (u43[0] - 0.55, u43[1]), u43], F, W1)
-        H.draw(r, "ETH_TXN_IC", [far836, (u44[0] - 0.95, far836[1]), (u44[0] - 0.55, u44[1]), u44], F, W1)
+        H.draw(r, "ETH_TXN_IC", [far836, (far836[0] + 0.2, far836[1] - 0.2), (u44[0] - 0.9, u44[1]), u44], F, W1)
 
     # ---- ETH USB2 (pins 34/35)
     u49, u50 = r.pad_of_net("U801", "ETH_DN"), r.pad_of_net("U801", "ETH_DP")
@@ -428,8 +429,8 @@ def p4_p6(r):
     dp6 = [vdp, (181.43, vdp[1] - 0.17), (181.43, 64.9), wdp]
     r.via("ETH_DN", *wdn); r.via("ETH_DP", *wdp)
     ym = 63.88
-    dn1b = [wdn, (u49[0] - 1.0, wdn[1]), (u49[0] - 0.65, u49[1]), u49]
-    dp1b = [wdp, (wdp[0] + 0.42, ym + 0.14), (u50[0] - 0.9, ym + 0.14), (u50[0] - 0.65, u50[1]), u50]
+    dn1b = [wdn, (u49[0] - 0.8, wdn[1]), (u49[0] - 0.475, u49[1]), u49]
+    dp1b = [wdp, (wdp[0] + 0.42, ym + 0.14), (u50[0] - 0.65, ym + 0.14), (u50[0] - 0.4, u50[1]), u50]
     H.draw(r, "ETH_DN", dn1, F, W1); H.draw(r, "ETH_DP", dp1, F, W1)
     H.draw(r, "ETH_DN", dn6, B, W1); H.draw(r, "ETH_DP", dp6, B, W1)
     H.draw(r, "ETH_DN", dn1b, F, W1); H.draw(r, "ETH_DP", dp1b, F, W1)
@@ -456,6 +457,14 @@ def p4_p6(r):
     r.via("MCU_USB_DN", *zmn); r.via("MCU_USB_DP", *zmp)
     mn6b = [zmn, (zmn[0] + 0.25, 71.15), (r1008[0] - 0.2, 71.15), r1008]
     mp6b = [zmp, (r1007[0], zmp[1]), r1007]
+    for net, rr, pn in (("USB_DP_IC", "R1007", 67), ("USB_DM_IC", "R1008", 66)):
+        rp1 = r.pad_of_net(rr, net)
+        up = r.pad("U1001", pn)
+        v = (rp1[0], 72.55)
+        r.via(net, *v)
+        H.draw(r, net, [rp1, v], B, W1)
+        H.draw(r, net, [v, (up[0], v[1] + abs(up[0] - v[0]) * 0.0 + 0.3), up] if abs(up[0] - v[0]) < 0.3
+               else [v, (up[0], 72.95), up], F, W1)
     H.draw(r, "MCU_USB_DN", mn1, F, W1); H.draw(r, "MCU_USB_DP", mp1, F, W1)
     H.draw(r, "MCU_USB_DN", mn6, B, W1); H.draw(r, "MCU_USB_DP", mp6, B, W1)
     H.draw(r, "MCU_USB_DN", mn3, L3, W3); H.draw(r, "MCU_USB_DP", mp3, L3, W3)
@@ -466,14 +475,14 @@ def p4_p6(r):
 def hub_xtal(r):
     """Y601 -> U601 pins 98 (XI) / 97 (XO), L1. XO is the outer loop (north of C328, down x 164.5 into
     pad 3's east side); XI runs inside it and threads between the crystal's pad rows into pad 1.
-    The toes of pins 99/100 stay free for their vias (+3V3 at (166.75, 91.3), RBIAS at (166.05, 91.3)).
+    The toes of pins 99/100 stay free for their vias (+3V3 at (166.45, 91.15), RBIAS at (165.75, 91.4)).
     C637/C638 (bottom) hang off one via per net."""
     p98, p97 = r.pad("U601", 98), r.pad("U601", 97)
     y1, y3 = r.pad("Y601", 1), r.pad("Y601", 3)
     toe = p98[1] - 0.51
     w = 0.12
     xo = [p97, (p97[0], 89.48), (164.5, 89.48), (164.5, y3[1]), y3]
-    xi = [p98, (p98[0], 90.86), (165.0, 90.86), (165.0, 92.85), (y1[0], 92.85), y1]
+    xi = [p98, (p98[0], 90.67), (165.0, 90.67), (165.0, 92.85), (y1[0], 92.85), y1]
     H.draw(r, "HUB_XO", xo, F, w); H.draw(r, "HUB_XI", xi, F, w)
     vo, vi = (164.5, 91.5), (165.0, 92.0)
     r.via("HUB_XO", *vo); r.via("HUB_XI", *vi)
@@ -485,7 +494,8 @@ def hub_xtal(r):
 
 # Power-pin toe vias the other scripts need between my pairs (kept clear; checked with KEEP_TEST=1)
 TOE_VIAS = [("+1V15", 164.15, 96.55), ("+1V15", 164.3, 100.12),
-            ("/USB hub/HUB_RBIAS", 166.05, 91.3)]
+            ("/USB hub/HUB_RBIAS", 165.75, 91.4), ("+3V3", 166.45, 91.15),
+            ("/Card reader/CR_SD_CDZ", 137.15, 114.65), ("/Card reader/CR_SD_WP", 137.15, 115.35)]
 
 
 def route(board, r):

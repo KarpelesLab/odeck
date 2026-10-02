@@ -8,7 +8,43 @@ Scripts:
 
 Neither script owns any zones. Both print their length table and warnings when applied.
 
-## Status
+## Update after placement fixes (commit 61e4dc2)
+
+- **Previously blocked legs now connect.** All TX cap legs connect: P1/P2/P3 through C603–C608, P4 through
+  C609/C610 at x 177.4, and U801 pins 43/44 through C835/C836. Pad positions are recomputed from the board.
+- **microSD.** CLK now goes U901 → L3 over the D0/D1 vias → R908 (119.4, 114.9) → CLK_S on B.Cu → via (118.45,
+  119.75) → its L3 lane. All six lines are matched to 116.02 mm (was 138.06).
+- **RP2350 USB stubs.** Done: vias at (224.85 / 226.10, 72.55) on R1007/R1008 pad 1, then L1 to pins 67/66.
+- **Escape room.** These spots are kept clear and pass DRC with test vias (`KEEP_TEST=1`):
+
+  | Pin | Via position |
+  |---|---|
+  | Hub pin 99 (+3V3) | (166.45, 91.15) |
+  | Hub pin 100 (RBIAS) | (165.75, 91.4) |
+  | Hub pins 9 / 18 (+1V15) | (164.15, 96.55) / (164.3, 100.12) |
+  | U901 pins 1/2 (CDZ / WP) | (137.15, 114.65 / 115.35) |
+
+  To make room:
+  - XI was lowered to y 90.67.
+  - CR_DP/DN was moved to x 137.72.
+- **Card-reader L6 lanes.** Re-spaced to y 108.05 / 108.95 / 109.85 for the 0.3 mm USB_90 rule. The P2 lanes moved to
+  y 111.2 / 111.9.
+- **GND return vias added:**
+  - (160.75, 110.55) at the CR TX L1→L6 change;
+  - two at the P4 RX L3→L1 change, at (189.9, 61.775) and (189.0, 60.5).
+
+  There is still no room in the hub pocket around (171–174, 107.5): MCU L6 and RX L3 run at the only free spots.
+  There is also no room at the MDI pair vias or the CR RX L3 vias.
+- **Remaining DRC (my nets).** The only errors left are 18 "hs pair spacing" hits between the two halves of the
+  same `*_TX?_IC` pair (HUB_P1/P2/P4_TX?_IC, ETH_TX?_IC).
+  - KiCad does not see `..._TXP_IC` / `..._TXN_IC` as a diff pair (the name doesn't end in P/N), so
+    `isCoupledDiffPair()` is false.
+  - Fix in `.kicad_dru`: add `&& !(A.NetName ~ '*TX?_IC' && B.NetName ~ '*TX?_IC')` to that rule.
+  - The legs are a proper 0.10 / 0.18 coupled pair.
+- **Unchanged.** P4 TX still threads C610's pad gap, because the hub-pin and cap P/N order is still crossed.
+  Swapping C609 and C610 would remove that.
+
+## Status (original pass)
 
 - **DRC.** With only these two scripts applied (`--only d_hs_hub,e_hs_eth_sd`), DRC has 0 clearance, short,
   width or hole errors on track or via items. The rest of the report is unconnected items.

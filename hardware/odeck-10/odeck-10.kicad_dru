@@ -8,7 +8,7 @@
 
 # Diff pairs: keep 3x-width spacing to other nets when routing (pads exempt so fine-pitch ICs pass)
 (rule "hs pair spacing"
-  (condition "(A.NetClass == 'USB_90' || A.NetClass == 'HS_85') && A.Type == 'Track' && B.Type == 'Track' && !A.isCoupledDiffPair()")
+  (condition "(A.NetClass == 'USB_90' || A.NetClass == 'HS_85') && A.Type == 'Track' && B.Type == 'Track' && !A.isCoupledDiffPair() && !(A.NetName == '*_TX?_IC' && B.NetName == '*_TX?_IC')")
   (constraint clearance (min 0.3mm)))
 
 # 48 V / 28 V nets: 0.3 mm to other nets for copper we draw (tracks, vias, zones). Pad-to-pad inside a footprint

@@ -173,7 +173,7 @@ def usd(r):
     southward with D1 west / D2 east); L3 lanes fan out west under the SD socket (length-tuning
     meanders there), turn east into the band y 129.7-132.4, north at x 179-181.7, east along
     y 120.2-122.9 and drop into one via per contact just north of the J902 contact row.
-    CLK detours on L3 to R908 (placed at (129.1, 107.25)) and back as CLK_S; all lines are matched to it."""
+    CLK goes through R908 (bottom, just west of the via row); all lines are matched to the longest."""
     W3 = H.SE50[L3]
     W6 = H.SE50[B]
     u = lambda n: r.pad_of_net("U901", n)
@@ -190,15 +190,19 @@ def usd(r):
         stub[net] = pts
         H.draw(r, net, pts, B, W6)
         r.via(net, xv, yrow)
-    # CLK -> R908 -> CLK_S on L3
+    # CLK -> R908 (bottom, west of the via row) -> CLK_S: CLK on L3 over the D0/D1 vias, CLK_S on B.Cu
+    # under the D0/D1 stubs to a via between the D0 and CMD lanes
     r1, r2 = r.pad_of_net("R908", CLK), r.pad_of_net("R908", CLKS)
-    v1, v2 = (r1[0], r1[1] - 0.75), (r2[0], r2[1] - 0.75)
-    clk3 = [(xvia[CLK], yrow), (xvia[CLK], 107.5), (xvia[CLK] + 0.4, 107.1), (v1[0] - 0.4, 107.1), (v1[0], 106.7), v1]
+    v1 = (r1[0] - 0.55, r1[1])
+    clk3 = [(xvia[CLK], yrow), (xvia[CLK], 113.9), (xvia[CLK] - 0.3, 113.6), (v1[0] + 0.4, 113.6), (v1[0], 114.0), v1]
     H.draw(r, CLK, clk3, L3, W3)
-    r.via(CLK, *v1); r.via(CLKS, *v2)
-    H.draw(r, CLK, [v1, r1], B, W6); H.draw(r, CLKS, [r2, v2], B, W6)
-    xcs = 124.0
-    clks_head = [v2, (v2[0], 113.2), (v2[0] - 0.4, 113.6), (xcs + 0.4, 113.6), (xcs, 114.0), (xcs, yrow + 0.3)]
+    r.via(CLK, *v1)
+    H.draw(r, CLK, [v1, r1], B, W6)
+    v2 = (118.45, 119.75)
+    clks6 = [r2, (r2[0], 117.5), (v2[0] + 0.1, v2[1] - 0.6), v2]
+    H.draw(r, CLKS, clks6, B, W6)
+    r.via(CLKS, *v2)
+    clks_head = [v2]
     # L3 lanes: (net, start point, fan-out c=x+y of the 45-degree SW diagonal, lane x, band y)
     order = [D1, D0, CLKS, CMD, D3, D2]
     lane_x = {D1: 113.0, D0: 115.4, CLKS: 117.8, CMD: 120.4, D3: 122.9, D2: 125.4}
@@ -207,7 +211,7 @@ def usd(r):
     top_y = {D1: 122.9, D0: 122.4, CLKS: 121.8, CMD: 121.2, D3: 120.7, D2: 120.2}
     pad_of = {D1: jp(D1), D0: jp(D0), CLKS: jp(CLKS), CMD: jp(CMD), D3: jp(D3), D2: jp(D2)}
     start = {n: (xvia[n], yrow) for n in (D1, D0, CMD, D3, D2)}
-    start[CLKS] = (xcs, yrow + 0.3)
+    start[CLKS] = v2
     c = 236.15
     lanes = {}
     for net in order:
@@ -228,7 +232,7 @@ def usd(r):
     tot = {}
     for n in order:
         if n == CLKS:
-            tot[n] = H.L(stub[CLK]) + H.L(clk3) + H.L([v1, r1]) + H.L([r2, v2]) + H.L(clks_head) + H.L(lanes[n]) + l1[n]
+            tot[n] = H.L(stub[CLK]) + H.L(clk3) + H.L([v1, r1]) + H.L(clks6) + H.L(lanes[n]) + l1[n]
         else:
             tot[n] = H.L(stub[n]) + H.L(lanes[n]) + l1[n]
     target = max(tot.values())
@@ -240,8 +244,6 @@ def usd(r):
             amax = 1.5 if n != D1 else 1.3
             pts = H.serp(pts, 2, extra, -1, maxamp=amax, amax=amax * 1.6, top=0.3,
                          gap=0.6 if n == CLKS else 0.45, margin=0.3, center=q)
-        if n == CLKS:
-            pts = clks_head[:-1] + pts
         H.draw(r, n, pts, L3, W3)
         r.via(n, *pts[-1])
         H.draw(r, n, [pts[-1], pad_of[n]], F, 0.2)
