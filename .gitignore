@@ -13,3 +13,6 @@ hardware/*/production/
 hardware/*/gerbers/
 # OS
 .DS_Store
+# Python
+__pycache__/
+*.pyc

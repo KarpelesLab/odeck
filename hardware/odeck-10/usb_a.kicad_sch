@@ -37,7 +37,7 @@
 						)
 					)
 				)
-				(property "Footprint" "odeck:USB-A-TH_U231-091N-4BLRC19-F1-A"
+				(property "Footprint" "odeck:USB-A_Amphenol_GSB4111312HR"
 					(at 0 -17.78 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -2962,7 +2962,7 @@
 				)
 			)
 		)
-		(property "Footprint" "odeck:USB-A-TH_U231-091N-4BLRC19-F1-A"
+		(property "Footprint" "odeck:USB-A_Amphenol_GSB4111312HR"
 			(at 35.56 50.80 0)
 			(effects
 				(font
@@ -7118,7 +7118,7 @@
 				)
 			)
 		)
-		(property "Footprint" "odeck:USB-A-TH_U231-091N-4BLRC19-F1-A"
+		(property "Footprint" "odeck:USB-A_Amphenol_GSB4111312HR"
 			(at 236.22 50.80 0)
 			(effects
 				(font

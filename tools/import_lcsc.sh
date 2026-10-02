@@ -23,8 +23,14 @@ for f in "$BK"/*.kicad_mod; do
     cp -p "$f" "$n"
   fi
 done
-rm -rf "$BK"
 # absolute 3D model paths -> relative to the project dir (projects live in hardware/<name>/)
 sed -i '' "s#$LIB/odeck.3dshapes/#\${KIPRJMOD}/../lib/odeck.3dshapes/#g" odeck.pretty/*.kicad_mod
 "$KCLI" sym upgrade --force odeck.kicad_sym >/dev/null
-"$KCLI" fp upgrade odeck.pretty >/dev/null 2>&1 || true
+# upgrade only footprints that are new from this import (don't reformat the verified library)
+UP="$(mktemp -d)/new.pretty"; mkdir -p "$UP"
+for f in odeck.pretty/*.kicad_mod; do [ -e "$BK/$(basename "$f")" ] || cp -p "$f" "$UP/"; done
+if ls "$UP"/*.kicad_mod >/dev/null 2>&1; then
+  "$KCLI" fp upgrade --force "$UP" >/dev/null 2>&1 || true
+  cp -p "$UP"/*.kicad_mod odeck.pretty/
+fi
+rm -rf "$BK"
