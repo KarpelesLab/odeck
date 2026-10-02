@@ -21,7 +21,6 @@ R_2M_2512 = "C459679"             # RLP25FEGR002, 2 mOhm 1 % 2512 (INA226 shunt)
 C_4U7_100V = "C697607"            # HMK325C7475KN-TE 4.7 uF 100 V X7S 1210
 C_1U_100V = "C126585"             # GCM21BC72A105KE36L 1 uF 100 V X7S 0805
 C_100N_100V = "C15725"            # CL10B104KC8NNNC 100 nF 100 V X7R 0603
-C_47U_100V = "C371305"            # SamYoung MVK 47 uF 100 V alu, 10x10 (input damping)
 C_47U_10V = "C84494"              # GRM32ER71A476KE15L 47 uF 10 V X7R 1210
 C_330U_POLY = "C54321566"         # 330 uF 6.3 V polymer, 6.3x6 (+5V hold-up)
 D_BAT46W = "C83152"               # BAT46W-7-F 100 V Schottky SOD-123
@@ -41,10 +40,10 @@ def build(D):
     # =============================================================================================
     _note(s, "1. +5V MAIN BUCK  LM5148 (80 V sync buck controller)  VIN 9-50 V -> 5V_BUCK = 5.13 V, 8 A, fsw 300 kHz", (20.32, 22.86), 2.0)
 
-    # input capacitors (VIN reaches 50.4 V; TVS clamps on power_input are >60 V -> 100 V parts)
+    # input capacitors (VIN reaches 50.4 V; TVS clamps on power_input are >60 V -> 100 V parts).
+    # No electrolytic: VIN capacitance is budgeted to <= 100 uF for USB PD (cSnkBulkPd); the one 47 uF damping
+    # alu for the whole VIN node sits on power_input.
     y = 50.8
-    s.part("Device:C_Polarized", "C", "47u/100V", "Capacitor_SMD:CP_Elec_10x10", at=(25.4, y),
-           pins={"1": "VIN", "2": "GND"}, lcsc=C_47U_100V, desc="Alu 47 uF 100 V, input damping (ESR)")
     for i in range(4):
         s.c("4.7u/100V", "VIN", "GND", size="1210", at=(38.1 + i * 12.7, y), lcsc=C_4U7_100V)
     for i in range(2):
@@ -92,7 +91,8 @@ def build(D):
     s.r("10k", "5V_COMP", "5V_CC", at=(139.7, y), lcsc=R_10K, desc="RCOMP")
     s.c("10n", "5V_CC", "GND", at=(149.86, y), lcsc=C_10N, desc="CCOMP")
     s.c("100p", "5V_COMP", "GND", at=(160.02, y), lcsc=C_100P, desc="CHF")
-    s.r("100k", "5V_BUCK", "PG_5V", at=(170.18, y), lcsc=R_100K, desc="PG pull-up to own output")
+    s.r("100k", "5V_BUCK", "PG_5V", at=(170.18, y), lcsc=R_100K,
+        desc="PG pull-up to own output: an unpowered LM5148 cannot hold PG low, 5V_BUCK = 0 V then")
 
     _note(s, "fsw = 1e6/(45*73.2k+53) = 299 kHz; tON at 50.4 V = 340 ns >> 50 ns min; dropout below ~5.3 V (VIN UVLO is 8 V).\n"
              "L = 4.7 uH: dI = 3.25 A p-p at 48 V, 2.7 A at 20 V. Slope comp: L_ideal = Vo*Rs/(24*f) = 2.85 uH -> 1.65x (stable).\n"
@@ -137,7 +137,11 @@ def build(D):
              "  Nothing on this sheet ties VIN-side pins to +5V (FB, VCCX, VOUT/ISNS+, PG pull-up all on 5V_BUCK).\n"
              "  VIN at a few volts: EN/UVLO divider keeps the LM5148 off below 7.0-8.0 V, D301 isolates its VIN pin.\n"
              "Handover: external power arrives -> buck soft-starts (3 ms) into 5V_BUCK -> diode conducts once 5V_BUCK > +5V,\n"
-             "  +5V rises 5.0 -> 5.11 V, EXT_PWR_PRESENT opens the sink switch. Loss of VIN: +5V held by 330 uF + ceramics.\n"
+             "  +5V rises 5.0 -> 5.11 V; PG_5V (global, open drain, 100k to 5V_BUCK = 5.1 V level) goes high and, after a\n"
+             "  2.7-6.7 ms RC on power_laptop, opens the sink switch (EXT_PWR_PRESENT AND PG_5V). Make-before-break.\n"
+             "  PG_5V pull-up is deliberately 5V_BUCK, not +3V3/+5V: those exist while the LM5148 is unpowered (open-drain\n"
+             "  PG floating) and would read 'good' exactly in the hand-over window. Do not feed PG_5V to 3.3 V-only inputs.\n"
+             "  Loss of VIN: +5V held by 330 uF + ceramics.\n"
              "INA226 @ 0x41 (A1=GND, A0=VS): 2 mOhm, 8 A = 16 mV of +-81.92 mV FS; CURRENT_LSB 0.5 mA -> CAL = 5120.\n"
              "  Measures buck output only; bus-powered +5V current is seen by the laptop-VBUS INA226 (power_laptop).\n"
              "  ALERT unused (firmware polls); I2C pull-ups live on the MCU sheet.",
@@ -199,7 +203,7 @@ def build(D):
              "Sequencing (sec. 9.6.1): VCORE rises after or with VDD33 -> EN from +3V3 divider; rise times <= 5 ms -> fixed 2 ms SS.\n"
              "dI = 1.15*(1-1.15/5.13)/(1.5u*1.2M) = 0.50 A p-p (17 % of 3 A, >10 % min for PCM). Cout 4x22 uF (+ hub 9x4.7 uF).\n"
              "RAILS_PG (open drain, 100k to +3V3): high only when +1V15 is in regulation, which implies +3V3 is up.\n"
-             "  LOCAL NET - intended to be wire-ORed onto HUB_RESET_N (hold hub in reset until VCORE is good). See docs.",
+             "  GLOBAL NET (nets.py): wire-ORed onto HUB_RESET_N on usb_hub through a Schottky (hub held in reset until VCORE good).",
           (x0, 205.74))
 
     # =============================================================================================

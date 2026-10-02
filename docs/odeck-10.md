@@ -25,10 +25,10 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
                                 port 1 = downstream C (5 V/3 A source, DP DFP_D, drives TUSB1046, HPD relay)
  TPS26750 + TPD4S480: PD-in charger port (EPR sink, up to 48 V)
 
- PD-in 5–48 V ──► LM74700/LM74800 ─┐
- Barrel 9–24 V ─► LM74720 (rev/OVP)┴─► VIN 9–48 V ─┬─► LM51770 buck-boost ─► 5/9/15/20/28 V ─► [src switch] ─► laptop VBUS
-                  (barrel disabled by PD-in present)├─► LM5148 ─► 5 V (USB-A, downstream C, LCD)
- Laptop VBUS ────► [sink switch, only when no external power] ─► 5 V rail (bus-powered mode)
+ PD-in 5–48 V ──► LM74800 (ideal diode + OV)  ─┐
+ Barrel 9–24 V ─► LM74800 (rev/OV/UVLO)       ┴─► VIN 9–48 V ─┬─► LM51770 buck-boost ─► 5/9/15/20/28 V ─► [src switch] ─► laptop VBUS
+                  (both always armed: higher voltage wins)     ├─► LM5148 ─► 5 V (USB-A, downstream C, LCD)
+ Laptop VBUS ────► [sink switch, released only when external power AND 5 V buck PG] ─► 5 V rail (bus-powered mode)
                                                      └─► 3.3 V / 1.15 V / 1.2 V bucks
 
  RP2350B ── I2C: PD controllers (status/requests only), hub SMBus (port speeds), LCD SPI,
@@ -46,7 +46,7 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
 | USB 10G hub | Microchip USB7206C | 26 / 1950, $8.66 | 5× 10G + 1× USB2; ROM; per-port speed via SMBus (AN2935); ~1.8 W, needs 1.15 V/2 A |
 | SD + microSD | Genesys GL3224-ONY04 | 1646 | 2 slots, UHS-I, ROM |
 | 2.5GbE | Realtek RTL8156BG-CG | 2915 | LED pins → RP2350 |
-| Input OR / protection | LM74720 (barrel, reverse + OVP), LM74700/LM74800 (PD-in) | 776 / 5k+ | Hardware priority PD-in > barrel. LTC4417 rejected (36 V max) |
+| Input OR / protection | LM74800 ×2 (barrel: reverse + OV + UVLO; PD-in: ideal diode + OV) | 4k+ | No hardware priority: both armed, higher voltage wins; source preference is firmware policy (PD voltage request). LM74720 dropped (gate −VIN issue), LTC4417 rejected (36 V max) |
 | Buck-boost to laptop | TI LM51770 + external FETs | 1007 / 2131 | 78 V rated; defaults 5 V; voltage steps set by PD-controller GPIOs (MCU can't set voltage); ~96–97 % eff. Plan B BQ25756 |
 | 5 V rail | TI LM5148 (80 V buck ctrl) | 57k | Up to ~8 A |
 | 3.3 V / 1.x V | TPS62933 / TPS563201; TPS62A02 / TLV62569 | stock | |
@@ -150,6 +150,12 @@ Hardware backstops that stay independent of *all* firmware:
 | mcu | drafted, netlist-verified (TCA9534 expander for slow status I/O) | `design/mcu.md` |
 | display_ui | drafted, netlist-verified | `design/display_ui.md` |
 | sensors | drafted, netlist-verified | `design/sensors.md` |
+
+**Review pass (2026-10-02):** independent schematic review of all sheets (`review/power.md`, `review/pd_mux.md`,
+`review/data.md`, `review/mcu_ui.md`) — 0 BLOCKER, 7 MAJOR, all fixed (see each file's Resolution section);
+footprint verification of all 54 custom footprints (`review/footprints-1.md`, `-2.md`) — 50 fixed (incl. a mirrored
+RJ45 pinout), USB-A drawing still to confirm. Power-input priority is now diode-OR (highest voltage wins), firmware
+chooses source preference. Firmware rules collected in `design/mcu.md`. 186 parts, ERC clean.
 
 **All 12 sheets drafted (2026-10-02):** 181 unique parts, all JLC stock ≥ 5, netlist verify OK, ERC clean except one
 spare-pin label. Parts ≈ $160/board at qty-1 prices; 125 extended part types (~$375 JLC fee per order — swap

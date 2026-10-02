@@ -61,44 +61,44 @@
 	(attr smd)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
-		(start -1.58 -1.07)
-		(end 1.58 -1.07)
+		(start -1.580 -1.070)
+		(end 1.580 -1.070)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "4682d1e7-cf4a-4622-b363-f2989d00b3e7")
+		(uuid "f4f76c61-087d-4e04-8ef5-9aba0f1bd613")
 	)
 	(fp_line
-		(start -1.58 1.07)
-		(end -1.58 -1.07)
+		(start -1.580 -1.070)
+		(end -1.580 1.070)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "b9dd24e1-9607-441a-8445-e0d660b51bd2")
+		(uuid "fa6580f8-00d5-420d-a31e-85e65adf2252")
 	)
 	(fp_line
-		(start 1.58 -1.07)
-		(end 1.58 1.07)
+		(start 1.580 -1.070)
+		(end 1.580 1.070)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "33687192-92a3-4391-9852-968624d20965")
+		(uuid "2f5f624b-691e-4ca1-90f9-9195f5f6ad8e")
 	)
 	(fp_line
-		(start 1.58 1.07)
-		(end -1.58 1.07)
+		(start -1.580 1.070)
+		(end 1.580 1.070)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "ba6625e7-34ef-41d8-b5f6-70de61d7b8b6")
+		(uuid "d8608de1-a958-4a16-9add-2de78fd30a7f")
 	)
 	(fp_circle
 		(center -1.59 2.11)
@@ -143,46 +143,6 @@
 		(fill no)
 		(layer "Cmts.User")
 		(uuid "06e6c09a-f3d8-4c40-b90c-2831b8b8530d")
-	)
-	(fp_line
-		(start -1.5 -1.5)
-		(end 1.5 -1.5)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "9a073d2b-2f08-43f5-a56e-c17b639684a1")
-	)
-	(fp_line
-		(start -1.5 1.5)
-		(end -1.5 -1.5)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "d105aa0d-4054-497a-84f6-73b271197ef1")
-	)
-	(fp_line
-		(start 1.5 -1.5)
-		(end 1.5 1.5)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "5ee09e7c-ddf4-450e-82ac-6f3d531faf6a")
-	)
-	(fp_line
-		(start 1.5 1.5)
-		(end -1.5 1.5)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "41470f23-6242-4056-baa7-5e7a176d040a")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 0 0)
@@ -266,5 +226,16 @@
 		(rotate
 			(xyz 0 0 0)
 		)
+	)
+	(fp_rect
+		(start -1.8 -3.2)
+		(end 1.8 3.2)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "2a185def-3a1e-463a-bf47-d055880deb75")
 	)
 )

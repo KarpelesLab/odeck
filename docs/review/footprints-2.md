@@ -1,0 +1,61 @@
+# Footprint review, part 2 (entries [28] to [54])
+
+Scope: the custom footprints in `hardware/lib/odeck.pretty` listed as entries [28] to [54] of the footprint/part list. Each one was checked against the manufacturer's land pattern for pad count, pad numbering versus the `odeck.kicad_sym` pin numbers, pitch, pad size, row span, exposed pad (EP), drill and slot sizes, pin-1 orientation and courtyard. All 27 footprints load with `pcbnew.FootprintLoad`. For every symbol in this range, the footprint pad numbers and the symbol pin numbers are the same set.
+
+## Issues found in every EasyEDA import (fixed)
+
+- **Courtyards.** The EasyEDA courtyard only drew the package body and left out the pads, on 20 of the 27 footprints. Each one was replaced with a single rectangle: the pads plus the body plus 0.25 mm (0.5 mm for the connectors).
+- **Silkscreen.** Where a pad was enlarged, any silkscreen line that now crossed it was removed. A pin-1 dot was added wherever the old marker got removed.
+- **File format.** Five files were still in the pre-KiCad-6 `(module ...)` format and were upgraded with `kicad-cli fp upgrade`: SOIC-8 5.3, SW-SMD, SOT-5X3-6, TSSOP-16 and VSSOP-8.
+- **Pin-1 orientation.** The EasyEDA "-BL/-BR/-TL" suffixes give rotated (but correct, counter-clockwise) pin orders. These were kept unless the footprint was rewritten.
+
+> **JLC CPL rotations:** footprints rewritten from KiCad library/IPC patterns (SOIC-8 ×2, VQFN-24, VSONP-8, VQFN-10) changed origin and orientation compared with the EasyEDA version, so their rotation offsets in the CPL file will differ.
+
+## Table
+
+| # | Footprint | Part(s) | Status | Reference |
+|---|---|---|---|---|
+| 28 | SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL | W25Q128JVSIQ | **FIXED**: replaced with KiCad `SOIC-8_5.3x5.3mm_P1.27mm` (IPC). The EasyEDA pitch alternated between 1.26 and 1.27 mm, and the toe was 0.6 mm long. Pins 1-8 match. | Winbond W25Q128JV DS §10.1 (SOIC 208-mil, pkg S) |
+| 29 | SOP-8_L4.9-W3.9-P1.27-LS6.0-BL | SST26VF016B-104I/SN | **FIXED**: replaced with KiCad `SOIC-8_3.9x4.9mm_P1.27mm`. Microchip specifies C = 5.40 mm with 0.60 × 1.55 mm pads, and the KiCad pattern is within 0.03 mm at the toe. The EasyEDA pin 1 was offset by 0.01 mm. | Microchip SST26VF016B DS, SN land pattern |
+| 30 | SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BL | INA180A2 | **FIXED**: pads went from 0.49 × 1.16 mm at a 2.3 mm span to **0.6 × 1.1 mm at a 2.6 mm span**. Courtyard redone. | TI INA180 DS, DBV0005A example board layout |
+| 31 | SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL | USBLC6-2SC6 | **OK** (pads already match ST: 0.6 × 1.1 mm at a 2.3 mm row pitch). Only the courtyard was fixed. | ST USBLC6-2 DS (DocID11265) Fig. 22 |
+| 32 | SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR | TPS2553DBV, TLV3011DBV | **FIXED**: row span set to the TI 2.6 mm (it was 2.7), pads 1.1 × 0.6 mm, courtyard redone. Both parts use TI DBV0006A with standard numbering, so one footprint works for both. (TLV6700 does *not* use this footprint; it uses the DDC version, #39.) | TI TPS2553 DS / TLV3011 DS, DBV0006A |
+| 33 | SOT-23-6_L2.9-W1.6-P0.95-LS2.8-TL | LM74700-Q1 (DBV) | **FIXED**: pads went from 0.53 × 1.07 mm at a 2.3 mm span to **1.1 × 0.6 mm at a 2.6 mm span**. Courtyard redone. Pinout checked against Table 5-1. | TI LM74700-Q1 DS, DBV0006A |
+| 34 | SOT-23-8_L2.9-W1.6-P0.65-LS2.8-BL | LM74502 (DDF) | **FIXED**: pitch was 0.65/0.64/0.65 mm, now an exact 0.65 mm. Pads went from 0.9 × 0.45 mm at a 2.52 mm span to **1.05 × 0.45 mm at a 2.6 mm span**. | TI LM74502 DS, DDF0008A |
+| 35 | SOT-583-8_L2.1-W1.2-P0.50-LS1.6-BL | TPS62933P | **FIXED**: pads went from 0.28 × 0.68 mm at a 1.28 mm span to **0.3 × 0.67 mm at a 1.48 mm span**. The old pattern sat 0.1 mm too far inboard, so the heel had no fillet. | TI TPS62933 DS, DRL0008A |
+| 36 | SOT-583-8_L2.1-W1.2-P0.50-LS1.6-BR | TPS62933F | **FIXED**: same correction as #35. | TI TPS62933 DS, DRL0008A |
+| 37 | SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL | TPS62A02A (DRL, SOT-563) | **FIXED**: pads were far too small (0.25 × 0.5 mm at a 1.4 mm span) and are now **0.3 × 0.67 mm at a 1.48 mm span**. The courtyard was smaller than the pads. The pinout matches the SOT-563 column of Table 5-1. | TI TPS62A02A DS, DRL0006A |
+| 38 | SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5 | TS-1187A-B-A-B (BOOTSEL, RESET) | **FIXED**: pad rows moved from y = ±1.85 to the drawing's **±1.875 mm** (1.0 × 0.75 mm pads at 6.0 mm centres). The courtyard did not cover the pads. Pad mapping 1=A, 2=B, 3=C, 4=D matches the drawing (A–B and C–D are internally connected, and the switch is between them). | XKB drawing TS-1187A-X-X-X, PCB layout |
+| 39 | TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR | TLV6700DDC | **FIXED**: pads went from 0.8 × 0.53 mm at a 2.4 mm span to **1.1 × 0.6 mm at a 2.7 mm span** (the toe was 0.3 mm short). | TI TLV6700 DS, DDC0006A |
+| 40 | TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL | TCA9534PWR | **FIXED**: pitch was 0.65/0.66 mm, now an exact 0.65 mm. Pads went from 0.34 × 1.73 mm at a 5.74 mm span to **0.45 × 1.5 mm at a 5.8 mm span**. | TI TCA9534 DS, PW0016A |
+| 41 | USB-A-TH_U231-091N-4BLRC19-F1-A | GSB4111312HR | **UNVERIFIABLE** (only the courtyard was fixed). The Amphenol drawing (`cdn.amphenol-cs.com/.../drawing/gsb4111312hr.pdf`) is behind Cloudflare and returned 403 to curl and WebFetch, and LCSC's PDF is a marketing deck. What could be checked matches the USB 3.0 Std-A layout of the verified KiCad `USB3_A_Molex_48393-001`: pins 1-4 at 2.5/2.0/2.5 mm (VBUS at the shell-left side). The SS row 5-9 sits 1.5 mm behind at a 2.0 mm pitch, with **pin 5 (SSRX−) next to pin 4 (GND) and pin 9 (SSTX+) next to pin 1 (VBUS)**. Holes are 0.7 mm and the shell legs are Ø2.3 mm at 13.1 mm. **Before fab, check the hole positions and shell-leg Ø/pitch against the Amphenol drawing.** | USB 3.0 spec Std-A; KiCad Molex 48393 |
+| 42 | USB-C-SMD_TYPE-C-24P | 12401610E4#2A (J502) | **FIXED**: replaced with KiCad `USB_C_Receptacle_Amphenol_12401610E4-2A`, which matches the Amphenol drawing exactly. The EasyEDA version had **0.25 mm signal pads instead of 0.30 mm** and was **missing the second locating hole** (0.95 × 0.65 mm slot at +3.6 mm). Shell pads were renumbered SH→14 (left) / 15 (right) to match the symbol. The NPTH slot was made a round Ø0.95 mm hole, because JLC's minimum NPTH slot width is about 1 mm. 3D model is now the KiCad STEP. | Amphenol 12401610E4#2A dwg rev C, sheet 2, "Recommended PCB layout" |
+| 43 | USB-C-TH_DX07S024XJ1R1100-1 | DX07S024XJ1R1100 (J501 laptop, J101 PD-in) | **FIXED**: the A-row SMT pads, B-row THT positions (all 12 checked) and the B12-under-A1 mirroring match the drawing. Defects fixed: the locating holes were *plated* Ø0.8 mm and are now **NPTH Ø0.75 mm (left) and Ø0.95 mm (right)**; the right hole is a 0.95 × 0.75 mm slot on the drawing, made round for fab. The shell slots were drilled 0.8 × 1.8 mm with 1.2 × 2.2 mm pads and are now **0.6 × 1.6 mm with 1.1 × 2.1 mm pads**, per the drawing. One footprint works for both uses. Open items: **there is no 3D model**, and the B-row annular ring is 0.1 mm (0.4 mm drill, 0.6 mm pad at a 0.8 mm diagonal pitch), so it needs a JLC DFM check. | JAE drawing SJ116123 (DX07S024XJ1), "Applicable P.C.B dimension" + detail A |
+| 44 | USON-10_L2.5-W1.0-P0.50-BL | TPD4E02B04 | **FIXED**: row pitch went from 0.80 mm to **0.835 mm**. Pads (0.565 × 0.2 mm, with 0.4 mm GND pads on 3 and 8) were already correct. | TI TPD4E02B04 DS, DQA0010A |
+| 45 | VQFN-100_L12.0-W12.0-P0.40-TL-EP8.0 | USB7206C | **FIXED**: replaced with KiCad `VQFN-100-1EP_12x12mm_P0.4mm_EP8x8mm_ThermalVias`, which was generated from this datasheet. Pads now sit at a **C = 11.7 mm** span (was 11.62 mm). The EP had 100 % paste and is now **16 paste windows (about 65 %)**. There were no thermal vias and there are now **25**, at 0.2 mm drill. The datasheet suggests 0.33 mm vias at a 1.2 mm pitch, filled or tented. | Microchip DS00003850A Fig. 10-3 (C04-2407A) |
+| 46 | VQFN-10_L2.0-W2.0-P0.45-TL | TPS259470A (RPW) | **FIXED** (rewritten). The IN/OUT bars were at −0.23/+0.26 mm and are now at **±0.25 mm**. The L-shaped corner pads 1, 4, 7 and 10 were sloppy polygons with a 0.1 mm outline (about 0.05 mm oversize and 0.05 mm offset). They were redrawn to TI's dimensions: a 0.6 × 0.3 mm arm at y = ±0.7 mm plus a 0.25 mm leg out to the package edge. The pinout matches Table 5-1. | TI TPS25947 DS (SLVSF57) p.73, RPW0010A |
+| 47 | VQFN-24_L5.5-W3.5-P0.50-BL-EP-2 | LM5148 (RGY) | **FIXED**: replaced with KiCad `Texas_RGY_R-PVQFN-N24_EP2.05x3.1mm_ThermalVias` (TI RGY24 pattern). The EasyEDA pads were about 0.13 mm inboard. There are now 6 thermal vias at 0.3 mm and 4 paste windows. The LM5148 datasheet (SNVSC01) has only the generic RGY view and no land-pattern page, so the RGY pattern from the TI bq24133 datasheet was used. Pin placement (1/24 at the top end, 12/13 at the bottom) matches Fig. 6-1. | TI LM5148 DS Fig. 6-1; TI RGY24 (bq24133 DS) |
+| 48 | VSONP-8_L3.1-W3.1-P0.65-LS3.5-BL | CSD18543Q3A | **FIXED** (rewritten to the TI Q3A pattern). The drain pad was 2.65 × 2.0 mm, off-centre, with separate pads 5-8 overlapping it. It is now a **1.775 × 2.45 mm drain pad with fingers 5-8** out to x = +1.85 mm, and pins 1-4 are 0.6 × 0.3 mm at x = −1.55 mm. The pitch was 0.65/0.64 mm and is now exactly 0.65 mm. The drain has 4 paste windows. The 3D model was rotated −90° to follow the new orientation (pin 1 at top-left). | TI CSD18543Q3A DS (SLPS633) §7.2/7.3 |
+| 49 | VSSOP-10_L3.0-W3.0-P0.50-LS4.9-BL | INA237 | **FIXED**: pads went from 1.3 × 0.3 mm at a 4.7 mm span to **1.45 × 0.3 mm at a 4.4 mm span**. The heel was 0.2 mm short. | TI INA237 DS, DGS0010A |
+| 50 | VSSOP-8_L2.1-W2.4-P0.50-LS3.2-BR | SN74LVC3G17DCU | **FIXED**: pads went from 0.75 × 0.25 mm to **0.85 × 0.3 mm** at a 3.1 mm span. | TI SN74LVC3G17 DS, DCU0008A |
+| 51 | WQFN-20_L3.0-W3.0-P0.40-BL-EP1.7 | TPD4S480, TPD6S300 | **FIXED**: pads went from 0.8 mm long at a 3.0 mm span to **0.6 mm long at a 2.8 mm span**; they reached 0.4 mm beyond the body. The EP stays 1.7 mm with 4 paste windows (about 72 %). Both parts are the same RUK0020B package with the EP on pin 21, so the shared footprint is correct. | TI TPD4S480 DS p.26 / TPD6S300 DS p.33, RUK0020B |
+| 52 | WQFN-40_L6.0-W4.0-P0.40-TL-EP | TUSB1046-DCI, TUSB1064 | **FIXED**: pads went from 0.8 mm long at a 6.0 × 4.0 mm span to **0.6 mm long at a 5.8 × 3.8 mm span**. The 4.7 × 2.7 mm EP had 100 % paste and now has 6 windows (about 70 %). Both parts are the same RNQ0040A package, so the shared footprint is correct. The pin tables for both match their symbols. | TI TUSB1064 DS p.48 / TUSB1046-DCI DS p.45, RNQ0040A |
+| 53 | WSON-12_L3.0-W3.0-P0.50-TL-EP-2 | LM74800-Q1 | **FIXED**: pad span went from 2.82 mm to **2.78 mm**. The EP (1.3 × 2.5 mm) was already correct and now has 2 paste windows. Courtyard redone. The pinout matches the LM7480-Q1 datasheet. | TI LM7480-Q1 DS p.44, DRR0012E |
+| 54 | WSON-8_L2.0-W2.0-P0.50-TL-EP | TMP1075 (DSG) | **OK**: pads (0.52 × 0.25 mm at 1.9 mm) and the EP (0.9 × 1.6 mm) match. Only the courtyard and silkscreen were fixed. | TI TMP1075 DS p.44, DSG0008A |
+
+## Reassignments needed
+
+None. Every shared footprint fits all the parts that use it:
+
+- #32: TPS2553 and TLV3011 (both DBV).
+- #51: TPD4S480 and TPD6S300 (both RUK0020B).
+- #52: TUSB1046 and TUSB1064 (both RNQ0040A).
+- #43: J501 and J101 (same connector).
+- #38: BOOTSEL and RESET (same switch).
+
+## Open items
+
+1. **#41 GSB4111312HR:** check against the Amphenol drawing. It has to be downloaded manually in a browser, because the site's Cloudflare check blocks scripted downloads.
+2. **#43 DX07S024XJ1R1100:** it has no 3D model. Check the B-row 0.1 mm annular ring in JLC DFM.
+3. **#45 USB7206C:** the thermal vias are 0.2 mm, which costs extra at JLC. Consider 0.3 mm vias, plugged, if that matters.
+4. **CPL rotation offsets:** they change for the footprints rewritten from the KiCad library (#28, #29, #42, #45, #46, #47, #48).

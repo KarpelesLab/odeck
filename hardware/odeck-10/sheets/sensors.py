@@ -68,7 +68,8 @@ def build(D):
     _note(s, "I2C_SYS pull-ups (2.2k) and the single TEMP_ALERT_N pull-up (10k, read by TCA9534 P2) live on the MCU sheet - none here.\n"
              "TMP1075 power-on default (config 00FFh): 12-bit continuous, comparator-mode ALERT active low, THIGH 80 C / TLOW 75 C. Firmware\n"
              "  reprograms per-sensor limits at boot (e.g. buck-boost 100 C, hub 95 C, LCD 60 C) and uses TEMP_ALERT_N as the\n"
-             "  derating interrupt; ALERT has no per-device flag (LM75-style), so the ISR reads all 8 temperatures to find the source.\n"
+             "  derating interrupt. To find the source: switch to interrupt mode (TM = 1) after boot and read the SMBus Alert Response\n"
+             "  Address 0x0C (DS 7.3.2.6, free on I2C_SYS), or simply read all 8 temperatures (~2 ms at 400 kHz).\n"
              "Accuracy +-1 C max (-40..110 C); WSON EP is the thermal path - it measures the copper it sits on, not air.",
           (20.32, 144.78))
 

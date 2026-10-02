@@ -10,6 +10,13 @@ R_100K, R_10K, R_1K, R_2K2, R_4K7, R_47K, R_33K, R_15K, R_1M, R_100, R_0 = (
     "C25741", "C25744", "C11702", "C25879", "C25900", "C25792", "C25779", "C25756", "C26083", "C25076", "C17168")
 R_7K5 = "C25918"
 R_22K = "C25768"                 # extended (1.2M stock)
+R_39K = "C25783"                 # 0402 basic
+R_100K_0805 = "C149504"          # 0805 basic, 150 V working voltage (resistors with a terminal on VBUS_PDIN/VBAR)
+R_1M_0805 = "C17514"             # 0805 basic, 150 V working voltage
+C_1U_100V = "C126585"            # 0805 100 V X7S
+C_47U_100V = "C371305"           # SamYoung MVK 47 uF 100 V alu 10x10 (VIN damping)
+TVS_PDIN = ("C2990373", "5.0SMDJ51A")   # Liown 5 kW, SMC (DO-214AB): same footprint as SMCJ51A, ~1/3 the dynamic R
+TVS_BAR = ("C2649886", "5.0SMDJ48CA")   # Littelfuse 5 kW bidirectional, SMC
 C_100N_16V = "C1525"             # 0402 basic
 C_100N_50V = "C14663"            # 0603 basic
 C_100N_100V = "C15725"           # 0603 100 V X7R
@@ -36,7 +43,8 @@ def build(D):
     _note(s, "1. PD-IN USB-C (power only)\n"
            "JAE DX07S024XJ1R1100 (48 V / 5 A EPR-rated, C134113). Only VBUS, CC, GND, shell used:\n"
            "USB2 D+/D-, SBU and SS pins are left open (no data on this port; no BC1.2).\n"
-           "Shell tied to GND. SMCJ51A TVS: VRWM 51 V > 50.4 V EPR max, VBR 56.7-62.7 V.\n"
+           "Shell tied to GND. 5.0SMDJ51A TVS (5 kW, SMC): VRWM 51 V > 50.4 V EPR max, VBR 56.7-62.7 V,\n"
+           "  Rdyn ~0.32 Ohm -> ~64 V at 5 A, ~68 V at 18 A (SMCJ51A: 82 V). Residual risk vs TPD4S480 63 V: see doc.\n"
            "TPD4S480: CC short-to-VBUS (63 V) protection, dead-battery Rd (RPD_Gx tied to C_CCx),\n"
            "VBUS -> VBUS_LV scaler (x0.42 in EPR) so the TPS26750 VBUS pin (22 V max) can sense 48 V.\n"
            "EPR_BLK_G unused (no 5 V source FET: sink-only port). SBU channels unused.",
@@ -45,8 +53,8 @@ def build(D):
            pins={"VBUS": "VBUS_PDIN", "CC1": "PDIN_C_CC1", "CC2": "PDIN_C_CC2", "GND": "GND", "0": "GND"},
            nc=["A2", "A3", "B2", "B3", "A10", "A11", "B10", "B11", "A6", "A7", "B6", "B7", "A8", "B8"],
            desc="USB-C receptacle 24P, 5 A / 48 V, PD-in (power only)")
-    s.part("odeck:SMCJ51A_C408371", "D", "SMCJ51A", at=(91.44, 60.96), pins={"C": "VBUS_PDIN", "A": "GND"},
-           desc="TVS 51 V uni, VBUS_PDIN")
+    s.part("odeck:SMCJ51A_C408371", "D", TVS_PDIN[1], at=(91.44, 60.96), pins={"C": "VBUS_PDIN", "A": "GND"},
+           lcsc=TVS_PDIN[0], mpn=TVS_PDIN[1], desc="TVS 51 V uni 5 kW (SMC), VBUS_PDIN")
     s.c("2.2u/100V", "VBUS_PDIN", "GND", size="1210", at=(83.82, 81.28), lcsc=C_2U2_100V)
     s.c("100n/100V", "VBUS_PDIN", "GND", size="0603", at=(93.98, 81.28), lcsc=C_100N_100V)
     s.flag("VBUS_PDIN", at=(104.14, 81.28))
@@ -68,11 +76,13 @@ def build(D):
     _note(s, "2. TPS26750 EPR SINK CONTROLLER (TI SLVSH67 Fig. 8-24 reference)\n"
            "Powered from +3V3 (VIN_3V3) when the deck runs, else from VBUS via its internal LDO (dead battery).\n"
            "ADCIN1 = ADCIN2 = 100k/100k (decoded 5/5): 'AlwaysEnableSink', I2C target index #2 = 0x21.\n"
-           "  -> deck boots from a 5 V-only PD-in even with a blank EEPROM; RP2350 can then program it.\n"
+           "  Blank EEPROM: sink path closes at 5 V but PD stays off until a host loads a config, and 5 V on VIN\n"
+           "  does NOT start the LM5148 (UVLO 8 V). First EEPROM programming needs barrel, laptop bus power or I2Cc pads.\n"
            "  (SafeMode alternative: ADCIN1 -> LDO_3V3, ADCIN2 -> GND = 7/0, address 0x20.)\n"
            "Config/patch from AT24C512C (64 KB >= 36 KB req.) at 0x50 on the private I2Cc bus.\n"
            "  RP2350 updates it through the TPS26750 host interface (I2Ct, 0x21); I2Cc test pads for recovery.\n"
-           "GPIO0 = EPR_EN (to TPD4S480), GPIO1 = PDIN_PRESENT (config: high while sink contract active),\n"
+           "GPIO0 = EPR_EN (to TPD4S480), GPIO1 = PDIN_PRESENT (informational only, 47k series: <= 60 uA into an\n"
+           "  unpowered PMG1/RP2350 pin; config: high while sink contract active),\n"
            "GPIO2 = TPD4S480 FLT# input, other GPIOs strapped to GND through 100k (datasheet: tie low if unused).\n"
            "PP5V tied to GND: sink-only port, no 5 V sourcing / VCONN (verify with TI).\n"
            "I2C_PD pull-ups live on the MCU sheet; PDIN_INT_N pull-up here.",
@@ -103,15 +113,16 @@ def build(D):
     # interrupt / I2Cc pull-ups (LDO_3V3 per datasheet), PDIN_INT_N to +3V3
     s.r("10k", "PDIN_INT_N", "+3V3", at=(x0 + 91.44, y0), lcsc=R_10K)
     s.r("10k", "PD_I2CC_IRQ_N", "PD_LDO_3V3", at=(x0 + 101.6, y0), lcsc=R_10K)
-    s.r("2.2k", "PD_I2CC_SDA", "PD_LDO_3V3", at=(x0 + 111.76, y0), lcsc=R_2K2)
-    s.r("2.2k", "PD_I2CC_SCL", "PD_LDO_3V3", at=(x0 + 121.92, y0), lcsc=R_2K2)
+    s.r("4.7k", "PD_I2CC_SDA", "PD_LDO_3V3", at=(x0 + 111.76, y0), lcsc=R_4K7)   # 4.7k: less LDO_3V3 load
+    s.r("4.7k", "PD_I2CC_SCL", "PD_LDO_3V3", at=(x0 + 121.92, y0), lcsc=R_4K7)   # during dead-battery EEPROM boot
     # unused GPIOs -> GND through 100k (Hi-Z by default; resistor protects if a config drives them)
     y1 = 180.34
     for i, g in enumerate(["PD_GPIO3", "PD_GPIO4", "PD_GPIO5", "PD_GPIO6", "PD_GPIO7", "PD_GPIO11"]):
         s.r("100k", g, "GND", at=(x0 + i * 10.16, y1), lcsc=R_100K)
-    # PDIN_PRESENT: GPIO1, default low, 1k series so an unpowered +3V3 domain is not back-driven hard
+    # PDIN_PRESENT: GPIO1, default low. 47k series: GPIO1 can be high (VBUS-LDO powered) while PMG1 P7.2 (not
+    # fail-safe) and the RP2350 are unpowered -> (3.3 - 0.5) V / 47k = 60 uA < 0.5 mA PMG1 injection limit.
     s.r("100k", "PDIN_PRES_L", "GND", at=(x0 + 60.96, y1), lcsc=R_100K)
-    s.r("1k", "PDIN_PRES_L", "PDIN_PRESENT", at=(x0 + 71.12, y1), lcsc=R_1K)
+    s.r("47k", "PDIN_PRES_L", "PDIN_PRESENT", at=(x0 + 71.12, y1), lcsc=R_47K)
     s.r("100k", "PDIN_EPR_EN", "GND", at=(x0 + 81.28, y1), lcsc=R_100K)
 
     s.part("odeck:AT24C512C-SSHD-T", "U", "AT24C512C", at=(355.6, 76.2),
@@ -145,7 +156,9 @@ def build(D):
            "LM74800-Q1 ideal diode (Q104, DGATE) + load switch (Q105, HGATE), common drain, 2x BSC026N08NS5 80 V.\n"
            "EN/UVLO = PD_SINK_EN: path closes only when the TPS26750 enables its sink path.\n"
            "OV: 100k/2.2k -> 1.231 V x 102.2/2.2 = 57.2 V (55.5-58.9 V) > 50.4 V EPR max.\n"
-           "Inrush: HGATE 55 uA into 47 nF -> 1.17 V/ms; ~0.6 A into 500 uF of VIN capacitance.\n"
+           "Inrush: HGATE 55 uA into 47 nF -> 1.17 V/ms; ~0.12 A into <= 100 uF of VIN capacitance.\n"
+           "Always armed (no priority): PD-in and barrel are both ideal-diode ORed, the higher voltage feeds VIN.\n"
+           "VIN capacitance seen by the PD source <= 100 uF (cSnkBulkPd) incl. downstream converter inputs: see doc.\n"
            "Reverse/backfeed from VIN (barrel or buck-boost) blocked by Q104 (ideal diode).\n"
            "Conduction: 5 A x 2 x 2.6 mOhm = 0.13 W.",
            at=(406.4, 12.7))
@@ -161,7 +174,7 @@ def build(D):
     x2, y2 = 419.1, 132.08
     s.c("100n/100V", "PD_MID", "GND", size="0603", at=(x2, y2), lcsc=C_100N_100V)        # VS
     s.c("100n/50V", "PD_CAP", "PD_MID", size="0603", at=(x2 + 10.16, y2), lcsc=C_100N_50V)  # CAP-VS (<15 V)
-    s.r("100k", "PD_OV_TOP", "PD_OV", at=(x2 + 20.32, y2), lcsc=R_100K)
+    s.r("100k", "PD_OV_TOP", "PD_OV", size="0805", at=(x2 + 20.32, y2), lcsc=R_100K_0805)
     s.r("2.2k", "PD_OV", "GND", at=(x2 + 30.48, y2), lcsc=R_2K2)
     s.r("100", "PD_HGATE", "PD_DVDT", at=(x2 + 40.64, y2), lcsc=R_100)
     s.c("47n/100V", "PD_DVDT", "GND", size="0603", at=(x2 + 50.8, y2), lcsc=C_47N_100V)
@@ -171,19 +184,21 @@ def build(D):
     # =============================================================================================
     _note(s, "4. BARREL INPUT 9-24 V / 8 A  (Same Sky PJ-063BH, 5.5x2.5 mm, pin 1 = centre +)\n"
            "MS mounting tabs left unconnected (would short to + on a reversed plug if tied to GND).\n"
-           "SMCJ48CA bidirectional TVS: survives a reversed 24 V and a wrong 48 V brick (VBR 53.3 V min).\n"
+           "5.0SMDJ48CA bidirectional TVS (5 kW): survives a reversed 24 V and a wrong 48 V brick (VBR 53.3 V min).\n"
            "LM74800-Q1 (same as PD path) instead of LM74720: the LM74720 PD pin pulls the HSFET gate to GND,\n"
            "  i.e. Vgs = -VIN while PD-in holds VIN up; the LM74800 HGATE is referenced to OUT.\n"
            "Q106 = ideal diode (DGATE, blocks reverse polarity to -65 V), Q107 = OV / UVLO / enable cut-off (HGATE).\n"
            "OV: 100k/4.7k -> 1.231 V x 104.7/4.7 = 27.4 V (26.6-28.2 V), recovers at 25.2 V.\n"
            "UVLO: 100k/22k -> 1.231 V x 122/22 = 6.8 V rising, 6.3 V falling.\n"
-           "Q108 pulls EN/UVLO low when PDIN_PRESENT (PD-in priority, hardware only).\n"
+           "NO hardware PD-in priority: barrel and PD-in are both always-armed ideal diodes, the higher voltage\n"
+           "  supplies VIN, so a hand-over never collapses VIN. Source preference = firmware policy (request a PD\n"
+           "  voltage above the barrel to prefer PD-in). Divider tops on VBAR/SW are 0805 (150 V).\n"
            "Inrush: HGATE 55 uA into 47 nF -> 1.17 V/ms. Conduction: 8.3 A x 2 x 2.6 mOhm = 0.36 W.",
            at=(20.32, 198.12))
     s.part("odeck:PJ-063BH_C3095900", "J", "PJ-063BH", at=(30.48, 254.0),
            pins={"1": "VBAR", "2": "GND"}, nc=["0"], desc="DC jack 5.5x2.5 mm, 8 A")
-    s.part("odeck:SMCJ48CA_C408370", "D", "SMCJ48CA", at=(63.5, 246.38), pins={"1": "VBAR", "2": "GND"},
-           desc="TVS 48 V bidirectional, barrel")
+    s.part("odeck:SMCJ48CA_C408370", "D", TVS_BAR[1], at=(63.5, 246.38), pins={"1": "VBAR", "2": "GND"},
+           lcsc=TVS_BAR[0], mpn=TVS_BAR[1], desc="TVS 48 V bidirectional 5 kW (SMC), barrel")
     s.c("100n/100V", "VBAR", "GND", size="0603", at=(78.74, 261.62), lcsc=C_100N_100V)
     s.part(FET, "Q", "BSC026N08NS5", at=(116.84, 246.38), pins={"S": "VBAR", "D": "BAR_MID", "G": "BAR_DGATE"},
            desc="80 V NFET, barrel ideal diode")
@@ -199,21 +214,23 @@ def build(D):
     s.c("100n/50V", "BAR_CAP", "BAR_MID", size="0603", at=(x3 + 10.16, y3), lcsc=C_100N_50V)  # CAP-VS
     s.r("100", "BAR_HGATE", "BAR_DVDT", at=(x3 + 20.32, y3), lcsc=R_100)
     s.c("47n/100V", "BAR_DVDT", "GND", size="0603", at=(x3 + 30.48, y3), lcsc=C_47N_100V)
-    s.r("100k", "BAR_SW", "BAR_OV", at=(x3, y3 + 35.56), lcsc=R_100K)
+    s.r("100k", "BAR_SW", "BAR_OV", size="0805", at=(x3, y3 + 35.56), lcsc=R_100K_0805)
     s.r("4.7k", "BAR_OV", "GND", at=(x3 + 10.16, y3 + 35.56), lcsc=R_4K7)
-    s.r("100k", "VBAR", "BAR_EN", at=(x3 + 20.32, y3 + 35.56), lcsc=R_100K)
+    s.r("100k", "VBAR", "BAR_EN", size="0805", at=(x3 + 20.32, y3 + 35.56), lcsc=R_100K_0805)
     s.r("22k", "BAR_EN", "GND", at=(x3 + 30.48, y3 + 35.56), lcsc=R_22K)
-    s.part("Transistor_FET:2N7002", "Q", "2N7002", at=(x3 + 58.42, y3 + 35.56), lcsc="C8545",
-           pins={"G": "PDIN_PRES_L", "D": "BAR_EN", "S": "GND"})
 
     # =============================================================================================
     # 5. EXT_PWR_PRESENT: input-side detection (not VIN, which can be back-fed)
     # =============================================================================================
     _note(s, "5. EXT_PWR_PRESENT = BAR_OK OR PD_OK  (from the input side, never from VIN)\n"
-           "BAR_OK: TLV6700 window on VBAR (via 1N4148W, blocks reverse polarity), 1M/33k/15k ladder:\n"
-           "  UV = 0.4 x 1048/48 + 0.5 = 9.2 V,  OV = 0.4 x 1048/15 + 0.5 = 28.4 V (~barrel OV 27.4 V).\n"
+           "Meaning: VIN is (or is about to be) supplied >= ~8 V by PD-in or barrel. Both paths are always armed, so\n"
+           "  either OK term implies that input actually feeds VIN (no priority shutdown can make it lie).\n"
+           "BAR_OK: TLV6700 window on VBAR (via 1N4148W, blocks reverse polarity), 1M/39k/15k ladder (0805 top):\n"
+           "  UV = 0.4 x 1054/54 + 0.4 = 8.2 V (8.0-8.5 V: a 9 V -5 % brick counts), OV = 0.4 x 1054/15 + 0.4 = 28.5 V.\n"
            "PD_OK: TLV6700 window on VBUS_PDIN, 1M/47k/7.5k: UV 7.7 V, OV 56.2 V, AND sink path on (Q103).\n"
            "  A 5 V-only PD contract therefore does NOT count as external power.\n"
+           "The laptop sink switch is released only when EXT_PWR_PRESENT AND PG_5V (power_laptop), so a\n"
+           "  slightly early EXT_PWR_PRESENT (VIN still ramping) never browns out the deck.\n"
            "Open-drain outputs wired-AND per source, pull-ups to +3V3; 74LVC1G32 OR -> EXT_PWR_PRESENT.\n"
            "All of it runs from +3V3, which exists whenever anything powers the deck.",
            at=(287.02, 198.12))
@@ -223,8 +240,8 @@ def build(D):
                  "OUTA": "BAR_OK", "OUTB": "BAR_OK"}, desc="Window comparator, barrel present")
     s.part("Device:D", "D", "1N4148W", "Diode_SMD:D_SOD-123", at=(x4 - 30.48, y4 + 27.94), lcsc="C81598",
            pins={"A": "VBAR", "K": "BAR_MON_TOP"})
-    s.r("1M", "BAR_MON_TOP", "BAR_MON_UV", at=(x4, y4 + 27.94), lcsc=R_1M)
-    s.r("33k", "BAR_MON_UV", "BAR_MON_OV", at=(x4 + 10.16, y4 + 27.94), lcsc=R_33K)
+    s.r("1M", "BAR_MON_TOP", "BAR_MON_UV", size="0805", at=(x4, y4 + 27.94), lcsc=R_1M_0805)
+    s.r("39k", "BAR_MON_UV", "BAR_MON_OV", at=(x4 + 10.16, y4 + 27.94), lcsc=R_39K)
     s.r("15k", "BAR_MON_OV", "GND", at=(x4 + 20.32, y4 + 27.94), lcsc=R_15K)
     s.r("100k", "BAR_OK", "+3V3", at=(x4 + 30.48, y4 + 27.94), lcsc=R_100K)
     s.c("100n", "+3V3", "GND", at=(x4 + 40.64, y4 + 27.94), lcsc=C_100N_16V)
@@ -233,7 +250,7 @@ def build(D):
     s.part("odeck:TLV6700DDCR", "U", "TLV6700", at=(x5 + 15.24, y4),
            pins={"VDD": "+3V3", "GND": "GND", "INA+": "PD_MON_UV", "INB-": "PD_MON_OV",
                  "OUTA": "PD_OK", "OUTB": "PD_OK"}, desc="Window comparator, PD-in VBUS present")
-    s.r("1M", "VBUS_PDIN", "PD_MON_UV", at=(x5, y4 + 27.94), lcsc=R_1M)
+    s.r("1M", "VBUS_PDIN", "PD_MON_UV", size="0805", at=(x5, y4 + 27.94), lcsc=R_1M_0805)
     s.r("47k", "PD_MON_UV", "PD_MON_OV", at=(x5 + 10.16, y4 + 27.94), lcsc=R_47K)
     s.r("7.5k", "PD_MON_OV", "GND", at=(x5 + 20.32, y4 + 27.94), lcsc=R_7K5)
     s.r("100k", "PD_OK", "+3V3", at=(x5 + 30.48, y4 + 27.94), lcsc=R_100K)
@@ -252,16 +269,17 @@ def build(D):
            "  Shunt 2 mOhm 2512 1 %: 8.3 A -> 16.6 mV, 0.14 W; ADCRANGE=1 (+-40.96 mV) -> +-20.5 A FS,\n"
            "  CURRENT_LSB = 20.48 A / 2^15 = 625 uA. Bidirectional: shows backfeed too. Kelvin-route IN+/IN-.\n"
            "  INA237AIDGSR C2864837 (JLC stock 5k). ALERT unused.\n"
-           "Bulk: 2x 100 uF / 80 V electrolytic + 4x 2.2 uF / 100 V X7R 1210 (VIN reaches 50.4 V).\n"
-           "  Downstream converters add their own input ceramics on their sheets.",
+           "VIN capacitance budget (USB PD cSnkBulkPd <= 100 uF, everything the PD source charges when the sink path\n"
+           "  is on): here 47 uF/100 V alu (damping, ESR ~0.1-0.6 Ohm) + 1 uF/100 V + 100 nF; power_laptop and\n"
+           "  power_rails 4x 4.7 uF/100 V each (no electrolytics there). Total ~90 uF at 20 V, <= 99 uF at 5 V worst.\n"
+           "  The 47 uF R-C branch damps cable L vs the converter ceramics: peak Zout <= 0.5 Ohm << Zin,min 1.35 Ohm.",
            at=(20.32, 340.36))
     x6, y6 = 30.48, 393.7
-    s.part("odeck:RVT100UF80V167RV0112", "C", "100u/80V", at=(x6, y6), pins={"1": "VIN", "2": "GND"},
-           desc="Alu electrolytic 100 uF 80 V, VIN bulk")
-    s.part("odeck:RVT100UF80V167RV0112", "C", "100u/80V", at=(x6 + 27.94, y6), pins={"1": "VIN", "2": "GND"},
-           desc="Alu electrolytic 100 uF 80 V, VIN bulk")
-    for i in range(4):
-        s.c("2.2u/100V", "VIN", "GND", size="1210", at=(x6 + 50.8 + i * 10.16, y6), lcsc=C_2U2_100V)
+    s.part("Device:C_Polarized", "C", "47u/100V", "Capacitor_SMD:CP_Elec_10x10", at=(x6, y6),
+           pins={"1": "VIN", "2": "GND"}, lcsc=C_47U_100V,
+           desc="Alu 47 uF 100 V, VIN damping (only electrolytic on VIN: cSnkBulkPd budget)")
+    s.c("1u/100V", "VIN", "GND", size="0805", at=(x6 + 50.8, y6), lcsc=C_1U_100V)
+    s.c("100n/100V", "VIN", "GND", size="0603", at=(x6 + 60.96, y6), lcsc=C_100N_100V)
     s.r("2m", "VIN_OR", "VIN", size="2512", at=(x6 + 101.6, y6), lcsc="C844691",
         mpn="WSL25122L000FEA18", desc="Shunt 2 mOhm 1 % 2512, VIN current")
     s.part("odeck:INA237AIDGSR", "U", "INA237", at=(x6 + 147.32, y6),

@@ -5953,7 +5953,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "4.7k"
 			(at 147.32 128.27 0)
 			(effects
 				(font
@@ -5979,7 +5979,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "FORCE_EN default off (RP2350 in reset / BOOTSEL)"
+		(property "Description" "FORCE_EN default off (RP2350 in reset / BOOTSEL); 4.7k overrides RP2350-E9 pad latch (~2.2 V)"
 			(at 144.78 127.00 0)
 			(effects
 				(font
@@ -5988,7 +5988,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25741"
+		(property "LCSC" "C25900"
 			(at 144.78 127.00 0)
 			(effects
 				(font
@@ -10109,7 +10109,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "4.7k"
 			(at 347.98 128.27 0)
 			(effects
 				(font
@@ -10135,7 +10135,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "FORCE_EN default off (RP2350 in reset / BOOTSEL)"
+		(property "Description" "FORCE_EN default off (RP2350 in reset / BOOTSEL); 4.7k overrides RP2350-E9 pad latch (~2.2 V)"
 			(at 345.44 127.00 0)
 			(effects
 				(font
@@ -10144,7 +10144,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25741"
+		(property "LCSC" "C25900"
 			(at 345.44 127.00 0)
 			(effects
 				(font
@@ -11549,7 +11549,7 @@
 		)
 		(uuid "16823d8c-e6c2-57b2-adb1-9e0f6cbf8ff6")
 	)
-	(text "Current limit: RILIM 15.0k -> 1.61 A min / 1.80 A max (TPS2553 DS table): covers BC1.2 DCP/CDP 1.5 A."
+	(text "FORCE_EN pull-down 4.7k (not 100k): RP2350 erratum E9 (stepping A2) can leave a pad that was driven high and then"
 		(exclude_from_sim no)
 		(at 20.32 213.36 0)
 		(effects
@@ -11560,7 +11560,7 @@
 		)
 		(uuid "ea7f6a82-2f18-52c8-9785-6618bb9258dd")
 	)
-	(text "Current sense: 30 mOhm before the switch (IN side), INA180A2 x50 -> 1.5 V/A; 2.0 A = 3.0 V, full scale 2.2 A at 3.3 V."
+	(text "  reverted to input latched at ~2.2 V (> LVC1G32 VIH 2.0 V) -> port forced on after a crash/BOOTSEL. Only <= 8.2k defeats"
 		(exclude_from_sim no)
 		(at 20.32 215.9 0)
 		(effects
@@ -11571,7 +11571,7 @@
 		)
 		(uuid "e1a8b03a-f9ff-52ee-ab9c-fe9aea48f215")
 	)
-	(text "  25 mA auto-off threshold = 37.5 mV out; INA180 offset +-150 uV x50 = +-7.5 mV (~5 mA). Shunt loss 1.8 A: 97 mW."
+	(text "  the latch; 4.7k costs 0.7 mA from the push-pull GPIO while forced on (VOH drop negligible at 4 mA drive)."
 		(exclude_from_sim no)
 		(at 20.32 218.44 0)
 		(effects
@@ -11582,7 +11582,7 @@
 		)
 		(uuid "1be20f87-2d73-5f8e-ade3-1a655f5cc3fb")
 	)
-	(text "  Route IN+/IN- as a Kelvin pair from the inner edges of the shunt pads."
+	(text "Current limit: RILIM 15.0k -> 1.61 A min / 1.80 A max (TPS2553 DS table): covers BC1.2 DCP/CDP 1.5 A."
 		(exclude_from_sim no)
 		(at 20.32 220.98 0)
 		(effects
@@ -11593,7 +11593,7 @@
 		)
 		(uuid "6a090ebf-d369-5969-8cf0-7e0b662bc4f3")
 	)
-	(text "VBUS bulk 150 uF POSCAP + 10 uF + 100 nF per port at the connector (USB 2.0: >= 120 uF per downstream port)."
+	(text "Current sense: 30 mOhm before the switch (IN side), INA180A2 x50 -> 1.5 V/A; 2.0 A = 3.0 V, full scale 2.2 A at 3.3 V."
 		(exclude_from_sim no)
 		(at 20.32 223.52 0)
 		(effects
@@ -11604,7 +11604,7 @@
 		)
 		(uuid "855dec72-2b5b-5062-b8f6-71f00c056e02")
 	)
-	(text "  TPS2553 soft start (~1 ms) limits inrush into the bulk; the 10 uF on the switch IN side + +5V rail caps supply the transient."
+	(text "  25 mA auto-off threshold = 37.5 mV out; INA180 offset +-150 uV x50 = +-7.5 mV (~5 mA). Shunt loss 1.8 A: 97 mW."
 		(exclude_from_sim no)
 		(at 20.32 226.06 0)
 		(effects
@@ -11615,7 +11615,7 @@
 		)
 		(uuid "8e280518-5bc6-59f8-b36b-357c26f3519a")
 	)
-	(text "ESD: TPD4E02B04 (0.25 pF) on the 4 SS lines, USBLC6-2SC6 on D+/D- (clamps to VBUS), all at the connector, flow-through."
+	(text "  Route IN+/IN- as a Kelvin pair from the inner edges of the shunt pads."
 		(exclude_from_sim no)
 		(at 20.32 228.6 0)
 		(effects
@@ -11626,7 +11626,7 @@
 		)
 		(uuid "51a402ee-6a10-5656-90dc-80f88a8d485e")
 	)
-	(text "Shell / EH tabs and GND_DRAIN -> GND directly (no chassis on odeck-10; via-stitch the tabs to all GND planes)."
+	(text "VBUS bulk 150 uF POSCAP + 10 uF + 100 nF per port at the connector (USB 2.0: >= 120 uF per downstream port)."
 		(exclude_from_sim no)
 		(at 20.32 231.14 0)
 		(effects
@@ -11636,5 +11636,38 @@
 			(justify left top)
 		)
 		(uuid "f5236c74-93a3-5ee8-bb3c-cb993a96ade3")
+	)
+	(text "  TPS2553 soft start (~1 ms) limits inrush into the bulk; the 10 uF on the switch IN side + +5V rail caps supply the transient."
+		(exclude_from_sim no)
+		(at 20.32 233.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "18689170-17b9-5ba0-b2ee-f58ec6183476")
+	)
+	(text "ESD: TPD4E02B04 (0.25 pF) on the 4 SS lines, USBLC6-2SC6 on D+/D- (clamps to VBUS), all at the connector, flow-through."
+		(exclude_from_sim no)
+		(at 20.32 236.22 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "0a873961-a57b-5410-acc3-108675e71e0b")
+	)
+	(text "Shell / EH tabs and GND_DRAIN -> GND directly (no chassis on odeck-10; via-stitch the tabs to all GND planes)."
+		(exclude_from_sim no)
+		(at 20.32 238.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "f685af37-7984-5ce5-8608-764f2d47614b")
 	)
 )

@@ -10,7 +10,7 @@ CR_DP/CR_DN ──────────────── DP/DM 5/4          
 +5V ── VBUS 22 ─► int. LDO ─► CR_3V3 (25; AVDD33 6/15, DVDD33 34/44) ─► int. LDO ─► CR_1V2 (26; AVDD12 9)
 25 MHz (YXC 3225) X1/X2 13/14     RTERM 16 ── 680 Ω 1 %      SPI_MISO 10k PU (ROM boot), SPI_CK DNP 10k PD
 S1M1_VCC 23 ─ CR_SD_VCC ─► SD-111  VDD      S1 CLK/CMD/D0-3, SD1_CDZ ◄─ CD sw, SD1_WP ◄─ WP sw
-S2M2_VCC 24 ─ CR_USD_VCC ► DM3AT   VDD      S2 CLK/CMD/D0-3, SD2_CDZ ◄─ detect sw, SD2_WP = GND
+S2M2_VCC 24 ─ CR_USD_VCC ► DM3AT   VDD      S2 CLK/CMD/D0-3, SD2_CDZ = MS2_INS/SD2_WP ◄─ detect sw
 SD1_CDZ ─ 1k ─► CR_CD_SD_N    SD2_CDZ ─ 1k ─► CR_CD_USD_N    LED 21 ─ 1k ─► CR_LED  (+ DNP bench LED)
 ```
 
@@ -82,19 +82,24 @@ SD1_CDZ ─ 1k ─► CR_CD_SD_N    SD2_CDZ ─ 1k ─► CR_CD_USD_N    LED 21 
 - **microSD: Hirose DM3AT-SF-PEJM5** (C114218, 16 792 in stock), push-push.
   - The detect switch is normally open between SW_A (GND) and SW_B (CR_USD_CDZ).
   - Shell pads 10, 12, 13 and 14 go to GND.
-  - microSD has no WP, so **MS2_INS/SD2_WP is tied to GND** (write enabled). Without that, the internal pull-up would
-    report every microSD card as write-protected.
+  - **Pin 35 MS2_INS/SD2_WP is tied to `CR_USD_CDZ`** (review data #1). It is a shared pin: as Memory Stick insert
+    detect, 0 means card inserted (GL3224 DS Table 3.1).
+    - The old tie to GND made slot 2 permanently report "MS inserted". The internal pull-up alone would report every
+      microSD as write-protected.
+    - With the tie to CR_USD_CDZ: no card → high, so no MS and no WP. Card → low, so SD present and write enabled.
+      This is the same state slot 1 has with an unlocked SD.
+    - The two 46 kΩ internal pull-ups in parallel (≈ 23 kΩ) are fine.
 - CMD/DAT pull-ups: the GL3224 has internal 15 kΩ pull-ups on CMD and D[3:0] (DS table 5.3), so there are no external
   resistors.
 - No ESD array on the card lines, which follows every reference design. The GL3224 is rated 4 kV HBM. Any array would load
   the 208 MHz SDR104 clock; see open issues.
 
-### Card detect / activity → RP2350
-- The GL3224 needs both CD switches itself (SD1_CDZ / SD2_CDZ), so the switches connect to the GL3224. The RP2350 taps the
-  same nodes through 1 kΩ, onto `CR_CD_SD_N` and `CR_CD_USD_N`.
-  - **Firmware: input only, internal pulls off.** An RP2350 pull-down (about 50 kΩ) would form a divider with the 46 kΩ
-    internal pull-up.
-  - The 1 kΩ limits current if the GPIO is ever driven against a closed switch.
+### Card detect → TCA9534, activity → RP2350
+- The GL3224 needs both CD switches itself (SD1_CDZ / SD2_CDZ), so the switches connect to the GL3224. The **TCA9534
+  I/O expander** (mcu, P3/P4) taps the same nodes through 1 kΩ, onto `CR_CD_SD_N` and `CR_CD_USD_N`.
+  - The TCA9534 has no internal pulls (DS §8) and is 5 V tolerant, so the old "RP2350 pulls off" rule no longer
+    applies.
+  - The 1 kΩ limits current if the pin is ever mis-configured as an output against a closed switch.
   - CR_3V3 exists whenever +5V exists, and +3V3 is made from +5V, so there is no back-powering path.
 - `CR_LED`: the GL3224 LED output (push-pull 3.3 V, active high) goes through 1 kΩ to an RP2350 GPIO, and the LCD shows
   activity.
@@ -135,8 +140,11 @@ SD1_CDZ ─ 1k ─► CR_CD_SD_N    SD2_CDZ ─ 1k ─► CR_CD_USD_N    LED 21 
    13, 14 and switch pads 9/11) against the manufacturer land patterns. The GL3224 EP is 5.1 mm (QFN-48 7×7).
 5. **Card-line ESD / series termination.** None is fitted. If SDR104 shows ringing on the bench, add 22–33 Ω series
    resistors on CLK; a 0402 footprint could be added at layout.
-6. **Firmware (RP2350):** CD inputs with no pulls. Optionally clear BC1.2 on hub port 1 (usb_hub already plans
+6. **Firmware (RP2350):** CD inputs on TCA9534 P3/P4. Optionally clear BC1.2 on hub port 1 (usb_hub already plans
    `BC_CONFIG_P1` = 0).
 
-No new inter-sheet nets are needed. The mcu sheet reads CR_CD_SD_N, CR_CD_USD_N and CR_LED as plain inputs with pulls
-disabled.
+No new inter-sheet nets are needed. The mcu sheet reads CR_CD_SD_N and CR_CD_USD_N on the TCA9534, and CR_LED on an
+RP2350 GPIO with pulls disabled.
+7. **Bench: MS-vs-SD priority** (review data #1 and #7). Both slots rely on the GL3224 ROM giving SDx_CDZ = 0 priority
+   over MSx_INS = 0, and the DS does not state that priority. Test: an unlocked SD in slot 1 and a microSD in slot 2 must
+   each enumerate as a writable SD, not as MS. If either fails, add an inverter or strap and ask the Genesys/LCSC FAE.

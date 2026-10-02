@@ -4071,9 +4071,36 @@
 			)
 		)
 	)
-	(no_connect
-		(at 473.71 295.91)
+	(wire
+		(pts
+			(xy 473.71 295.91) (xy 476.25 295.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
 		(uuid "a2131ed4-3df1-5632-9005-1599d981cc87")
+	)
+	(global_label "I2C_PD_INT_N"
+		(shape passive)
+		(at 476.25 295.91 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "673c3f3a-617a-5b28-98cc-1260cdae8dcc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 476.25 295.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 	)
 	(wire
 		(pts
@@ -4083,7 +4110,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "673c3f3a-617a-5b28-98cc-1260cdae8dcc")
+		(uuid "57b68731-e1c4-5603-ade7-6321b75cdb3d")
 	)
 	(global_label "LAPTOP_OVP_N"
 		(shape passive)
@@ -4095,7 +4122,7 @@
 			)
 			(justify left)
 		)
-		(uuid "57b68731-e1c4-5603-ade7-6321b75cdb3d")
+		(uuid "fcd2fd17-dcc3-5189-babf-bab3a3693a80")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 290.83 0)
 			(effects
@@ -4114,7 +4141,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fcd2fd17-dcc3-5189-babf-bab3a3693a80")
+		(uuid "78ed5e3b-97bb-5bc0-8291-bc30a184093c")
 	)
 	(global_label "VBB_PG"
 		(shape passive)
@@ -4126,7 +4153,7 @@
 			)
 			(justify left)
 		)
-		(uuid "78ed5e3b-97bb-5bc0-8291-bc30a184093c")
+		(uuid "c8076276-8f07-5eaa-9e07-0b5211935923")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 288.29 0)
 			(effects
@@ -4145,7 +4172,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c8076276-8f07-5eaa-9e07-0b5211935923")
+		(uuid "09c0ead5-5dfe-54f3-855c-cae48e41032e")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -4157,7 +4184,7 @@
 			)
 			(justify right)
 		)
-		(uuid "09c0ead5-5dfe-54f3-855c-cae48e41032e")
+		(uuid "50115ad4-5e9f-503c-ac7f-596c11de91b6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 427.99 186.69 0)
 			(effects
@@ -4176,7 +4203,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "50115ad4-5e9f-503c-ac7f-596c11de91b6")
+		(uuid "461b13ca-f3c2-500b-8e28-2b05f667f66f")
 	)
 	(global_label "VBUS_LSW"
 		(shape passive)
@@ -4188,7 +4215,7 @@
 			)
 			(justify right)
 		)
-		(uuid "461b13ca-f3c2-500b-8e28-2b05f667f66f")
+		(uuid "33da201b-3f37-5176-8a7a-95977bdc5f75")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 427.99 219.71 0)
 			(effects
@@ -4207,7 +4234,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "33da201b-3f37-5176-8a7a-95977bdc5f75")
+		(uuid "fa686340-1f2d-5b76-8a68-20005e68e039")
 	)
 	(global_label "MUX_DS_FLIP"
 		(shape passive)
@@ -4219,7 +4246,7 @@
 			)
 			(justify left)
 		)
-		(uuid "fa686340-1f2d-5b76-8a68-20005e68e039")
+		(uuid "79ebbd87-db94-503c-8771-70fd1dc9b6c6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 247.65 0)
 			(effects
@@ -4238,7 +4265,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "79ebbd87-db94-503c-8771-70fd1dc9b6c6")
+		(uuid "692668a1-8b1f-5052-b083-947269705cb5")
 	)
 	(global_label "MUX_UP_FLIP"
 		(shape passive)
@@ -4250,7 +4277,7 @@
 			)
 			(justify left)
 		)
-		(uuid "692668a1-8b1f-5052-b083-947269705cb5")
+		(uuid "724b00b2-7e86-556b-a32d-8af59fe860fc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 234.95 0)
 			(effects
@@ -4269,7 +4296,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "724b00b2-7e86-556b-a32d-8af59fe860fc")
+		(uuid "8ce3740e-87cd-5a34-bbe1-00682f92db47")
 	)
 	(label "DS_SRC"
 		(at 427.99 214.63 180)
@@ -4279,7 +4306,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "8ce3740e-87cd-5a34-bbe1-00682f92db47")
+		(uuid "c66e10e4-0272-5617-af08-b4a2fabf81c9")
 	)
 	(wire
 		(pts
@@ -4289,7 +4316,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c66e10e4-0272-5617-af08-b4a2fabf81c9")
+		(uuid "3244cbec-81ad-57c8-9778-69036f65526f")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -4301,7 +4328,7 @@
 			)
 			(justify right)
 		)
-		(uuid "3244cbec-81ad-57c8-9778-69036f65526f")
+		(uuid "2d10f62a-28ff-516f-97fd-febbfccc2c28")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 427.99 217.17 0)
 			(effects
@@ -4320,7 +4347,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2d10f62a-28ff-516f-97fd-febbfccc2c28")
+		(uuid "955c1f85-bb62-5fa3-ac58-f30b47c93b90")
 	)
 	(global_label "MUX_DS_CTL1"
 		(shape passive)
@@ -4332,7 +4359,7 @@
 			)
 			(justify left)
 		)
-		(uuid "955c1f85-bb62-5fa3-ac58-f30b47c93b90")
+		(uuid "72263431-a5cc-5281-af9e-6832966ba55f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 240.03 0)
 			(effects
@@ -4351,7 +4378,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "72263431-a5cc-5281-af9e-6832966ba55f")
+		(uuid "036cfb99-841f-5477-b101-e89d9a4ba809")
 	)
 	(global_label "PMG1_VDDD"
 		(shape passive)
@@ -4363,7 +4390,7 @@
 			)
 			(justify left)
 		)
-		(uuid "036cfb99-841f-5477-b101-e89d9a4ba809")
+		(uuid "723453f8-b708-5eb7-9fb7-b1c3693961aa")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 448.31 156.21 0)
 			(effects
@@ -4382,7 +4409,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "723453f8-b708-5eb7-9fb7-b1c3693961aa")
+		(uuid "b45275de-9bcc-597d-bb9f-2277d9549c0c")
 	)
 	(global_label "PMG1_VDDD"
 		(shape passive)
@@ -4394,7 +4421,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b45275de-9bcc-597d-bb9f-2277d9549c0c")
+		(uuid "e6e32acf-0654-54e8-bb5d-dfd6f00d2fe6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 453.39 156.21 0)
 			(effects
@@ -4413,7 +4440,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e6e32acf-0654-54e8-bb5d-dfd6f00d2fe6")
+		(uuid "3fd8511d-3d4a-54ef-88b2-41f1122c588a")
 	)
 	(label "PMG1_VCCD"
 		(at 445.77 156.21 90)
@@ -4423,7 +4450,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "3fd8511d-3d4a-54ef-88b2-41f1122c588a")
+		(uuid "b94a0198-c335-5caa-a109-1b2e5e3674bf")
 	)
 	(wire
 		(pts
@@ -4433,7 +4460,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b94a0198-c335-5caa-a109-1b2e5e3674bf")
+		(uuid "81b04aa0-dd84-576f-966f-a180b3201220")
 	)
 	(global_label "I2C_PD_SDA"
 		(shape passive)
@@ -4445,7 +4472,7 @@
 			)
 			(justify left)
 		)
-		(uuid "81b04aa0-dd84-576f-966f-a180b3201220")
+		(uuid "eb1361f2-9f35-57e0-a063-f25d470c20a4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 252.73 0)
 			(effects
@@ -4458,11 +4485,11 @@
 	)
 	(no_connect
 		(at 473.71 257.81)
-		(uuid "eb1361f2-9f35-57e0-a063-f25d470c20a4")
+		(uuid "aa017dfa-1878-5675-8471-5cc70423164e")
 	)
 	(no_connect
 		(at 473.71 245.11)
-		(uuid "aa017dfa-1878-5675-8471-5cc70423164e")
+		(uuid "f0d0588e-657c-55e9-97f7-594988afbcd4")
 	)
 	(wire
 		(pts
@@ -4472,7 +4499,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f0d0588e-657c-55e9-97f7-594988afbcd4")
+		(uuid "97ff8480-d24a-5026-b4ff-784734255a74")
 	)
 	(label "PMG1_XRES"
 		(at 427.99 189.23 180)
@@ -4482,7 +4509,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "97ff8480-d24a-5026-b4ff-784734255a74")
+		(uuid "fbcf829b-0525-5ca6-8fe0-5628ccea0e57")
 	)
 	(wire
 		(pts
@@ -4492,7 +4519,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fbcf829b-0525-5ca6-8fe0-5628ccea0e57")
+		(uuid "64c926eb-55cc-5261-a92f-3d2b20d5d459")
 	)
 	(global_label "I2C_PD_SCL"
 		(shape passive)
@@ -4504,7 +4531,7 @@
 			)
 			(justify left)
 		)
-		(uuid "64c926eb-55cc-5261-a92f-3d2b20d5d459")
+		(uuid "e45e9b2f-a760-54b1-82d8-39a2b4d809b9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 250.19 0)
 			(effects
@@ -4517,7 +4544,7 @@
 	)
 	(no_connect
 		(at 473.71 242.57)
-		(uuid "e45e9b2f-a760-54b1-82d8-39a2b4d809b9")
+		(uuid "b43b9083-8b3f-5b1d-b526-9e3eea2dea9f")
 	)
 	(wire
 		(pts
@@ -4527,7 +4554,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b43b9083-8b3f-5b1d-b526-9e3eea2dea9f")
+		(uuid "c344ba68-6650-5c4f-9be6-7698b5760ecd")
 	)
 	(global_label "PMG1_VDDD"
 		(shape passive)
@@ -4539,7 +4566,7 @@
 			)
 			(justify left)
 		)
-		(uuid "c344ba68-6650-5c4f-9be6-7698b5760ecd")
+		(uuid "66fba7b9-1df3-560d-9456-7e8e195584eb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 450.85 156.21 0)
 			(effects
@@ -4558,7 +4585,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "66fba7b9-1df3-560d-9456-7e8e195584eb")
+		(uuid "42972aa4-08a1-548b-a325-2e2965dadfe5")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4568,7 +4595,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "42972aa4-08a1-548b-a325-2e2965dadfe5")
+		(uuid "74596e60-6e04-50de-aa2f-9590d750e2c0")
 		(property "Reference" "#PWR0401"
 			(at 444.50 311.15 0)
 			(effects
@@ -4597,7 +4624,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "74596e60-6e04-50de-aa2f-9590d750e2c0")
+			(uuid "547fcdde-aa46-571f-b10e-bbdbd49e34dc")
 		)
 		(instances
 			(project "odeck-10"
@@ -4616,7 +4643,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "547fcdde-aa46-571f-b10e-bbdbd49e34dc")
+		(uuid "62cff1ae-078f-5d64-ad88-dd34e212446b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4626,7 +4653,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "62cff1ae-078f-5d64-ad88-dd34e212446b")
+		(uuid "dfe4c67f-6bc5-5c93-9605-ccdefa27f75f")
 		(property "Reference" "#PWR0402"
 			(at 447.04 311.15 0)
 			(effects
@@ -4655,7 +4682,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "dfe4c67f-6bc5-5c93-9605-ccdefa27f75f")
+			(uuid "a3a9c56e-85d7-546e-818b-8940e6cb7f40")
 		)
 		(instances
 			(project "odeck-10"
@@ -4674,7 +4701,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a3a9c56e-85d7-546e-818b-8940e6cb7f40")
+		(uuid "4e6f88c6-0d24-5eef-a064-697221656ce5")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4684,7 +4711,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4e6f88c6-0d24-5eef-a064-697221656ce5")
+		(uuid "2f45d345-b5bb-55d5-b01b-be3b3f3d0027")
 		(property "Reference" "#PWR0403"
 			(at 449.58 311.15 0)
 			(effects
@@ -4713,7 +4740,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "2f45d345-b5bb-55d5-b01b-be3b3f3d0027")
+			(uuid "aa50853e-6fbf-588f-af54-ca70064a3797")
 		)
 		(instances
 			(project "odeck-10"
@@ -4726,11 +4753,11 @@
 	)
 	(no_connect
 		(at 473.71 265.43)
-		(uuid "aa50853e-6fbf-588f-af54-ca70064a3797")
+		(uuid "30211b08-3f86-5477-a5ca-038a3c6c8420")
 	)
 	(no_connect
 		(at 473.71 255.27)
-		(uuid "30211b08-3f86-5477-a5ca-038a3c6c8420")
+		(uuid "b5bc9f3e-b94e-5a45-9e64-131287430f16")
 	)
 	(wire
 		(pts
@@ -4740,7 +4767,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b5bc9f3e-b94e-5a45-9e64-131287430f16")
+		(uuid "016401f1-b113-52d1-94b2-5216378e64cd")
 	)
 	(label "HPD1_OUT"
 		(at 476.25 283.21 0)
@@ -4750,7 +4777,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "016401f1-b113-52d1-94b2-5216378e64cd")
+		(uuid "486e61ce-1feb-5bec-823a-95fa1f347732")
 	)
 	(wire
 		(pts
@@ -4760,7 +4787,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "486e61ce-1feb-5bec-823a-95fa1f347732")
+		(uuid "826797d6-5526-5c6e-bfc9-c033a7b85aeb")
 	)
 	(global_label "EXT_PWR_PRESENT"
 		(shape passive)
@@ -4772,7 +4799,7 @@
 			)
 			(justify left)
 		)
-		(uuid "826797d6-5526-5c6e-bfc9-c033a7b85aeb")
+		(uuid "6b6970c3-872e-5b86-b6b1-5799e8c74eaf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 476.25 280.67 0)
 			(effects
@@ -4785,42 +4812,15 @@
 	)
 	(no_connect
 		(at 473.71 262.89)
-		(uuid "6b6970c3-872e-5b86-b6b1-5799e8c74eaf")
+		(uuid "8e5d7029-6bd8-52f0-a5b9-1b23db828423")
 	)
 	(no_connect
 		(at 473.71 191.77)
-		(uuid "8e5d7029-6bd8-52f0-a5b9-1b23db828423")
-	)
-	(wire
-		(pts
-			(xy 473.71 267.97) (xy 476.25 267.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
 		(uuid "481f63f6-c240-521a-91ef-340fdc77a8c3")
 	)
-	(global_label "I2C_PD_INT_N"
-		(shape passive)
-		(at 476.25 267.97 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
+	(no_connect
+		(at 473.71 267.97)
 		(uuid "caa4d890-4d60-5484-8026-51236f503fb2")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 476.25 267.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 	)
 	(no_connect
 		(at 473.71 260.35)
@@ -10441,7 +10441,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "INT_N pull-up"
+		(property "Description" "INT_N pull-up to VDDIO rail (P7.6)"
 			(at 25.40 345.44 0)
 			(effects
 				(font
@@ -10515,7 +10515,7 @@
 		)
 		(uuid "1f5f2256-d7af-53ce-833f-a9fd94f88d5b")
 	)
-	(global_label "+3V3"
+	(global_label "PMG1_VDDD"
 		(shape passive)
 		(at 25.40 351.79 270)
 		(fields_autoplaced yes)
@@ -13166,7 +13166,7 @@
 		)
 		(uuid "aa22c420-bf10-59cb-9328-854cd599e3a3")
 	)
-	(text "5. HOST INTERFACE (RP2350)  I2C_PD on SCB0 (P4.0 SCL / P4.1 SDA: the only fail-safe I2C pins,\n  same SCB as the dock example's HPI). PMG1 target address 0x42 (firmware-defined, CCGx HPI alternate\n  address; TPS26750 = 0x21 on the same bus). Bus pull-ups on the MCU sheet (+3V3).\nI2C_PD_INT_N: P5.5 (datasheet 'embedded controller interrupt'), open-drain, 10k pull-up here.\nP3V3_SNS (P7.5): +3V3 present (10k/100k). Firmware keeps every output towards +3V3-powered chips\n  (mux CTL/FLIP, UP_HPD, DS_HPD, LAPTOP_SRC_EN) low until P3V3_SNS is high (no back-powering).\nEXT_PWR_PRESENT 100k pull-down: its 74LVC1G32 driver is unpowered (Ioff) in a dead deck; without it the\n  net floats - here AND at the power_laptop sink-switch FET gate."
+	(text "5. HOST INTERFACE (RP2350)  I2C_PD on SCB0 (P4.0 SCL / P4.1 SDA: the only fail-safe I2C pins,\n  same SCB as the dock example's HPI). PMG1 target address 0x42 (firmware-defined, CCGx HPI alternate\n  address; TPS26750 = 0x21 on the same bus). Bus pull-ups on the MCU sheet (+3V3).\nI2C_PD_INT_N: P7.6 (B9), open-drain, 10k pull-up to PMG1_VDDD here (never above VDDIO). Not P5.5: ports 2/3/5\n  carry analog functions and must not see an external voltage above VDDIO or before all supplies are up (DS 2.6.3);\n  a +3V3 pull-up sits ~0.1 V above VDDIO (= VDDD = VSYS - 0.1 V). VDDD-referenced high (3.0-3.65 V) is > RP2350 VIH.\n  Dead deck: VDDD up, RP2350 unpowered -> <= 0.35 mA into the RP2350 pad through 10k; PMG1 firmware leaves INT_N\n  released (high) until P3V3_SNS is high, so the RP2350 never sees a spurious edge at boot.\nP3V3_SNS (P7.5): +3V3 present (10k/100k). Firmware keeps every output towards +3V3-powered chips\n  (mux CTL/FLIP, UP_HPD, DS_HPD, LAPTOP_SRC_EN) low until P3V3_SNS is high (no back-powering).\nEXT_PWR_PRESENT 100k pull-down: its 74LVC1G32 driver is unpowered (Ioff) in a dead deck; without it the\n  net floats - here AND at the power_laptop sink-switch FET gate."
 		(exclude_from_sim no)
 		(at 20.32 302.26 0)
 		(effects
@@ -13177,7 +13177,7 @@
 		)
 		(uuid "c8a82212-823c-5723-9bf5-395242c279b4")
 	)
-	(text "6. MUX CONTROL (TUSB1064 / TUSB1046 in GPIO mode, I2C_EN = 0)\nPort 0 -> TUSB1064: CTL0 = USB3 on, CTL1 = DP on, FLIP = CC orientation (P3.0/P3.1/P3.2).\nPort 1 -> TUSB1046: CTL0, CTL1, FLIP (P3.3/P3.4/P3.7). 100k pull-downs: PMG1 in reset/unpowered ->\n  muxes default to USB3 off / DP off / no flip.\nHPD: HPD1_OUT (P7.1, port-1 HPD block, output: follows the monitor's HPD_State/IRQ_HPD Attention) -> 1k\n  -> DS_HPD -> TUSB1046 HPDIN, and -> P1.4 (port-0 HPD block in receive mode, as a dock's DP sink HPD)\n  -> port 0 sends Attention/Status to the laptop. HPD0_OUT (P1.3, GPIO) -> 1k -> UP_HPD -> TUSB1064\n  HPDIN (DP lanes enabled only while high). 1k: limits injection into the non-fail-safe HPDIN pins."
+	(text "6. MUX CONTROL (TUSB1064 / TUSB1046 in GPIO mode, I2C_EN = 0)\nPort 0 -> TUSB1064: CTL0 = USB3 on, CTL1 = DP on, FLIP = CC orientation (P3.0/P3.1/P3.2).\nPort 1 -> TUSB1046: CTL0, CTL1, FLIP (P3.3/P3.4/P3.7). 100k pull-downs hold CTL0/CTL1/FLIP low while PMG1 is\n  in reset/unpowered. NOTE: both muxes still enter USB3 mode (no flip) at VCC power-up regardless of CTL0 and\n  leave it only on a CTL0 L-H-L pulse (TUSB1064 8.4.1, TUSB1046 7.4.1): firmware pulses CTL0 after P3V3_SNS\n  goes high and on every detach. DP lanes stay off (CTL1 low; TUSB1064 HPDIN 100k PD on usbc_muxes).\nHPD: HPD1_OUT (P7.1, port-1 HPD block, output: follows the monitor's HPD_State/IRQ_HPD Attention) -> 1k\n  -> DS_HPD -> TUSB1046 HPDIN, and -> P1.4 (port-0 HPD block in receive mode, as a dock's DP sink HPD)\n  -> port 0 sends Attention/Status to the laptop. HPD0_OUT (P1.3, GPIO) -> 1k -> UP_HPD -> TUSB1064\n  HPDIN (DP lanes enabled only while high). 1k: limits injection into the non-fail-safe HPDIN pins."
 		(exclude_from_sim no)
 		(at 203.2 12.7 0)
 		(effects

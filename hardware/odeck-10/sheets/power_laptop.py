@@ -14,6 +14,7 @@ R_0, R_10, R_1K, R_1K5, R_4K7, R_10K, R_47K, R_100K, R_1M = (
 R_24K3, R_8K66, R_5K23, R_6K49, R_86K6, R_62K, R_43K = (
     "C26969", "C5126133", "C2933105", "C2998055", "C48533697", "C2909375", "C8329")
 R_1M1, R_255K, R_40K2, R_121K, R_422K = "C133039", "C270623", "C25893", "C11693", "C477738"
+R_46K4 = "C5126026"                                # OVP divider bottom (trip 31.1 V)
 R_200K_0805, R_470K_0805 = "C17539", "C17709"      # 0805, 150 V working voltage (VIN-side)
 R_10_0603 = "C22859"
 R_150_2512 = "C2934049"                            # 1 W, VBB_OUT discharge
@@ -23,15 +24,16 @@ R_SNS_5M = "C844900"                               # Vishay WSL25125L000FEA 5 mO
 # capacitors
 C_100P, C_82P, C_470P, C_1N, C_3N3, C_6N8, C_22N, C_100N = (
     "C1546", "C45501", "C1537", "C1523", "C1536", "C1542", "C1532", "C1525")
+C_2N2, C_4N7 = "C1531", "C1538"
 C_100N_50V, C_22N_50V, C_100N_100V = "C14663", "C21122", "C15725"     # 0603
 C_1U_50V, C_4U7_16V = "C15849", "C19666"                            # 0603
 C_10U_25V, C_22U_25V, C_1U_100V = "C15850", "C45783", "C126585"     # 0805
 C_4U7_100V, C_10U_50V = "C697607", "C432929"                        # 1210
-C_47U_100V = "C371305"                                              # alu 10x10, VIN damping
 C_100U_35V_POLY = "C2982822"                                        # polymer 6.3x7, VBB_OUT bulk
 # semis
 FET_SMALL = ("Transistor_FET:AO3400A", "C20917")   # 30 V logic-level, SOT-23
 FET_60V_SMALL = ("Transistor_FET:2N7002", "C8545")
+D_1N4148W, D_BAT46W = "C81598", "C83152"
 
 
 def _note(s, text, at):
@@ -56,15 +58,14 @@ def build(D):
            "Input half-bridge: 2x BSC0805LS (100 V, 7.7 mOhm @4.5 V, Qg 16 nC). Output: 2x CSD18543Q3A (60 V, 12 mOhm).\n"
            "Peak current sense RCS = 4 mOhm (WSL2512): limit 50 mV/4 mOhm = 12.5 A (10.6 A min) -> full 140 W from VIN >= ~16 V.\n"
            "Average output current limit RISNS = 8 mOhm: 50 mV -> 6.25 A (6.1 A min), hiccup (CFG).\n"
-           "Input: 4x 4.7 uF/100 V X7S + 47 uF/100 V alu (VIN reaches 50.4 V; power_input adds 200 uF).\n"
+           "Input: 4x 4.7 uF/100 V X7S only (VIN reaches 50.4 V). No electrolytic here: the PD-in source sees all VIN\n"
+           "  capacitance (cSnkBulkPd <= 100 uF); the single 47 uF damping alu for VIN sits on power_input.\n"
            "Output: 4x 10 uF/50 V on the power-stage side, 2x 10 uF/50 V + 2x 100 uF/35 V polymer on VBB_OUT.\n"
            "Loss at 140 W: ~3.9 W from 20 V (boost), ~3.7 W from 48 V (buck), eta ~97 %. See docs/design/power_laptop.md.",
            at=(20.32, 12.7))
     y = 66.04
     for i in range(4):
         s.c("4.7u/100V", "VIN", "GND", size="1210", at=(22.86 + i * 12.7, y), lcsc=C_4U7_100V)
-    s.part("Device:C_Polarized", "C", "47u/100V", "Capacitor_SMD:CP_Elec_10x10", at=(73.66, y),
-           pins={"1": "VIN", "2": "GND"}, lcsc=C_47U_100V, desc="Alu 47 uF 100 V, VIN damping")
     s.part("odeck:BSC0805LS", "Q", "BSC0805LS", at=(99.06, y), pins={"S": "BB_SW1", "G": "BB_G1", "D": "VIN", "EP": "VIN"},
            desc="100 V NFET, buck high side (HO1)")
     s.part("odeck:BSC0805LS", "Q", "BSC0805LS", at=(144.78, y), pins={"S": "GND", "G": "BB_G2", "D": "BB_SW1", "EP": "BB_SW1"},
@@ -159,7 +160,9 @@ def build(D):
            "ENABLE: LM51770 runs only if VBB_EN AND LAPTOP_OVP_N. BB_ENKILL is pulled up from VIN (470k + 5.1 V zener):\n"
            "  default ON (= converter OFF, VBB_OUT discharged through 150 R / 2N7002, ~25 ms).\n"
            "  VBB_EN high AND LAPTOP_OVP_N high -> two series FETs pull BB_ENKILL low -> EN released, discharge off.\n"
-           "  BB_ENKILL also holds VBB_PG low while disabled (LM51770 nFLT is high-Z in shutdown / soft start).",
+           "  BB_ENKILL also holds VBB_PG low while disabled (LM51770 nFLT is high-Z in shutdown / soft start):\n"
+           "  that hold FET's gate BB_PGH follows BB_ENKILL up at once (1N4148W) but decays through 1M/4.7 nF, so\n"
+           "  VBB_PG stays low 5.4-9.2 ms after enable (> 2.2 ms soft start x2): VBB_PG high = output regulated.",
            at=(20.32, 147.32))
     x, y = 25.4, 200.66
     s.r("100k", "VBB_OUT", "BB_FB", at=(x, y), lcsc=R_100K, desc="FB top")
@@ -173,8 +176,12 @@ def build(D):
         s.r("100k", f"VBB_VSEL{sel}", "GND", at=(x + 30.48 + i * 10.16, y + 58.42), lcsc=R_100K)
     # enable / discharge
     s.r("100k", "VBB_EN", "GND", at=(x + 60.96, y + 58.42), lcsc=R_100K)
-    _nfet(s, "BB_ENKILL", "VBB_PG", "GND", at=(x + 96.52, y + 58.42),
-          desc="Holds VBB_PG low while the converter is disabled (nFLT is high-Z in shutdown)")
+    _nfet(s, "BB_PGH", "VBB_PG", "GND", at=(x + 96.52, y + 58.42),
+          desc="Holds VBB_PG low while disabled and for >= 5.4 ms after enable (nFLT high-Z in shutdown / soft start)")
+    s.part("Device:D", "D", "1N4148W", "Diode_SMD:D_SOD-123", at=(x + 116.84, y + 58.42), lcsc=D_1N4148W,
+           pins={"A": "BB_ENKILL", "K": "BB_PGH"}, desc="Fast set of the VBB_PG hold (converter disabled)")
+    s.r("1M", "BB_PGH", "BB_ENKILL", at=(x + 132.08, y + 58.42), lcsc=R_1M, desc="VBB_PG hold release delay")
+    s.c("4.7n", "BB_PGH", "GND", at=(x + 142.24, y + 58.42), lcsc=C_4N7, desc="tau 4.7 ms -> release 5.4-9.2 ms")
     x, y = 40.64, 292.1
     s.part("Device:D_Zener", "D", "BZT52C5V1", "Diode_SMD:D_SOD-123", at=(x, y), lcsc="C173407",
            pins={"K": "BB_ENKILL", "A": "GND"}, desc="5.1 V zener, gate clamp")
@@ -191,11 +198,13 @@ def build(D):
     _note(s, "4. LAPTOP SOURCE SWITCH  VBB_OUT -> VBUS_LSW -> 5 mOhm -> VBUS_LAPTOP\n"
            "LM74800-Q1: Q (DGATE) = ideal diode (blocks laptop -> VBB_OUT in < 1 us), Q (HGATE) = on/off,\n"
            "  common drain, 2x BSC040N08NS5 (80 V, 4 mOhm @10 V): 5 A -> 0.26 W total.\n"
-           "HARDWARE ENABLE: SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND (VBB_PG AND LAPTOP_OVP_N)\n"
-           "  74LVC1G11 3-input AND; VBB_PG and LAPTOP_OVP_N (both open-drain, 10k pull-ups) diode-ANDed by BAT54A.\n"
+           "HARDWARE ENABLE: SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND (VBB_PG AND LAPTOP_OVP_N AND PG5_DLY)\n"
+           "  74LVC1G11 3-input AND; VBB_PG and LAPTOP_OVP_N (both open-drain, 10k pull-ups) diode-ANDed by BAT54A;\n"
+           "  2 FETs pull SRC_PGOK low unless the delayed PG_5V (SNK_PGD) is high: the source can only close after the\n"
+           "  bus-power sink has been released (same delayed PG_5V) and +5V runs from the LM5148.\n"
            "  100k pull-downs: unpowered logic or floating PMG1 GPIO -> switch OFF.\n"
-           "INTERLOCK: SRC_ON also forces the sink switch off (Q on SNK_ON); the sink needs EXT_PWR_PRESENT low,\n"
-           "  the source needs it high -> both paths can never be on together.\n"
+           "INTERLOCK: SRC_ON also forces the sink switch off (Q on SNK_ON, us) while the source HGATE needs ms:\n"
+           "  the sink is released by EXT_PWR_PRESENT AND PG5_DLY, the source needs both too -> never both on.\n"
            "Backstop OV on the LM74800 OV pin (independent of logic and +3V3): 255k/10k from VBUS_LAPTOP\n"
            "  via VSNS/SW -> HGATE off above 32.6 V (31.7-33.6 V).\n"
            "Soft turn-on: HGATE 55 uA into 22 nF -> 2.5 V/ms.",
@@ -227,6 +236,10 @@ def build(D):
            pins={"3": "SRC_PGOK", "1": "VBB_PG", "2": "LAPTOP_OVP_N"}, desc="Diode AND (common anode)")
     s.r("10k", "SRC_PGOK", "+3V3", at=(x2 + 119.38, y3), lcsc=R_10K)
     s.r("100k", "LAPTOP_SRC_EN", "GND", at=(x2 + 129.54, y3), lcsc=R_100K)
+    _nfet(s, "SNK_PGD", "SRC_PG5N", "GND", at=(x2 + 22.86, y3 + 22.86), desc="PG_5V (delayed) inverter")
+    s.r("100k", "SRC_PG5N", "+3V3", at=(x2 + 45.72, y3 + 22.86), lcsc=R_100K)
+    _nfet(s, "SRC_PG5N", "SRC_PGOK", "GND", at=(x2 + 68.58, y3 + 22.86),
+          desc="Source enable needs PG_5V (delayed): sink released first")
     s.c("100n", "+3V3", "GND", at=(x2 + 139.7, y3), lcsc=C_100N)
 
     # =============================================================================================
@@ -263,7 +276,10 @@ def build(D):
            "Stage 2, TPS259470A eFuse (28 V abs): true reverse-current blocking (+5V never back-feeds VBUS),\n"
            "  ILM 1.0k -> 3.34 A (3.0-3.7 A) active current limit, auto-retry; OVLO 40.2k/10k -> 6.0 V;\n"
            "  UVLO 121k/47k -> 4.3 V; dVdt 3.3 nF -> ~0.6 V/ms (soft start into the +5V bulk); ITIMER 1 nF.\n"
-           "ENABLE: SNK_ON = LAPTOP_SNK_EN (10k / 47k) AND NOT EXT_PWR_PRESENT AND NOT SRC_ON (two pull-down FETs).\n"
+           "ENABLE: SNK_ON = LAPTOP_SNK_EN (10k / 47k) AND NOT (EXT_PWR_PRESENT AND PG5_DLY) AND NOT SRC_ON.\n"
+           "  PG5_DLY = SNK_PGD = PG_5V (LM5148 PG, open drain, 100k to 5V_BUCK on power_rails) via 100k/100 nF,\n"
+           "  rise delay 2.7-6.7 ms, fast fall through BAT46W: make-before-break hand-over, the sink stays on until\n"
+           "  the buck regulates; overlap is safe (+5V OR: TPS259470A reverse blocking + LM74700 ideal diode).\n"
            "  LAPTOP_SNK_EN must be driven from a VBUS-powered domain in dead-battery (PMG1 VDDD from VBUS).\n"
            "Loss at 3 A: 9 x (8 m + 28 m + 5 m shunt) = 0.37 W.",
            at=(406.4, 279.4))
@@ -294,7 +310,12 @@ def build(D):
     s.c("10u", "+5V", "GND", size="0805", at=(x2 + 152.4, y2), lcsc=C_10U_25V)
     # sink enable logic
     y3 = 398.78
-    _nfet(s, "EXT_PWR_PRESENT", "SNK_ON", "GND", at=(345.44, y3), desc="Sink off with external power")
+    _nfet(s, "EXT_PWR_PRESENT", "SNK_ON", "SNK_KX", at=(345.44, y3), desc="Sink off with external power ...")
+    _nfet(s, "SNK_PGD", "SNK_KX", "GND", at=(345.44, y3 + 25.4), desc="... AND the 5 V buck regulating (PG_5V)")
+    s.r("100k", "PG_5V", "SNK_PGD", at=(375.92, y3 + 25.4), lcsc=R_100K, desc="PG_5V release delay")
+    s.c("100n", "SNK_PGD", "GND", at=(386.08, y3 + 25.4), lcsc=C_100N, desc="tau 20 ms incl. 100k PG pull-up")
+    s.part("Device:D_Schottky", "D", "BAT46W", "Diode_SMD:D_SOD-123", at=(401.32, y3 + 25.4), lcsc=D_BAT46W,
+           pins={"A": "SNK_PGD", "K": "PG_5V"}, desc="Fast discharge when PG_5V drops")
     _nfet(s, "SRC_ON", "SNK_ON", "GND", at=(375.92, y3), desc="Interlock: sink off while sourcing")
     s.r("10k", "LAPTOP_SNK_EN", "SNK_ON", at=(391.16, y3), lcsc=R_10K)
     s.r("47k", "SNK_ON", "GND", at=(401.32, y3), lcsc=R_47K)
@@ -304,8 +325,9 @@ def build(D):
     # =============================================================================================
     _note(s, "7. INDEPENDENT VBUS OVP (latched)  -> LAPTOP_OVP_N\n"
            "Senses max(VBUS_LAPTOP, VBB_OUT) through BAV70 (100 V): also catches a run-away buck-boost before the\n"
-           "  source switch closes. 1.1M/47k + 0.45 V diode: trip = 1.242 x 24.4 + 0.45 = 30.8 V (29.6-32.0 V incl.\n"
-           "  1 % ref, 15 mV offset, 1 % R) > 28.7 V max regulation; 470 pF -> 21 us filter.\n"
+           "  source switch closes. 1.1M/46.4k + 0.45 V diode: trip = 1.242 x 24.7 + 0.45 = 31.1 V (~29.9-32.3 V RSS,\n"
+           "  29.3-33.1 V all corners) > 28.7 V max regulation; 2.2 nF -> 98 us filter: a 5 A laptop unplug at 28 V\n"
+           "  (~1.2 V overshoot) reaches the comparator as ~0.7 V -> 29.4 V, no false latch. Run-away lag ~2.6 V.\n"
            "TLV3011 (open-drain, internal 1.242 V ref): output pulled up to VBB_EN (10k). On a trip the output\n"
            "  releases, 1N4148W + 4.7k feed back into IN+ (2.0 V > 1.242 V even with VBUS = 0) -> LATCHED.\n"
            "  Q inverts to LAPTOP_OVP_N (10k to +3V3): opens the source switch (SRC_ON AND) and disables the LM51770.\n"
@@ -317,8 +339,8 @@ def build(D):
     s.part("Diode:BAV70", "D", "BAV70", "Package_TO_SOT_SMD:SOT-23", at=(x, y), lcsc="C68978",
            pins={"1": "VBUS_LAPTOP", "2": "VBB_OUT", "3": "OVP_TOP"}, desc="Dual diode common cathode 100 V")
     s.r("1.1M", "OVP_TOP", "OVP_DIV", at=(x + 20.32, y), lcsc=R_1M1)
-    s.r("47k", "OVP_DIV", "GND", at=(x + 30.48, y), lcsc=R_47K)
-    s.c("470p", "OVP_DIV", "GND", at=(x + 40.64, y), lcsc=C_470P)
+    s.r("46.4k", "OVP_DIV", "GND", at=(x + 30.48, y), lcsc=R_46K4)
+    s.c("2.2n", "OVP_DIV", "GND", at=(x + 40.64, y), lcsc=C_2N2)
     s.part("odeck:TLV3011AIDBVR", "U", "TLV3011", at=(x + 73.66, y),
            pins={"IN+": "OVP_DIV", "IN-": "OVP_REF", "REF": "OVP_REF", "OUT": "OVP_TRIP", "VCC": "+3V3", "GND": "GND"},
            desc="Comparator + 1.242 V reference, open drain")

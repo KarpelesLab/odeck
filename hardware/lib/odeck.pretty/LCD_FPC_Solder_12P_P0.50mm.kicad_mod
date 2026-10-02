@@ -1,12 +1,12 @@
 (footprint "LCD_FPC_Solder_12P_P0.50mm"
-	(version 20241229)
-	(generator "odeck")
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Solder pads for a 12-pin 0.5 mm pitch FPC tail (HS20HS072RX 2.0in LCD): fingers 0.3x3.5 mm, tail 6.5 mm wide, 5 mm stiffener. Pad 1 at left, viewed from the top of the PCB with the FPC contacts facing down (tail folded under the panel). Verify fold direction / pin-1 side in layout.")
-	(attr smd)
 	(property "Reference" "REF**"
-		(at 0 -3.5 0)
+		(at 0 -5.7 0)
 		(layer "F.SilkS")
+		(uuid "71a1672f-665d-4264-87c6-525f9b735f60")
 		(effects
 			(font
 				(size 1 1)
@@ -14,20 +14,10 @@
 			)
 		)
 	)
-	(property "Value" "LCD_FPC_12P"
-		(at 0 3.5 0)
+	(property "Value" "LCD_FPC_Solder_12P_P0.50mm"
+		(at 0 5.1 0)
 		(layer "F.Fab")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(layer "F.Fab")
-		(hide yes)
+		(uuid "7a4c2a46-8157-4bff-9be7-c0e756d3600a")
 		(effects
 			(font
 				(size 1 1)
@@ -39,156 +29,225 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
+		(uuid "c072cb4b-f536-4f3d-9c1f-57f6330baa25")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.15)
+				(size 1.27 1.27)
 			)
 		)
 	)
-	(property "Description" ""
+	(property "Description" "Hot-bar/hand-solder lands for the HS20HS072RX 2.0in LCD FPC tail (Hansheng drawing p.10: 12 fingers P0.5, exposed 3.5 mm, tail 6.5 mm wide, 5 mm stiffener on the back). Contacts are on the panel front side, so the tail must be folded 180 deg under the panel (contacts down); viewed from PCB top with the panel-exit edge at +Y, pin 1 is at -X. Lands are 0.3 mm wide and run 1.25 mm past the tail end (-Y) so an iron/hot-bar can reach the joint; F.Fab shows tail and stiffener outline for alignment."
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
+		(uuid "b37c2543-029d-4262-91ec-e8e24a584ecf")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.15)
+				(size 1.27 1.27)
 			)
 		)
 	)
-	(fp_line
-		(start -3.25 -3.25)
-		(end 3.25 -3.25)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
+	(property "LCSC Part" "C5329582"
+		(at 0 0 0)
 		(layer "F.Fab")
+		(hide yes)
+		(uuid "43c7600b-dfc5-495e-bff5-3764f899ab0e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
 	)
-	(fp_line
-		(start 3.25 -3.25)
+	(descr "Hot-bar/hand-solder lands for the HS20HS072RX 2.0in LCD FPC tail (Hansheng drawing p.10: 12 fingers P0.5, exposed 3.5 mm, tail 6.5 mm wide, 5 mm stiffener on the back). Contacts are on the panel front side, so the tail must be folded 180 deg under the panel (contacts down); viewed from PCB top with the panel-exit edge at +Y, pin 1 is at -X. Lands are 0.3 mm wide and run 1.25 mm past the tail end (-Y) so an iron/hot-bar can reach the joint; F.Fab shows tail and stiffener outline for alignment.")
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -3.25 -3.25)
 		(end 3.25 1.75)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
+		(fill no)
 		(layer "F.Fab")
-	)
-	(fp_line
-		(start 3.25 1.75)
-		(end -3.25 1.75)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
+		(uuid "4479e3b5-91cd-4871-9547-c05cb0261e1e")
 	)
 	(fp_line
 		(start -3.25 1.75)
-		(end -3.25 -3.25)
+		(end -3.25 4)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "14959f33-1591-4428-9487-1f167a0fc9cb")
 	)
 	(fp_line
-		(start -3.6 -2.4)
-		(end -3.6 2.4)
+		(start 3.25 1.75)
+		(end 3.25 4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f9471131-b5a6-45ad-bff7-2ee3ee16a3b0")
+	)
+	(fp_line
+		(start -3.45 -4.5)
+		(end -3.45 1)
 		(stroke
 			(width 0.12)
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "13e446ad-d38d-4d92-b1be-be9c109a1f01")
 	)
 	(fp_line
-		(start 3.6 -2.4)
-		(end 3.6 2.4)
+		(start 3.45 -4.5)
+		(end 3.45 1)
 		(stroke
 			(width 0.12)
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "87204617-5840-4ee0-b96f-8ab9c775ee4c")
+	)
+	(fp_line
+		(start -3.45 -3.25)
+		(end -3.75 -3.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "26d8c010-ef59-4965-937a-70bdac704148")
+	)
+	(fp_line
+		(start 3.45 -3.25)
+		(end 3.75 -3.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f60637f8-926f-424d-8339-b60f37f3445c")
 	)
 	(fp_circle
-		(center -3.1 2.7)
-		(end -2.95 2.7)
+		(center -2.75 1)
+		(end -2.63 1)
 		(stroke
-			(width 0.3)
+			(width 0.24)
 			(type solid)
 		)
 		(fill yes)
 		(layer "F.SilkS")
+		(uuid "5664797a-abc9-47d1-a579-f66737d9cfda")
 	)
 	(fp_rect
-		(start -3.85 -3.5)
-		(end 3.85 3.0)
+		(start -4.1 -4.9)
+		(end 4.1 4.3)
 		(stroke
 			(width 0.05)
 			(type solid)
 		)
 		(fill no)
 		(layer "F.CrtYd")
+		(uuid "bf85a5e9-3477-4b65-92e2-4492b5e6733f")
 	)
-	(pad "1" smd rect
-		(at -2.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b40dbb7b-962c-4e53-91c1-9cbb45e46bbc")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+			)
+		)
 	)
-	(pad "2" smd rect
-		(at -2.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "1" smd roundrect
+		(at -2.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "0ec814dc-0b1b-4292-bfd3-6f8ab818c24e")
 	)
-	(pad "3" smd rect
-		(at -1.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "2" smd roundrect
+		(at -2.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "36fa4999-0ac5-4340-9e83-eedad0b36919")
 	)
-	(pad "4" smd rect
-		(at -1.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "3" smd roundrect
+		(at -1.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "38e85926-5972-44e7-921f-fb6e9ec6b49b")
 	)
-	(pad "5" smd rect
-		(at -0.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "4" smd roundrect
+		(at -1.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "2e3cdb5c-0860-4804-b498-5e491ae7b608")
 	)
-	(pad "6" smd rect
-		(at -0.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "5" smd roundrect
+		(at -0.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "6ad47d0d-ec97-471b-bd66-8bb181f8c1aa")
 	)
-	(pad "7" smd rect
-		(at 0.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "6" smd roundrect
+		(at -0.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "8af441ba-95c2-4e2e-8575-ec7208ede629")
 	)
-	(pad "8" smd rect
-		(at 0.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "7" smd roundrect
+		(at 0.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "5eb0c734-7625-4ca1-bb39-00a0baf7d7b8")
 	)
-	(pad "9" smd rect
-		(at 1.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "8" smd roundrect
+		(at 0.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "a80be893-07f1-4a15-9a25-0b2868a658f8")
 	)
-	(pad "10" smd rect
-		(at 1.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "9" smd roundrect
+		(at 1.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "90288500-8ca2-4f68-a0b5-8e3ba961148c")
 	)
-	(pad "11" smd rect
-		(at 2.25 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "10" smd roundrect
+		(at 1.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "d6235b18-6b16-4073-ae07-fe6faa9d3a23")
 	)
-	(pad "12" smd rect
-		(at 2.75 0)
-		(size 0.3 4.0)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+	(pad "11" smd roundrect
+		(at 2.25 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "6f87afd7-62b9-44b3-b40a-8ae45eb68d25")
 	)
+	(pad "12" smd roundrect
+		(at 2.75 -2.125)
+		(size 0.3 4.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "2dcff031-7609-49d5-984e-e64b5c89ffd7")
+	)
+	(embedded_fonts no)
 )

@@ -64,7 +64,7 @@ def build(D):
         "CC1_P1": "DS_CC1", "CC2_P1": "DS_CC2",
         # debug / host
         "P1.1": "PMG1_SWCLK_L", "P1.2": "PMG1_SWDIO_L",
-        "P4.0": "I2C_PD_SCL", "P4.1": "I2C_PD_SDA", "P5.5": "I2C_PD_INT_N",
+        "P4.0": "I2C_PD_SCL", "P4.1": "I2C_PD_SDA", "P7.6": "I2C_PD_INT_N",
         "P2.2": "PMG1_UART_TX", "P2.3": "PMG1_UART_RX",
         # HPD
         "P1.4": "DS_HPD", "P7.1": "HPD1_OUT", "P1.3": "HPD0_OUT",
@@ -77,7 +77,7 @@ def build(D):
         "P3.0": "MUX_UP_CTL0", "P3.1": "MUX_UP_CTL1", "P3.2": "MUX_UP_FLIP",
         "P3.3": "MUX_DS_CTL0", "P3.4": "MUX_DS_CTL1", "P3.7": "MUX_DS_FLIP",
     }
-    nc = ["P1.0", "P1.5", "P1.6", "P2.7", "P3.5", "P3.6", "P5.0", "P5.1", "P5.2", "P5.3", "P5.4", "P7.6",
+    nc = ["P1.0", "P1.5", "P1.6", "P2.7", "P3.5", "P3.6", "P5.0", "P5.1", "P5.2", "P5.3", "P5.4", "P5.5",
           "P0.1", "P0.2", "P0.3", "P0.4", "P0.5", "P0.6", "P0.7", "P6.0", "P6.1", "P6.2", "P6.3",
           "USBDP", "USBDM", "AUX_P_P0", "AUX_N_P0", "AUX_P_P1", "AUX_N_P1",
           "VBUS_IN_NGDO_P0", "VBUS_OUT_NGDO_P0", "VBUS_IN_CTRL_P0", "VBUS_OUT_CTRL_P0"]
@@ -159,14 +159,18 @@ def build(D):
     s.note("5. HOST INTERFACE (RP2350)  I2C_PD on SCB0 (P4.0 SCL / P4.1 SDA: the only fail-safe I2C pins,\n"
            "  same SCB as the dock example's HPI). PMG1 target address 0x42 (firmware-defined, CCGx HPI alternate\n"
            "  address; TPS26750 = 0x21 on the same bus). Bus pull-ups on the MCU sheet (+3V3).\n"
-           "I2C_PD_INT_N: P5.5 (datasheet 'embedded controller interrupt'), open-drain, 10k pull-up here.\n"
+           "I2C_PD_INT_N: P7.6 (B9), open-drain, 10k pull-up to PMG1_VDDD here (never above VDDIO). Not P5.5: ports 2/3/5\n"
+           "  carry analog functions and must not see an external voltage above VDDIO or before all supplies are up (DS 2.6.3);\n"
+           "  a +3V3 pull-up sits ~0.1 V above VDDIO (= VDDD = VSYS - 0.1 V). VDDD-referenced high (3.0-3.65 V) is > RP2350 VIH.\n"
+           "  Dead deck: VDDD up, RP2350 unpowered -> <= 0.35 mA into the RP2350 pad through 10k; PMG1 firmware leaves INT_N\n"
+           "  released (high) until P3V3_SNS is high, so the RP2350 never sees a spurious edge at boot.\n"
            "P3V3_SNS (P7.5): +3V3 present (10k/100k). Firmware keeps every output towards +3V3-powered chips\n"
            "  (mux CTL/FLIP, UP_HPD, DS_HPD, LAPTOP_SRC_EN) low until P3V3_SNS is high (no back-powering).\n"
            "EXT_PWR_PRESENT 100k pull-down: its 74LVC1G32 driver is unpowered (Ioff) in a dead deck; without it the\n"
            "  net floats - here AND at the power_laptop sink-switch FET gate.",
            at=(20.32, 302.26))
     x, y = 25.4, 345.44
-    s.r("10k", "I2C_PD_INT_N", "+3V3", at=(x, y), lcsc=R_10K, desc="INT_N pull-up")
+    s.r("10k", "I2C_PD_INT_N", "PMG1_VDDD", at=(x, y), lcsc=R_10K, desc="INT_N pull-up to VDDIO rail (P7.6)")
     s.r("10k", "+3V3", "P3V3_SNS", at=(x + 10.16, y), lcsc=R_10K, desc="+3V3 sense")
     s.r("100k", "P3V3_SNS", "GND", at=(x + 20.32, y), lcsc=R_100K, desc="+3V3 sense")
     s.r("100k", "EXT_PWR_PRESENT", "GND", at=(x + 30.48, y), lcsc=R_100K,
@@ -177,8 +181,10 @@ def build(D):
     # =============================================================================================
     s.note("6. MUX CONTROL (TUSB1064 / TUSB1046 in GPIO mode, I2C_EN = 0)\n"
            "Port 0 -> TUSB1064: CTL0 = USB3 on, CTL1 = DP on, FLIP = CC orientation (P3.0/P3.1/P3.2).\n"
-           "Port 1 -> TUSB1046: CTL0, CTL1, FLIP (P3.3/P3.4/P3.7). 100k pull-downs: PMG1 in reset/unpowered ->\n"
-           "  muxes default to USB3 off / DP off / no flip.\n"
+           "Port 1 -> TUSB1046: CTL0, CTL1, FLIP (P3.3/P3.4/P3.7). 100k pull-downs hold CTL0/CTL1/FLIP low while PMG1 is\n"
+           "  in reset/unpowered. NOTE: both muxes still enter USB3 mode (no flip) at VCC power-up regardless of CTL0 and\n"
+           "  leave it only on a CTL0 L-H-L pulse (TUSB1064 8.4.1, TUSB1046 7.4.1): firmware pulses CTL0 after P3V3_SNS\n"
+           "  goes high and on every detach. DP lanes stay off (CTL1 low; TUSB1064 HPDIN 100k PD on usbc_muxes).\n"
            "HPD: HPD1_OUT (P7.1, port-1 HPD block, output: follows the monitor's HPD_State/IRQ_HPD Attention) -> 1k\n"
            "  -> DS_HPD -> TUSB1046 HPDIN, and -> P1.4 (port-0 HPD block in receive mode, as a dock's DP sink HPD)\n"
            "  -> port 0 sends Attention/Status to the laptop. HPD0_OUT (P1.3, GPIO) -> 1k -> UP_HPD -> TUSB1064\n"

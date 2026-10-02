@@ -13,7 +13,7 @@ C_10N, C_100N, C_4U7 = "C15195", "C1525", "C23733"
 FET = ("Transistor_FET:AO3400A", "C20917")   # 30 V N-FET, Vgs(th) <= 1.45 V, SOT-23
 # extended parts
 LCD = "C5329582"                   # HS HS20HS072RX 2.0" IPS 240x320, ST7789, 12-pin 0.5 mm FPC
-R_BL = "C18005"                    # 33 Ohm 1 % 1206 (0.25 W): backlight current set
+R_BL = "C22198"                    # 39 Ohm 1 % 1206 (0.25 W, UNI-ROYAL 1206W4F390JT5E): backlight current set
 BTN = "C110293"                    # ALPS SKRTLAE010 side-push tact switch 4.5x3.4 mm (1/3 common, 2 = contact)
 ESD = "C106794"                    # TI TPD4E02B04DQAR 4-ch ESD, 3.6 V working, USON-10 (already used on usbc_muxes)
 PTC = "C75464"                     # Bourns MF-NSMF050-2 PTC 1206, 0.5 A hold / 1 A trip, 13.2 V
@@ -55,7 +55,8 @@ def build(D):
     s.c("100n", "+3V3", "GND", at=(x0 + 45.72, y), lcsc=C_100N, desc="Panel decoupling, at the FPC pads")
     _note(s, "FPC pinout (datasheet sec. 6): 1 GND, 2 CS, 3 RS (D/C), 4 SCL, 5 SDA (MOSI), 6 RST, 7 NC, 8 IOVCC, 9 VCI, 10 LED-A, 11 LED-K, 12 GND.\n"
              "Interface is hard-wired to 4-wire SPI inside the module (no IM straps on the FPC); write-only (no MISO), up to 62.5 MHz.\n"
-             "VCI 2.4-3.3 V / IOVCC 1.65-3.3 V: both on +3V3 (panel abs max 4.6 V).\n"
+             "VCI 2.4-3.3 V / IOVCC 1.65-3.3 V: both on +3V3 = 3.33 V nom (~3.36 V max): accepted known deviation from the 3.3 V\n"
+             "  recommended max (abs max 4.6 V). Retrimming +3V3 to 3.30 V (power_rails) would remove it.\n"
              "MECHANICAL: panel 51.8 x 36.2 x 2.05 mm on ~1 mm double-sided foam tape over a copper/silk-only keep-out; the 0.3 mm FPC tail\n"
              "  (6.5 mm wide, 12 x 0.5 mm fingers, 5 mm stiffener) folds under/behind the panel onto the solder pads (footprint\n"
              "  odeck:LCD_FPC_Solder_12P_P0.50mm: check pin-1 side vs fold direction). JLC hand-solders the tail; confirm tape service.",
@@ -65,15 +66,17 @@ def build(D):
     # 2. Backlight
     # =============================================================================================
     x0, y0 = 20.32, 88.9
-    _note(s, "2. BACKLIGHT  4 white LEDs in parallel, Vf 3.0 V typ (2.8-3.2) @ 80 mA max -> from +5V, 33R, low-side PWM", (x0, y0), 2.0)
+    _note(s, "2. BACKLIGHT  4 white LEDs in parallel, Vf 3.0 V typ (2.8-3.2) @ 80 mA max -> from +5V, 39R, low-side PWM", (x0, y0), 2.0)
     y = y0 + 15.24
-    s.r("33", "+5V", "LCD_BL_A", size="1206", at=(x0, y), lcsc=R_BL,
-        desc="Current set: (5.0-3.0)/33 = 60 mA typ; 74 mA worst (5.25 V, Vf 2.8) < 80 mA abs; 0.18 W max")
+    s.r("39", "+5V", "LCD_BL_A", size="1206", at=(x0, y), lcsc=R_BL,
+        desc="Current set: (5.13-3.0)/39 = 55 mA typ; 69 mA worst (+5V = 5.5 V laptop vSafe5V, Vf 2.8) < 80 mA abs; 0.19 W max")
     s.part(FET[0], "Q", "AO3400A", at=(x0 + 17.78, y), pins={"G": "BL_GATE", "D": "LCD_BL_K", "S": "GND"},
            lcsc=FET[1], desc="Low-side backlight switch (PWM)")
     s.r("100", "LCD_BL_PWM", "BL_GATE", at=(x0 + 33.02, y), lcsc=R_100, desc="Gate series R (edge rate / ringing)")
     s.r("100k", "BL_GATE", "GND", at=(x0 + 43.18, y), lcsc=R_100K, desc="Backlight off while the RP2350 is in reset/unpowered")
-    _note(s, "Not from +3V3: 0.1-0.5 V headroom over Vf would make the current depend on LED Vf. 60 mA = 75 % of max -> ~0.3 W backlight.\n"
+    _note(s, "Not from +3V3: 0.1-0.5 V headroom over Vf would make the current depend on LED Vf. 55 mA typ (+5V 5.13 V) -> ~0.28 W.\n"
+             "Worst case: bus-powered +5V = laptop VBUS up to 5.5 V: (5.5-2.8)/39 = 69 mA (72 mA at Vf 2.7 V hot) < 80 mA abs max.\n"
+             "  Min (4.75 V, Vf 3.2) = 40 mA. PWM does not reduce the peak current, so R1101 alone must keep it under 80 mA.\n"
              "PWM: LCD_BL_PWM (GPIO25, PWM4 B) at >= 20 kHz (inaudible), 0-100 %. Firmware dims after inactivity.",
           (x0, y0 + 25.4))
 
@@ -104,8 +107,8 @@ def build(D):
         s.r("220", f"HDR_GPIO{i}", f"HDR_P{i}", at=(x0 + i * 10.16, y), lcsc=R_220,
             desc=f"Series R GPIO{12 + i}: limits fault/ESD current into the RP2350")
     for i in range(2):
-        s.r("1k", f"HDR_ADC{i}", f"HDR_A{i}", at=(x0 + 81.28 + i * 10.16, y), lcsc=R_1K,
-            desc=f"Series R ADC{4 + i}: ADC pins are not 5 V/fault tolerant -> 1k")
+        s.r("10k", f"HDR_ADC{i}", f"HDR_A{i}", at=(x0 + 81.28 + i * 10.16, y), lcsc=R_10K,
+            desc=f"Series R ADC{4 + i}: ADC pins are not fault tolerant; 10k limits back-power (3.3 V, deck off) to ~0.3 mA")
     y = y0 + 45.72
     _esd(s, (x0 + 15.24, y), ["HDR_P0", "HDR_P1", "HDR_P2", "HDR_P3"], "Header ESD P0-P3, at the header pins")
     _esd(s, (x0 + 50.8, y), ["HDR_P4", "HDR_P5", "HDR_P6", "HDR_P7"], "Header ESD P4-P7, at the header pins")
@@ -124,9 +127,10 @@ def build(D):
            desc="User GPIO header, unpopulated (solder a 2x8 2.54 mm header)")
     _note(s, "Pinout (silkscreen, top and back):  1 5V   2 3V3 | 3 G12  4 G13 | 5 G14  6 G15 | 7 GND  8 GND\n"
              "                                    9 G16 10 G17 | 11 G18 12 G19 | 13 A4(G44) 14 A5(G45) | 15 GND 16 GND\n"
-             "HDR_P0..7 = RP2350 GPIO12..19: contiguous (PIO), HSTX-capable (DVI!), UART0/SPI0/SPI1/I2C0/I2C1/PWM6,7,0,1 available.\n"
-             "220R + ESD: GPIO12-19 are fault tolerant (5.5 V max with +3V3 up, 3.63 V with the deck off); 220R limits ESD/fault current.\n"
-             "A0/A1 (ADC4/5) via 1k: 0-3.3 V; NOT 5 V tolerant. 5V/3V3 pins are outputs (do not back-feed the deck through them).",
+             "HDR_P0..7 = RP2350 GPIO12..19: contiguous (PIO). FREE for the header: SPI1 (12-15), PWM6/7/0/1, PIO2, HSTX (not DVI:\n"
+             "  220R + ESD break TMDS). UART0 (debug), SPI0 (LCD), I2C0 (I2C_PD) and I2C1 (I2C_SYS) are already taken.\n"
+             "3.3 V LOGIC ONLY. 220R + ESD (TPD4E02B04 VRWM 3.6 V): 5 V is abuse, not a feature, even though the FT pads survive it.\n"
+             "A0/A1 (ADC4/5) via 10k + 10 nF: 0-3.3 V, not fault tolerant. 5V/3V3 pins are outputs (do not back-feed the deck).",
           (x0, y0 + 99.06))
 
     # =============================================================================================
@@ -143,5 +147,9 @@ def build(D):
     _note(s, "Qwiic power shares the fused +3V3_USR with the header. Bus is independent of I2C_SYS (no risk to the sensors/PD bus).",
           (x0, y0 + 30.48))
 
+    # Review fix (docs/review/mcu_ui.md #11), created last so existing reference designators do not shift.
+    for i in range(2):
+        s.c("10n", f"HDR_ADC{i}", "GND", at=(261.62 + i * 10.16, 30.48), lcsc=C_10N,
+            desc=f"ADC{4 + i} charge reservoir at the RP2350 side of the 10k (as ISENSE)")
     s.build()
     return s

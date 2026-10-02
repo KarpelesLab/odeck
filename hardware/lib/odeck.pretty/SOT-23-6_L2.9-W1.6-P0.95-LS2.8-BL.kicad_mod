@@ -3,7 +3,7 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "USBLC6-2SC6")
+	(descr "ST SOT23-6L P0.95mm; matches USBLC6-2SC6 datasheet (DocID11265) Fig.22 footprint (0.6x1.1 pads, 2.3 row pitch)")
 	(property "Reference" "REF**"
 		(at 0 -5.149 0)
 		(layer "F.SilkS")
@@ -114,46 +114,6 @@
 		(layer "Cmts.User")
 		(uuid "87a7c94c-508f-4348-8b64-ad22dece605e")
 	)
-	(fp_line
-		(start -1.46 -0.81)
-		(end 1.46 -0.81)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "af6ef568-4642-4408-ab6d-17aa4699ff7e")
-	)
-	(fp_line
-		(start -1.46 0.81)
-		(end -1.46 -0.81)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "ad1a6186-a4fc-4729-bc14-4bf6ae2cef92")
-	)
-	(fp_line
-		(start 1.46 -0.81)
-		(end 1.46 0.81)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "7937265a-0a2d-4179-a878-835f08b78248")
-	)
-	(fp_line
-		(start 1.46 0.81)
-		(end -1.46 0.81)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "f4f64fc8-78be-4f94-9539-142ae494ae78")
-	)
 	(fp_text user "${REFERENCE}"
 		(at 0 0 0)
 		(layer "F.Fab")
@@ -213,4 +173,5 @@
 			(xyz 0 0 270)
 		)
 	)
+	(fp_rect (start -1.74 -1.94) (end 1.74 1.94) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "0c251dd1-962d-497b-a146-5db0b749113d"))
 )

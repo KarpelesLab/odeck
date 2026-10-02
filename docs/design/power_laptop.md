@@ -1,7 +1,7 @@
 # odeck-10 — power_laptop sheet
 
 Source: `hardware/odeck-10/sheets/power_laptop.py` (generates `power_laptop.kicad_sch`, ref_base 200, A2).
-Status: first schematic pass, 2026-10-02. `build_all.py power_laptop` → `netlist verify: OK`;
+Status: second pass after the power review (`docs/review/power.md`), 2026-10-02. `build_all.py power_laptop` → `netlist verify: OK`;
 `tools/bom_check.py` → all parts on this sheet are JLC parts with stock (none consigned).
 Stock figures: JLC parts API on 2026-10-02. Datasheets used: TI SNVSCL2A (LM51770), SNOSD95C (LM7480-Q1),
 SNOSDE5A (LM74502), SLVSFC9C (TPS25947), SBOS300C (TLV3011), SBOS547 (INA226), Infineon BSC0805LS rev 2.1,
@@ -10,7 +10,7 @@ TI SLPS633 (CSD18543Q3A).
 ## Topology
 
 ```
- VIN 9-50 V ──┬─ 4x4.7µ/100V + 47µ/100V
+ VIN 9-50 V ──┬─ 4x4.7µ/100V (no electrolytic: VIN ≤ 100 µF budget, see power_input §6)
               Q201 (HO1) ─ BB_SW1 ─ RCS 4 mΩ ─ L201 10 µH ─ BB_SW2 ─ Q204 (HO2) ─ BB_PSO ─ RISNS 8 mΩ ─ VBB_OUT
               Q202 (LO1)                                  Q203 (LO2)    4x10µ/50V              2x10µ + 2x100µ polymer
               U201 LM51770: 347 kHz, PSM, avg I-limit 6.25 A (hiccup), FB network selected by VBB_VSEL0..2
@@ -22,15 +22,18 @@ TI SLPS633 (CSD18543Q3A).
  VBUS_LSW ─ Q215 (60 V, LM74502 U205, OV 6.5 V) ─ SNK_MID ─ U206 TPS259470A eFuse (3.3 A, OVLO 6 V, RCB) ─ +5V
             EN = SNK_ON
 
- SRC_ON = LAPTOP_SRC_EN · EXT_PWR_PRESENT · VBB_PG · LAPTOP_OVP_N      (U203 74LVC1G11 + BAT54A diode-AND)
- SNK_ON = LAPTOP_SNK_EN · /EXT_PWR_PRESENT · /SRC_ON                    (resistor + 2 pull-down FETs)
- LAPTOP_OVP_N = NOT latch( max(VBUS_LAPTOP, VBB_OUT) > 30.8 V ), reset by VBB_EN low   (U207 TLV3011)
+ PG5_DLY = PG_5V delayed 2.7–6.7 ms on rising, fast falling               (R251/C242/D204, node SNK_PGD)
+ SRC_ON = LAPTOP_SRC_EN · EXT_PWR_PRESENT · VBB_PG · LAPTOP_OVP_N · PG5_DLY  (U203 74LVC1G11 + BAT54A + Q215/Q216)
+ SNK_ON = LAPTOP_SNK_EN · /(EXT_PWR_PRESENT · PG5_DLY) · /SRC_ON          (resistor + series FET pair + kill FET)
+ VBB_PG = nFLT, held low while disabled and 5.4–9.2 ms after enable (Q208, BB_PGH 1M/4.7 nF)
+ LAPTOP_OVP_N = NOT latch( max(VBUS_LAPTOP, VBB_OUT) > 31.1 V ), reset by VBB_EN low   (U207 TLV3011)
 ```
 
 ### Interface nets
-Global (all from `nets.py`, none added): `VIN`, `VBB_OUT`, `VBUS_LAPTOP`, `+5V`, `VBB_EN`, `VBB_PG`,
-`VBB_VSEL0..2`, `LAPTOP_SRC_EN`, `LAPTOP_SNK_EN`, `LAPTOP_OVP_N`, `EXT_PWR_PRESENT`, `I2C_SYS_SCL/SDA`,
-`+3V3`, `GND`. **No new inter-sheet nets.** PWR_FLAG on `VBB_OUT`.
+Global (all from `nets.py`): `VIN`, `VBB_OUT`, `VBUS_LAPTOP`, `+5V`, `VBB_EN`, `VBB_PG`,
+`VBB_VSEL0..2`, `LAPTOP_SRC_EN`, `LAPTOP_SNK_EN`, `LAPTOP_OVP_N`, `EXT_PWR_PRESENT`, **`PG_5V`** (input; LM5148
+power-good from power_rails, open drain, 100 k to 5V_BUCK, 5.1 V level), `I2C_SYS_SCL/SDA`, `+3V3`, `GND`.
+PWR_FLAG on `VBB_OUT`.
 
 Signals this sheet *drives*: `VBB_PG` (open-drain + 10k pull-up to +3V3 here), `LAPTOP_OVP_N` (open-drain FET +
 10k pull-up here), `VBB_OUT`, `VBUS_LAPTOP` (when sourcing), `+5V` (when sinking). Other sheets must not add
@@ -39,10 +42,15 @@ pull-downs here (floating PMG1 → converter off, 5 V setting, source off). `LAP
 47k pull-down (through 10k). Inputs are 3.3 V logic (5 V tolerant except `LAPTOP_SNK_EN`, which sees 0.82× its level).
 
 PMG1 firmware contract:
-- VBB_EN high → converter starts at 5.115 V; `VBB_PG` goes high when regulated (~2.5 ms).
+- VBB_EN high → converter starts at 5.115 V; `VBB_PG` is held low for 5.4–9.2 ms after enable (LM51770 nFLT is
+  not valid during its 2.2 ms soft start) and is a true power-good after that. Firmware should still check VBUS
+  with the PMG1 ADC before PS_RDY.
 - VSEL codes (VSEL2..0): `000` 5.1 V, `001` 9 V, `010` 15 V, `100` 20 V, `111` 28 V. Any code change is
   slewed in hardware (τ 4.6–7 ms, ≤ 5 mV/µs); wait ≥ 35 ms (or measure VBUS) before PS_RDY.
-- Assert `LAPTOP_SRC_EN` only after `VBB_PG`; hardware blocks it otherwise.
+- Assert `LAPTOP_SRC_EN` only after `VBB_PG`; hardware blocks it otherwise (and also until `PG_5V` has been
+  high for the RC delay, i.e. the deck runs from its own buck and the sink switch is released).
+- `LAPTOP_SNK_EN` may stay asserted through a bus-power → external-power hand-over: hardware releases the sink
+  only after the LM5148 regulates. De-assert it before a PR_Swap to source.
 - To clear an OVP latch, drop `VBB_EN` (≥ 1 ms), then restart at 5 V.
 - After a down-step with no laptop load, enable the PMG1 VBUS discharge or cycle VBB_EN.
 
@@ -72,8 +80,10 @@ limit with hiccup, nFLT power-good.
 | VCC | ≥ 10 µF effective | 2× 22 µF 0805 (≈ 24 µF at 5 V) |
 
 Full 140 W needs VIN ≳ 16 V: from 12 V the input current would be 12.4 A average (13.4 A peak), above the
-10.6 A guaranteed peak limit — the converter then delivers ~100–130 W. That is fine because a 12 V barrel supply
-is budgeted at 60 W total (`power-budget.md`); PMG1 policy must not offer more than the input allows.
+10.6 A guaranteed peak limit. With CFG row 8 the peak/average limit **hiccups** (1 ms on / 24 ms off) rather than
+limiting, so the laptop would lose VBUS — it does *not* "deliver ~100–130 W". PMG1 policy must cap the laptop
+offer by input voltage so the input current stays below ≈ 10 A peak: 12 V barrel → ≤ 100 W including the 5 V
+rail (a 12 V barrel is budgeted at 60 W total in `power-budget.md` anyway).
 
 CFG = 6.49k (R2D setting #7, table row 8): DRSS spread spectrum **on**, hiccup **on**, PSM entry 10 %,
 ISNS **current limiter** on. SYNC = VCC (positive limit direction latched at start-up, no external clock),
@@ -101,8 +111,10 @@ Rtop : (Rbot‖Rs) = 100k : 1.42k → **71.8 V equivalent** for every code.
   5, 20 and 28 V, 0.5 A and 5 A, before freezing values.
 
 ### Capacitors
-- Input: 4× 4.7 µF/100 V X7S 1210 (≈ 1.5 µF each at 48 V) + 47 µF/100 V alu (damping). RMS in buck
-  = IO·√(D(1−D)) = 2.5 A worst → < 1 A per ceramic. power_input adds 2×100 µF/80 V + 4×2.2 µF on VIN.
+- Input: 4× 4.7 µF/100 V X7S 1210 (≈ 2.1 µF each at 48 V, ≈ 3.5 µF at 20 V). RMS in buck
+  = IO·√(D(1−D)) = 2.5 A worst → < 1 A per ceramic. **The 47 µF alu was removed** (review finding 4): the PD-in
+  source sees all VIN capacitance, budgeted to ≤ 100 µF (cSnkBulkPd); the single 47 µF damping alu for the VIN
+  node is on power_input (stability calculation there, §6). Do not add bulk on VIN here.
   All VIN-side parts ≥ 100 V (≥ 63 V required; VIN max 50.4 V).
 - Output, power-stage side (BB_PSO): 4× 10 µF/50 V X7R 1210 (hot loop for Q203/Q204). VBB_OUT: 2× 10 µF/50 V +
   2× 100 µF/35 V polymer (80 % of rating at 28 V) + 100 nF. Boost RMS = IO·√(VO/VIN − 1) = 3.2 A at 20 V in.
@@ -154,12 +166,17 @@ PMG1 PWM/RC into BB_FBM would add it with limited authority.
 ## 3. Enable, discharge, VBB_PG qualification
 
 - BB_ENKILL is pulled up from VIN (470k 0805, 5.1 V zener) → by default it turns on Q (EN/UVLO → GND, converter
-  off), the 2N7002 + 150 Ω/1 W VBB_OUT discharge (τ = 33 ms on 220 µF, 83 mJ max) and a FET holding VBB_PG low
-  (nFLT is high-Z in shutdown and during soft start).
+  off), the 2N7002 + 150 Ω/1 W VBB_OUT discharge (τ = 33 ms on 220 µF, 83 mJ max) and Q208 holding VBB_PG low
+  (nFLT is high-Z in shutdown and its PG comparator is disabled during soft start, SNVSCL2A §8.3.15).
+- **VBB_PG soft-start blanking (review finding 8):** Q208's gate is node BB_PGH, charged from BB_ENKILL through
+  D201 (1N4148W, fast: VBB_PG drops as soon as the converter is disabled) and discharged through R233 1 M into
+  BB_ENKILL with C227 4.7 nF to GND (τ 4.7 ms). From ≈ 4.5 V the gate falls below the AO3400A threshold
+  (0.65–1.45 V) 5.4–9.2 ms after enable — ≥ 2× the 2.2 ms soft start — so VBB_PG high means VBB_OUT is regulated.
+  The extra 4.7 nF on BB_ENKILL slows its rise on disable by < 0.4 ms at 9 V VIN.
 - Two series AO3400A (gates VBB_EN and LAPTOP_OVP_N) pull BB_ENKILL low → converter enabled. So the
   LM51770 runs only with **VBB_EN AND no OVP latch**, and the discharge is off exactly when it runs.
 - With VIN absent nothing is pulled; VBB_PG floats high through its pull-up but `EXT_PWR_PRESENT` is low then,
-  so the source switch stays off. Treat VBB_PG as valid only while VBB_EN is high.
+  so the source switch stays off. Treat VBB_PG as valid only while VBB_EN is high (and ≥ 10 ms after it rose).
 
 ## 4. Laptop source switch (LM74800-Q1 + 2× BSC040N08NS5)
 
@@ -170,9 +187,12 @@ PMG1 PWM/RC into BB_FBM would add it with limited authority.
   into ≤ 20 µF → negligible inrush.
 - OV backstop independent of +3V3 and logic: VSNS = VBUS_LAPTOP, SW → 255k/10k → OV: 1.231·26.5 = **32.6 V**
   (31.7–33.6 V), turns HGATE off in 4 µs.
-- **Hardware enable** SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND VBB_PG AND LAPTOP_OVP_N:
+- **Hardware enable** SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND VBB_PG AND LAPTOP_OVP_N AND PG5_DLY:
   SN74LVC1G11 (3-input AND) with input C = SRC_PGOK, a BAT54A diode-AND of the two open-drain signals
-  (10k pull-up; low level ≈ 0.3 V < VIL 0.8 V).
+  (10k pull-up; low level ≈ 0.3 V < VIL 0.8 V), plus Q216 pulling SRC_PGOK low while Q215 (gate = SNK_PGD, the
+  delayed PG_5V) is off (R242 100 k pull-up to +3V3 on its drain). PG_5V is not diode-ORed into SRC_PGOK
+  directly: the 10 k/+3V3 pull-up would back-feed the PG_5V node (100 k to an unpowered 5V_BUCK) to ≈ 2.8 V and
+  fake "good" in bus-powered mode.
 - Logic unpowered (+3V3 absent) → SRC_ON pulled low → off.
 
 ## 5. Bus-power sink switch (VBUS → +5V)
@@ -187,24 +207,42 @@ source, never back-feed.
   (+5V from the LM5148 never back-feeds VBUS), active current limit ILM 1.0k → 3340/R = **3.34 A** (3.0–3.7 A),
   auto-retry 110 ms; OVLO 40.2k/10k → **6.0 V**; UVLO 121k/47k → **4.29 V** rising / 3.9 V falling;
   dVdt 3.3 nF → ~0.6 V/ms soft start into the +5V bulk (≈ 0.6 A into 1000 µF); ITIMER 1 nF ≈ 0.8 ms.
-- **Enable** SNK_ON = LAPTOP_SNK_EN (10k series, 47k pull-down → 2.7 V high) AND NOT EXT_PWR_PRESENT AND NOT
-  SRC_ON (two AO3400A pulling SNK_ON low) → LM74502 EN/UVLO (1.24 V threshold).
-- **Interlock**: the source requires EXT_PWR_PRESENT high and the sink requires it low; additionally SRC_ON
-  itself forces the sink off, so even an ambiguous EXT_PWR_PRESENT level cannot turn both on. Break-before-make
-  is natural: the sink turns off in ~2 µs, the source HGATE needs ms to charge.
+- **Enable** SNK_ON = LAPTOP_SNK_EN (10k series, 47k pull-down → 2.7 V high) AND NOT (EXT_PWR_PRESENT AND
+  PG5_DLY) AND NOT SRC_ON → LM74502 EN/UVLO (1.24 V threshold). Q218 (gate EXT_PWR_PRESENT) and Q219 (gate
+  SNK_PGD) in series pull SNK_ON low; Q220 (gate SRC_ON) pulls it low directly.
+- **PG5_DLY / SNK_PGD** = `PG_5V` through R251 100 k into C242 100 nF (τ = 20 ms with the 100 k PG pull-up on
+  power_rails): crosses the AO3400A threshold 2.7–6.7 ms after the LM5148 PG rises — after its soft start has
+  finished and 5V_BUCK has taken over +5V. D204 (BAT46W) discharges it at once when PG_5V drops. A rising EXT
+  edge alone never kills the sink; loss of external power (EXT low) re-enables it in µs via Q218.
+- **Bus-power → external-power hand-over is make-before-break (review finding 3):**
+  1. External power appears → `EXT_PWR_PRESENT` high; the sink stays on (PG_5V low) and keeps +5V up.
+  2. VIN ramps (barrel 1.17 V/ms), LM5148 starts at 8 V and soft-starts 5V_BUCK; when 5V_BUCK exceeds +5V the
+     LM74700 conducts. During the overlap both paths feed +5V: the TPS259470A blocks reverse current into
+     VBUS, the LM74700 blocks reverse current into 5V_BUCK, so whichever is higher carries the load, no backfeed.
+  3. PG_5V high + 2.7–6.7 ms → Q219 on → sink off → +5V carried by the buck alone (load step ≤ 3 A).
+  4. Only now can SRC_PGOK go high (Q215/Q216), so a source enable can never cut the sink before the buck runs.
+- **Interlock / mutual exclusion:** the source requires EXT_PWR_PRESENT AND PG5_DLY high, which is exactly the
+  sink release term; in addition SRC_ON forces the sink off through Q220 in ~2 µs while the source LM74800
+  HGATE needs ms to turn its FET on. Even if the two thresholds on SNK_PGD (Q215 vs Q219) differ, the explicit
+  SRC_ON kill opens the sink long before the source conducts, so both are never on together.
 - Loss at 3 A: 9·(8 mΩ·1.3 + 28 mΩ + 5 mΩ shunt) ≈ 0.39 W.
 
 Why not a single eFuse: no stocked eFuse combines ≥ 30 V off-state, 3 A and reverse blocking at 5 V: TPS2663x
 (60 V) has a 4.5 V minimum and a 15.5 V default UVLO, and only fixed 35 V OV clamp variants are in stock
-(would pass up to 33 V to +5V); TPS2660 is 2.2 A; TPS25947 alone is 28 V abs max (< 30.8 V OVP trip).
+(would pass up to 33 V to +5V); TPS2660 is 2.2 A; TPS25947 alone is 28 V abs max (< 31.1 V OVP trip).
 
 ## 6. Independent VBUS OVP (latched) → LAPTOP_OVP_N
 
 - Senses **max(VBUS_LAPTOP, VBB_OUT)** through a BAV70 (100 V; BAT54C is only 30 V): catches a run-away converter
   (e.g. open Rtop, which would otherwise run to the 83.5 V OVP2) before the source switch closes.
-- Divider 1.1M/47k + diode: trip = 1.242·(1 + 1100/47) + 0.45 = **30.8 V**; tolerance window 29.6–32.0 V
-  (ref 1.208–1.276 V, offset ±15 mV, 1 % resistors, Vf 0.35–0.55 V) — above the 28.7 V worst-case regulation,
-  below the 32.6 V LM74800 backstop (nominal). 470 pF → 21 µs filter against ESD/ringing.
+- Divider 1.1M/46.4k + diode: trip = 1.242·(1 + 1100/46.4) + 0.45 = **31.1 V**; ≈ 29.9–32.3 V RSS (29.3–33.1 V
+  with every corner stacked: ref 1.208–1.276 V, offset ±15 mV, 1 % resistors, Vf 0.35–0.55 V) — above the 28.7 V
+  worst-case regulation, ≤ 34 V PMG1 VBUS abs max. C243 2.2 nF → 98 µs filter.
+- **Load-dump margin (review finding 9):** a 5 A unplug at 28 V overshoots VBB_OUT by ≈ 5 A/(2π·3 kHz·220 µF)
+  ≈ 1.2 V for ~100 µs; through the 98 µs filter the comparator sees ≈ 0.7 V of it (simulated first-order), i.e.
+  ≤ 29.4 V against a ≈ 29.9 V (RSS) minimum trip — no false latch. Cost: a run-away (≤ 28 V/ms at the current
+  limit) trips ≈ 2.6 V later; VBUS_LAPTOP stays protected by the 4 µs LM74800 backstop (31.7–33.6 V). Bench
+  check the overshoot at 28 V / 5 A; if > 1 V, raise C243 to 4.7 nF.
 - **TLV3011** (C2870632; open-drain, internal 1.242 V reference; TLV3012 would be push-pull). Output pull-up
   10k goes to **VBB_EN**. On a trip the output releases, 1N4148W + 4.7k drive IN+ to 2.0 V (> 1.242 V even with
   VBUS = 0) → **latched**. AO3400A inverts to LAPTOP_OVP_N (10k to +3V3).
@@ -246,29 +284,31 @@ Q204 and L201; firmware derates the contract on temperature. Keep the zone away 
 |---|---|---|---|---|
 | U201 | TI LM51770DCPR | C43351171 | 1007 | buck-boost controller |
 | Q201, Q202 | Infineon BSC0805LS | C534374 | 15000 | 100 V, 7.7 mΩ @4.5 V |
-| Q203, Q204, Q215 | TI CSD18543Q3A | C840100 | 12215 | 60 V, 12 mΩ @4.5 V |
+| Q203, Q204, Q217 | TI CSD18543Q3A | C840100 | 12215 | 60 V, 12 mΩ @4.5 V |
 | L201 | Coilcraft XAL1010-103MED | C6358489 | 707 | 10 µH, Isat 17.5 A |
 | R201 | Vishay WSL25124L000FEA | C844693 | 4059 | 4 mΩ peak sense |
 | R202 | Yageo PE2512FKE070R008L | C2075410 | 1855 | 8 mΩ output sense |
-| R241 | Vishay WSL25125L000FEA | C844900 | 1591 | 5 mΩ INA226 shunt |
+| R243 | Vishay WSL25125L000FEA | C844900 | 1591 | 5 mΩ INA226 shunt |
 | U202 | TI LM74800QDRRRQ1 | C3215600 | 4038 | source switch (also 2× on power_input) |
 | Q213, Q214 | Infineon BSC040N08NS5 | C534333 | 6678 | 80 V, 4 mΩ |
 | U203 | TI SN74LVC1G11DBVR | C22046 | 13937 | 3-input AND |
 | U204 | TI INA226AIDGSR | C49851 | 44390 | 0x44 |
 | U205 | TI LM74502DDFR | C3236215 | 8157 | sink stage 1 |
 | U206 | TI TPS259470ARPWR | C3662799 | 1538 | sink stage 2 eFuse |
-| U207 | TI TLV3011AIDBVR | C2870632 | 7893 | OVP comparator + ref |
-| D201 | BZT52C5V1 | C173407 | 610k | |
-| D202 | BAT54A | C130910 | 288k | |
-| D203 | BAV70 | C68978 | 210k | basic |
-| D204 | 1N4148W | C81598 | 5.2M | basic |
-| Q205–Q211, Q216–Q218 | AO3400A | C20917 | 959k | basic |
+| U207 | TI TLV3011AIDBVR | C2870632 | 7893 | OVP comparator + ref (TLV3011B has POR: see risks) |
+| D202 | BZT52C5V1 | C173407 | 610k | |
+| D203 | BAT54A | C130910 | 288k | |
+| D205 | BAV70 | C68978 | 210k | basic |
+| D201, D206 | 1N4148W | C81598 | 5.2M | basic |
+| D204 | BAT46W | C83152 | 107k | PG_5V delay fast discharge |
+| Q205–Q211, Q215, Q216, Q218–Q221 | AO3400A | C20917 | 959k | basic |
+| R255 | 46.4 k 0402 | C5126026 | 175k | OVP divider |
 | Q212 (discharge) | 2N7002 | C8545 | 1.6M | basic |
-| C201–C204 | Taiyo HMK325C7475KN-TE 4.7 µF/100 V | C697607 | 330k | |
-| C205 | SamYoung MVK 47 µF/100 V | C371305 | 1847 | 10×10 |
-| C206–C211, C233 | TDK C3225X7R1H106KT000E 10 µF/50 V | C432929 | 28k | |
-| C212, C213 | KNSCHA 100 µF/35 V polymer | C2982822 | 7842 | 6.3×7 |
-| R234 | 150 Ω 1 W 2512 | C2934049 | 52k | discharge |
+| Q217 | TI CSD18543Q3A | C840100 | 12215 | sink stage 1 (listed above with Q203/Q204) |
+| C201–C204 | Taiyo HMK325C7475KN-TE 4.7 µF/100 V | C697607 | 330k | (47 µF VIN alu removed) |
+| C205–C210, C233 | TDK C3225X7R1H106KT000E 10 µF/50 V | C432929 | 28k | |
+| C211, C212 | KNSCHA 100 µF/35 V polymer | C2982822 | 7842 | 6.3×7 |
+| R235 | 150 Ω 1 W 2512 | C2934049 | 52k | discharge |
 | others | 0402/0603/0805 R/C | see `power_laptop.py` | ≥ 18k | mostly basic |
 
 `python3 tools/bom_check.py` passes for every part on this sheet.
@@ -292,8 +332,14 @@ Q204 and L201; firmware derates the contract on temperature. Keep the zone away 
 4. **PSM down-steps** rely on the laptop load/PMG1 VBUS discharge; with no load VBB_OUT stays at the old
    voltage until VBB_EN is cycled (then the 150 Ω discharge runs). FPWM option exists (DNP R) but returns
    energy to VIN.
-5. OVP window 29.6–32.0 V is driven by the TLV3011 1 % reference + 15 mV offset; tighter would need TLV3011B or a
-   separate 0.5 % reference.
+5. OVP window (≈ 29.9–32.3 V RSS) is driven by the TLV3011 1 % reference + 15 mV offset; tighter would need a
+   separate 0.5 % reference. The non-B TLV3011 has **no power-on reset**: its output is undefined while +3V3
+   ramps, so with VBB_EN already high (PMG1 alive on laptop VBUS through a +3V3 brownout) the latch can set
+   spuriously. Use TLV3011B (same pinout) when stocked, or have firmware cycle VBB_EN after any +3V3 recovery.
+10. **OVP1/nFLT in PSM during VSEL down-steps** (review note 15): the "OVP1 masked in PSM" sentence in SNVSCL2A
+    §8.3.15 may mean pulse-skipping operation rather than MODE = low. If nFLT asserts while VBB_OUT lags a
+    down-step, VBB_PG drops and SRC_ON opens on every 28→5 V step. Bench-verify a 28→5 V step at standby load;
+    fallback FPWM (DNP 0 Ω) or firmware blanking.
 6. 12 V input cannot deliver 140 W (current limit) — PMG1 policy must cap the offer by input source (already
    in power-budget.md).
 7. Footprints to check before layout: XAL1010 (EasyEDA name references XAL1010-332ME land pattern), LM51770

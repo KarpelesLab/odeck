@@ -49,7 +49,7 @@ def build(D):
         "S1CK_M1D0": "CR_SD_CLK", "S1CM_M1D2": "CR_SD_CMD",
         "S1D0_M1D1": "CR_SD_D0", "S1D1_M1BS": "CR_SD_D1", "S1D2_M1CK": "CR_SD_D2", "S1D3_M1D3": "CR_SD_D3",
         # slot 2: microSD (no WP switch -> SD2_WP tied low = write enabled)
-        "SD2_CDZ": "CR_USD_CDZ", "MS2_INS/SD2_WP": "GND",
+        "SD2_CDZ": "CR_USD_CDZ", "MS2_INS/SD2_WP": "CR_USD_CDZ",
         "S2CK_M2D0": "CR_USD_CLK", "S2CM_M2D2": "CR_USD_CMD",
         "S2D0_M2D1": "CR_USD_D0", "S2D1_M2BS": "CR_USD_D1", "S2D2_M2CK": "CR_USD_D2", "S2D3_M2D3": "CR_USD_D3",
         # misc
@@ -133,27 +133,32 @@ def build(D):
     _note(s, "SD-111 (Hanbo drawing): CD switch to pin 3 VSS1 closes with a card; WP switch to GND closes when the card is UNLOCKED, open when\n"
              "  locked or no card -> GL3224 SD1_WP (46k internal pull-up): 0 = write enable, 1 = write protect. Matches directly, no inverter.\n"
              "  Pin 2 is MS1_INS/SD1_WP: with no card the WP switch is open (high) so no false Memory Stick insert is seen.\n"
-             "DM3AT: normally-open detect switch SW_A (GND) - SW_B (CDZ). microSD has no WP -> SD2_WP strapped low (write enabled).\n"
+             "DM3AT: normally-open detect switch SW_A (GND) - SW_B (CDZ). Pin 35 MS2_INS/SD2_WP is tied to CR_USD_CDZ (NOT GND): it is also\n"
+             "  the Memory Stick insert input (0 = MS inserted). No card: CDZ high -> no MS, no WP. Card: low -> SD present, write enabled\n"
+             "  (same state as slot 1 with an unlocked SD). Two 46k internal pull-ups in parallel on the node (~23k) - fine.\n"
+             "  Bench item: the ROM must give SDx_CDZ = 0 priority over MSx_INS = 0 (DS silent) - unlocked SD in each slot enumerates\n"
+             "  as writable SD, not MS. If not: inverter/strap, ask Genesys FAE.\n"
              "CMD / DAT0-3 pull-ups: GL3224 internal 15k (DS table 5.3) -> no external resistors. Route each slot's CLK/CMD/DAT as a\n"
              "  50 Ohm group, length-matched +-1 mm, CLK with GND guard (SDR104 = 208 MHz), keep stubs to zero.",
           (x0, y0 + 50.8))
 
     # =============================================================================================
-    # 5. Card detect + activity to RP2350
+    # 5. Card detect (TCA9534) + activity (RP2350)
     # =============================================================================================
     x0, y0 = 200.66, 205.74
-    _note(s, "5. CARD DETECT / ACTIVITY -> RP2350 (read-only)", (x0, y0), 2.0)
+    _note(s, "5. CARD DETECT -> TCA9534 P3/P4, ACTIVITY -> RP2350 (read-only)", (x0, y0), 2.0)
     y = y0 + 17.78
-    s.r("1k", "CR_SD_CDZ", "CR_CD_SD_N", at=(x0, y), lcsc=R_1K, desc="SD card detect branch to RP2350 (series protection)")
-    s.r("1k", "CR_USD_CDZ", "CR_CD_USD_N", at=(x0 + 10.16, y), lcsc=R_1K, desc="microSD card detect branch to RP2350")
+    s.r("1k", "CR_SD_CDZ", "CR_CD_SD_N", at=(x0, y), lcsc=R_1K, desc="SD card detect branch to TCA9534 P3 (series protection)")
+    s.r("1k", "CR_USD_CDZ", "CR_CD_USD_N", at=(x0 + 10.16, y), lcsc=R_1K, desc="microSD card detect branch to TCA9534 P4")
     s.r("1k", "CR_LED_IC", "CR_LED", at=(x0 + 20.32, y), lcsc=R_1K, desc="Activity (GL3224 LED, active high) to RP2350")
     s.r("1k", "CR_LED_IC", "CR_LED_A", at=(x0 + 33.02, y), lcsc=R_1K, dnp=True, desc="DNP bench activity LED (~1 mA)")
     s.part("Device:LED", "D", "green", "LED_SMD:LED_0805_2012Metric", at=(x0 + 45.72, y),
            pins={"A": "CR_LED_A", "K": "GND"}, lcsc=LED_G, dnp=True, desc="DNP bench activity LED")
     _note(s, "The GL3224 needs the card-detect switches itself (SD1_CDZ / SD2_CDZ, 46k internal pull-up to CR_3V3, low = card).\n"
-             "  The RP2350 taps the same nodes through 1k: input only, internal pulls OFF (a ~50k MCU pull-down would form a divider\n"
-             "  with the 46k pull-up). 1k limits current if the GPIO is ever driven. CR_3V3 exists whenever +5V does, and +3V3 is\n"
-             "  derived from +5V, so the MCU never sees the node while unpowered in a way that back-feeds the GL3224.\n"
+             "  The TCA9534 (mcu, P3/P4) taps the same nodes through 1k: input only, no internal pulls (TCA9534 DS 8), 5 V tolerant.\n"
+             "  1k limits current if the pin is ever mis-configured as output. CR_3V3 exists whenever +5V does, and +3V3 is derived\n"
+             "  from +5V, so the expander never sees the node while unpowered in a way that back-feeds the GL3224.\n"
+             "  CR_USD_CDZ also drives GL3224 pin 35 (MS2_INS/SD2_WP), see section 4.\n"
              "CR_LED: GL3224 LED output (push-pull 3.3 V, active high = access), 1k to the RP2350 GPIO (firmware shows activity on the LCD).",
           (x0 + 60.96, y0 + 12.7))
 

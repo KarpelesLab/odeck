@@ -16,7 +16,7 @@ C_1U = "C52923"             # 0402 25 V basic
 C_10U = "C19702"            # 0603 10 V basic
 C_100N_50V = "C14663"       # 0603 50 V basic
 C_100N_100V = "C15725"      # 0603 100 V (TPD4S480 VBIAS: >= 63 V rated)
-TVS_LAPTOP = ("SMBJ30A", "C113998", "Diode_SMD:D_SMB")   # 30 V standoff, VBR 33.3 V min, 600 W
+TVS_LAPTOP = ("SMCJ28A", "C224047", "Diode_SMD:D_SMC")   # Littelfuse, 28 V standoff, VBR 31.1-34.4 V, 1500 W
 TVS_DS = ("SMAJ6.0A", "C364284", "Diode_SMD:D_SMA")      # 6 V standoff, 400 W
 ESD_HS = "odeck:TPD4E02B04DQAR"                           # C106794, 0.25 pF, 10 Gbps, flow-through USON-10
 
@@ -68,8 +68,12 @@ def build(D):
              "Pins by number (A row / B row checked vs USB Type-C R2.x receptacle table and symbol names):\n"
              "  A2/A3 TX1+/-  B2/B3 TX2+/-  (ours: TUSB1064 TX through 220 nF)  B11/B10 RX1+/-  A11/A10 RX2+/-  (DC to TUSB1064 RX)\n"
              "  A6/B6 D+ and A7/B7 D- tied at the connector -> LAPTOP_USB_DP/DN (hub upstream USB2).  A8/B8 SBU1/2 -> TPD4S480.\n"
-             "VBUS TVS SMBJ30A: VRWM 30 V > 29.4 V (28 V EPR +5 %), VBR 33.3 V min, below PMG1 VBUS abs max 34 V at low current;\n"
-             "  OVP (power_laptop) trips at ~30.8 V, LM74800 backstop 32.6 V.  Only 100 nF on VBUS here (cSnkBulk budget on power_laptop).\n"
+             "VBUS TVS SMCJ28A (1500 W SMC): VRWM 28 V, VBR 31.1-34.4 V @1 mA, VC 45.4 V @33 A. At 29.4 V (28 V EPR +5 %) it is ~2 V\n"
+             "  below VBR min -> leakage stays in the uA range (bench-check hot). It does NOT hold the PMG1 34 V abs-max pins below 34 V\n"
+             "  during a surge (no TVS with VRWM >= 28 V can): accepted residual risk, same as Infineon's EPR references (VBUS_C direct).\n"
+             "  SMC over SMBJ: ~2.5x lower dynamic resistance -> lower clamp at a given surge current. Steady state is covered by the\n"
+             "  OVP latch (power_laptop, ~30.8 V) and the LM74800 backstop (32.6 V).  Keep the VBUS caps close to J501 (hot-plug).\n"
+             "  Only 100 nF on VBUS here (cSnkBulk budget on power_laptop).\n"
              "TPD4S480 (C43131250): 63 V short-to-VBUS OVP + IEC ESD on CC1/CC2/SBU1/SBU2 (PMG1 CC/SBU pins are 6 V abs max).\n"
              "  VPWR = PMG1_VDDD: the PMG1 always-on rail (from VBUS or the deck). It MUST be up whenever PMG1 runs, otherwise the CC\n"
              "  FETs stay open and the laptop sees only the dead-battery Rd.  RPD_Gx = C_CCx: dead-battery Rd while VPWR is off, so a\n"
@@ -87,7 +91,7 @@ def build(D):
                  "B11": "UP_RX1_P", "B10": "UP_RX1_N", "A11": "UP_RX2_P", "A10": "UP_RX2_N"},
            desc="USB-C receptacle 24P, 48 V / 5 A, 10G (laptop port)")
     s.part("Device:D_Zener", "D", TVS_LAPTOP[0], TVS_LAPTOP[2], at=(25.4, 152.4), lcsc=TVS_LAPTOP[1],
-           pins={"K": "VBUS_LAPTOP", "A": "GND"}, desc="TVS 30 V unidirectional 600 W, laptop VBUS")
+           pins={"K": "VBUS_LAPTOP", "A": "GND"}, desc="TVS 28 V unidirectional 1500 W SMC, laptop VBUS")
     s.c("100n/50V", "VBUS_LAPTOP", "GND", size="0603", at=(38.1, 152.4), lcsc=C_100N_50V)
     _esd(s, (35.56, 190.5), ("UP_C_TX1_P", "UP_C_TX1_N", "UP_RX1_P", "UP_RX1_N"), "ESD 10G, laptop TX1/RX1")
     _esd(s, (35.56, 228.6), ("UP_C_TX2_P", "UP_C_TX2_N", "UP_RX2_P", "UP_RX2_N"), "ESD 10G, laptop TX2/RX2")
@@ -120,6 +124,7 @@ def build(D):
              "  EQ1/EQ0 = R/F  #6 6.6 dB  (laptop cable -> RX1/RX2, USB)       SSEQ1/SSEQ0 = 0/1  #3 2.2 dB  (hub TX, ~40 mm)\n"
              "  DPEQ1/DPEQ0 = R/R  #5 6.5 dB at 4.05 GHz (laptop cable, DP lanes)\n"
              "EN: 10k/100n RC to +3V3 -> 4-level pins latched ~1 ms after VCC.  HPDIN <- UP_HPD (10k series: pin not fail-safe).\n"
+             "  TUSB1064 HPDIN has NO internal pull-down (DS p.6: 500k only on CTL0/CTL1/FLIP/EN): 100k UP_HPD -> GND here.\n"
              "  In GPIO mode AUX snoop is off: all DP lanes of the selected config are on while HPDIN is high; off after HPDIN low > 2 ms.\n"
              "AUX: AUXp 1M -> +3V3, AUXn 1M -> GND (UFP_D/sink bias seen by the laptop), 100 nF to TUSB1046 AUX (section 4).\n"
              "SBU1/2 DC to the receptacle via TPD4S480, 2M to GND.  I2C option: fit the 1k I2C_EN pull-up and re-wire CTL0/FLIP as SDA/SCL.",
@@ -260,12 +265,13 @@ def build(D):
     # 6. Interface summary
     # =============================================================================================
     _note(s, "6. INTERFACES / ASSUMPTIONS\n"
-             "HPD (both nets are PMG1 OUTPUTS on pd_pmg1 and mux HPDIN INPUTS here; 10k series, internal 500k pull-downs):\n"
+             "HPD (both nets are PMG1 OUTPUTS on pd_pmg1 and mux HPDIN INPUTS here; 10k series):\n"
              "  DS_HPD = downstream monitor HPD as decoded by PMG1 port 1 (DFP_D) from DP Status / Attention VDMs (incl. IRQ_HPD pulses)\n"
              "           -> TUSB1046 HPDIN.\n"
              "  UP_HPD = HPD state PMG1 port 0 (UFP_D) reports to the laptop (DP Status/Attention) -> TUSB1064 HPDIN (enables the\n"
              "           TUSB1064 DP lanes; low > 2 ms turns them off, IRQ_HPD pulses are harmless).\n"
-             "  Pull-downs: internal 500k in both muxes -> lanes off while PMG1 is in reset.\n"
+             "  Pull-downs: TUSB1064 HPDIN has none internally -> external 100k on UP_HPD; TUSB1046-DCI HPDIN has 150k internal\n"
+             "  (R(ENPD)). Both HPDIN inputs are therefore low while PMG1 is in reset -> lanes off.\n"
              "PMG1_VDDD (global, pd_pmg1): powers TPD4S480 VPWR (~0.16 mA) so CC works in a dead deck.  Optional new nets kept local:\n"
              "  UP_CCPROT_FLT_N / DS_CCPROT_FLT_N.  DP_ML0/1 and DP_AUX nets are global names but only used on this sheet.\n"
              "CC lines: cReceiver caps (PMG1 reference 390 pF) and VCONN source belong to pd_pmg1 next to the PMG1 CC pins.\n"
@@ -273,5 +279,8 @@ def build(D):
              "I2C: both muxes in GPIO mode, SDA/SCL pins are CTL0/FLIP; I2C_EN pull-up footprints (DNP) for a later I2C variant.",
           at=(20.32, 330.2))
     s.flag("VBUS_LAPTOP")   # driven by the laptop or our source switch through FETs
+    # TUSB1064 HPDIN pull-down (review pd_mux #1) - placed last so earlier references keep their numbers
+    s.r("100k", "UP_HPD", "GND", at=(231.14, 172.72), lcsc=R_100K,
+        desc="UP_HPD pull-down: TUSB1064 HPDIN has no internal PD (PMG1 P1.3 Hi-Z in reset)")
     s.build()
     return s

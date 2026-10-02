@@ -31,7 +31,8 @@ Owned by the **mcu sheet**, so not added here:
 
 - **Address straps** go directly to GND/+3V3 (DS table 7-2: 0x48 + A2A1A0). This uses the full 0x48–0x4F block reserved in
   the I2C map.
-- **Other I2C_SYS devices:** INA226 at 0x41/0x44, INA237 at 0x45, TCA9534 at 0x20, EUI-48 EEPROM at 0x50 (ethernet sheet).
+- **Other I2C_SYS devices:** INA226 at 0x41/0x44, INA237 at 0x45, TCA9534 at 0x20, EUI-48 EEPROM at 0x50 (ethernet sheet),
+  the ARA 0x0C if used, and the RTL8156BG I2C slave (address unknown) while ETH_I2C_EN is high.
 - **What a sensor measures:** the WSON exposed pad is the thermal path, so each sensor reads the copper it sits on, not the
   air. Give every sensor's GND/EP pour a direct copper connection to the source's thermal pour (or a via stitch to the
   plane right under the source).
@@ -46,8 +47,11 @@ Owned by the **mcu sheet**, so not added here:
   - laptop-C: 70 °C (connector/cable limit);
   - LCD: 60 °C;
   - ambient: 55 °C.
-- **Finding the source:** ALERT carries no per-device flag (LM75-style), so the TCA9534 interrupt handler reads all 8
-  temperature registers, which takes ~2 ms at 400 kHz.
+- **Finding the source:** TMP1075 supports the SMBus Alert Response (DS §7.3.2.6). In interrupt mode (config TM = 1) each
+  alerting device answers a read of the Alert Response Address **0x0C** with its own address, and arbitration clears them one
+  at a time. 0x0C is free on I2C_SYS. The power-on default is comparator mode, which keeps the blank-firmware 80 °C flag, so
+  firmware switches to TM = 1 after boot if it wants ARA. The simple alternative is to read all 8 temperature registers
+  (~2 ms at 400 kHz).
 - **Derating** is a firmware policy (renegotiate the laptop contract, turn off charge-mode ports, power down 2.5GbE through
   `ETH_RESET_N`). The hardware safety backstops do not depend on it.
 

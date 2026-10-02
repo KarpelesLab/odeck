@@ -6271,7 +6271,7 @@
 				)
 			)
 		)
-		(property "Value" "SMBJ30A"
+		(property "Value" "SMCJ28A"
 			(at 25.40 156.21 0)
 			(effects
 				(font
@@ -6279,7 +6279,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SMB"
+		(property "Footprint" "Diode_SMD:D_SMC"
 			(at 25.40 152.40 0)
 			(effects
 				(font
@@ -6297,7 +6297,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "TVS 30 V unidirectional 600 W, laptop VBUS"
+		(property "Description" "TVS 28 V unidirectional 1500 W SMC, laptop VBUS"
 			(at 25.40 152.40 0)
 			(effects
 				(font
@@ -6306,7 +6306,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C113998"
+		(property "LCSC" "C224047"
 			(at 25.40 152.40 0)
 			(effects
 				(font
@@ -24911,6 +24911,171 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Device:R")
+		(at 231.14 172.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7fa15962-16d8-5941-83e2-5e08a5369ef3")
+		(property "Reference" "R544"
+			(at 233.68 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 233.68 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 231.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 231.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "UP_HPD pull-down: TUSB1064 HPDIN has no internal PD (PMG1 P1.3 Hi-Z in reset)"
+			(at 231.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 231.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b0432a9c-334e-591e-a616-3257638040cb")
+		)
+		(pin "2"
+			(uuid "2972a425-7d0d-5906-9cda-428a8e23d689")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/1f64c2a4-f73b-49b1-bfc2-d134f019d367"
+					(reference "R544")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 231.14 168.91) (xy 231.14 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b90d880-f448-5c6c-b6aa-cf561ea72198")
+	)
+	(global_label "UP_HPD"
+		(shape passive)
+		(at 231.14 166.37 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b250435f-fe70-556b-9922-6520c63baff3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 231.14 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 231.14 176.53) (xy 231.14 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0989c320-29c6-5250-af9e-2409bf146a08")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 231.14 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2b589d28-08eb-586d-8c3e-5870a679b00a")
+		(property "Reference" "#PWR0575"
+			(at 231.14 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 231.14 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 231.14 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "32ac0613-1d53-5d5c-abd4-e75119bc987e")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/1f64c2a4-f73b-49b1-bfc2-d134f019d367"
+					(reference "#PWR0575")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(text "1. LAPTOP USB-C (UFP data, EPR source up to 28 V x 5 A, bus-powered sink 5 V)"
 		(exclude_from_sim no)
 		(at 20.32 12.7 0)
@@ -24920,7 +25085,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0b90d880-f448-5c6c-b6aa-cf561ea72198")
+		(uuid "4027d6e8-045c-5162-b305-f082aa8cf224")
 	)
 	(text "JAE DX07S024XJ1R1100 (C134113): 48 V / 5 A, USB 3.x 10G. Shell -> GND (direct, JLC practice; via-stitch to plane)."
 		(exclude_from_sim no)
@@ -24931,7 +25096,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b250435f-fe70-556b-9922-6520c63baff3")
+		(uuid "70c017b7-1b07-5aff-bfff-e1ee9e9e0a98")
 	)
 	(text "Pins by number (A row / B row checked vs USB Type-C R2.x receptacle table and symbol names):"
 		(exclude_from_sim no)
@@ -24942,7 +25107,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0989c320-29c6-5250-af9e-2409bf146a08")
+		(uuid "5a2e31e1-43d3-5a0b-a8a7-7a99e72cedfa")
 	)
 	(text "  A2/A3 TX1+/-  B2/B3 TX2+/-  (ours: TUSB1064 TX through 220 nF)  B11/B10 RX1+/-  A11/A10 RX2+/-  (DC to TUSB1064 RX)"
 		(exclude_from_sim no)
@@ -24953,7 +25118,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2b589d28-08eb-586d-8c3e-5870a679b00a")
+		(uuid "5853bf81-1ea5-5022-9fcd-3653d7ae40ad")
 	)
 	(text "  A6/B6 D+ and A7/B7 D- tied at the connector -> LAPTOP_USB_DP/DN (hub upstream USB2).  A8/B8 SBU1/2 -> TPD4S480."
 		(exclude_from_sim no)
@@ -24964,9 +25129,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "32ac0613-1d53-5d5c-abd4-e75119bc987e")
+		(uuid "43bc8f7c-b0a5-5f99-be86-9ad94f2bc9d3")
 	)
-	(text "VBUS TVS SMBJ30A: VRWM 30 V > 29.4 V (28 V EPR +5 %), VBR 33.3 V min, below PMG1 VBUS abs max 34 V at low current;"
+	(text "VBUS TVS SMCJ28A (1500 W SMC): VRWM 28 V, VBR 31.1-34.4 V @1 mA, VC 45.4 V @33 A. At 29.4 V (28 V EPR +5 %) it is ~2 V"
 		(exclude_from_sim no)
 		(at 20.32 25.4 0)
 		(effects
@@ -24975,9 +25140,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "4027d6e8-045c-5162-b305-f082aa8cf224")
+		(uuid "bf19f9e5-3d45-5bad-9894-9b64ad0ef2e4")
 	)
-	(text "  OVP (power_laptop) trips at ~30.8 V, LM74800 backstop 32.6 V.  Only 100 nF on VBUS here (cSnkBulk budget on power_laptop)."
+	(text "  below VBR min -> leakage stays in the uA range (bench-check hot). It does NOT hold the PMG1 34 V abs-max pins below 34 V"
 		(exclude_from_sim no)
 		(at 20.32 27.94 0)
 		(effects
@@ -24986,9 +25151,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "70c017b7-1b07-5aff-bfff-e1ee9e9e0a98")
+		(uuid "aa568d71-767b-5dcc-ad51-0d2a2eb425e9")
 	)
-	(text "TPD4S480 (C43131250): 63 V short-to-VBUS OVP + IEC ESD on CC1/CC2/SBU1/SBU2 (PMG1 CC/SBU pins are 6 V abs max)."
+	(text "  during a surge (no TVS with VRWM >= 28 V can): accepted residual risk, same as Infineon's EPR references (VBUS_C direct)."
 		(exclude_from_sim no)
 		(at 20.32 30.48 0)
 		(effects
@@ -24997,9 +25162,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "5a2e31e1-43d3-5a0b-a8a7-7a99e72cedfa")
+		(uuid "7a235280-93a9-51d6-a974-314fea21dbe2")
 	)
-	(text "  VPWR = PMG1_VDDD: the PMG1 always-on rail (from VBUS or the deck). It MUST be up whenever PMG1 runs, otherwise the CC"
+	(text "  SMC over SMBJ: ~2.5x lower dynamic resistance -> lower clamp at a given surge current. Steady state is covered by the"
 		(exclude_from_sim no)
 		(at 20.32 33.02 0)
 		(effects
@@ -25008,9 +25173,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "5853bf81-1ea5-5022-9fcd-3653d7ae40ad")
+		(uuid "db355720-c09c-542b-8af9-18a9c893348f")
 	)
-	(text "  FETs stay open and the laptop sees only the dead-battery Rd.  RPD_Gx = C_CCx: dead-battery Rd while VPWR is off, so a"
+	(text "  OVP latch (power_laptop, ~30.8 V) and the LM74800 backstop (32.6 V).  Keep the VBUS caps close to J501 (hot-plug)."
 		(exclude_from_sim no)
 		(at 20.32 35.56 0)
 		(effects
@@ -25019,9 +25184,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "43bc8f7c-b0a5-5f99-be86-9ad94f2bc9d3")
+		(uuid "46321478-2b5b-545a-a6e5-e00ad0f33a1b")
 	)
-	(text "  laptop applies 5 V to a dead deck (bus-powered cold start).  Removed 3.5 ms after VPWR is up -> PMG1 owns CC (Rp/Rd/DRP)."
+	(text "  Only 100 nF on VBUS here (cSnkBulk budget on power_laptop)."
 		(exclude_from_sim no)
 		(at 20.32 38.1 0)
 		(effects
@@ -25030,9 +25195,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "bf19f9e5-3d45-5bad-9894-9b64ad0ef2e4")
+		(uuid "68f2c916-3a7c-5fa4-ac11-c1cc06134946")
 	)
-	(text "  EPR_EN = VPWR (divider always on, keeps unloaded VBUS_LV < 24 V abs max); VBUS_LV, EPR_BLK_G open (PMG1 senses 28 V)."
+	(text "TPD4S480 (C43131250): 63 V short-to-VBUS OVP + IEC ESD on CC1/CC2/SBU1/SBU2 (PMG1 CC/SBU pins are 6 V abs max)."
 		(exclude_from_sim no)
 		(at 20.32 40.64 0)
 		(effects
@@ -25041,9 +25206,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "aa568d71-767b-5dcc-ad51-0d2a2eb425e9")
+		(uuid "f224ef4a-4613-552b-9570-1934a882b030")
 	)
-	(text "  FLT# (open drain) -> UP_CCPROT_FLT_N, pulled up to PMG1_VDDD; route to a PMG1 GPIO if pins allow (optional)."
+	(text "  VPWR = PMG1_VDDD: the PMG1 always-on rail (from VBUS or the deck). It MUST be up whenever PMG1 runs, otherwise the CC"
 		(exclude_from_sim no)
 		(at 20.32 43.18 0)
 		(effects
@@ -25052,9 +25217,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "7a235280-93a9-51d6-a974-314fea21dbe2")
+		(uuid "1f9e1478-3d4c-54fb-85cc-828610ab877c")
 	)
-	(text "ESD: TPD4E02B04 (0.25 pF, 10 Gbps) on all 8 SS lines + USB2, at the connector, flow-through (route over pads 1-10, 2-9, 4-7, 5-6)."
+	(text "  FETs stay open and the laptop sees only the dead-battery Rd.  RPD_Gx = C_CCx: dead-battery Rd while VPWR is off, so a"
 		(exclude_from_sim no)
 		(at 20.32 45.72 0)
 		(effects
@@ -25063,7 +25228,51 @@
 			)
 			(justify left top)
 		)
-		(uuid "db355720-c09c-542b-8af9-18a9c893348f")
+		(uuid "3243f35c-0ef1-5817-aa33-ba58abbfd68c")
+	)
+	(text "  laptop applies 5 V to a dead deck (bus-powered cold start).  Removed 3.5 ms after VPWR is up -> PMG1 owns CC (Rp/Rd/DRP)."
+		(exclude_from_sim no)
+		(at 20.32 48.26 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "566bff0b-ae3a-5665-a00e-c53d853fa2ec")
+	)
+	(text "  EPR_EN = VPWR (divider always on, keeps unloaded VBUS_LV < 24 V abs max); VBUS_LV, EPR_BLK_G open (PMG1 senses 28 V)."
+		(exclude_from_sim no)
+		(at 20.32 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "e9f573fd-2d8a-5bd9-b62b-487ad75aa887")
+	)
+	(text "  FLT# (open drain) -> UP_CCPROT_FLT_N, pulled up to PMG1_VDDD; route to a PMG1 GPIO if pins allow (optional)."
+		(exclude_from_sim no)
+		(at 20.32 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "92a1a6d4-14f4-5016-ae72-c8d6e3a4f698")
+	)
+	(text "ESD: TPD4E02B04 (0.25 pF, 10 Gbps) on all 8 SS lines + USB2, at the connector, flow-through (route over pads 1-10, 2-9, 4-7, 5-6)."
+		(exclude_from_sim no)
+		(at 20.32 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "4286e715-dc16-55fa-88cf-37848d602348")
 	)
 	(text "2. TUSB1064 UFP_D MUX/REDRIVER  (TUSB1064IRNQT C702365, GPIO mode: I2C_EN = 0)"
 		(exclude_from_sim no)
@@ -25074,7 +25283,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "46321478-2b5b-545a-a6e5-e00ad0f33a1b")
+		(uuid "e9e79efc-b09b-5387-808b-4b13d17e508e")
 	)
 	(text "Controlled by PMG1 port 0: MUX_UP_CTL1 = DP enabled, MUX_UP_CTL0 = USB3 enabled, MUX_UP_FLIP = plug flipped (all fail-safe,"
 		(exclude_from_sim no)
@@ -25085,7 +25294,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "68f2c916-3a7c-5fa4-ac11-c1cc06134946")
+		(uuid "0b12a9ee-e128-598c-b2ee-5e1fb27e1ed1")
 	)
 	(text "  500k internal pull-down). CTL1/CTL0: LL power down | LH USB3 only | HL 4-lane DP (pin assign. C) | HH USB3 + 2-lane DP (D)."
 		(exclude_from_sim no)
@@ -25096,7 +25305,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f224ef4a-4613-552b-9570-1934a882b030")
+		(uuid "94160ba8-a6f9-5384-bc03-432cba9b9d35")
 	)
 	(text "  Power-up default is USB3 mode: PMG1 must pulse CTL0 L-H-L to power it down when nothing is attached. 16 ms debounce."
 		(exclude_from_sim no)
@@ -25107,7 +25316,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1f9e1478-3d4c-54fb-85cc-828610ab877c")
+		(uuid "1ea5f990-4cfe-5013-8556-ea59f034fd4e")
 	)
 	(text "AC coupling: 220 nF on our TX1/TX2 (to receptacle TX pins) and on SSRX -> HUB_UP_SS_RX (we transmit into the hub)."
 		(exclude_from_sim no)
@@ -25118,7 +25327,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3243f35c-0ef1-5817-aa33-ba58abbfd68c")
+		(uuid "b8113871-538f-5b8c-b368-2013965da861")
 	)
 	(text "  HUB_UP_SS_TX -> SSTX is DC here: the 220 nF hub-TX caps sit on usb_hub.  RX1/RX2 DC (the laptop TX has its caps)."
 		(exclude_from_sim no)
@@ -25129,7 +25338,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "566bff0b-ae3a-5665-a00e-c53d853fa2ec")
+		(uuid "90328cf4-a043-5815-b1e1-b00e2064cb19")
 	)
 	(text "  Rule: exactly one 75-265 nF cap per SS line, at the transmitter end of each segment."
 		(exclude_from_sim no)
@@ -25140,7 +25349,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e9f573fd-2d8a-5bd9-b62b-487ad75aa887")
+		(uuid "55376299-ab2e-56a5-ab65-aa16538d8905")
 	)
 	(text "EQ straps (bench-tunable, both footprints on every 4-level pin):"
 		(exclude_from_sim no)
@@ -25151,7 +25360,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "92a1a6d4-14f4-5016-ae72-c8d6e3a4f698")
+		(uuid "0106d072-f2ad-5eed-bed6-fb16221a1e81")
 	)
 	(text "  EQ1/EQ0 = R/F  #6 6.6 dB  (laptop cable -> RX1/RX2, USB)       SSEQ1/SSEQ0 = 0/1  #3 2.2 dB  (hub TX, ~40 mm)"
 		(exclude_from_sim no)
@@ -25162,7 +25371,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4286e715-dc16-55fa-88cf-37848d602348")
+		(uuid "fbef5d9e-687f-5b94-9345-55cd0fcec235")
 	)
 	(text "  DPEQ1/DPEQ0 = R/R  #5 6.5 dB at 4.05 GHz (laptop cable, DP lanes)"
 		(exclude_from_sim no)
@@ -25173,7 +25382,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e9e79efc-b09b-5387-808b-4b13d17e508e")
+		(uuid "bc88c674-ea74-5ee2-ba30-ee8bfe972252")
 	)
 	(text "EN: 10k/100n RC to +3V3 -> 4-level pins latched ~1 ms after VCC.  HPDIN <- UP_HPD (10k series: pin not fail-safe)."
 		(exclude_from_sim no)
@@ -25184,9 +25393,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "0b12a9ee-e128-598c-b2ee-5e1fb27e1ed1")
+		(uuid "8fa0d884-80d1-5a72-a62b-1c4812a8537d")
 	)
-	(text "  In GPIO mode AUX snoop is off: all DP lanes of the selected config are on while HPDIN is high; off after HPDIN low > 2 ms."
+	(text "  TUSB1064 HPDIN has NO internal pull-down (DS p.6: 500k only on CTL0/CTL1/FLIP/EN): 100k UP_HPD -> GND here."
 		(exclude_from_sim no)
 		(at 170.18 40.64 0)
 		(effects
@@ -25195,9 +25404,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "94160ba8-a6f9-5384-bc03-432cba9b9d35")
+		(uuid "3512f189-9068-519f-a7c5-98a07ad13ee6")
 	)
-	(text "AUX: AUXp 1M -> +3V3, AUXn 1M -> GND (UFP_D/sink bias seen by the laptop), 100 nF to TUSB1046 AUX (section 4)."
+	(text "  In GPIO mode AUX snoop is off: all DP lanes of the selected config are on while HPDIN is high; off after HPDIN low > 2 ms."
 		(exclude_from_sim no)
 		(at 170.18 43.18 0)
 		(effects
@@ -25206,9 +25415,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "1ea5f990-4cfe-5013-8556-ea59f034fd4e")
+		(uuid "b6e53798-7a1a-5728-a949-efe767244cad")
 	)
-	(text "SBU1/2 DC to the receptacle via TPD4S480, 2M to GND.  I2C option: fit the 1k I2C_EN pull-up and re-wire CTL0/FLIP as SDA/SCL."
+	(text "AUX: AUXp 1M -> +3V3, AUXn 1M -> GND (UFP_D/sink bias seen by the laptop), 100 nF to TUSB1046 AUX (section 4)."
 		(exclude_from_sim no)
 		(at 170.18 45.72 0)
 		(effects
@@ -25217,7 +25426,18 @@
 			)
 			(justify left top)
 		)
-		(uuid "b8113871-538f-5b8c-b368-2013965da861")
+		(uuid "9303000d-1c39-59e3-ab83-e4915d6d8c2b")
+	)
+	(text "SBU1/2 DC to the receptacle via TPD4S480, 2M to GND.  I2C option: fit the 1k I2C_EN pull-up and re-wire CTL0/FLIP as SDA/SCL."
+		(exclude_from_sim no)
+		(at 170.18 48.26 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "d370e0ac-6d83-5d60-b060-d0af67d9062c")
 	)
 	(text "3. DP MAIN LINK + AUX  TUSB1064 -> TUSB1046  (one cap per line, both redrivers are linear: transparent to link training)"
 		(exclude_from_sim no)
@@ -25228,7 +25448,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "90328cf4-a043-5815-b1e1-b00e2064cb19")
+		(uuid "da6dbd34-cd54-54c4-85ab-4fd3c5cc0186")
 	)
 	(text "DP0..DP3 220 nF (75-265 nF).  2 lanes used in pin assignment D (laptop advertises D: USB3 stays up), all 4 in C."
 		(exclude_from_sim no)
@@ -25239,7 +25459,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "55376299-ab2e-56a5-ab65-aa16538d8905")
+		(uuid "1fa349fb-5830-552a-bc8e-e2d7ac43d64b")
 	)
 	(text "AUX: one 100 nF per line between the two bias networks (TUSB1064 side 1M up/down, TUSB1046 side 100k down/up)."
 		(exclude_from_sim no)
@@ -25250,7 +25470,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0106d072-f2ad-5eed-bed6-fb16221a1e81")
+		(uuid "110137d7-9ebc-5455-9bf5-14cbcf90f5f4")
 	)
 	(text "Route as 85 ohm diff (90 ohm AUX), DP lanes length-matched within a pair (<0.1 mm), between pairs < 2 mm. Keep < 50 mm."
 		(exclude_from_sim no)
@@ -25261,7 +25481,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fbef5d9e-687f-5b94-9345-55cd0fcec235")
+		(uuid "be44ba93-7221-5a40-98f8-f842d09892b3")
 	)
 	(text "4. TUSB1046-DCI DFP_D MUX/REDRIVER  (TUSB1046-DCIRNQT C2652434, GPIO mode: I2C_EN = 0)"
 		(exclude_from_sim no)
@@ -25272,7 +25492,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bc88c674-ea74-5ee2-ba30-ee8bfe972252")
+		(uuid "d11839a7-f3c0-546b-aa7e-02fbf7725dca")
 	)
 	(text "Controlled by PMG1 port 1: MUX_DS_CTL1 = DP enabled, MUX_DS_CTL0 = USB3 enabled, MUX_DS_FLIP = plug flipped."
 		(exclude_from_sim no)
@@ -25283,7 +25503,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "8fa0d884-80d1-5a72-a62b-1c4812a8537d")
+		(uuid "97805d29-aeb1-57e9-a387-17186e192ecb")
 	)
 	(text "  CTL1/CTL0: LL power down | LH USB3 only | HL 4-lane DP (C/E) | HH USB3 + 2-lane DP (D/F). Default after power-up: USB3."
 		(exclude_from_sim no)
@@ -25294,7 +25514,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3512f189-9068-519f-a7c5-98a07ad13ee6")
+		(uuid "e2b7e5bd-70fb-51f6-beb3-aebd308fd3a0")
 	)
 	(text "USB side: HUB_DSC_SS_TX -> SSTX DC (hub-TX caps on usb_hub); SSRX -> 220 nF -> HUB_DSC_SS_RX. Receptacle TX via 220 nF, RX DC."
 		(exclude_from_sim no)
@@ -25305,7 +25525,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b6e53798-7a1a-5728-a949-efe767244cad")
+		(uuid "57cf96a3-cdf2-5dc1-82ff-4fd2c423f75d")
 	)
 	(text "HPDIN (pin 32 in GPIO mode) <- DS_HPD through 10k (pin not fail-safe).  CAD_SNK = H (10k to +3V3): AUX snoop off,"
 		(exclude_from_sim no)
@@ -25316,7 +25536,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9303000d-1c39-59e3-ab83-e4915d6d8c2b")
+		(uuid "65496a0b-1301-5918-b8e9-180f47ae63be")
 	)
 	(text "  lanes follow CTL only (robust with non-compliant AUX); DNP pull-down re-enables snoop (lane power saving)."
 		(exclude_from_sim no)
@@ -25327,7 +25547,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d370e0ac-6d83-5d60-b060-d0af67d9062c")
+		(uuid "30ea2786-7665-53d8-a87c-87938399e365")
 	)
 	(text "EQ straps: EQ1/EQ0 = R/1  #7 5.2 dB (downstream cable -> RX1/RX2)   SSEQ1/SSEQ0 = 0/F  #2 1.7 dB (hub TX, short)"
 		(exclude_from_sim no)
@@ -25338,7 +25558,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "da6dbd34-cd54-54c4-85ab-4fd3c5cc0186")
+		(uuid "e82580d9-694b-5eab-bb7d-87de15fec8a7")
 	)
 	(text "  DPEQ1/DPEQ0 = 0/0  #0 1.0 dB (from TUSB1064 over ~30 mm)."
 		(exclude_from_sim no)
@@ -25349,7 +25569,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1fa349fb-5830-552a-bc8e-e2d7ac43d64b")
+		(uuid "e3fcc474-0f4f-524f-a775-c6f806271f6f")
 	)
 	(text "AUX: AUXp 100k -> GND, AUXn 100k -> +3V3 (DFP_D/source bias seen by the monitor).  SBU1/2 via TPD6S300, 2M to GND."
 		(exclude_from_sim no)
@@ -25360,7 +25580,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "110137d7-9ebc-5455-9bf5-14cbcf90f5f4")
+		(uuid "2e9e5cd9-b7e3-5803-af31-e5716476999e")
 	)
 	(text "5. DOWNSTREAM USB-C (DFP data, 5 V / 3 A source by PMG1 port 1, DP alt mode DFP_D)"
 		(exclude_from_sim no)
@@ -25371,7 +25591,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "be44ba93-7221-5a40-98f8-f842d09892b3")
+		(uuid "55cbf331-9884-581d-89a3-377b68278fe4")
 	)
 	(text "Amphenol 12401610E4#2A (C5119948): 20 V / 5 A, USB 3.2 Gen2. Shield pins 14/15 -> GND."
 		(exclude_from_sim no)
@@ -25382,7 +25602,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d11839a7-f3c0-546b-aa7e-02fbf7725dca")
+		(uuid "30d4357e-0fb3-5f7c-90ae-fa26e30901cf")
 	)
 	(text "USB2 D+/D- (both rows) -> HUB_DSC_DP/DN directly (ESD in TPD6S300 D1/D2).  VBUS_DS switch + bulk cap: pd_pmg1 / power."
 		(exclude_from_sim no)
@@ -25393,7 +25613,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "97805d29-aeb1-57e9-a387-17186e192ecb")
+		(uuid "fb686a1f-7edd-5cc4-ae2e-ee5454f3a248")
 	)
 	(text "TVS SMAJ6.0A on VBUS_DS (6 V standoff over 5.25 V max).  100 nF at the connector."
 		(exclude_from_sim no)
@@ -25404,7 +25624,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e2b7e5bd-70fb-51f6-beb3-aebd308fd3a0")
+		(uuid "44122a62-cc5b-50aa-8411-cbc2bf016ff2")
 	)
 	(text "TPD6S300 (C2649810): 24 V CC/SBU OVP + IEC ESD (CC, SBU, D+/D-); VPWR = +3V3 (port 1 only runs with the deck powered)."
 		(exclude_from_sim no)
@@ -25415,7 +25635,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "57cf96a3-cdf2-5dc1-82ff-4fd2c423f75d")
+		(uuid "a17c7f07-73ef-5b76-8a63-c3f8455b3056")
 	)
 	(text "  RPD_G1/2 = GND: NO dead-battery Rd on a source-only port.  N.C. pins 16/17 -> GND per datasheet."
 		(exclude_from_sim no)
@@ -25426,7 +25646,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "65496a0b-1301-5918-b8e9-180f47ae63be")
+		(uuid "f4e7c121-9f40-586d-9307-9c51214212d4")
 	)
 	(text "  CC FETs pass VCONN (600 mA) if PMG1 port 1 supplies it.  FLT# -> DS_CCPROT_FLT_N (100k to +3V3), optional PMG1 GPIO."
 		(exclude_from_sim no)
@@ -25437,7 +25657,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "30ea2786-7665-53d8-a87c-87938399e365")
+		(uuid "7433e911-b7f8-5098-bdcf-986f7b9cd6f7")
 	)
 	(text "ESD TPD4E02B04 on all 8 SS lines, flow-through at the connector."
 		(exclude_from_sim no)
@@ -25448,7 +25668,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e82580d9-694b-5eab-bb7d-87de15fec8a7")
+		(uuid "d5c45756-9f7c-5738-854b-ccbe8fa607b0")
 	)
 	(text "6. INTERFACES / ASSUMPTIONS"
 		(exclude_from_sim no)
@@ -25459,9 +25679,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "e3fcc474-0f4f-524f-a775-c6f806271f6f")
+		(uuid "d6217e05-a23c-5eaa-af9f-5537fe4ad68f")
 	)
-	(text "HPD (both nets are PMG1 OUTPUTS on pd_pmg1 and mux HPDIN INPUTS here; 10k series, internal 500k pull-downs):"
+	(text "HPD (both nets are PMG1 OUTPUTS on pd_pmg1 and mux HPDIN INPUTS here; 10k series):"
 		(exclude_from_sim no)
 		(at 20.32 332.74 0)
 		(effects
@@ -25470,7 +25690,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2e9e5cd9-b7e3-5803-af31-e5716476999e")
+		(uuid "12982d5a-5816-512f-a87a-0ceb68ff2f7e")
 	)
 	(text "  DS_HPD = downstream monitor HPD as decoded by PMG1 port 1 (DFP_D) from DP Status / Attention VDMs (incl. IRQ_HPD pulses)"
 		(exclude_from_sim no)
@@ -25481,7 +25701,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "55cbf331-9884-581d-89a3-377b68278fe4")
+		(uuid "e67c22e8-1623-5310-9aa2-20a722663a48")
 	)
 	(text "           -> TUSB1046 HPDIN."
 		(exclude_from_sim no)
@@ -25492,7 +25712,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "30d4357e-0fb3-5f7c-90ae-fa26e30901cf")
+		(uuid "50e5020f-4770-5d23-8f83-064f95eb17c6")
 	)
 	(text "  UP_HPD = HPD state PMG1 port 0 (UFP_D) reports to the laptop (DP Status/Attention) -> TUSB1064 HPDIN (enables the"
 		(exclude_from_sim no)
@@ -25503,7 +25723,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fb686a1f-7edd-5cc4-ae2e-ee5454f3a248")
+		(uuid "a44bf146-9447-5062-b828-31d104d2e249")
 	)
 	(text "           TUSB1064 DP lanes; low > 2 ms turns them off, IRQ_HPD pulses are harmless)."
 		(exclude_from_sim no)
@@ -25514,9 +25734,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "44122a62-cc5b-50aa-8411-cbc2bf016ff2")
+		(uuid "8fa7062d-dd49-525c-84c4-fba22c3eedab")
 	)
-	(text "  Pull-downs: internal 500k in both muxes -> lanes off while PMG1 is in reset."
+	(text "  Pull-downs: TUSB1064 HPDIN has none internally -> external 100k on UP_HPD; TUSB1046-DCI HPDIN has 150k internal"
 		(exclude_from_sim no)
 		(at 20.32 345.44 0)
 		(effects
@@ -25525,9 +25745,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "a17c7f07-73ef-5b76-8a63-c3f8455b3056")
+		(uuid "1db2d08a-7155-5f68-b3cc-a3bba1b77319")
 	)
-	(text "PMG1_VDDD (global, pd_pmg1): powers TPD4S480 VPWR (~0.16 mA) so CC works in a dead deck.  Optional new nets kept local:"
+	(text "  (R(ENPD)). Both HPDIN inputs are therefore low while PMG1 is in reset -> lanes off."
 		(exclude_from_sim no)
 		(at 20.32 347.98 0)
 		(effects
@@ -25536,9 +25756,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "f4e7c121-9f40-586d-9307-9c51214212d4")
+		(uuid "6369d2ef-0641-5561-ae6b-33114f7dc6c3")
 	)
-	(text "  UP_CCPROT_FLT_N / DS_CCPROT_FLT_N.  DP_ML0/1 and DP_AUX nets are global names but only used on this sheet."
+	(text "PMG1_VDDD (global, pd_pmg1): powers TPD4S480 VPWR (~0.16 mA) so CC works in a dead deck.  Optional new nets kept local:"
 		(exclude_from_sim no)
 		(at 20.32 350.52 0)
 		(effects
@@ -25547,9 +25767,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "7433e911-b7f8-5098-bdcf-986f7b9cd6f7")
+		(uuid "4104f6ef-2978-5024-aafd-75be894f7b54")
 	)
-	(text "CC lines: cReceiver caps (PMG1 reference 390 pF) and VCONN source belong to pd_pmg1 next to the PMG1 CC pins."
+	(text "  UP_CCPROT_FLT_N / DS_CCPROT_FLT_N.  DP_ML0/1 and DP_AUX nets are global names but only used on this sheet."
 		(exclude_from_sim no)
 		(at 20.32 353.06 0)
 		(effects
@@ -25558,9 +25778,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "d5c45756-9f7c-5738-854b-ccbe8fa607b0")
+		(uuid "3bc5eea5-6c20-57fa-a4be-3ac9bc367296")
 	)
-	(text "Hub links: hub-TX 220 nF caps on usb_hub, hub-RX 220 nF caps (our SSRX outputs) on this sheet."
+	(text "CC lines: cReceiver caps (PMG1 reference 390 pF) and VCONN source belong to pd_pmg1 next to the PMG1 CC pins."
 		(exclude_from_sim no)
 		(at 20.32 355.6 0)
 		(effects
@@ -25569,9 +25789,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "d6217e05-a23c-5eaa-af9f-5537fe4ad68f")
+		(uuid "4942ebde-bc70-5092-ae7a-e4338715a840")
 	)
-	(text "I2C: both muxes in GPIO mode, SDA/SCL pins are CTL0/FLIP; I2C_EN pull-up footprints (DNP) for a later I2C variant."
+	(text "Hub links: hub-TX 220 nF caps on usb_hub, hub-RX 220 nF caps (our SSRX outputs) on this sheet."
 		(exclude_from_sim no)
 		(at 20.32 358.14 0)
 		(effects
@@ -25580,6 +25800,17 @@
 			)
 			(justify left top)
 		)
-		(uuid "12982d5a-5816-512f-a87a-0ceb68ff2f7e")
+		(uuid "d2b2222c-eee3-562f-ac5b-1f50e9d400ae")
+	)
+	(text "I2C: both muxes in GPIO mode, SDA/SCL pins are CTL0/FLIP; I2C_EN pull-up footprints (DNP) for a later I2C variant."
+		(exclude_from_sim no)
+		(at 20.32 360.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "ff963dad-71a9-5372-af56-afc50342943b")
 	)
 )

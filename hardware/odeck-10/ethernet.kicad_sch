@@ -3916,6 +3916,223 @@
 				)
 				(embedded_fonts no)
 			)
+		(symbol "74xGxx:74LVC1G17"
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "U"
+					(at 0 3.81 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Value" "74LVC1G17"
+					(at 0 -3.81 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Footprint" ""
+					(at -2.54 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+					(at 0 -6.35 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "ki_keywords" "Single Gate Buff Schmitt LVC CMOS"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "ki_fp_filters" "SOT?23* SOT?553* Texas?R-PDSO-G5?DCK* Texas?R-PDSO-N5?DRL* Texas?X2SON*0.8x0.8mm*P0.48mm*"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(symbol "74LVC1G17_0_1"
+					(polyline
+						(pts
+							(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+					(polyline
+						(pts
+							(xy -3.81 -1.27) (xy -2.54 -1.27) (xy -2.54 1.27) (xy -1.27 1.27)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+					(polyline
+						(pts
+							(xy -2.54 -1.27) (xy -1.27 -1.27) (xy -1.27 1.27) (xy 0 1.27)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+				)
+				(symbol "74LVC1G17_1_1"
+					(pin no_connect line
+						(at -7.62 5.08 180)
+						(length 5.08)
+						(hide yes)
+						(name "NC"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "1"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin input line
+						(at -12.7 0 0)
+						(length 5.08)
+						(name ""
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "2"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin power_in line
+						(at -5.08 -10.16 90)
+						(length 5.08)
+						(name "GND"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "3"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin output line
+						(at 10.16 0 180)
+						(length 5.08)
+						(name ""
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "4"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin power_in line
+						(at -5.08 10.16 270)
+						(length 5.08)
+						(name "VCC"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "5"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+				)
+				(embedded_fonts no)
+			)
 		(symbol "power:GND"
 				(power global)
 				(pin_numbers
@@ -13632,7 +13849,7 @@
 				)
 			)
 		)
-		(property "Value" "220n"
+		(property "Value" "100n"
 			(at 419.10 41.91 0)
 			(effects
 				(font
@@ -13658,7 +13875,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "PHY TX+ AC cap (USB 3: 75-265 nF)"
+		(property "Description" "PHY TX+ AC cap (USB 3.x Gen1 TX: 75-200 nF)"
 			(at 416.56 40.64 0)
 			(effects
 				(font
@@ -13667,7 +13884,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C16772"
+		(property "LCSC" "C1525"
 			(at 416.56 40.64 0)
 			(effects
 				(font
@@ -13759,7 +13976,7 @@
 				)
 			)
 		)
-		(property "Value" "220n"
+		(property "Value" "100n"
 			(at 434.34 41.91 0)
 			(effects
 				(font
@@ -13794,7 +14011,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C16772"
+		(property "LCSC" "C1525"
 			(at 431.80 40.64 0)
 			(effects
 				(font
@@ -15988,7 +16205,7 @@
 				)
 			)
 		)
-		(property "Value" "2N7002DW"
+		(property "Value" "BSS138DW"
 			(at 254.00 222.25 0)
 			(effects
 				(font
@@ -16014,7 +16231,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_I2C_EN"
+		(property "Description" "I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_BR_G"
 			(at 254.00 213.36 0)
 			(effects
 				(font
@@ -16023,7 +16240,16 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C83571"
+		(property "LCSC" "C154900"
+			(at 254.00 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "BSS138DW-7-F"
 			(at 254.00 213.36 0)
 			(effects
 				(font
@@ -16080,26 +16306,15 @@
 		)
 		(uuid "ecfe8c59-0a3b-51e5-8fdd-05f874eaac23")
 	)
-	(global_label "ETH_I2C_EN"
-		(shape passive)
+	(label "ETH_BR_G"
 		(at 246.38 213.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify right bottom)
 		)
 		(uuid "a6e33a6d-9659-5691-a1cc-fc11b5d86e25")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 246.38 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 	)
 	(wire
 		(pts
@@ -16149,7 +16364,7 @@
 				)
 			)
 		)
-		(property "Value" "2N7002DW"
+		(property "Value" "BSS138DW"
 			(at 304.80 222.25 0)
 			(effects
 				(font
@@ -16175,7 +16390,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_I2C_EN"
+		(property "Description" "I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_BR_G"
 			(at 304.80 213.36 0)
 			(effects
 				(font
@@ -16184,7 +16399,16 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C83571"
+		(property "LCSC" "C154900"
+			(at 304.80 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "BSS138DW-7-F"
 			(at 304.80 213.36 0)
 			(effects
 				(font
@@ -16272,26 +16496,15 @@
 		)
 		(uuid "a74b00eb-fa57-52bf-abf6-4102d6241556")
 	)
-	(global_label "ETH_I2C_EN"
-		(shape passive)
+	(label "ETH_BR_G"
 		(at 297.18 213.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify right bottom)
 		)
 		(uuid "88bed19d-f5a9-57f1-ba96-d697db3e9647")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.18 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -16568,7 +16781,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "bridge off by default (mcu: TCA9534 P6 drives it; its 10k PD also holds it off)"
+		(property "Description" "bridge off by default: TCA9534 P6 is an input (Hi-Z) until firmware configures it"
 			(at 335.28 213.36 0)
 			(effects
 				(font
@@ -16858,6 +17071,541 @@
 		)
 		(uuid "6b2bd5f2-2184-5304-bea0-a1316d3cc683")
 	)
+	(symbol
+		(lib_id "74xGxx:74LVC1G17")
+		(at 284.48 213.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3f53db32-c60a-5e7d-b346-83960aa361da")
+		(property "Reference" "U806"
+			(at 284.48 199.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LVC1G17"
+			(at 284.48 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+			(at 284.48 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+			(at 284.48 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Bridge gate driver powered from ETH_3V3: gates = ETH_I2C_EN AND ETH_3V3 present (Ioff input)"
+			(at 284.48 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C151394"
+			(at 284.48 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "74LVC1G17W5-7"
+			(at 284.48 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9625b89d-dae2-5ad0-89f8-364dee08e7fc")
+		)
+		(pin "2"
+			(uuid "88e122e7-c5c4-597c-8700-8338695f889b")
+		)
+		(pin "3"
+			(uuid "be8aba14-1609-573d-b01e-e9cd7782e0e5")
+		)
+		(pin "4"
+			(uuid "071ea0fd-47f3-512c-93d4-c025071d8ab3")
+		)
+		(pin "5"
+			(uuid "6a782ca9-533c-5e40-98a6-86803694782f")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "U806")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(no_connect
+		(at 276.86 208.28)
+		(uuid "b91e9db5-d525-5f57-8812-c14e4d06f725")
+	)
+	(wire
+		(pts
+			(xy 271.78 213.36) (xy 269.24 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e8da60e-0b40-53bc-8d66-1dac461b64ac")
+	)
+	(global_label "ETH_I2C_EN"
+		(shape passive)
+		(at 269.24 213.36 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e7158325-6344-5280-94b2-a4dd69752e43")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 269.24 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 279.40 223.52) (xy 279.40 226.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae81a567-628d-5862-86a1-a0a20bfa84f4")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 279.40 226.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bb6c245c-f192-57dc-8095-d2ac485ee190")
+		(property "Reference" "#PWR0858"
+			(at 279.40 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 279.40 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 279.40 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "baf9d35d-dc1f-58e3-aa73-9ca12ec8fd69")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "#PWR0858")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 294.64 213.36) (xy 297.18 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e76913b-0ecf-59fc-b793-8f44fc18c790")
+	)
+	(label "ETH_BR_G"
+		(at 297.18 213.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "390512e5-4069-580a-8d5c-a0f98807169b")
+	)
+	(wire
+		(pts
+			(xy 279.40 203.20) (xy 279.40 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "320d228f-8502-50b1-bf13-c68ae2871a1e")
+	)
+	(label "ETH_3V3"
+		(at 279.40 200.66 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a790b8f5-618d-55ce-8d35-406dd46f3d6b")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 299.72 213.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "939bc670-78b4-556a-8c52-ad45acbb6413")
+		(property "Reference" "C841"
+			(at 302.26 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 302.26 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 299.72 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 299.72 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "gate driver decoupling"
+			(at 299.72 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 299.72 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fbd87793-b88e-5b16-8534-a7b67fe1d607")
+		)
+		(pin "2"
+			(uuid "98edcea4-7163-5c80-b8b5-dd30acf53b6d")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "C841")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 299.72 209.55) (xy 299.72 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1e19150-5e7b-5914-9fc0-8127b39dabec")
+	)
+	(label "ETH_3V3"
+		(at 299.72 207.01 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "afca5884-7dae-5013-b350-4bf2cb4f1d83")
+	)
+	(wire
+		(pts
+			(xy 299.72 217.17) (xy 299.72 219.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17dc9cfa-e74a-573a-8623-4917df6089e1")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 299.72 219.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "434ac775-f61c-51a6-81c8-448aa2ca3a33")
+		(property "Reference" "#PWR0859"
+			(at 299.72 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 299.72 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 299.72 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3003a688-2b9e-5b42-9e73-29041ec95860")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "#PWR0859")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 345.44 213.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2eb0f4cb-ad69-5632-a419-efdb1204d210")
+		(property "Reference" "R821"
+			(at 347.98 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 347.98 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 345.44 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 345.44 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "bridge gates low while the gate driver is unpowered (ETH_3V3 off)"
+			(at 345.44 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 345.44 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "46f72a1e-4166-5d4d-9d1c-f6d2a5eb1119")
+		)
+		(pin "2"
+			(uuid "5cbbb13b-4935-5c9e-9ebb-658bd0d97400")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "R821")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 345.44 209.55) (xy 345.44 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f8ec2ac-30e2-56bb-9b2c-f2c296f43b5f")
+	)
+	(label "ETH_BR_G"
+		(at 345.44 207.01 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "40db5139-d7b8-546c-a442-e13802c3eb46")
+	)
+	(wire
+		(pts
+			(xy 345.44 217.17) (xy 345.44 219.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11d1ad28-926d-5c27-ac35-153413a57b89")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 345.44 219.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dd82adcd-cb21-595e-8cff-3cabaf83c4c4")
+		(property "Reference" "#PWR0860"
+			(at 345.44 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 345.44 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 345.44 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7891eee8-e8b2-5568-8298-2483db1de104")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/7f64324b-3d22-47ab-be83-9a27f0b8054a"
+					(reference "#PWR0860")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(text "1. RTL8156BG-CG  USB 3.2 Gen1 (5G) <-> 2.5GBASE-T MAC/PHY, QFN-56 6x6 0.35 mm, EP = GND (via array)"
 		(exclude_from_sim no)
 		(at 20.32 15.24 0)
@@ -16867,7 +17615,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b91e9db5-d525-5f57-8812-c14e4d06f725")
+		(uuid "ce20a33f-d297-51a8-a46c-c1f141cb9714")
 	)
 	(text "Pin 9 (AVDD33 next to the XTAL) is fed through a ferrite bead (PLL supply, Realtek ref 'AVDD33_PLL')."
 		(exclude_from_sim no)
@@ -16878,7 +17626,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "8e8da60e-0b40-53bc-8d66-1dac461b64ac")
+		(uuid "01be2690-3c52-5591-951b-79a224df86ac")
 	)
 	(text "DVDD09_UPS (54) is an INTERNAL LDO output: 1 uF only, never tie to the 0.95 V rail."
 		(exclude_from_sim no)
@@ -16889,7 +17637,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e7158325-6344-5280-94b2-a4dd69752e43")
+		(uuid "eb42b5be-886e-563a-836b-19c9614ed546")
 	)
 	(text "NC: 3/4/6 (BGS-only regulator pins), CKOUT, LED3, GPIO3, EEDO/SPISO, TWSI_SDA/SPICSB (no EEPROM/flash on the PHY)."
 		(exclude_from_sim no)
@@ -16900,7 +17648,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ae81a567-628d-5862-86a1-a0a20bfa84f4")
+		(uuid "fc2d92bc-f0df-5f1e-9b83-8a04f28595e2")
 	)
 	(text "2. POWER  ETH_3V3 = +3V3 via TPS22918 (ON = ETH_RESET_N)   ETH_0V95 = TPS62A02A (EN = POW_EXT_SWR)"
 		(exclude_from_sim no)
@@ -16911,7 +17659,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bb6c245c-f192-57dc-8095-d2ac485ee190")
+		(uuid "290b35ff-2351-5133-b8d7-040a1cce9e91")
 	)
 	(text "RTL8156BG 0.95 V: 0.92-0.98 V (+-3 %), 364 mA typ / 650 mA max; rise 0.5-2.2 ms; off->on >= 50 ms (DS table 25/27)."
 		(exclude_from_sim no)
@@ -16922,7 +17670,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "baf9d35d-dc1f-58e3-aa73-9ca12ec8fd69")
+		(uuid "c768a878-027f-5244-ba81-2a9c39934d58")
 	)
 	(text "VOUT = 0.6 V x (1 + 59k/100k) = 0.954 V; VFB +-1.5 % + 1 % resistors -> 0.932-0.977 V worst case (inside window)."
 		(exclude_from_sim no)
@@ -16933,7 +17681,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7e76913b-0ecf-59fc-b793-8f44fc18c790")
+		(uuid "e458b856-9525-5808-b7b5-21e021d691bb")
 	)
 	(text "TPS62A02A = forced-PWM variant (Realtek: switcher feeding the PHY must run PWM >= 1 MHz); 1 ms soft start meets t3."
 		(exclude_from_sim no)
@@ -16944,7 +17692,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "390512e5-4069-580a-8d5c-a0f98807169b")
+		(uuid "f41c2f33-3664-504d-bdcc-af4dc881b17f")
 	)
 	(text "The buck runs from ETH_3V3, so ETH_RESET_N low also kills 0.95 V; EN = POW_EXT_SWR (PHY output, 100k PD)."
 		(exclude_from_sim no)
@@ -16955,7 +17703,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "320d228f-8502-50b1-bf13-c68ae2871a1e")
+		(uuid "7fc2b187-2960-518a-80c5-a6bf5c6027e5")
 	)
 	(text "ETH_RESET_N (TCA9534 P5 on mcu, 10k PU there): high/hi-Z = PHY powered -> Ethernet works with a dead/blank RP2350."
 		(exclude_from_sim no)
@@ -16966,7 +17714,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a790b8f5-618d-55ce-8d35-406dd46f3d6b")
+		(uuid "ae956790-1eb7-57ea-bc72-26ccbfbd25bd")
 	)
 	(text "  Firmware: hold low >= 100 ms (t4 >= 50 ms + QOD discharge). Also usable to turn 2.5GbE off for thermal derating."
 		(exclude_from_sim no)
@@ -16977,7 +17725,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a1e19150-5e7b-5914-9fc0-8127b39dabec")
+		(uuid "af0a45d5-7a65-5f11-93dc-d9f19889f555")
 	)
 	(text "Loss: 0.95 V x 0.65 A / ~85 % -> ~0.11 W in the buck; PHY total ~0.6-0.65 W typ (sensors sheet: TMP1075 'RJ45/RTL8156')."
 		(exclude_from_sim no)
@@ -16988,7 +17736,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "afca5884-7dae-5013-b350-4bf2cb4f1d83")
+		(uuid "5d499055-de88-5c9d-af2e-8f50a3449068")
 	)
 	(text "3. DECOUPLING  every cap at its pin (0402, short via to the GND EP/plane); bulk per Realtek reference"
 		(exclude_from_sim no)
@@ -16999,7 +17747,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "17dc9cfa-e74a-573a-8623-4917df6089e1")
+		(uuid "afc750d1-b48a-509f-8f1e-0033aa95b5c1")
 	)
 	(text "4. CLOCK / RSET / STRAPS (pull values from Realtek RTL8125B ref + verified open RTL8156B design)"
 		(exclude_from_sim no)
@@ -17010,7 +17758,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "434ac775-f61c-51a6-81c8-448aa2ca3a33")
+		(uuid "9d0af8cd-2557-5221-984a-9b092097c22b")
 	)
 	(text "Straps/pulls go to ETH_3V3 (never +3V3) so nothing back-powers the PHY while ETH_RESET_N holds it off."
 		(exclude_from_sim no)
@@ -17021,7 +17769,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3003a688-2b9e-5b42-9e73-29041ec95860")
+		(uuid "a97ffe19-6444-5f6e-b41a-c79855219c83")
 	)
 	(text "Crystal: same YXC 25 MHz/12 pF part as the hub (shared reel). Keep XI/XO short, GND guard, no traces under it."
 		(exclude_from_sim no)
@@ -17032,9 +17780,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "7f8ec2ac-30e2-56bb-9b2c-f2c296f43b5f")
+		(uuid "924814fd-7ab4-52e3-8ec4-22568808c405")
 	)
-	(text "5. USB  PHY TX -> 220 nF -> hub RX (hub TX caps on usb_hub)"
+	(text "5. USB  PHY TX -> 100 nF -> hub RX (hub TX caps on usb_hub)"
 		(exclude_from_sim no)
 		(at 406.4 22.86 0)
 		(effects
@@ -17043,7 +17791,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "40db5139-d7b8-546c-a442-e13802c3eb46")
+		(uuid "d98a22f2-d293-573f-a073-89e90c06194a")
 	)
 	(text "Hub port 4 (ETH_*): longest SS run on the board (around the hub's PF side). 90 Ohm diff, caps near the PHY,"
 		(exclude_from_sim no)
@@ -17054,9 +17802,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "11d1ad28-926d-5c27-ac35-153413a57b89")
+		(uuid "28db223a-6f46-5aa9-a241-438b25d142d6")
 	)
-	(text "symmetric, L2 void under the 0402 pads. USB2 ETH_DP/DN: 90 Ohm, no series parts. The PHY is Gen1 (5 Gbps)."
+	(text "symmetric, L2 void under the 0402 pads. USB2 ETH_DP/DN: 90 Ohm, no series parts. The PHY is Gen1 (5 Gbps):"
 		(exclude_from_sim no)
 		(at 406.4 53.34 0)
 		(effects
@@ -17065,7 +17813,18 @@
 			)
 			(justify left top)
 		)
-		(uuid "dd82adcd-cb21-595e-8cff-3cabaf83c4c4")
+		(uuid "5b9b746a-0d0b-58be-bfe7-dd6570d5ca15")
+	)
+	(text "Gen1 C_AC_COUPLING = 75-200 nF -> 100 nF (same as the GL3224 TX); 220 nF is only valid for Gen2 transmitters."
+		(exclude_from_sim no)
+		(at 406.4 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "cd61f714-3f10-546f-ba67-264acc31494c")
 	)
 	(text "6. MDI + MAGJACK  USAKRO DGUK211Q340CD2A4D2 (2.5G, LEDs)"
 		(exclude_from_sim no)
@@ -17076,7 +17835,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7891eee8-e8b2-5568-8298-2483db1de104")
+		(uuid "cd7e6075-0d62-546a-a7ac-f3e91874f77b")
 	)
 	(text "MDIx -> TDx+1: MDI0=BI_DA (RJ 1/2), MDI1=BI_DB (3/6), MDI2=BI_DC (4/5), MDI3=BI_DD (7/8). 100 Ohm diff pairs, length-"
 		(exclude_from_sim no)
@@ -17087,7 +17846,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ce20a33f-d297-51a8-a46c-c1f141cb9714")
+		(uuid "b521e378-b2b7-5bd5-a5f7-8d356a802924")
 	)
 	(text "  matched within pair, no vias if possible, no planes under the magjack's cable side. If the QFN-to-jack order forces"
 		(exclude_from_sim no)
@@ -17098,7 +17857,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "01be2690-3c52-5591-951b-79a224df86ac")
+		(uuid "ad59d4e7-508c-5b42-85ce-97db8c330f0e")
 	)
 	(text "  crossings use the PHY's MDI-swap option (eFuse/register) instead of vias."
 		(exclude_from_sim no)
@@ -17109,7 +17868,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "eb42b5be-886e-563a-836b-19c9614ed546")
+		(uuid "f7566552-c1ba-56e0-92bf-a10d7d89a684")
 	)
 	(text "Jack: 1CT:1CT 2.5G magnetics, 4x75R + 1nF/2kV Bob Smith inside, green LED left / yellow right (pins 14/13, 12/11)."
 		(exclude_from_sim no)
@@ -17120,7 +17879,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fc2d92bc-f0df-5f1e-9b83-8a04f28595e2")
+		(uuid "3a6e0434-4951-59d6-8671-c08c6a8cf85f")
 	)
 	(text "No extra ESD on MDI: the magnetics give 2250 VDC isolation and the Realtek reference has none."
 		(exclude_from_sim no)
@@ -17131,7 +17890,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "290b35ff-2351-5133-b8d7-040a1cce9e91")
+		(uuid "a717420c-c8cf-501f-b003-f02b9fe64d25")
 	)
 	(text "Shell -> GND (odeck convention: no separate chassis; via-stitch both shell pins). LEDs are low-side driven by the PHY"
 		(exclude_from_sim no)
@@ -17142,7 +17901,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "c768a878-027f-5244-ba81-2a9c39934d58")
+		(uuid "0ffe745b-399a-59db-bddd-f48df1fe1cb5")
 	)
 	(text "  (LED anode at ETH_3V3, active-low pins, Realtek default); function per LED set by eFuse/driver (OCP 0xDD90)."
 		(exclude_from_sim no)
@@ -17153,7 +17912,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e458b856-9525-5808-b7b5-21e021d691bb")
+		(uuid "8041763c-93eb-5a0b-8e77-7bf2356900a2")
 	)
 	(text "7. LED BUFFER  SN74LVC3G17 -> ETH_LED0..2 (RP2350)"
 		(exclude_from_sim no)
@@ -17164,7 +17923,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f41c2f33-3664-504d-bdcc-af4dc881b17f")
+		(uuid "0242bc23-aefe-5f6a-a864-4481ff76f1ed")
 	)
 	(text "ETH_LEDx = PHY LEDx level, i.e. ACTIVE LOW (low = LED lit) with the default LED polarity. The jack LEDs load LED0/1,"
 		(exclude_from_sim no)
@@ -17175,7 +17934,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7fc2b187-2960-518a-80c5-a6bf5c6027e5")
+		(uuid "6b72b87f-c418-547e-afee-4d51de4d7f1b")
 	)
 	(text "  so the RP2350 must not read those pins directly; the buffers also isolate the MCU from the switched PHY rail."
 		(exclude_from_sim no)
@@ -17186,7 +17945,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ae956790-1eb7-57ea-bc72-26ccbfbd25bd")
+		(uuid "1397bba4-f06a-5a5f-a3cd-6b7a42c5beb1")
 	)
 	(text "PHY unpowered (ETH_RESET_N low): inputs sit at 0 V (pull-ups on the dead ETH_3V3) -> outputs low; firmware ignores them."
 		(exclude_from_sim no)
@@ -17197,7 +17956,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "af0a45d5-7a65-5f11-93dc-d9f19889f555")
+		(uuid "3b104b2d-d758-5899-b5f7-8843c5899d5d")
 	)
 	(text "LVC inputs are 5.5 V tolerant with no clamp to VCC, so they never back-power ETH_3V3."
 		(exclude_from_sim no)
@@ -17208,7 +17967,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "5d499055-de88-5c9d-af2e-8f50a3449068")
+		(uuid "8bc38945-79ce-5246-a7d5-461cd8b6a17a")
 	)
 	(text "8. MAC ADDRESS  24AA025E48 (EUI-48 at 0xFA-0xFF, I2C_SYS 0x50) + switchable bridge to the PHY I2C slave"
 		(exclude_from_sim no)
@@ -17219,7 +17978,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "afc750d1-b48a-509f-8f1e-0033aa95b5c1")
+		(uuid "056757ff-f96c-5eb3-aa92-c3623ddf9e26")
 	)
 	(text "RTL8156BG MAC sources (DS 6.4/6.6): internal eFuse/OTP (>= 512 B autoload) or an external 93C46/TWSI EEPROM, the latter"
 		(exclude_from_sim no)
@@ -17230,7 +17989,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9d0af8cd-2557-5221-984a-9b092097c22b")
+		(uuid "8df89d73-74ec-57f6-8ea2-aae0fb02b9d9")
 	)
 	(text "  only after a Realtek PG-tool eFuse command selects it; blank eFuse -> chip defaults (no unique MAC). DS 6.6: 'MACID can be"
 		(exclude_from_sim no)
@@ -17241,7 +18000,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a97ffe19-6444-5f6e-b41a-c79855219c83")
+		(uuid "236c37c6-8fa2-52bb-b485-78e9afe3f72e")
 	)
 	(text "  modified via the I2C function' = I2C SLAVE on GPIO1/SDA + GPIO2/SCL, 36-byte 'OTP code': [addr] 25 C0 00 MAC0..MAC5 + 26x 00"
 		(exclude_from_sim no)
@@ -17252,7 +18011,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "924814fd-7ab4-52e3-8ec4-22568808c405")
+		(uuid "4ad886cb-bb18-5206-b5c4-a4d51057160f")
 	)
 	(text "  (= eFuse autoload record 'write 6 bytes to OCP 0xC000 / PLA_IDR'). The 7-bit slave address is not in the DS -> bench scan."
 		(exclude_from_sim no)
@@ -17263,7 +18022,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d98a22f2-d293-573f-a073-89e90c06194a")
+		(uuid "013abda6-6023-5146-8d0c-b18f15254e6f")
 	)
 	(text "Plan: RP2350 reads the EUI-48 from U805 (0x50, 0xFA..0xFF), powers the PHY, sets ETH_I2C_EN, writes the OTP code ONCE (eFuse is"
 		(exclude_from_sim no)
@@ -17274,7 +18033,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "28db223a-6f46-5aa9-a241-438b25d142d6")
+		(uuid "566f8c11-2299-578f-896d-5546aa88b4c1")
 	)
 	(text "  one-time; each rewrite burns ~36 B of the 512 B), clears ETH_I2C_EN and logs it. Fallbacks: host tool (Realtek PG tool /"
 		(exclude_from_sim no)
@@ -17285,7 +18044,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "5b9b746a-0d0b-58be-bfe7-dd6570d5ca15")
+		(uuid "70937863-02fa-5254-8faf-87e44d646b30")
 	)
 	(text "  rtunicpg) programs the same EUI-48 over USB (RP2350 reports it in the status app), or the OS overrides the MAC at runtime."
 		(exclude_from_sim no)
@@ -17296,9 +18055,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "cd61f714-3f10-546f-ba67-264acc31494c")
+		(uuid "a0bb5603-60ee-5bb4-b1b0-ea4f52bdc0de")
 	)
-	(text "Bridge: with ETH_I2C_EN low the PHY can see I2C_SYS traffic (body diodes) but can never pull I2C_SYS low, and an unpowered PHY"
+	(text "Bridge: with the gates low the PHY can see I2C_SYS traffic (body diodes) but can never pull I2C_SYS low, and an unpowered PHY"
 		(exclude_from_sim no)
 		(at 203.2 243.84 0)
 		(effects
@@ -17307,9 +18066,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "cd7e6075-0d62-546a-a7ac-f3e91874f77b")
+		(uuid "67a0ba76-5e99-54b4-9210-474052df6690")
 	)
-	(text "  is not back-fed. Enable only while ETH_3V3 is on (else the dead 4.7k pull-ups would hold I2C_SYS low)."
+	(text "  is not back-fed. Gate drive ETH_BR_G = 74LVC1G17 powered from ETH_3V3, input ETH_I2C_EN (TCA9534 P6): the gates can only"
 		(exclude_from_sim no)
 		(at 203.2 246.38 0)
 		(effects
@@ -17318,7 +18077,84 @@
 			)
 			(justify left top)
 		)
-		(uuid "b521e378-b2b7-5bd5-a5f7-8d356a802924")
+		(uuid "6ecd0641-4bef-59f8-984a-aa583622842a")
+	)
+	(text "  be high while ETH_3V3 is up (driver unpowered -> Ioff, 100k holds the gates low; VOH <= ETH_3V3 while it decays, QOD"
+		(exclude_from_sim no)
+		(at 203.2 248.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "6622322f-0760-53db-a051-948ea814dc37")
+	)
+	(text "  takes it to 0 V). So ETH_I2C_EN = 1 with ETH_RESET_N = 0 (firmware bug, thermal power-down mid-write) can no longer drag"
+		(exclude_from_sim no)
+		(at 203.2 251.46 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "9d20a061-cc08-5a1e-ba64-c0407b90563b")
+	)
+	(text "  I2C_SYS into the dead PHY pull-ups and lock the TCA9534 that controls both (review mcu_ui #5). Firmware should still"
+		(exclude_from_sim no)
+		(at 203.2 254.0 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c4cabaf7-a5a5-54e1-a562-ed285e2dcec3")
+	)
+	(text "  clear P6 before powering the PHY down.  Q801 = BSS138DW (VGS(th) <= 1.5 V) for solid conduction with a 3.3 V gate."
+		(exclude_from_sim no)
+		(at 203.2 256.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "cabbbce8-8a14-5928-82dc-5d3bb4e50e12")
+	)
+	(text "Bench items (review data #5): scan I2C_SYS with the bridge on vs off (PHY address, collisions with 0x20/0x41/0x44/0x45/"
+		(exclude_from_sim no)
+		(at 203.2 259.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "4bb358c8-7400-57df-80db-a3df5ec160ce")
+	)
+	(text "  0x48-0x4F/0x50); confirm the OTP write persists (write once, power-cycle via ETH_RESET_N, read PLA_IDR over USB) and that"
+		(exclude_from_sim no)
+		(at 203.2 261.62 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "db8feb05-4209-568b-b201-0daa7e2aa027")
+	)
+	(text "  the slave answers on a blank eFuse. Volatile write -> rely on the host-tool / OS fallbacks."
+		(exclude_from_sim no)
+		(at 203.2 264.16 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "4c76f7af-3cd0-516d-8bb8-c1a59a9543cd")
 	)
 	(text "9. LAYOUT  (board-layout.md: RJ45 back-right corner, RTL8156BG + MAC EEPROM in front of it)"
 		(exclude_from_sim no)
@@ -17329,7 +18165,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ad59d4e7-508c-5b42-85ce-97db8c330f0e")
+		(uuid "8387d2a6-fec9-5b74-83df-86d3feb62d0a")
 	)
 	(text "  - QFN-56 0.35 mm pitch (0.15 mm pads, 0.2 mm gaps): JLC 6-layer OK; EP 4.5 mm in DS, imported footprint has 4.7 mm -> check."
 		(exclude_from_sim no)
@@ -17340,7 +18176,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f7566552-c1ba-56e0-92bf-a10d7d89a684")
+		(uuid "1ffa9983-e5af-5b64-aa0b-2594a7a74955")
 	)
 	(text "  - Buck (U, L, 2x22u) within 10 mm of the QFN; 0.95 V as a short pour on L1/L3; SW node small, away from MDI and XTAL."
 		(exclude_from_sim no)
@@ -17351,7 +18187,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3a6e0434-4951-59d6-8671-c08c6a8cf85f")
+		(uuid "088af369-2f86-5b18-b24d-8b8ad5f51dd8")
 	)
 	(text "  - TMP1075 'RJ45/RTL8156' (sensors sheet) between the QFN and the magjack. PHY theta-JA 19 C/W (4L ref board) -> +12 K."
 		(exclude_from_sim no)
@@ -17362,7 +18198,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a717420c-c8cf-501f-b003-f02b9fe64d25")
+		(uuid "35859662-a2c2-57f4-a935-fb61f1817233")
 	)
 	(text "  - MDI pairs over unbroken GND (L2), stop the planes 1.5 mm before the magjack's cable-side pins (Bob Smith is inside)."
 		(exclude_from_sim no)
@@ -17373,6 +18209,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "0ffe745b-399a-59db-bddd-f48df1fe1cb5")
+		(uuid "98420a02-fb48-50ee-9951-af84d5ccb241")
 	)
 )

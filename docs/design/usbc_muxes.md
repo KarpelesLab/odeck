@@ -10,7 +10,7 @@ SLVSD85B (TPD4E02B04), Infineon PMG1-S3 datasheet (CC/SBU abs max 6 V, VCONN FET
 
 ```
  Laptop USB-C J501 (DX07, 48 V/5 A)                                          Downstream USB-C J502 (12401610E4#2A)
-  VBUS ── SMBJ30A + 100n ── VBUS_LAPTOP                                       VBUS ── SMAJ6.0A + 100n ── VBUS_DS
+  VBUS ── SMCJ28A + 100n ── VBUS_LAPTOP                                       VBUS ── SMAJ6.0A + 100n ── VBUS_DS
   CC1/2 ── TPD4S480 U501 (63 V OVP, dead-batt Rd) ── LAPTOP_CC1/2             CC1/2 ── TPD6S300 U504 (24 V OVP) ── DS_CC1/2
   SBU1/2 ─ TPD4S480 ── UP_SBU1/2 ── TUSB1064 SBU                              SBU1/2 ─ TPD6S300 ── DS_SBU1/2 ── TUSB1046 SBU
   D+/D- (A6/B6, A7/B7) ──────────── LAPTOP_USB_DP/DN (hub upstream USB2)      D+/D- ── (TPD6S300 ESD) ── HUB_DSC_DP/DN
@@ -25,7 +25,7 @@ SLVSD85B (TPD4E02B04), Infineon PMG1-S3 datasheet (CC/SBU abs max 6 V, VCONN FET
    AUXp/n ──100n (C523/C524)──────────────────────────────►  AUXp/n
    (1M up / 1M down: UFP_D bias)                             (100k down / 100k up: DFP_D bias)
    CTL0/CTL1/FLIP ◄── MUX_UP_*   (PMG1 port 0)                CTL0/CTL1/FLIP ◄── MUX_DS_*   (PMG1 port 1)
-   HPDIN ◄─10k── UP_HPD          (PMG1 output)                HPDIN ◄─10k── DS_HPD          (PMG1 output)
+   HPDIN ◄─10k── UP_HPD (100k PD) (PMG1 output)              HPDIN ◄─10k── DS_HPD          (PMG1 output)
 ```
 
 ### Interface nets
@@ -41,7 +41,7 @@ SLVSD85B (TPD4E02B04), Infineon PMG1-S3 datasheet (CC/SBU abs max 6 V, VCONN FET
 | HUB_UP_SS_RXP/N, HUB_DSC_SS_RXP/N | out | usb_hub | Hub receives. **220 nF caps on this sheet** (C513/C514, C530/C531) |
 | MUX_UP_CTL0/CTL1/FLIP | in | pd_pmg1 | PMG1 port 0 GPIOs → TUSB1064 (fail-safe inputs, 500 k internal pull-down) |
 | MUX_DS_CTL0/CTL1/FLIP | in | pd_pmg1 | PMG1 port 1 GPIOs → TUSB1046 (fail-safe inputs, 500 k internal pull-down) |
-| UP_HPD | in | pd_pmg1 | PMG1 output → TUSB1064 HPDIN (10 k series) |
+| UP_HPD | in | pd_pmg1 | PMG1 output → TUSB1064 HPDIN (10 k series, R544 100 k to GND here) |
 | DS_HPD | in | pd_pmg1 | PMG1 output → TUSB1046 HPDIN (pin 32, 10 k series) |
 | PMG1_VDDD | in | pd_pmg1 | PMG1 always-on supply. Powers TPD4S480 VPWR (≈0.16 mA, 1 µF local cap) |
 | +3V3, GND | in | power_rails | Muxes ≈0.6 W max together, TPD6S300 VPWR |
@@ -100,8 +100,11 @@ the other pair. Lane numbers match between the chips (TUSB1064 DPn → TUSB1046 
 - Both mux HPDIN pins: low for more than 2 ms disables the DP lanes and AUX stays connected. IRQ_HPD (0.5–1 ms) does not
   disable them. In GPIO mode TUSB1064 has no AUX snoop, so all lanes of the selected configuration run while HPDIN is high.
 - The 10 k series resistors protect against pins that are not fail-safe (TUSB1046 note 2: pins 29/32 leak into VCC if
-  driven while +3V3 is off; the PMG1 runs from VBUS in a dead deck). The 500 k internal pull-downs keep the lanes off while
-  the PMG1 is in reset.
+  driven while +3V3 is off; the PMG1 runs from VBUS in a dead deck).
+- **Pull-downs.** TUSB1064 HPDIN has **no** internal pull-down: the 500 k RPD in its datasheet (p.6) applies to
+  CTL0/CTL1/FLIP/EN only, and the pin table lists HPDIN as a plain 2-level input. R544 (100 k, UP_HPD → GND) keeps it
+  defined while PMG1 P1.3 is Hi-Z (reset, SWD, unprogrammed, booting). TUSB1046-DCI HPDIN has a 150 k internal
+  pull-down (R(ENPD)), so DS_HPD needs none. Both lanes groups are therefore off while the PMG1 is in reset.
 
 ## AC coupling (rule: one 75–265 nF cap per SS segment, at its transmitter)
 
@@ -116,8 +119,11 @@ the other pair. Lane numbers match between the chips (TUSB1064 DPn → TUSB1046 
 | Downstream RX → TUSB1046 RX | device side | DC here |
 | AUX TUSB1064 ↔ TUSB1046 | C523/C524 100 nF | here |
 
-220 nF (0402 X7R, JLC basic C16772) is used everywhere so that an accidental second cap in series (110 nF) is still in
-range. In DP mode the laptop's DP lanes on our TX pins pass through both the laptop's cap and C509–C512 (110 nF, OK).
+220 nF (0402 X7R, JLC basic C16772) is used everywhere. Each lane sees exactly **one** cap: per the TI DFP_D
+reference (TUSB1046-DCI Fig. 8-2), a DP source puts its caps on its TX-pin lanes only and leaves its RX-pin lanes DC.
+So the laptop's DP lanes that arrive on our TX pins (its RX pins) see only C509–C512, and the lanes that arrive on our
+RX pins see only the laptop's own caps. Downstream works the same way: TUSB1046 DP on our RX pins goes into the
+monitor's TX-pin caps.
 
 **AUX bias.** TUSB1064 side: AUXp 1 M → +3V3, AUXn 1 M → GND, the UFP_D (sink) bias the laptop expects. TUSB1046
 side: AUXp 100 k → GND, AUXn 100 k → +3V3, the DFP_D (source) bias the monitor expects. A single 100 nF per line between
@@ -159,8 +165,18 @@ rewired as SDA/SCL and pull-ups.
   pairs: D502 (TX1/RX1), D503 (TX2/RX2), D506/D507 on the downstream port. D504 covers laptop D+/D-. Flow-through
   package: the NC pads (10↔1, 9↔2, 7↔4, 6↔5) carry the same net, so route each line straight across the pads.
   TPD4E05U06 (0.5 pF) was rejected because it is rated only for 5 Gbps.
-- **VBUS TVS.** Laptop: SMBJ30A (VRWM 30 V > 29.4 V = 28 V + 5 %, VBR 33.3–36.8 V, 600 W). The power_laptop OVP
-  (30.8 V) and LM74800 backstop (32.6 V) trip below VBR. Downstream: SMAJ6.0A (VRWM 6 V > 5.25 V).
+- **VBUS TVS.** Laptop: **SMCJ28A** (Littelfuse C224047, 1500 W SMC; VRWM 28 V, VBR 31.1–34.4 V at 1 mA, VC 45.4 V at
+  33 A). It replaces SMBJ30A (VBR 33.3–36.8 V, VC ≈ 48 V), which did not even conduct at 34 V.
+  - At 29.4 V (28 V EPR + 5 %) the part is about 1.7 V below VBR min, so leakage stays in the µA range. Bench-check
+    it hot at 28 V.
+  - Compared with SMBJ, the SMC package has about 2.5× lower dynamic resistance, so it clamps lower at a given surge
+    current.
+  - **Residual risk, accepted:** no TVS with VRWM ≥ 28 V can keep the PMG1 VBUS_C_P0 / CSP_P0 / CSN_P0 pins (34 V abs
+    max) below 34 V during a surge or a hard ringing event. Flat-clamp parts such as the TVS3300 have VRWM 33 V and do
+    no better. Infineon's EPR references wire VBUS_C directly in the same way.
+  - Steady-state over-voltage is handled by the power_laptop OVP latch (30.8 V) and the LM74800 backstop (32.6 V).
+    Keep the VBUS caps (100 nF here, bulk on power_laptop) close to J501 to damp hot-plug ringing.
+  - Downstream: SMAJ6.0A (VRWM 6 V > 5.25 V).
 - **Shells:** both receptacle shells go straight to GND (JLC practice), stitched to the plane next to the connector.
   If EMI or ESD testing needs it, a bleed (1 M ∥ 4.7 nF) would require a separate chassis net, which we do not have
   on a bare board.
@@ -192,7 +208,8 @@ rewired as SDA/SCL and pull-ups.
 | U501 | TI TPD4S480RUKR | C43131250 | 2881 (also U101) | extended |
 | U504 | TI TPD6S300RUKR | C2649810 | 17349 | extended |
 | D502–D504, D506, D507 | TI TPD4E02B04DQAR | C106794 | 105950 | extended |
-| D501 | SMBJ30A (MDD) | C113998 | 149741 | extended |
+| D501 | SMCJ28A (Littelfuse), D_SMC | C224047 | 5845 | extended |
+| R544 | 100 k 0402 (UP_HPD pull-down) | C25741 | — | basic |
 | D505 | SMAJ6.0A (MDD) | C364284 | 99852 | extended |
 | C (×26) | 220 nF 0402 X7R | C16772 | 2.3 M | basic |
 | C | 100 nF 0402 / 10 µF 0603 / 1 µF 0402 / 100 nF 0603 50 V | C1525 / C19702 / C52923 / C14663 | — | basic |

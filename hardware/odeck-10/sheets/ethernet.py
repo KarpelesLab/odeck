@@ -24,7 +24,8 @@ L_1U = "C91250"                    # Sunlord SWPA4018S1R0NT 1 uH 4x4x1.8 mm
 LSW = "C131941"                    # TI TPS22918DBVR 2 A load switch, CT slew + QOD
 BUF = "C68245"                     # TI SN74LVC3G17DCUR triple Schmitt buffer, VSSOP-8
 EEPROM = "C129895"                 # Microchip 24AA025E48T-I/OT 2 kbit EEPROM with EUI-48, SOT-23-6
-QDUAL = "C83571"                   # Diodes 2N7002DW-7-F dual N-MOSFET SOT-363
+QDUAL = "C154900"                  # Diodes BSS138DW-7-F dual N-MOSFET SOT-363 (VGS(th) 0.5-1.5 V; same pinout as 2N7002DW-7-F)
+BUF_ST = "C151394"                 # Diodes 74LVC1G17W5-7 Schmitt buffer SOT-25 (bridge gate driver, VCC = ETH_3V3)
 RJ45 = "C19725134"                 # USAKRO DGUK211Q340CD2A4D2 2.5G magjack, tab-up, green/yellow LEDs
 
 
@@ -171,12 +172,13 @@ def build(D):
     # 5. USB 3 TX AC coupling
     # =============================================================================================
     x0, y0 = 406.4, 22.86
-    _note(s, "5. USB  PHY TX -> 220 nF -> hub RX (hub TX caps on usb_hub)", (x0, y0), 2.0)
+    _note(s, "5. USB  PHY TX -> 100 nF -> hub RX (hub TX caps on usb_hub)", (x0, y0), 2.0)
     y = y0 + 17.78
-    s.c("220n", "ETH_TXP_IC", "ETH_SS_RXP", at=(x0 + 10.16, y), lcsc=C_220N, desc="PHY TX+ AC cap (USB 3: 75-265 nF)")
-    s.c("220n", "ETH_TXN_IC", "ETH_SS_RXN", at=(x0 + 25.4, y), lcsc=C_220N, desc="PHY TX- AC cap")
+    s.c("100n", "ETH_TXP_IC", "ETH_SS_RXP", at=(x0 + 10.16, y), lcsc=C_100N, desc="PHY TX+ AC cap (USB 3.x Gen1 TX: 75-200 nF)")
+    s.c("100n", "ETH_TXN_IC", "ETH_SS_RXN", at=(x0 + 25.4, y), lcsc=C_100N, desc="PHY TX- AC cap")
     _note(s, "Hub port 4 (ETH_*): longest SS run on the board (around the hub's PF side). 90 Ohm diff, caps near the PHY,\n"
-             "symmetric, L2 void under the 0402 pads. USB2 ETH_DP/DN: 90 Ohm, no series parts. The PHY is Gen1 (5 Gbps).",
+             "symmetric, L2 void under the 0402 pads. USB2 ETH_DP/DN: 90 Ohm, no series parts. The PHY is Gen1 (5 Gbps):\n"
+             "Gen1 C_AC_COUPLING = 75-200 nF -> 100 nF (same as the GL3224 TX); 220 nF is only valid for Gen2 transmitters.",
           (x0, y0 + 27.94))
 
     # =============================================================================================
@@ -234,15 +236,15 @@ def build(D):
            pins={"VCC": "+3V3", "VSS": "GND", "SDA": "I2C_SYS_SDA", "SCL": "I2C_SYS_SCL", "A0": "GND", "A1": "GND"},
            lcsc=EEPROM, desc="2 kbit I2C EEPROM with factory EUI-48, addr 0x50 (A2 bit = 0, A1 = A0 = GND)")
     s.c("100n", "+3V3", "GND", at=(x0 + 33.02, y), lcsc=C_100N, desc="EEPROM decoupling")
-    s.part("Transistor_FET:Q_Dual_NMOS_S1G1D2S2G2D1", "Q", "2N7002DW", "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-           at=(x0 + 50.8, y), lcsc=QDUAL, unit=None,
-           pins={"1": "ETH_SDA", "2": "ETH_I2C_EN", "6": "I2C_SYS_SDA",
-                 "4": "ETH_SCL", "5": "ETH_I2C_EN", "3": "I2C_SYS_SCL"},
-           desc="I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_I2C_EN")
+    s.part("Transistor_FET:Q_Dual_NMOS_S1G1D2S2G2D1", "Q", "BSS138DW", "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+           at=(x0 + 50.8, y), lcsc=QDUAL, unit=None, mpn="BSS138DW-7-F",
+           pins={"1": "ETH_SDA", "2": "ETH_BR_G", "6": "I2C_SYS_SDA",
+                 "4": "ETH_SCL", "5": "ETH_BR_G", "3": "I2C_SYS_SCL"},
+           desc="I2C bridge: source = PHY side (pulled to ETH_3V3), drain = I2C_SYS, gates = ETH_BR_G")
     s.r("4.7k", "ETH_SDA", "ETH_3V3", at=(x0 + 111.76, y), lcsc=R_4K7, desc="PHY SDA (GPIO1) pull-up")
     s.r("4.7k", "ETH_SCL", "ETH_3V3", at=(x0 + 121.92, y), lcsc=R_4K7, desc="PHY SCL (GPIO2) pull-up")
     s.r("100k", "ETH_I2C_EN", "GND", at=(x0 + 132.08, y), lcsc=R_100K,
-        desc="bridge off by default (mcu: TCA9534 P6 drives it; its 10k PD also holds it off)")
+        desc="bridge off by default: TCA9534 P6 is an input (Hi-Z) until firmware configures it")
     _note(s, "RTL8156BG MAC sources (DS 6.4/6.6): internal eFuse/OTP (>= 512 B autoload) or an external 93C46/TWSI EEPROM, the latter\n"
              "  only after a Realtek PG-tool eFuse command selects it; blank eFuse -> chip defaults (no unique MAC). DS 6.6: 'MACID can be\n"
              "  modified via the I2C function' = I2C SLAVE on GPIO1/SDA + GPIO2/SCL, 36-byte 'OTP code': [addr] 25 C0 00 MAC0..MAC5 + 26x 00\n"
@@ -250,8 +252,15 @@ def build(D):
              "Plan: RP2350 reads the EUI-48 from U805 (0x50, 0xFA..0xFF), powers the PHY, sets ETH_I2C_EN, writes the OTP code ONCE (eFuse is\n"
              "  one-time; each rewrite burns ~36 B of the 512 B), clears ETH_I2C_EN and logs it. Fallbacks: host tool (Realtek PG tool /\n"
              "  rtunicpg) programs the same EUI-48 over USB (RP2350 reports it in the status app), or the OS overrides the MAC at runtime.\n"
-             "Bridge: with ETH_I2C_EN low the PHY can see I2C_SYS traffic (body diodes) but can never pull I2C_SYS low, and an unpowered PHY\n"
-             "  is not back-fed. Enable only while ETH_3V3 is on (else the dead 4.7k pull-ups would hold I2C_SYS low).",
+             "Bridge: with the gates low the PHY can see I2C_SYS traffic (body diodes) but can never pull I2C_SYS low, and an unpowered PHY\n"
+             "  is not back-fed. Gate drive ETH_BR_G = 74LVC1G17 powered from ETH_3V3, input ETH_I2C_EN (TCA9534 P6): the gates can only\n"
+             "  be high while ETH_3V3 is up (driver unpowered -> Ioff, 100k holds the gates low; VOH <= ETH_3V3 while it decays, QOD\n"
+             "  takes it to 0 V). So ETH_I2C_EN = 1 with ETH_RESET_N = 0 (firmware bug, thermal power-down mid-write) can no longer drag\n"
+             "  I2C_SYS into the dead PHY pull-ups and lock the TCA9534 that controls both (review mcu_ui #5). Firmware should still\n"
+             "  clear P6 before powering the PHY down.  Q801 = BSS138DW (VGS(th) <= 1.5 V) for solid conduction with a 3.3 V gate.\n"
+             "Bench items (review data #5): scan I2C_SYS with the bridge on vs off (PHY address, collisions with 0x20/0x41/0x44/0x45/\n"
+             "  0x48-0x4F/0x50); confirm the OTP write persists (write once, power-cycle via ETH_RESET_N, read PLA_IDR over USB) and that\n"
+             "  the slave answers on a blank eFuse. Volatile write -> rely on the host-tool / OS fallbacks.",
           (x0, y0 + 35.56))
 
     # =============================================================================================
@@ -267,5 +276,15 @@ def build(D):
     # PWR_FLAGs: load-switched / filtered / regulator-output rails
     s.flag("ETH_AVDD33_PLL")
     s.flag("ETH_0V95")
+    # Bridge gate driver (review mcu_ui #5) - placed last so earlier references keep their numbers
+    y = 213.36
+    s.part("74xGxx:74LVC1G17", "U", "74LVC1G17", "Package_TO_SOT_SMD:SOT-23-5", at=(284.48, y),
+           pins={"2": "ETH_I2C_EN", "4": "ETH_BR_G", "5": "ETH_3V3", "3": "GND"}, nc=["1"], lcsc=BUF_ST,
+           mpn="74LVC1G17W5-7",
+           desc="Bridge gate driver powered from ETH_3V3: gates = ETH_I2C_EN AND ETH_3V3 present (Ioff input)")
+    s.c("100n", "ETH_3V3", "GND", at=(299.72, y), lcsc=C_100N, desc="gate driver decoupling")
+    s.r("100k", "ETH_BR_G", "GND", at=(345.44, y), lcsc=R_100K,
+        desc="bridge gates low while the gate driver is unpowered (ETH_3V3 off)")
+
     s.build()
     return s

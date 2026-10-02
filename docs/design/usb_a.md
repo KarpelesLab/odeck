@@ -9,7 +9,7 @@ protection and VBUS bulk capacitance.
 USBAx_PWR_EN ══╗ (hub PRT_CTL, same node   ┌───────┐
   (0R on hub)  ╠══ USBAx_OCS_N ◄── FAULT# ─┤       │
                ║                    A ─────┤ 1G32  ├── USBAx_EN ──► EN
-USBAx_FORCE_EN ╫──────(100k PD)──── B ─────┤  OR   │   (100k PD)
+USBAx_FORCE_EN ╫──────(4.7k PD)──── B ─────┤  OR   │   (100k PD)
                ║                           └───────┘
 +5V ── 30 mΩ ── USBAx_SW_IN ── TPS2553 (RILIM 15k) ── +5V_USBAx ── 150 µF + 10 µF + 100 nF ── VBUS (J pin 1)
         │  │                                                        USBLC6 VBUS clamp
@@ -54,7 +54,12 @@ hub USB2 ─────────────────── USBAx_DP/DN �
   - Port off or OC latched: the hub drives the pin low.
 - **74LVC1G32** (C10096, the same part as on power_input), powered from +3V3:
   - A = USBAx_PWR_EN. This is a CMOS input with no load, so the hub's weak pull-up is enough.
-  - B = USBAx_FORCE_EN, which has a 100 kΩ pull-down. The default is off while the RP2350 is in reset or BOOTSEL.
+  - B = USBAx_FORCE_EN, which has a **4.7 kΩ** pull-down (R702/R707). The default is off while the RP2350 is in reset
+    or BOOTSEL.
+    - 4.7k rather than 100k because of **RP2350 erratum E9** (stepping A2). A pad that was driven high and then reverts
+      to input can latch at about 2.2 V. That is above the LVC1G32 VIH of 2.0 V, so the port would be forced on after a
+      crash or a reboot to BOOTSEL. Only a pull of ≤ 8.2 kΩ defeats the latch.
+    - The push-pull GPIO sources 0.7 mA while forcing, which gives a negligible VOH drop at the default 4 mA drive.
   - Y = TPS2553 EN, with a 100 kΩ pull-down. This keeps the switch off during the +3V3 ramp, when +5V is up and the OR gate
     is unpowered with Ioff high-Z.
 - TPS2553 FAULT# (open drain) → USBAx_OCS_N, which is the same node. **No pull-up is added on this sheet.**

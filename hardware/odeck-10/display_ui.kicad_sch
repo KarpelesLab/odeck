@@ -37,7 +37,7 @@
 						)
 					)
 				)
-				(property "Footprint" "odeck:FL_001"
+				(property "Footprint" "odeck:LCD_FPC_Solder_12P_P0.50mm"
 					(at 0 -21.59 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3799,7 +3799,7 @@
 				)
 			)
 		)
-		(property "Value" "33"
+		(property "Value" "39"
 			(at 22.86 105.41 0)
 			(effects
 				(font
@@ -3825,7 +3825,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Current set: (5.0-3.0)/33 = 60 mA typ; 74 mA worst (5.25 V, Vf 2.8) < 80 mA abs; 0.18 W max"
+		(property "Description" "Current set: (5.13-3.0)/39 = 55 mA typ; 69 mA worst (+5V = 5.5 V laptop vSafe5V, Vf 2.8) < 80 mA abs; 0.19 W max"
 			(at 20.32 104.14 0)
 			(effects
 				(font
@@ -3834,7 +3834,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C18005"
+		(property "LCSC" "C22198"
 			(at 20.32 104.14 0)
 			(effects
 				(font
@@ -6720,7 +6720,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 243.84 31.75 0)
 			(effects
 				(font
@@ -6746,7 +6746,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Series R ADC4: ADC pins are not 5 V/fault tolerant -> 1k"
+		(property "Description" "Series R ADC4: ADC pins are not fault tolerant; 10k limits back-power (3.3 V, deck off) to ~0.3 mA"
 			(at 241.30 30.48 0)
 			(effects
 				(font
@@ -6755,7 +6755,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25744"
 			(at 241.30 30.48 0)
 			(effects
 				(font
@@ -6847,7 +6847,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 254.00 31.75 0)
 			(effects
 				(font
@@ -6873,7 +6873,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Series R ADC5: ADC pins are not 5 V/fault tolerant -> 1k"
+		(property "Description" "Series R ADC5: ADC pins are not fault tolerant; 10k limits back-power (3.3 V, deck off) to ~0.3 mA"
 			(at 251.46 30.48 0)
 			(effects
 				(font
@@ -6882,7 +6882,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25744"
 			(at 251.46 30.48 0)
 			(effects
 				(font
@@ -9849,6 +9849,336 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Device:C")
+		(at 261.62 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aed5166a-34bb-50d0-a92e-e1f806b233f4")
+		(property "Reference" "C1108"
+			(at 264.16 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10n"
+			(at 264.16 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 261.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 261.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "ADC4 charge reservoir at the RP2350 side of the 10k (as ISENSE)"
+			(at 261.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 261.62 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "056ecea5-98ef-5f54-b067-7c0a4c47303b")
+		)
+		(pin "2"
+			(uuid "f48ac7f1-fc14-5905-9228-ef3be635cdb6")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f4283330-6d38-41bc-9a62-69dc329aa246"
+					(reference "C1108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 261.62 26.67) (xy 261.62 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "307a1672-88c9-52a1-aa02-3e49ae8c214c")
+	)
+	(global_label "HDR_ADC0"
+		(shape passive)
+		(at 261.62 24.13 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "36c7c4de-9a21-560f-9ab9-3ca4c68da27f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 261.62 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 261.62 34.29) (xy 261.62 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1f9023d-2aa2-5e74-aa5d-fd976dfb7e11")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 261.62 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "43ffada0-6fb1-5519-a693-850c8480f363")
+		(property "Reference" "#PWR1135"
+			(at 261.62 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 261.62 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 261.62 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa90753f-4288-5e06-97b4-13e989ec7186")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f4283330-6d38-41bc-9a62-69dc329aa246"
+					(reference "#PWR1135")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 271.78 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "413ea23d-89b5-537e-9eed-50f92617e72f")
+		(property "Reference" "C1109"
+			(at 274.32 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10n"
+			(at 274.32 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 271.78 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 271.78 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "ADC5 charge reservoir at the RP2350 side of the 10k (as ISENSE)"
+			(at 271.78 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 271.78 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "821438ea-95be-5948-b7f4-cdecc2f6d1b2")
+		)
+		(pin "2"
+			(uuid "3e98a823-bfbd-5387-8e0f-214e87c23b1b")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f4283330-6d38-41bc-9a62-69dc329aa246"
+					(reference "C1109")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 271.78 26.67) (xy 271.78 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fe5919a-cb45-503d-bcdc-1d17034b9959")
+	)
+	(global_label "HDR_ADC1"
+		(shape passive)
+		(at 271.78 24.13 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "90eaa5de-c21a-521e-96e9-cbd87ae52172")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 271.78 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 271.78 34.29) (xy 271.78 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a62052c6-b05c-5fa1-94da-d406c5d778e4")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 271.78 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2343705d-0e3c-591d-862d-cf786fc54793")
+		(property "Reference" "#PWR1136"
+			(at 271.78 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 271.78 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 271.78 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c5b99005-213f-5b23-86af-8777c17b37c7")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f4283330-6d38-41bc-9a62-69dc329aa246"
+					(reference "#PWR1136")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(text "1. LCD  HS20HS072RX 2.0in IPS 240x320 (ST7789), SPI 4-wire, 3.3 V logic"
 		(exclude_from_sim no)
 		(at 20.32 15.24 0)
@@ -9858,7 +10188,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "307a1672-88c9-52a1-aa02-3e49ae8c214c")
+		(uuid "571ab5b0-96ff-57a6-907b-af781e647d07")
 	)
 	(text "FPC pinout (datasheet sec. 6): 1 GND, 2 CS, 3 RS (D/C), 4 SCL, 5 SDA (MOSI), 6 RST, 7 NC, 8 IOVCC, 9 VCI, 10 LED-A, 11 LED-K, 12 GND."
 		(exclude_from_sim no)
@@ -9869,7 +10199,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "36c7c4de-9a21-560f-9ab9-3ca4c68da27f")
+		(uuid "bfe1a22b-4e4a-5db1-930b-72b67bdca78a")
 	)
 	(text "Interface is hard-wired to 4-wire SPI inside the module (no IM straps on the FPC); write-only (no MISO), up to 62.5 MHz."
 		(exclude_from_sim no)
@@ -9880,9 +10210,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "e1f9023d-2aa2-5e74-aa5d-fd976dfb7e11")
+		(uuid "c40af40d-bc56-5bff-960f-db56eb838731")
 	)
-	(text "VCI 2.4-3.3 V / IOVCC 1.65-3.3 V: both on +3V3 (panel abs max 4.6 V)."
+	(text "VCI 2.4-3.3 V / IOVCC 1.65-3.3 V: both on +3V3 = 3.33 V nom (~3.36 V max): accepted known deviation from the 3.3 V"
 		(exclude_from_sim no)
 		(at 20.32 71.12 0)
 		(effects
@@ -9891,9 +10221,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "43ffada0-6fb1-5519-a693-850c8480f363")
+		(uuid "10a4d229-b4bb-5302-ad09-844a1f5dcdad")
 	)
-	(text "MECHANICAL: panel 51.8 x 36.2 x 2.05 mm on ~1 mm double-sided foam tape over a copper/silk-only keep-out; the 0.3 mm FPC tail"
+	(text "  recommended max (abs max 4.6 V). Retrimming +3V3 to 3.30 V (power_rails) would remove it."
 		(exclude_from_sim no)
 		(at 20.32 73.66 0)
 		(effects
@@ -9902,9 +10232,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "fa90753f-4288-5e06-97b4-13e989ec7186")
+		(uuid "6aeccb4e-8f8f-5408-9297-c36101f64b85")
 	)
-	(text "  (6.5 mm wide, 12 x 0.5 mm fingers, 5 mm stiffener) folds under/behind the panel onto the solder pads (footprint"
+	(text "MECHANICAL: panel 51.8 x 36.2 x 2.05 mm on ~1 mm double-sided foam tape over a copper/silk-only keep-out; the 0.3 mm FPC tail"
 		(exclude_from_sim no)
 		(at 20.32 76.2 0)
 		(effects
@@ -9913,9 +10243,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "3fe5919a-cb45-503d-bcdc-1d17034b9959")
+		(uuid "04e23860-f7f8-574c-b414-500ca17b4b4a")
 	)
-	(text "  odeck:LCD_FPC_Solder_12P_P0.50mm: check pin-1 side vs fold direction). JLC hand-solders the tail; confirm tape service."
+	(text "  (6.5 mm wide, 12 x 0.5 mm fingers, 5 mm stiffener) folds under/behind the panel onto the solder pads (footprint"
 		(exclude_from_sim no)
 		(at 20.32 78.74 0)
 		(effects
@@ -9924,9 +10254,20 @@
 			)
 			(justify left top)
 		)
-		(uuid "90eaa5de-c21a-521e-96e9-cbd87ae52172")
+		(uuid "409710db-6773-53dd-bba6-541698166276")
 	)
-	(text "2. BACKLIGHT  4 white LEDs in parallel, Vf 3.0 V typ (2.8-3.2) @ 80 mA max -> from +5V, 33R, low-side PWM"
+	(text "  odeck:LCD_FPC_Solder_12P_P0.50mm: check pin-1 side vs fold direction). JLC hand-solders the tail; confirm tape service."
+		(exclude_from_sim no)
+		(at 20.32 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c1441716-1a6d-5419-962e-5b755db047a9")
+	)
+	(text "2. BACKLIGHT  4 white LEDs in parallel, Vf 3.0 V typ (2.8-3.2) @ 80 mA max -> from +5V, 39R, low-side PWM"
 		(exclude_from_sim no)
 		(at 20.32 88.9 0)
 		(effects
@@ -9935,9 +10276,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "a62052c6-b05c-5fa1-94da-d406c5d778e4")
+		(uuid "463bda5a-ff19-57c1-b525-9e288fb58722")
 	)
-	(text "Not from +3V3: 0.1-0.5 V headroom over Vf would make the current depend on LED Vf. 60 mA = 75 % of max -> ~0.3 W backlight."
+	(text "Not from +3V3: 0.1-0.5 V headroom over Vf would make the current depend on LED Vf. 55 mA typ (+5V 5.13 V) -> ~0.28 W."
 		(exclude_from_sim no)
 		(at 20.32 114.3 0)
 		(effects
@@ -9946,9 +10287,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "2343705d-0e3c-591d-862d-cf786fc54793")
+		(uuid "799ddbad-341c-597e-804f-7e004b747c1d")
 	)
-	(text "PWM: LCD_BL_PWM (GPIO25, PWM4 B) at >= 20 kHz (inaudible), 0-100 %. Firmware dims after inactivity."
+	(text "Worst case: bus-powered +5V = laptop VBUS up to 5.5 V: (5.5-2.8)/39 = 69 mA (72 mA at Vf 2.7 V hot) < 80 mA abs max."
 		(exclude_from_sim no)
 		(at 20.32 116.84 0)
 		(effects
@@ -9957,7 +10298,29 @@
 			)
 			(justify left top)
 		)
-		(uuid "c5b99005-213f-5b23-86af-8777c17b37c7")
+		(uuid "4ed65496-4792-5c82-844d-c34b9bbed8da")
+	)
+	(text "  Min (4.75 V, Vf 3.2) = 40 mA. PWM does not reduce the peak current, so R1101 alone must keep it under 80 mA."
+		(exclude_from_sim no)
+		(at 20.32 119.38 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "48b1dfe1-80da-5167-8e74-25d9093b745f")
+	)
+	(text "PWM: LCD_BL_PWM (GPIO25, PWM4 B) at >= 20 kHz (inaudible), 0-100 %. Firmware dims after inactivity."
+		(exclude_from_sim no)
+		(at 20.32 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "9a105927-c7fb-59a0-86e3-446d6c5920a9")
 	)
 	(text "3. USER BUTTONS  side-push (actuator overhangs the front edge), active low"
 		(exclude_from_sim no)
@@ -9968,7 +10331,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "571ab5b0-96ff-57a6-907b-af781e647d07")
+		(uuid "71d147c6-c980-5593-b348-04d9b837e87b")
 	)
 	(text "Button A: per-port forced-5V 'charge mode' toggle; button B: LCD page/select (firmware-defined, remappable)."
 		(exclude_from_sim no)
@@ -9979,7 +10342,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bfe1a22b-4e4a-5db1-930b-72b67bdca78a")
+		(uuid "9fc6e0f9-6605-56f0-81cb-7908d22cd727")
 	)
 	(text "Place on the front edge with the actuator 0.3-0.5 mm past the board outline. Footprint has 2 x 0.9 mm guide-boss holes."
 		(exclude_from_sim no)
@@ -9990,7 +10353,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "c40af40d-bc56-5bff-960f-db56eb838731")
+		(uuid "c48e910c-3603-5138-9225-86463e71219c")
 	)
 	(text "4. USER GPIO HEADER  2x8 2.54 mm, UNPOPULATED (in_bom no); series R + ESD + fuses populated"
 		(exclude_from_sim no)
@@ -10001,7 +10364,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "10a4d229-b4bb-5302-ad09-844a1f5dcdad")
+		(uuid "3788933a-1554-53af-ba78-713e8592eb11")
 	)
 	(text "Pinout (silkscreen, top and back):  1 5V   2 3V3 | 3 G12  4 G13 | 5 G14  6 G15 | 7 GND  8 GND"
 		(exclude_from_sim no)
@@ -10012,7 +10375,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "6aeccb4e-8f8f-5408-9297-c36101f64b85")
+		(uuid "0539db50-35fe-5532-88b0-293921309b90")
 	)
 	(text "                                    9 G16 10 G17 | 11 G18 12 G19 | 13 A4(G44) 14 A5(G45) | 15 GND 16 GND"
 		(exclude_from_sim no)
@@ -10023,9 +10386,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "04e23860-f7f8-574c-b414-500ca17b4b4a")
+		(uuid "9dd7a1c9-f3d6-5e96-9a75-061a0208a21b")
 	)
-	(text "HDR_P0..7 = RP2350 GPIO12..19: contiguous (PIO), HSTX-capable (DVI!), UART0/SPI0/SPI1/I2C0/I2C1/PWM6,7,0,1 available."
+	(text "HDR_P0..7 = RP2350 GPIO12..19: contiguous (PIO). FREE for the header: SPI1 (12-15), PWM6/7/0/1, PIO2, HSTX (not DVI:"
 		(exclude_from_sim no)
 		(at 160.02 119.38 0)
 		(effects
@@ -10034,9 +10397,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "409710db-6773-53dd-bba6-541698166276")
+		(uuid "c6e13cc5-0377-509c-ac87-1448fe6f447f")
 	)
-	(text "220R + ESD: GPIO12-19 are fault tolerant (5.5 V max with +3V3 up, 3.63 V with the deck off); 220R limits ESD/fault current."
+	(text "  220R + ESD break TMDS). UART0 (debug), SPI0 (LCD), I2C0 (I2C_PD) and I2C1 (I2C_SYS) are already taken."
 		(exclude_from_sim no)
 		(at 160.02 121.92 0)
 		(effects
@@ -10045,9 +10408,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "c1441716-1a6d-5419-962e-5b755db047a9")
+		(uuid "cc647098-126a-5374-8c21-bdaed4acc45f")
 	)
-	(text "A0/A1 (ADC4/5) via 1k: 0-3.3 V; NOT 5 V tolerant. 5V/3V3 pins are outputs (do not back-feed the deck through them)."
+	(text "3.3 V LOGIC ONLY. 220R + ESD (TPD4E02B04 VRWM 3.6 V): 5 V is abuse, not a feature, even though the FT pads survive it."
 		(exclude_from_sim no)
 		(at 160.02 124.46 0)
 		(effects
@@ -10056,7 +10419,18 @@
 			)
 			(justify left top)
 		)
-		(uuid "463bda5a-ff19-57c1-b525-9e288fb58722")
+		(uuid "c0e4977a-1442-55a5-a15e-d69a12f480b3")
+	)
+	(text "A0/A1 (ADC4/5) via 10k + 10 nF: 0-3.3 V, not fault tolerant. 5V/3V3 pins are outputs (do not back-feed the deck)."
+		(exclude_from_sim no)
+		(at 160.02 127.0 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "38ad0cff-c743-5223-ae27-49f175e2826f")
 	)
 	(text "5. QWIIC / STEMMA QT  JST SH 4-pin, I2C_EXT (PIO I2C, 4.7k pull-ups on mcu sheet), 3.3 V"
 		(exclude_from_sim no)
@@ -10067,7 +10441,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "799ddbad-341c-597e-804f-7e004b747c1d")
+		(uuid "85a034ff-f9dd-578a-a954-275f57e6f99f")
 	)
 	(text "Qwiic power shares the fused +3V3_USR with the header. Bus is independent of I2C_SYS (no risk to the sensors/PD bus)."
 		(exclude_from_sim no)
@@ -10078,6 +10452,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "4ed65496-4792-5c82-844d-c34b9bbed8da")
+		(uuid "2a874212-5ae5-596d-b1ae-a1591891a015")
 	)
 )

@@ -5176,26 +5176,15 @@
 		)
 		(uuid "a6a0b135-1919-5b7b-9333-eed3f567912d")
 	)
-	(global_label "PMG1_SWCLK"
-		(shape passive)
+	(label "MCU_PMG1_SWCLK"
 		(at 214.63 176.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
 		(uuid "d9e290cd-1058-57ba-aca2-dbc3e12f584a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 214.63 176.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 	)
 	(wire
 		(pts
@@ -5207,26 +5196,15 @@
 		)
 		(uuid "15df3e98-0463-500e-a32d-9689dce23fa2")
 	)
-	(global_label "PMG1_SWDIO"
-		(shape passive)
+	(label "MCU_PMG1_SWDIO"
 		(at 214.63 179.07 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
 		(uuid "69373111-ea53-50d5-aa83-6ec7eca39f64")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 214.63 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 	)
 	(wire
 		(pts
@@ -6726,7 +6704,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Core regulator inductor, polarity dot toward VREG_LX (RPi: orientation matters)"
+		(property "Description" "Core regulator inductor: polarity dot on the +1V1/DVDD (C_OUT) pad 2, VREG_LX on the un-dotted pad 1 (RP2350 DS Fig. 26)"
 			(at 27.94 48.26 0)
 			(effects
 				(font
@@ -17115,6 +17093,579 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 50.80 83.82 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "de199e9f-5635-5c63-a836-068a9b9f18da")
+		(property "Reference" "C1028"
+			(at 53.34 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4.7u"
+			(at 53.34 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 50.80 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.80 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Second V_OUT cap (RP2350 DS 6.3.8.1): at DVDD pin 32 (bottom edge, by XIN/XOUT), away from L1001/C_OUT"
+			(at 50.80 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 50.80 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9e0bf926-273f-51e9-9afe-3796f23ca741")
+		)
+		(pin "2"
+			(uuid "7fa1a279-efe2-51d5-abad-9dbcb17ada4d")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "C1028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 50.80 80.01) (xy 50.80 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db518119-25d8-5305-bf74-41b950fd3969")
+	)
+	(global_label "+1V1"
+		(shape passive)
+		(at 50.80 77.47 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "798923ec-dda1-5cec-9a74-092a628660b2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 50.80 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 50.80 87.63) (xy 50.80 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9db49de1-550c-547b-a0e2-8acacb843bac")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 50.80 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e50ed0c9-da64-508f-a031-b5e62a7150a7")
+		(property "Reference" "#PWR1045"
+			(at 50.80 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 50.80 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.80 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ad250158-1ebe-531b-a44f-5ce44bca15d6")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "#PWR1045")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 76.20 190.50 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b3fcf295-080d-5973-b466-41bb642645f5")
+		(property "Reference" "R1026"
+			(at 78.74 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 78.74 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 76.20 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 76.20 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "PMG1 SWD series R: dead deck = PMG1 VDDD (<= 3.65 V) pull-up into unpowered FT GPIO26; harmless for SWD <= 10 MHz"
+			(at 76.20 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C11702"
+			(at 76.20 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4a1d8e65-e8bd-5b38-b47b-baa0d029331a")
+		)
+		(pin "2"
+			(uuid "afb22cf1-872d-5e44-ba8d-a54b10d96930")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "R1026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 76.20 186.69) (xy 76.20 184.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd7dfefe-382a-5032-a344-abf9ff112c68")
+	)
+	(label "MCU_PMG1_SWCLK"
+		(at 76.20 184.15 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c375b635-391e-5202-8fb7-cf81f801be19")
+	)
+	(wire
+		(pts
+			(xy 76.20 194.31) (xy 76.20 196.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d551900-1464-5900-a4f3-ec0c1d1072a6")
+	)
+	(global_label "PMG1_SWCLK"
+		(shape passive)
+		(at 76.20 196.85 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a2fe51b8-e6df-5a3c-9df7-9201dd701d5e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 76.20 196.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 86.36 190.50 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "33ea0a98-352d-5c9b-aa4b-53d333d97479")
+		(property "Reference" "R1027"
+			(at 88.90 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 88.90 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 86.36 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 86.36 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "PMG1 SWD series R (GPIO27)"
+			(at 86.36 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C11702"
+			(at 86.36 190.50 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5a8a806e-9f2d-57b5-ae3c-17733c8e964d")
+		)
+		(pin "2"
+			(uuid "7ee027c7-19f3-5ab2-b221-2ae26e046f80")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "R1027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 86.36 186.69) (xy 86.36 184.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77a7da2e-71b6-51ca-a0a0-4ec6cd10edbe")
+	)
+	(label "MCU_PMG1_SWDIO"
+		(at 86.36 184.15 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3e0b9e4e-fd47-5412-8077-75ab41d73441")
+	)
+	(wire
+		(pts
+			(xy 86.36 194.31) (xy 86.36 196.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5da7b982-3e77-55a8-9cb9-c41feb385ae4")
+	)
+	(global_label "PMG1_SWDIO"
+		(shape passive)
+		(at 86.36 196.85 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0bf6c21c-3312-5ab0-98d2-bdd633b1f2fb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 86.36 196.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 391.16 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "20324ca0-56a2-55d2-a528-9f3fd0fcd7a0")
+		(property "Reference" "R1028"
+			(at 393.70 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 393.70 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 391.16 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 391.16 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "TCA9534 P7 spare: pull-down so the input never floats (no spurious INT, no extra ICC in BOOTSEL/blank firmware)"
+			(at 391.16 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 391.16 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d6c7e4be-6b9f-5104-a692-912a69ed40d4")
+		)
+		(pin "2"
+			(uuid "c34c5869-f01a-5b0e-adcd-902ec2e42815")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "R1028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 391.16 95.25) (xy 391.16 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07cdf16b-cebd-58b4-ad28-561fc7dffae3")
+	)
+	(label "IOX_P7"
+		(at 391.16 92.71 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4333b597-202e-58ba-8627-9685bbb8fa93")
+	)
+	(wire
+		(pts
+			(xy 391.16 102.87) (xy 391.16 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edcd3401-61d7-5dfa-be57-a5bf68d05afd")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 391.16 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2c1d4d35-6ac5-5da9-a9f0-351d66b4a8ad")
+		(property "Reference" "#PWR1046"
+			(at 391.16 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 391.16 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 391.16 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "465fcbb1-94fb-549e-b22e-cdae15635f9e")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/2c213924-c994-409d-8b41-439a02d42bbf"
+					(reference "#PWR1046")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 20.32 30.48 0)
 		(unit 1)
@@ -17186,7 +17737,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "db518119-25d8-5305-bf74-41b950fd3969")
+		(uuid "a2fab040-0d06-501f-a5b7-bc86ec552d7b")
 	)
 	(label "VREG_AVDD"
 		(at 20.32 33.02 270)
@@ -17196,7 +17747,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "798923ec-dda1-5cec-9a74-092a628660b2")
+		(uuid "f990a5f9-dc7e-58dd-ae5d-f45104e1cdd1")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -17270,7 +17821,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9db49de1-550c-547b-a0e2-8acacb843bac")
+		(uuid "6afb9620-44a0-544f-a766-5a592b8ddf2e")
 	)
 	(label "ADC_AVDD"
 		(at 35.56 33.02 270)
@@ -17280,7 +17831,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "e50ed0c9-da64-508f-a031-b5e62a7150a7")
+		(uuid "7de08ac2-c9d2-5fbc-ac53-d0b212267462")
 	)
 	(text "1. RP2350B  QFN-80 10x10, 0.4 mm pitch, EP = GND (via array). All 48 GPIO allocated (table in docs/design/mcu.md)"
 		(exclude_from_sim no)
@@ -17291,7 +17842,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ad250158-1ebe-531b-a44f-5ce44bca15d6")
+		(uuid "da789645-da4c-5f13-a26b-88e57d4228e7")
 	)
 	(text "2. POWER  +3V3 in; internal switching regulator makes +1V1 (DVDD). Copy the RPi minimal-board regulator layout exactly."
 		(exclude_from_sim no)
@@ -17302,7 +17853,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "cd7dfefe-382a-5032-a344-abf9ff112c68")
+		(uuid "b648e035-d2af-5c88-89f6-f688ffecf9c5")
 	)
 	(text "+1V1 is the RP2350 core (DVDD), made on-chip (VREG_LX -> L1001 -> VREG_FB/DVDD); it is not used elsewhere."
 		(exclude_from_sim no)
@@ -17313,9 +17864,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "c375b635-391e-5202-8fb7-cf81f801be19")
+		(uuid "d734307a-4a10-5186-8f47-f57ba7bbc3af")
 	)
-	(text "VREG_PGND: own via cluster, return the C6/C7 switching loop straight to pin 62 (RPi datasheet 'External components')."
+	(text "L1001 ORIENTATION: dot = +1V1/C_OUT side (pad 2), as on the Pico 2 layout (DS Fig. 26); NOT toward VREG_LX. Rotated or"
 		(exclude_from_sim no)
 		(at 20.32 96.52 0)
 		(effects
@@ -17324,9 +17875,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "0d551900-1464-5900-a4f3-ec0c1d1072a6")
+		(uuid "0201426e-4289-5d9c-a30e-1d1c906a789d")
 	)
-	(text "ADC_AVDD = +3V3 through 10R/4.7u: the ADC reference; NTC bias resistors hang on ADC_AVDD -> ratiometric."
+	(text "  pin-swapped = worse regulation. Check the JLC CPL rotation/preview against the footprint dot before ordering."
 		(exclude_from_sim no)
 		(at 20.32 99.06 0)
 		(effects
@@ -17335,9 +17886,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "a2fe51b8-e6df-5a3c-9df7-9201dd701d5e")
+		(uuid "ce00ba3a-1633-5a5c-b6e0-5bd11cc83da4")
 	)
-	(text "Load: ~30-60 mA at 150 MHz both cores; < 0.2 W."
+	(text "Second 4.7u on +1V1 sits at DVDD pin 32 (bottom edge of the package), not next to L1001/C_OUT."
 		(exclude_from_sim no)
 		(at 20.32 101.6 0)
 		(effects
@@ -17346,7 +17897,40 @@
 			)
 			(justify left top)
 		)
-		(uuid "77a7da2e-71b6-51ca-a0a0-4ec6cd10edbe")
+		(uuid "9ce853b8-dc17-50e7-916e-0469f7faeab8")
+	)
+	(text "VREG_PGND: own via cluster, return the C6/C7 switching loop straight to pin 62 (RPi datasheet 'External components')."
+		(exclude_from_sim no)
+		(at 20.32 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "5fe60535-61c9-52c7-a46a-bbfdccc9abb2")
+	)
+	(text "ADC_AVDD = +3V3 through 10R/4.7u: the ADC reference; NTC bias resistors hang on ADC_AVDD -> ratiometric."
+		(exclude_from_sim no)
+		(at 20.32 106.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "80b0f892-140a-5601-8771-5be153a1b384")
+	)
+	(text "Load: ~30-60 mA at 150 MHz both cores; < 0.2 W."
+		(exclude_from_sim no)
+		(at 20.32 109.22 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "365dbaf9-31be-51d9-9a47-eeed0bf9204a")
 	)
 	(text "3. CLOCK / QSPI FLASH / BOOTSEL / RUN / SWD"
 		(exclude_from_sim no)
@@ -17357,7 +17941,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3e0b9e4e-fd47-5412-8077-75ab41d73441")
+		(uuid "d48837b6-1149-5205-8436-0340ddb859a4")
 	)
 	(text "SWD pads (TP1001-TP1004, 1.0 mm, 2.54 mm apart): SWCLK, SWDIO, RUN, GND -> pogo jig or Raspberry Pi Debug Probe."
 		(exclude_from_sim no)
@@ -17368,7 +17952,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "5da7b982-3e77-55a8-9cb9-c41feb385ae4")
+		(uuid "2b536db8-9b95-52fa-8868-0cff12b56902")
 	)
 	(text "BOOTSEL also recovers a hub stuck waiting for SMBus config: hold BOOTSEL + power-cycle -> HUB_SMB_PU stays low."
 		(exclude_from_sim no)
@@ -17379,9 +17963,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "0bf6c21c-3312-5ab0-98d2-bdd633b1f2fb")
+		(uuid "f8f1e37a-7e1a-5456-838b-5c8bdceb9c46")
 	)
-	(text "Place the QSPI_SS resistors next to the flash; keep the QSPI bus short and direct, no stubs."
+	(text "PMG1 SWD (GPIO26/27 -> 1k -> PMG1_SWCLK/SWDIO) + PMG1_XRES_N (GPIO28). FIRMWARE RULE: never assert PMG1_XRES_N, start a"
 		(exclude_from_sim no)
 		(at 20.32 203.2 0)
 		(effects
@@ -17390,7 +17974,40 @@
 			)
 			(justify left top)
 		)
-		(uuid "07cdf16b-cebd-58b4-ad28-561fc7dffae3")
+		(uuid "99f5237f-8cf1-5d2b-93c4-262ab0b94d72")
+	)
+	(text "  PMG1 SWD session or enter the PMG1 I2C bootloader unless EXT_PWR_PRESENT = 1 (TCA9534 P0). Bus-powered, the PMG1 holds"
+		(exclude_from_sim no)
+		(at 20.32 205.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "603402bb-1d24-5a1b-8f08-5a47b18278bc")
+	)
+	(text "  LAPTOP_SNK_EN: reset/flash drops +5V/+3V3, the RP2350 browns out mid-flash and the PMG1 is left bricked."
+		(exclude_from_sim no)
+		(at 20.32 208.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "59750955-9de8-50b8-89c9-1121db364cf9")
+	)
+	(text "Place the QSPI_SS resistors next to the flash; keep the QSPI bus short and direct, no stubs."
+		(exclude_from_sim no)
+		(at 20.32 210.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "2d87974a-aeef-5a40-9568-b54cef073695")
 	)
 	(text "4. USB FS  -> USB7206C port 6 (USB2-only)"
 		(exclude_from_sim no)
@@ -17401,7 +18018,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4333b597-202e-58ba-8627-9685bbb8fa93")
+		(uuid "5b55032c-fef0-57b7-bdbf-1fce4a79563e")
 	)
 	(text "27R at the RP2350 pins (RPi requirement). Route as a 90R differential pair over solid GND. No VBUS sense: the"
 		(exclude_from_sim no)
@@ -17412,7 +18029,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "edcd3401-61d7-5dfa-be57-a5bf68d05afd")
+		(uuid "83c249e0-95e6-5b09-9541-03573c9584f0")
 	)
 	(text "RP2350 is always attached to the hub; firmware treats bus reset/suspend as attach/detach."
 		(exclude_from_sim no)
@@ -17423,7 +18040,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2c1d4d35-6ac5-5da9-a9f0-351d66b4a8ad")
+		(uuid "595fcfba-452f-53c5-9c59-5ba7c0b32807")
 	)
 	(text "5. I2C PULL-UPS  (hub SMBus has none here: HUB_SMB_PU feeds them on usb_hub)"
 		(exclude_from_sim no)
@@ -17434,7 +18051,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "465fcbb1-94fb-549e-b22e-cdae15635f9e")
+		(uuid "bddfe25c-587d-53c0-8b01-514d41a290b6")
 	)
 	(text "I2C_SYS = I2C1 (GPIO2/3), I2C_PD = I2C0 (GPIO4/5): hardware controllers, 400 kHz (1 MHz possible on I2C_PD)."
 		(exclude_from_sim no)
@@ -17445,9 +18062,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "a2fab040-0d06-501f-a5b7-bc86ec552d7b")
+		(uuid "99d43a53-de79-5ae0-82c2-8a4b09ae9967")
 	)
-	(text "I2C_EXT (GPIO30/31) and HUB SMBus (GPIO8/9) run on PIO I2C (clock stretching supported); both pin pairs are also"
+	(text "I2C_EXT (GPIO30/31) and HUB SMBus (GPIO8/9) run on PIO I2C (clock stretching supported). GPIO8/9 map to I2C0 and"
 		(exclude_from_sim no)
 		(at 304.8 60.96 0)
 		(effects
@@ -17456,9 +18073,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "f990a5f9-dc7e-58dd-ae5d-f45104e1cdd1")
+		(uuid "3ae12ab4-b7c2-5739-87e2-f5af7c889ba3")
 	)
-	(text "hardware-I2C capable if firmware wants to swap buses. Pull-ups go to +3V3: with +3V3 off (dead-deck start, PMG1 on VBUS)"
+	(text "GPIO30/31 to I2C1 = the controllers already used by I2C_PD / I2C_SYS, so a hardware swap costs the other bus."
 		(exclude_from_sim no)
 		(at 304.8 63.5 0)
 		(effects
@@ -17467,9 +18084,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "6afb9620-44a0-544f-a766-5a592b8ddf2e")
+		(uuid "c062ea93-bc9c-5b49-b863-8b5baab25134")
 	)
-	(text "the PD bus idles low and no current flows into the unpowered RP2350 (all pins here are fault tolerant up to 3.63 V)."
+	(text "Pull-ups go to +3V3: with +3V3 off (dead-deck start, PMG1 on VBUS)"
 		(exclude_from_sim no)
 		(at 304.8 66.04 0)
 		(effects
@@ -17478,7 +18095,18 @@
 			)
 			(justify left top)
 		)
-		(uuid "7de08ac2-c9d2-5fbc-ac53-d0b212267462")
+		(uuid "fc7d7f9f-7d40-55c8-88ec-f349f6076e79")
+	)
+	(text "the PD bus idles low and no current flows into the unpowered RP2350 (all pins here are fault tolerant up to 3.63 V)."
+		(exclude_from_sim no)
+		(at 304.8 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "eaec9863-e51c-54ba-a05b-937fafb2d377")
 	)
 	(text "6. I/O EXPANDER  TCA9534 @ 0x20 on I2C_SYS: status inputs + PHY reset (48 GPIOs are all used)"
 		(exclude_from_sim no)
@@ -17489,7 +18117,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "da789645-da4c-5f13-a26b-88e57d4228e7")
+		(uuid "86fc90d3-f51c-5a19-8d50-ab0f59a99642")
 	)
 	(text "P0 EXT_PWR_PRESENT (3.3 V push-pull, 100k PD on pd_pmg1)  P1 LAPTOP_OVP_N (open drain, 10k PU on power_laptop)"
 		(exclude_from_sim no)
@@ -17500,7 +18128,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b648e035-d2af-5c88-89f6-f688ffecf9c5")
+		(uuid "73de2fad-5913-5870-8bca-db35528108b7")
 	)
 	(text "P2 TEMP_ALERT_N (TMP1075 wired-OR, 10k PU here)  P3/P4 CR_CD_SD_N / CR_CD_USD_N (card detect, pull-ups on card_reader)"
 		(exclude_from_sim no)
@@ -17511,9 +18139,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "d734307a-4a10-5186-8f47-f57ba7bbc3af")
+		(uuid "d6faaf95-49d6-52c8-b40b-8284efe67e58")
 	)
-	(text "P5 ETH_RESET_N (output: write 0 to reset the RTL8156BG; 10k PU here)  P6/P7 spare (10k PD; candidates: CCPROT faults)."
+	(text "P5 ETH_RESET_N (output: write 0 to reset the RTL8156BG; 10k PU here)  P6 ETH_I2C_EN (output; 100k PD R820 on ethernet)"
 		(exclude_from_sim no)
 		(at 304.8 121.92 0)
 		(effects
@@ -17522,9 +18150,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "0201426e-4289-5d9c-a30e-1d1c906a789d")
+		(uuid "48b24a94-ef6a-5057-b041-3a13c3f4bae9")
 	)
-	(text "All are 0-3.3 V signals that are low or unpowered whenever +3V3 is off -> no level shifting needed. These signals are"
+	(text "P7 spare (10k PD here; firmware: configure as output low). Candidates: a CCPROT fault or USBA1_OCS_N."
 		(exclude_from_sim no)
 		(at 304.8 124.46 0)
 		(effects
@@ -17533,9 +18161,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "ce00ba3a-1633-5a5c-b6e0-5bd11cc83da4")
+		(uuid "5bebc547-f863-5252-97df-af5c18ae4640")
 	)
-	(text "also seen by the PMG1 (EXT_PWR_PRESENT, LAPTOP_OVP_N) which owns the safety reaction; the RP2350 only displays them."
+	(text "All are 0-3.3 V signals that are low or unpowered whenever +3V3 is off -> no level shifting needed. These signals are"
 		(exclude_from_sim no)
 		(at 304.8 127.0 0)
 		(effects
@@ -17544,7 +18172,18 @@
 			)
 			(justify left top)
 		)
-		(uuid "9ce853b8-dc17-50e7-916e-0469f7faeab8")
+		(uuid "df1f97ea-e6f3-5a18-999b-e01f650c1475")
+	)
+	(text "also seen by the PMG1 (EXT_PWR_PRESENT, LAPTOP_OVP_N) which owns the safety reaction; the RP2350 only displays them."
+		(exclude_from_sim no)
+		(at 304.8 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "031a68e9-05bb-5e2f-afaf-aaef5d8994ea")
 	)
 	(text "7. ADC  GPIO40-47 are NOT fault tolerant (max IOVDD + 0.5 V, i.e. 0.5 V with +3V3 off) -> series R on live sources"
 		(exclude_from_sim no)
@@ -17555,9 +18194,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "5fe60535-61c9-52c7-a46a-bbfdccc9abb2")
+		(uuid "0a63357e-e7ee-5476-8595-3fb0096cd131")
 	)
-	(text "ADC0/1 USBA1/2_ISENSE: INA180A2 (gain 50) output -> 10k + 10 nF. If usb_a powers the INA180 from +5V, its output can"
+	(text "ADC0/1 USBA1/2_ISENSE: INA180A2 (gain 50, on +3V3 with 1k/100 nF on usb_a) -> 10k + 10 nF here: second RC stage,"
 		(exclude_from_sim no)
 		(at 304.8 167.64 0)
 		(effects
@@ -17566,9 +18205,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "80b0f892-140a-5601-8771-5be153a1b384")
+		(uuid "633aa103-76e9-5782-b126-55e2a65870ee")
 	)
-	(text "  exceed 3.3 V or be live before +3V3: 10k limits the clamp current to < 0.2 mA. Prefer INA180 on +3V3 (see mcu.md)."
+	(text "  and limits injection into the non-FT pads (< 0.2 mA) should the source ever be live with +3V3 off."
 		(exclude_from_sim no)
 		(at 304.8 170.18 0)
 		(effects
@@ -17577,7 +18216,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "365dbaf9-31be-51d9-9a47-eeed0bf9204a")
+		(uuid "8ec52cc0-281b-5a1b-b9b1-405cae40b926")
 	)
 	(text "ADC2/3 NTC_ADC0/1: 10k bias from ADC_AVDD, NTC to GND remote. 25 C -> 1/2 ADC_AVDD; 100 C -> ~0.3 V."
 		(exclude_from_sim no)
@@ -17588,9 +18227,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "d48837b6-1149-5205-8436-0340ddb859a4")
+		(uuid "7222cdff-eac9-543a-a5e4-1868b696984b")
 	)
-	(text "ADC4/5 HDR_ADC0/1: user header (1k + ESD on display_ui), 0-3.3 V only. ADC_AVDD = 3.3 V reference (internal temp = ch 8)."
+	(text "ADC4/5 HDR_ADC0/1: user header (10k + 10 nF + ESD on display_ui), 0-3.3 V only. ADC_AVDD = 3.3 V reference (internal temp = ch 8)."
 		(exclude_from_sim no)
 		(at 304.8 175.26 0)
 		(effects
@@ -17599,7 +18238,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2b536db8-9b95-52fa-8868-0cff12b56902")
+		(uuid "3ce6287e-93f2-530c-8392-c2fe666fe29e")
 	)
 	(text "8. LCD SPI  SPI0 (GPIO20-23) at up to 62.5 MHz write clock; series R at the source"
 		(exclude_from_sim no)
@@ -17610,7 +18249,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f8f1e37a-7e1a-5456-838b-5c8bdceb9c46")
+		(uuid "d7a7c6d0-8c98-5dd4-b5d2-8b28f7bd9a49")
 	)
 	(text "9. STATUS LEDs / DEBUG UART"
 		(exclude_from_sim no)
@@ -17621,7 +18260,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "99f5237f-8cf1-5d2b-93c4-262ab0b94d72")
+		(uuid "2a801fec-836d-580b-b7c1-74015b62136e")
 	)
 	(text "Power LED shows +3V3 even with no/broken firmware; status LED is firmware-driven (blink codes, fault)."
 		(exclude_from_sim no)
@@ -17632,7 +18271,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "603402bb-1d24-5a1b-8f08-5a47b18278bc")
+		(uuid "8689b51a-9774-563a-817b-94c77141f83a")
 	)
 	(text "J1001 (unpopulated, in_bom no): UART0 115200 8N1 debug console; GPIO0/1 are fault tolerant (FTDI cable safe)."
 		(exclude_from_sim no)
@@ -17643,7 +18282,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "59750955-9de8-50b8-89c9-1121db364cf9")
+		(uuid "f3003306-7ae3-54e9-b8cb-d306e438eb9c")
 	)
 	(text "10. CROSS-SHEET RULES"
 		(exclude_from_sim no)
@@ -17654,9 +18293,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "2d87974a-aeef-5a40-9568-b54cef073695")
+		(uuid "4bb2675e-c5cd-5701-a2ac-0f8c9a78efa0")
 	)
-	(text "Dead-deck start (PMG1 on laptop VBUS, +3V3 off): every signal that can be high then (PDIN_PRESENT, PMG1_SWDIO/SWCLK pulls,"
+	(text "Dead-deck start (PMG1 on laptop VBUS, +3V3 off): every signal that can be high then (PDIN_PRESENT, PMG1_SWDIO/SWCLK pulls"
 		(exclude_from_sim no)
 		(at 20.32 332.74 0)
 		(effects
@@ -17665,9 +18304,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "5b55032c-fef0-57b7-bdbf-1fce4a79563e")
+		(uuid "312956b9-b0e9-550e-b745-4cc059391efe")
 	)
-	(text "  CR_LED from the +5V-powered GL3224) lands on a fault-tolerant GPIO (0-39, <= 3.63 V while unpowered). ADC pins (40-47)"
+	(text "  via 1k, CR_LED from the +5V-powered GL3224) lands on a fault-tolerant GPIO (0-39, <= 3.63 V while unpowered). ADC pins"
 		(exclude_from_sim no)
 		(at 20.32 335.28 0)
 		(effects
@@ -17676,9 +18315,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "83c249e0-95e6-5b09-9541-03573c9584f0")
+		(uuid "e7691a22-178d-5e5b-bb97-0c2eb3c3d9db")
 	)
-	(text "  only see sources that are off with +3V3, or go through >= 1k (ISENSE 10k, header 1k). PMG1_XRES_N has its pass FET on pd_pmg1."
+	(text "  (40-47) only see sources that are off with +3V3, or go through >= 1k (ISENSE 10k, header 10k). PMG1_XRES_N has its pass FET on pd_pmg1."
 		(exclude_from_sim no)
 		(at 20.32 337.82 0)
 		(effects
@@ -17687,7 +18326,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "595fcfba-452f-53c5-9c59-5ba7c0b32807")
+		(uuid "df08e21b-fce9-514e-bc1a-efcb1292b12d")
 	)
 	(text "HUB_SMB_CLK/DAT: no pull-ups here. HUB_SMB_PU: push-pull. HUB_RESET_N, PMG1_XRES_N: drive low or Hi-Z only."
 		(exclude_from_sim no)
@@ -17698,7 +18337,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bddfe25c-587d-53c0-8b01-514d41a290b6")
+		(uuid "f080fbd2-b72e-50c5-a479-3eadf3228328")
 	)
 	(text "Reset state of all GPIOs = input + ~50k pull-down: FORCE_EN off, LCD in reset, backlight off, SMB_PU low (hub boots stand-alone)."
 		(exclude_from_sim no)
@@ -17709,6 +18348,50 @@
 			)
 			(justify left top)
 		)
-		(uuid "99d43a53-de79-5ae0-82c2-8a4b09ae9967")
+		(uuid "fcef5446-0a0a-557b-b955-428b8eb5f375")
+	)
+	(text "11. FIRMWARE RULES (full list: docs/design/mcu.md 'Firmware rules')"
+		(exclude_from_sim no)
+		(at 20.32 350.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "476f46c0-e4a5-5a03-9730-357dc33f3584")
+	)
+	(text "PMG1_XRES_N / PMG1 SWD / PMG1 I2C bootloader: ONLY while EXT_PWR_PRESENT = 1 (bus-powered = PMG1 is the deck's supply)."
+		(exclude_from_sim no)
+		(at 20.32 353.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "03d385fa-1b4e-551a-abf3-e74697327424")
+	)
+	(text "TCA9534: configure P7 (spare) as output low; P5/P6 outputs: clear P6 ETH_I2C_EN before driving P5 ETH_RESET_N low."
+		(exclude_from_sim no)
+		(at 20.32 355.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "61854edf-c24a-5243-bfb4-53ba578a4cae")
+	)
+	(text "ETH power cycle via P5 >= 100 ms. HUB_SMB_PU high only with working firmware; AA56h after config."
+		(exclude_from_sim no)
+		(at 20.32 358.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "2b5fbeca-cb60-5d38-9fe3-7b2c06452aab")
 	)
 )

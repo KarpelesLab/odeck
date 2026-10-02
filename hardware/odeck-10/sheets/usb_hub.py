@@ -9,11 +9,14 @@ from schgen import Sheet
 # --- part numbers (LCSC) -------------------------------------------------------------------------
 # basic parts
 R_0, R_10K, R_12K, R_47K, R_100K, R_200K = "C17168", "C25744", "C25752", "C25792", "C25741", "C25764"
+R_4K7, R_15K = "C25900", "C25756"
+R_68K, R_49K9 = "C36871", "C25897"   # 0402 1 % extended (VBUS_DET divider / output attenuator)
 C_20P, C_1N, C_100N, C_220N, C_4U7 = "C1554", "C1523", "C1525", "C16772", "C23733"
 XTAL_25M = "C9006"                 # YXC X322525MOB4SI 25 MHz 3225, CL 12 pF, +-10 ppm, +-20 ppm stab., ESR 50 Ohm
 # extended parts
 HUB = "C3210691"                   # USB7206CT/KDX (commercial 0-70 C, T&R); alt C3210686 USB7206C-I/KDX (industrial)
 D_SCHOTTKY = "C124205"             # BAT54WS-7-F 30 V Schottky SOD-323
+BUF_ST = "C151394"                 # Diodes 74LVC1G17W5-7 Schmitt buffer SOT-25 (5.5 V tolerant input, Ioff)
 FLASH = "C631790"                  # SST26VF016B-104I/SN 16 Mbit SPI/SQI flash (Microchip-verified), DNP
 
 # hub physical/logical port (identity map, DS00003850F table 3-7) -> global net prefix
@@ -166,21 +169,26 @@ def build(D):
     s.part("Device:D_Schottky", "D", "BAT54WS", "Diode_SMD:D_SOD-323", at=(x0 + 22.86, y),
            pins={"A": "HUB_RESET_N", "K": "RAILS_PG"}, lcsc=D_SCHOTTKY,
            desc="Wire-OR: RAILS_PG low (+1V15 not good) holds RESET_N low; RP2350 pulling RESET_N does not load RAILS_PG")
-    s.r("47k", "VBUS_LAPTOP", "HUB_VBUS_DET", size="0402", at=(x0 + 38.1, y), lcsc=R_47K,
-        desc="VBUS_DET divider top (laptop VBUS 5-28 V)")
-    s.r("47k", "HUB_VBUS_DET", "GND", at=(x0 + 48.26, y), lcsc=R_47K, desc="VBUS_DET divider bottom: 5 V -> 2.5 V")
+    s.r("47k", "VBUS_LAPTOP", "HUB_VBUS_SNS", size="0402", at=(x0 + 38.1, y), lcsc=R_47K,
+        desc="VBUS sense divider top (laptop VBUS 4.4-28 V)")
+    s.r("68k", "HUB_VBUS_SNS", "GND", at=(x0 + 48.26, y), lcsc=R_68K, desc="VBUS sense divider bottom: 4.4 V -> 2.60 V")
     s.part("Device:D_Schottky", "D", "BAT54WS", "Diode_SMD:D_SOD-323", at=(x0 + 60.96, y),
-           pins={"A": "HUB_VBUS_DET", "K": "+3V3"}, lcsc=D_SCHOTTKY,
-           desc="Clamps VBUS_DET to ~3.6 V when laptop VBUS is 9-28 V (0.5 mA into +3V3 at 28 V)")
+           pins={"A": "HUB_VBUS_SNS", "K": "+3V3"}, lcsc=D_SCHOTTKY,
+           desc="Clamps the sense node to ~3.6 V when laptop VBUS is 9-28 V (<0.5 mA into +3V3 at 28 V)")
     s.r("10k", "HUB_SMB_CLK", "HUB_SMB_PU", at=(x0 + 76.2, y), lcsc=R_10K,
         desc="SMBus pull-up powered by RP2350 GPIO (10k: hub detects these at boot)")
     s.r("10k", "HUB_SMB_DAT", "HUB_SMB_PU", at=(x0 + 86.36, y), lcsc=R_10K, desc="SMBus pull-up powered by RP2350 GPIO")
-    s.r("100k", "HUB_SMB_PU", "GND", at=(x0 + 96.52, y), lcsc=R_100K,
-        desc="Keeps pull-up rail at 0 V when RP2350 is off/BOOTSEL -> hub boots stand-alone")
+    s.r("4.7k", "HUB_SMB_PU", "GND", at=(x0 + 96.52, y), lcsc=R_4K7,
+        desc="Keeps pull-up rail at 0 V when RP2350 is off/BOOTSEL -> hub boots stand-alone (4.7k: RP2350-E9)")
     _note(s, "RESET_N = HUB_RESET_N (RP2350 open-drain) AND RAILS_PG (TPS62933P PG, open drain, 100k on power_rails) via D601.\n"
              "  Hub held in standby until +1V15 is in regulation (implies +3V3 up); 10k pull-up then releases it. trst >= 5 us.\n"
-             "VBUS_DET (PF30): laptop VBUS / 2 (47k/47k), BAT54WS clamp to +3V3: 4.4 V -> 2.2 V (VIH 2.1), 5.25 V -> 2.63 V (<2.7 V\n"
-             "  per checklist), 28 V -> ~3.6 V clamp. VBUS present = laptop attached (deck sources VBUS only after attach).\n"
+             "VBUS_DET (PF30): VBUS_LAPTOP -> 47k/68k (x0.591) + BAT54WS clamp to +3V3 -> HUB_VBUS_SNS -> 74LVC1G17 (+3V3, Schmitt,\n"
+             "  5.5 V-tolerant input) -> 15k/49.9k -> PF30.  Sense node: 4.4 V -> 2.60 V (> VT+ max 2.0 V), 28 V -> ~3.6 V clamp (OK for\n"
+             "  the LVC input), vSafe0V 0.8 V -> 0.47 V (< VT- min 0.8 V). PF30 high = +3V3 x 0.769 = 2.46-2.64 V for +3V3 3.20-3.43 V\n"
+             "  (<= 2.7 V checklist 5.1, > VIH 2.1 V); 11k/49.9k from the checklist would give 2.73 V at our 3.33 V rail -> 15k.\n"
+             "  Buffer powered from +3V3 = same rail as VDD33 -> VBUS_DET can never rise before VDD33.\n"
+             "  VBUS present = laptop attached (deck sources VBUS only after attach). Limitation (review data #6): VBUS also exists for\n"
+             "  a powered-off laptop / charge-only cable -> hub waits as CDP, USB-A get no VBUS until FORCE_EN (firmware).\n"
              "  VBUS_DET = 0 (no laptop): BC1.2 ports run as DCP; VBUS_DET = 1: CDP once the host powers the port.\n"
              "SMBus slave addr 0x2D. Pull-ups only when HUB_SMB_PU (RP2350 GPIO) is high -> hub enters CFG_SMBUS and waits for\n"
              "  the RP2350's config + USB_ATTACH_WITH_SMBUS (AA56h). HUB_SMB_PU low/floating (RP2350 off, BOOTSEL, broken FW):\n"
@@ -232,6 +240,17 @@ def build(D):
              "  P5  : TUSB1046 downstream C   top side, right         HUB_DSC_*\n"
              "  P6  : RP2350 (USB2 only)      bottom-right corner     MCU_USB_DP/DN (USB2 can use an inner layer to reach the MCU)",
           (20.32, 337.82))
+
+    # VBUS_DET buffer (review data #2) - placed last so earlier references keep their numbers
+    y2 = 167.64
+    s.part("74xGxx:74LVC1G17", "U", "74LVC1G17", "Package_TO_SOT_SMD:SOT-23-5", at=(419.1, y2),
+           pins={"2": "HUB_VBUS_SNS", "4": "HUB_VBUS_BUF", "5": "+3V3", "3": "GND"}, nc=["1"], lcsc=BUF_ST,
+           mpn="74LVC1G17W5-7", desc="VBUS_DET Schmitt buffer on +3V3: input 5.5 V tolerant, output <= +3V3")
+    s.c("100n", "+3V3", "GND", at=(434.34, y2), lcsc=C_100N, desc="VBUS_DET buffer decoupling")
+    s.r("15k", "HUB_VBUS_BUF", "HUB_VBUS_DET", at=(444.5, y2), lcsc=R_15K,
+        desc="VBUS_DET attenuator top (checklist fig. 5-2 topology)")
+    s.r("49.9k", "HUB_VBUS_DET", "GND", at=(454.66, y2), lcsc=R_49K9,
+        desc="VBUS_DET attenuator bottom: 3.33 V -> 2.56 V (<= 2.7 V)")
 
     s.build()
     return s

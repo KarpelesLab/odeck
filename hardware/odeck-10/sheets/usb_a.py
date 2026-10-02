@@ -9,6 +9,7 @@ from schgen import Sheet
 # --- part numbers (LCSC) -------------------------------------------------------------------------
 # basic parts
 R_1K, R_15K, R_100K = "C11702", "C25756", "C25741"          # 0402 1 %
+R_4K7 = "C25900"                                             # 0402 1 % basic
 C_100N, C_10U_0805 = "C1525", "C15850"                       # 0402 16 V X7R; 0805 25 V X5R
 # extended parts
 CONN = "C5429382"            # Amphenol GSB4111312HR, USB 3.2 Gen2 Type-A, right angle THT
@@ -77,8 +78,8 @@ def _port(s, n, x0, y0):
            lcsc=OR_GATE, desc="EN = hub PRT_CTL (high = port on) OR RP2350 force")
     y = y0 + 101.6
     s.c("100n", "+3V3", "GND", at=(x0 + 109.22, y), lcsc=C_100N, desc="OR gate decoupling")
-    s.r("100k", f"{P}_FORCE_EN", "GND", at=(x0 + 124.46, y), lcsc=R_100K,
-        desc="FORCE_EN default off (RP2350 in reset / BOOTSEL)")
+    s.r("4.7k", f"{P}_FORCE_EN", "GND", at=(x0 + 124.46, y), lcsc=R_4K7,
+        desc="FORCE_EN default off (RP2350 in reset / BOOTSEL); 4.7k overrides RP2350-E9 pad latch (~2.2 V)")
     s.r("100k", f"{P}_EN", "GND", at=(x0 + 139.7, y), lcsc=R_100K,
         desc="Switch off while +3V3 is not up yet (OR gate unpowered, Ioff)")
 
@@ -112,6 +113,9 @@ def build(D):
              "  Hub-owned port: FAULT# pulls the node low -> hub reads overcurrent, latches the port off (drives low) -> OR output follows.\n"
              "  Forced port (FORCE_EN high): switch stays on in constant-current limit / thermal cycling; FAULT# only pulls the hub's node\n"
              "  (port already off at the hub, or hub reports OC). RP2350 sees the fault as ISENSE pinned at ~1.6-1.8 A -> firmware drops FORCE_EN.\n"
+             "FORCE_EN pull-down 4.7k (not 100k): RP2350 erratum E9 (stepping A2) can leave a pad that was driven high and then\n"
+             "  reverted to input latched at ~2.2 V (> LVC1G32 VIH 2.0 V) -> port forced on after a crash/BOOTSEL. Only <= 8.2k defeats\n"
+             "  the latch; 4.7k costs 0.7 mA from the push-pull GPIO while forced on (VOH drop negligible at 4 mA drive).\n"
              "Current limit: RILIM 15.0k -> 1.61 A min / 1.80 A max (TPS2553 DS table): covers BC1.2 DCP/CDP 1.5 A.\n"
              "Current sense: 30 mOhm before the switch (IN side), INA180A2 x50 -> 1.5 V/A; 2.0 A = 3.0 V, full scale 2.2 A at 3.3 V.\n"
              "  25 mA auto-off threshold = 37.5 mV out; INA180 offset +-150 uV x50 = +-7.5 mV (~5 mA). Shunt loss 1.8 A: 97 mW.\n"

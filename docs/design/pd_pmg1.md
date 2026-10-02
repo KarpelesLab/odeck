@@ -32,7 +32,7 @@ dead-battery Rd.
 | E14 | XRES | PMG1_XRES ← pass FET ← JP ← PMG1_XRES_N | in | reset (4.7k to VDDD, 100 nF) |
 | E15 | P4.0 | I2C_PD_SCL | io | SCB0 I2C target (fail-safe pin; dock: I2C_HPIM) |
 | D12 | P4.1 | I2C_PD_SDA | io | SCB0 I2C target |
-| H4 | P5.5 | I2C_PD_INT_N | out OD | interrupt to RP2350 (datasheet: "embedded controller interrupt"), 10k to +3V3 |
+| B9 | P7.6 | I2C_PD_INT_N | out OD | interrupt to RP2350, 10k to **PMG1_VDDD** (moved from P5.5, review pd_mux #2: ports 2/3/5 carry analog functions and must not see an external voltage above VDDIO) |
 | R8 | P0.0 | LAPTOP_SNK_EN | out | bus-power sink switch enable (**VDDD-domain pin**) |
 | A2 | P2.0 | VBB_EN | out | LM51770 enable (also resets OVP latch) |
 | B2 | P2.1 | VBB_VSEL0 | out | buck-boost voltage select bit 0 |
@@ -55,7 +55,7 @@ dead-battery Rd.
 | K4 | P1.3 | HPD0_OUT → 1k → UP_HPD | out | GPIO, drives TUSB1064 HPDIN |
 | A3 | P2.2 | PMG1_UART_TX (TP) | out | SCB5 debug UART TX (dock: CYBSP_UART) |
 | B5 | P2.3 | PMG1_UART_RX (TP) | in | SCB5 debug UART RX |
-| — | P1.0, P1.5, P1.6, P2.7, P3.5, P3.6 (SCB4, which the dock uses for its power I2C, kept free), P5.0–P5.4, P7.6, P0.1–P0.7, P6.0–P6.3 | NC | | spare |
+| — | P1.0, P1.5, P1.6, P2.7, P3.5, P3.6 (SCB4, which the dock uses for its power I2C, kept free), P5.0–P5.5, P0.1–P0.7, P6.0–P6.3 | NC | | spare |
 | — | USBDP/USBDM, AUX_P/N_P0/P1 | NC | | the TUSB parts handle SBU↔AUX; the FS-USB billboard has no free hub port |
 | R14/R15/P14/P15 | VBUS_IN/OUT_NGDO_P0, VBUS_IN/OUT_CTRL_P0 | NC | | gate-driver pair 0 unused: the port-0 power path is external |
 
@@ -76,7 +76,9 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
   - VBUS_C: 100 nF / 50 V per port.
 - **VBUS ratings.** VBUS_C, CSP/CSN and NGDO are rated **34 V abs max**. VBUS_LAPTOP is clamped by the power_laptop
   OVP latch at 30.8 V and by the LM74800 OV backstop at 32.6 V, so these pins connect directly, as in Infineon's
-  EPR figures. The connector TVS must clamp below 34 V; it lives on usbc_muxes.
+  EPR figures. Steady state is therefore covered. The connector TVS (SMCJ28A, usbc_muxes) is the best available
+  clamp but **cannot** hold these pins below 34 V during a surge: VBR is 31.1–34.4 V and VC is 45.4 V at 33 A, and no
+  TVS with VRWM ≥ 28 V can do better. This is an accepted residual risk, as in Infineon's EPR references.
 - **Dead-deck cold start** (no PD-in, no barrel):
   1. CYPM1321 shows Rd-DB on CC1/CC2 of the laptop port. The laptop applies vSafe5V.
   2. The PMG1 boots from VBUS_C_P0.
@@ -94,9 +96,13 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
     and keep the PMG1 in reset during a dead-deck boot.
 - **Externally powered start.** +3V3 is present, so the PMG1 boots from VSYS. Port 0 becomes source/DRP with Rp; the
   power_laptop sequence follows.
-- **Port-1 back-feed.** CYPM1321 also shows Rd-DB on port 1. A DRP phone plugged into the downstream port of a dead
-  deck may therefore apply 5 V to VBUS_DS. This only powers the PMG1 through VBUS_C_P1. The AO4842 pair blocks
-  VBUS_DS → +5V in both directions.
+- **Port 1 in a dead deck.** CYPM1321 also has Rd-DB on port 1, but it sits behind the TPD6S300 (VPWR = +3V3), whose
+  CC FETs are open while unpowered, and RPD_G1/2 = GND gives no Rd of its own. So a DRP phone on the downstream port
+  of a dead deck sees nothing and cannot back-feed VBUS_DS (the earlier claim was wrong, review pd_mux #7).
+  - One real transient: on an **externally powered cold start**, the TPD6S300 closes its FETs a few ms after +3V3.
+    If the PMG1 has not yet switched port 1 from Rd-DB to Rp, a charger on the downstream port can briefly apply
+    vSafe5V to VBUS_DS. The AO4842 pair blocks VBUS_DS → +5V, so this is harmless. Firmware configures port 1 as an
+    Rp source as early as possible in boot.
 
 ## Laptop port (port 0) power: firmware contract
 - The power path is external, in power_laptop. Use PdStack application callbacks (psrc/psnk enable, set voltage)
@@ -106,11 +112,19 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
   - **Sink** (bus-powered only): LAPTOP_SNK_EN. Hardware forces it off while EXT_PWR_PRESENT or SRC_ON is high.
 - The PDO list is capped in PMG1 firmware by input source and power (VIN ≥ 16 V for 140 W; see power_laptop.md).
   The RP2350 can only *lower* the budget over I2C.
-- OCP/SCP/RCP use CSA 0 on the shared 5 mΩ INA226 shunt, so `VBUS_LSW` must become a global net (see open issues).
+- OCP/SCP/RCP use CSA 0 on the shared 5 mΩ INA226 shunt (`VBUS_LSW` is global, so CSA 0 is connected across sheets).
   UV/OV come from VBUS_C_P0. The internal discharge acts on VBUS_LAPTOP only. VBB_OUT, behind the LM74800 ideal
   diode, is discharged by cycling VBB_EN (power_laptop).
 - OVP latch (LAPTOP_OVP_N low): drop LAPTOP_SRC_EN and VBB_EN, report to the RP2350, and re-enable only from 5.1 V.
 - Bus-powered ↔ external-power transitions: PR_Swap or a brief detach (odeck-10.md open question 2).
+- **Dead-battery boot** (powered from VBUS, no VSYS) must come up as a **sink with Rd**: no DRP toggling and no
+  Try.SRC until the contract. TPD4S480 closes its CC FETs ≤ 3.5 ms after VPWR and drops its own DB resistors by
+  9.5 ms; the PMG1 Rd must be present the moment the FETs close (TPD4S480 §6.3.3). CYPM1321 (Rd-DB) is the only
+  approved part; the CYPM1322 fallback would leave an Rd gap and must be bench-tested first (review pd_mux #8).
+- **Data role.** Port 0 sources power (Rp) whenever external power is present, so the Type-C default data role at
+  attach is DFP, but the deck is a UFP (hub upstream). Firmware DR_Swaps to UFP after the explicit contract, before
+  the laptop's DP Discover/Enter. A non-PD Type-C host gets power but **no USB data** while the deck is externally
+  powered (review pd_mux #9).
 
 ## Downstream port (port 1)
 - Source 5 V / 3 A. The path is +5V → 5 mΩ (C316225) → AO4842 back-to-back (common drain) → VBUS_DS, driven by
@@ -118,6 +132,9 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
   - Gate drive is 4.5–10.5 V; AO4842 is rated VGS ±20 V.
   - Loss is about 0.38 W at 3 A.
   - CSA 1 provides OCP and SCP. The connector-side cap is 10 µF + 100 nF.
+- **Rp advertisement:** 3 A only with external power. Bus-powered, +5V is the laptop's 5 V minus the sink-path drops,
+  and 2 × 3 A × AO4842 RDS(on) at the minimum 4.5 V gate drive (≤ 30 mΩ, more when hot) leaves ≈ 4.85 V before the
+  connector, so advertise Default/1.5 A there. The 0.38 W loss figure assumes 10 V gate drive (review pd_mux #11).
 - **Forced 5 V:** the RP2350 asks over I2C. Firmware enables the path without Rd and turns it off automatically
   below about 25 mA for 5 min. No extra hardware.
 - Current reading for the LCD: the PMG1 CSA/ADC VBUS current, read over I2C. This replaces the INA180 option for
@@ -136,13 +153,22 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
    simply follow DS_HPD.
 5. AUX is passed through by the two TUSB parts (AC-coupled, usbc_muxes). The PMG1 SBU/AUX switches are unused.
 
+**Mux power-up state (review pd_mux #4).** The 100k pull-downs only hold CTL0/CTL1/FLIP low while the PMG1 is in
+reset. Both TUSB1064 and TUSB1046 enter **USB3 mode (no flip)** at VCC power-up regardless of CTL0, and leave it only
+on a CTL0 L→H→L transition (TUSB1064 §8.4.1, TUSB1046 §7.4.1). Firmware contract: pulse CTL0 on both muxes after
+P3V3_SNS goes high and on every detach. The DP lanes stay off meanwhile (CTL1 low; TUSB1064 HPDIN has an external
+100k pull-down on usbc_muxes, TUSB1046 HPDIN an internal 150k).
+
 ## Host interface
 - I2C_PD on SCB0 (P4.0/P4.1), the only fail-safe I2C pins. **Target address 0x42** (firmware-defined; it is the
   CCGx HPI alternate address). Other devices on the bus: TPS26750 at 0x21, so there is no clash. The TPS26750
   EEPROM at 0x50 is on its private bus. Bus pull-ups are on the MCU sheet.
 - Command set (our firmware): status (contracts, roles, DP state, VBUS V/I per port, faults), request budget ≤ X W,
   forced-5V on/off for port 1, firmware version.
-- I2C_PD_INT_N is open-drain from P5.5, with a 10k pull-up to +3V3 on this sheet.
+- I2C_PD_INT_N is open-drain from **P7.6**, with a 10k pull-up to **PMG1_VDDD** on this sheet, so the pin never sees
+  more than VDDIO. VDDD (≥ 3.0 V) is well above the RP2350 VIH. In a dead deck VDDD is up before +3V3, so up to
+  ≈ 0.33 mA flows through the 10k into the unpowered RP2350 pad until +3V3 comes up (milliseconds later). That is
+  harmless, and the RP2350 pad is fault-tolerant. Firmware keeps INT_N released until P3V3_SNS is high.
 - **Firmware update:** the RP2350 acts as SWD programmer on P1.1/P1.2 plus XRES, through three default-closed solder
   jumpers. These use `Jumper:SolderJumper_2_Bridged` with footprint `SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm`
   and are `in_bom no`; `pd_pmg1.py` post-processes the generated file to set that. Cut them to isolate the PMG1
@@ -165,21 +191,14 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
 `tools/bom_check.py`: 0 failing, 0 without LCSC.
 
 ## New / inter-sheet nets
-- **`VBUS_LSW`** is used here as a local label on CSP_P0. It must be **promoted to a global net** in `nets.py`;
-  power_laptop already names the INA226 shunt node `VBUS_LSW`. Until then the PMG1 CSA-0 input is unconnected
-  across sheets.
-- `PMG1_VDDD` (local): consider making it global if the usbc_muxes TPD4S480 VPWR is to be fed from a supply that is
-  alive in a dead deck (see open issue 1).
+- `VBUS_LSW` and `PMG1_VDDD` are global in `nets.py`. CSA 0 is connected to the power_laptop shunt, and the
+  usbc_muxes TPD4S480 VPWR runs from PMG1_VDDD.
 - Local nets on this sheet: HPD0_OUT, HPD1_OUT, P3V3_SNS, XRES_RP, PMG1_XRES, PMG1_SWDIO_L, PMG1_SWCLK_L,
   PMG1_UART_TX/RX, PMG1_VCCD, DS_SRC, DS_GIN, DS_GOUT, DS_FETD.
 
 ## Open issues
-1. **CC/SBU over-voltage protection.** PMG1 CC pins are rated 6 V abs max, and VBUS_LAPTOP reaches 28 V. The laptop
-   port needs TPD4S480-class CC/SBU OVP at the connector (usbc_muxes). Its VPWR must be alive in a dead deck:
-   either PMG1_VDDD, or rely on TPD4S480's own dead-battery Rd (RPD_G shorted to C_CC, as on power_input).
-   - With TPD4S480 in series, the PMG1 Rd-DB sits behind the TPD4S480's OFF switches, so the TPD4S480 dead-battery
-     Rd must be enabled.
-   - The downstream port (5 V) should get CC ESD at minimum.
+1. ~~CC/SBU over-voltage protection~~ — **resolved.** TPD4S480 on the laptop port (VPWR = PMG1_VDDD, RPD_Gx = C_CCx
+   for the dead-battery Rd) and TPD6S300 on the downstream port, both on usbc_muxes.
 2. **NGDO pair 0 unused.** VBUS_IN/OUT_NGDO_P0 and the CTRL_P0 pins are left open. Confirm with Infineon's EPR dock
    schematic, or tie the NGDO sense pins to VBUS_LAPTOP.
 3. **External laptop power path.** Confirm that PdStack/the solution layer allows a fully GPIO-controlled source
@@ -188,15 +207,15 @@ goes to +5V. VBUS_IN_CTRL_P1 drives the supply-side FET gate and VBUS_OUT_CTRL_P
    as two Kelvin pairs.
 5. **VSYS back-feed.** Check that VSYS does not back-feed +3V3 from the VBUS regulator in a dead deck. The datasheet
    implies an internal switch; verify on the bench.
-6. **Downstream back-feed.** A downstream phone can power the PMG1 through Rd-DB on port 1. Firmware must never turn
-   on the sink path on port 1; there is no hardware sink path there.
+6. **Downstream port.** There is no back-feed in a dead deck (TPD6S300 FETs are open; see "Port 1 in a dead deck").
+   Firmware must never enable a sink path on port 1, and there is no hardware sink path there.
 7. **BGA footprint.** The footprint is an EasyEDA import (CYPD8225 package, 0.5 mm pitch, 6×6). Check pad size and
    solder-mask definition against Infineon's land pattern before layout. 0.5 mm BGA needs via-in-pad or a 0.2 mm
    via fan-out on 6 layers.
 8. **HPD and IRQ_HPD.** PdAltMode needs application code to forward port-1 Attention to port 0 (or the hardware
    HPD loop above), and to drive UP_HPD. Verify that IRQ_HPD pulses (0.5–1 ms) survive the HPD-block decode and
    re-encode.
-9. **Billboard.** USB FS is not connected; there is no free hub port. If DP entry fails, the billboard requirement
-   has to be met by the RP2350.
+9. **Billboard.** USB FS is not connected. If DP entry fails, the Billboard requirement is met by the RP2350
+   firmware on hub port 6 (allowed for compound devices).
 10. **JLC stock.** Only 20 CYPM1321 are in stock. Re-check before ordering; CYPM1322 (50) is the fallback (see
     issue 1).

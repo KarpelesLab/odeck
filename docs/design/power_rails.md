@@ -1,6 +1,7 @@
 # odeck-10 — power rails sheet (`power_rails.kicad_sch`, refs 300+)
 
-Source: `hardware/odeck-10/sheets/power_rails.py` (generated, netlist-verified). Stock figures are from the JLC parts
+Source: `hardware/odeck-10/sheets/power_rails.py` (generated, netlist-verified; second pass after
+`docs/review/power.md`). Stock figures are from the JLC parts
 API on 2026-10-02. Re-check them before ordering.
 
 ## Topology
@@ -16,14 +17,18 @@ VIN 9-50 V ──┬─ D301 BAT46W ─► LM5148 VIN pin (controller bias only)
 +5V ─► TPS62933P (1.2 MHz) ─► +1V15 (1.154 V, USB7206C VCORE), EN = +3V3 divider, PG ─► RAILS_PG
 ```
 
-Global nets used: `VIN`, `+5V`, `+3V3`, `+1V15`, `I2C_SYS_SCL`, `I2C_SYS_SDA`, `GND`. PWR_FLAGs on `+5V`, `+3V3`,
-`+1V15`. **`+1V1` is not created** (see "Rails not needed").
+Global nets used: `VIN`, `+5V`, `+3V3`, `+1V15`, `I2C_SYS_SCL`, `I2C_SYS_SDA`, `RAILS_PG`, `PG_5V`, `GND`.
+PWR_FLAGs on `+5V`, `+3V3`, `+1V15`. **`+1V1` is not created** (see "Rails not needed").
 
-Local nets other sheets may need:
+Power-good outputs (both global in `nets.py`):
 - `RAILS_PG`: open drain with 100 k to +3V3. It is high when +1V15 is in regulation, which implies +3V3 is up.
-  Proposed use is a wire-OR onto `HUB_RESET_N`, so the hub is held in reset until VCORE is good. Doing that needs
-  either a new global net (e.g. `RAILS_PG`) or this sheet driving the existing open-drain `HUB_RESET_N`.
-- `PG_5V`: LM5148 power-good, pulled up to its own output. It reads low whenever the buck is off. Informational only.
+  usb_hub wire-ORs it onto `HUB_RESET_N` through a Schottky, so the hub is held in reset until VCORE is good.
+- `PG_5V`: LM5148 PG, open drain, **100 k pull-up to 5V_BUCK** (≈ 5.1 V level). Consumed on power_laptop to release
+  the bus-power sink switch (and to permit the source switch) only once the buck regulates. The pull-up rail is
+  deliberately 5V_BUCK: an unpowered LM5148 cannot hold its open-drain PG low, so a pull-up to an always-present
+  rail (+3V3/+5V, which the laptop keeps alive in bus-powered mode) would read "good" exactly during the hand-over
+  window while VIN ramps. With 5V_BUCK it is 0 V whenever the buck is off. Not for 3.3 V-only inputs (5.1 V level);
+  consumers must not source current into it (power_laptop uses FET gates only).
 
 ## 1. Backfeed problem and its solution
 
@@ -56,10 +61,15 @@ The fix:
      the output.
    - The power stage has no such diode. The only charge that can flow back into a collapsing VIN is the buck's own
      ~150 µF on 5V_BUCK, through Q301's body diode. +5V stays isolated behind Q303.
-5. **Handover when external power arrives while bus-powered.**
-   1. The buck soft-starts (3 ms internal) into the unloaded 5V_BUCK.
-   2. When 5V_BUCK rises above +5V (≈5.0 V from the laptop), Q303 conducts and +5V rises to ≈5.11 V.
-   3. `EXT_PWR_PRESENT` then opens the sink switch on power_laptop.
+5. **Handover when external power arrives while bus-powered (make-before-break, review finding 3).**
+   1. `EXT_PWR_PRESENT` rises (input side) but does **not** open the sink switch on its own.
+   2. VIN ramps, the LM5148 passes its 8 V UVLO and soft-starts (1.9–4.6 ms) into the unloaded 5V_BUCK.
+   3. When 5V_BUCK rises above +5V (≈5.0 V from the laptop), Q303 conducts and +5V rises to ≈5.11 V. During the
+      overlap the TPS259470A (reverse-current blocking) and the LM74700 form a two-way ideal-diode OR on +5V;
+      neither source can back-feed the other. If laptop VBUS is higher (up to 5.5 V) the sink keeps carrying
+      the load and the LM74700 simply stays off.
+   4. PG_5V goes high; after the 2.7–6.7 ms RC on power_laptop the sink switch opens (`EXT_PWR_PRESENT` AND
+      `PG_5V`) and the buck takes the full load (≤ 3 A step, ≈ 60 mV dip).
    No pre-bias issue arises, because 5V_BUCK starts from 0 V.
 6. **External power lost while sourcing.** +5V droops while the laptop takes over (FRS or PR_Swap, decided on other
    sheets). The 330 µF polymer plus ceramics on +5V bridge about 150 µs at ≤2 A (≈0.9 V droop). At full 8 A load they
@@ -83,7 +93,7 @@ Requirements:
 | Output capacitance | 6 × 47 µF 10 V X7R 1210 on 5V_BUCK (~150 µF effective at 5 V) + 330 µF polymer + 2 × 22 µF on +5V | Ripple ΔI/(8·f·C) = 3.25/(8 × 300k × 150µ) = 9 mV. Cap RMS 0.94 A total |
 | Load step 4 A | ≈ ΔI/(2π·fc·C) = 4/(2π × 18k × 430µ) ≈ 80 mV (1.6 %) | |
 | Compensation | RCOMP 10 k, CCOMP 10 nF, CHF 100 pF | fc = 2π-form: RCOMP = 2π·fc·(Vo/VREF)·(Rs·Gcs/gm)·C → fc ≈ 18 kHz with 430 µF, ≈ 52 kHz with 150 µF only (light load: the LM74700 linear-regulates, which partly decouples the far-side bulk). Zero 1.6 kHz, pole 159 kHz |
-| Input capacitance | 4 × 4.7 µF 100 V X7S 1210 + 2 × 100 nF 100 V 0603 + 47 µF 100 V alu (damping) | ICIN,rms = Io·√(D(1−D)) = 2.5 A (48 V) … 3.96 A (9 V), split over 4 MLCCs. ΔVIN ≈ D(1−D)Io/(f·C) = 0.42 V p-p at 48 V (~6 µF effective) |
+| Input capacitance | 4 × 4.7 µF 100 V X7S 1210 + 2 × 100 nF 100 V 0603. **No alu here** (review finding 4): VIN total ≤ 100 µF for USB PD cSnkBulkPd; the single 47 µF damping alu for VIN sits on power_input (stability calc there) | ICIN,rms = Io·√(D(1−D)) = 2.5 A (48 V) … 3.96 A (9 V), split over 4 MLCCs. ΔVIN ≈ D(1−D)Io/(f·C) = 0.42 V p-p at 48 V (~6 µF effective) |
 | Soft start | 3 ms internal | Inrush into 5V_BUCK ≈ 150 µF × 5.1 V / 3 ms = 0.26 A (+5V is behind the diode) |
 | UVLO | on 8.0 V, off 7.0 V | RUV1 = ΔV/IHYS = 1 V/10 µA = 100 k (0805, VIN side, 150 V rating); RUV2 = 100k × 1/(8 − 1) = 14.3 k |
 | Bias | VCCX = 5V_BUCK (> 4.3 V switches VCC to VCCX) | The VIN LDO would otherwise dissipate (14 + 16 nC) × 5 V × 300 kHz × 48 V / 5 V ≈ 0.4 W, plus IQ |
@@ -119,7 +129,7 @@ Assumptions: Rds(on) at 4.5 V max × 1.45 hot; DCR × 1.25; core loss 0.25 W; sw
 - Put a TMP1075 next to Q301/L301 (already planned on the sensors sheet). Firmware should derate charge-mode ports
   first when VIN = 48 V and the stage runs hot.
 
-## 3. +3V3 (TPS62933, C3200405)
+## 3. +3V3 (TPS62933F, C5219272)
 - +5V → 3.33 V (31.6 k / 10 k). RT = GND sets 1.2 MHz.
 - L = 2.2 µH MWSA0503S-2R2MT: ΔI = 3.33 × (1 − 3.33/5.13)/(2.2 µ × 1.2 M) = 0.44 A.
 - Cout 3 × 22 µF 25 V 0805 X5R, about 35 µF effective (TI table: 30 µF typ, 10 µF min).
@@ -177,24 +187,23 @@ Assumptions: Rds(on) at 4.5 V max × 1.45 hot; DCR × 1.25; core loss 0.25 W; sw
 | L301 | Sunlord MWSA1206S-4R7MT 4.7 µH 15 A | C408521 | 879 | ext |
 | R303 | TA-I RLP25FEGR004 4 mΩ 2512 | C459681 | 15 078 | ext |
 | D301 | Diodes BAT46W-7-F | C83152 | 107 563 | ext |
-| C301 | SamYoung MVK 47 µF 100 V 10×10 | C371305 | 1 847 | ext |
-| C302–C305 | Taiyo HMK325C7475KN-TE 4.7 µF 100 V 1210 | C697607 | 330 431 | ext |
-| C306–C307 | Samsung CL10B104KC8NNNC 100 nF 100 V 0603 | C15725 | 707 029 | ext |
-| C310–C315 | Murata GRM32ER71A476KE15L 47 µF 10 V 1210 | C84494 | 56 437 | ext |
-| C316 | Murata GCM21BC72A105KE36L 1 µF 100 V 0805 | C126585 | 30 481 | ext |
+| C301–C304 | Taiyo HMK325C7475KN-TE 4.7 µF 100 V 1210 | C697607 | 330 431 | ext (47 µF alu removed) |
+| C305–C306 | Samsung CL10B104KC8NNNC 100 nF 100 V 0603 | C15725 | 707 029 | ext |
+| C309–C314 | Murata GRM32ER71A476KE15L 47 µF 10 V 1210 | C84494 | 56 437 | ext |
+| C315 | Murata GCM21BC72A105KE36L 1 µF 100 V 0805 | C126585 | 30 481 | ext |
 | U302 | TI LM74700QDBVTQ1 (SOT-23-6) | C2653623 | 5 563 | ext |
 | Q303 | Infineon BSC0901NS (TDSON-8) | C152424 | 5 000 | ext |
 | R312 | TA-I RLP25FEGR002 2 mΩ 2512 | C459679 | 52 095 | ext |
 | U303 | TI INA226AIDGSR (VSSOP-10) | C49851 | 44 400 | ext |
-| C324 | 330 µF 6.3 V polymer 6.3×6 (MA6.3V330M6X6) | C54321566 | 6 338 | ext |
-| U304 | TI TPS62933DRLR (SOT-583) | C3200405 | 34 272 | ext |
+| C323 | 330 µF 6.3 V polymer 6.3×6 (MA6.3V330M6X6) | C54321566 | 6 338 | ext |
+| U304 | TI TPS62933FDRLR (SOT-583, forced PWM) | C5219272 | 2 524 | ext; keep the F variant (RTL8156BG needs PWM) |
 | U305 | TI TPS62933PDRLR (SOT-583) | C5219254 | 7 010 | ext |
 | L302 | Sunlord MWSA0503S-2R2MT 2.2 µH | C408408 | 7 617 | ext |
 | L303 | Sunlord MWSA0503S-1R5MT 1.5 µH | C408407 | 2 445 | ext |
 | R (E96) | 73.2 k C26986, 14.3 k C25855, 64.9 k C26984, 41.2 k C100420, 31.6 k C11463, 4.42 k C52269, 100 k 0805 C96346 | | all > 7k | ext |
 | R/C basic | 10 k C25744, 12 k C25752, 39 k C25783, 100 k C25741, 0 Ω C17168; 100 pF C1546, 10 nF C15195, 22 nF C1532, 100 nF C1525 / C14663 (50 V 0603), 4.7 µF C19666, 10 µF 25 V C15850, 22 µF 25 V 0805 C45783, 22 µF 6.3 V 0603 C59461 | | | basic |
 
-DNP: R302 2.2 Ω 0805 and C309 1 nF 100 V 0603 (SW snubber).
+DNP: R302 2.2 Ω 0805 and C308 1 nF 100 V 0603 (SW snubber).
 
 ## Thermal / loss summary (worst case, everything maxed)
 | Block | Loss |
@@ -209,13 +218,11 @@ DNP: R302 2.2 Ω 0805 and C309 1 nF 100 V 0603 (SW snubber).
   intended.
 - +5V loads on other sheets add ≥ 50 µF ceramic plus bulk. The USB-A ports need ≥ 120 µF each per the USB spec.
 - The I2C_SYS pull-ups and the I2C address plan are owned by the MCU sheet.
-  - Addresses: INA226 here at **0x41** (A1 = GND, A0 = VS); INA228 on VIN at 0x45; TMP1075s at 0x48–0x4F.
-  - The laptop-VBUS INA226 must avoid 0x41/0x45 (suggest 0x40).
+  - Addresses: INA226 here at **0x41** (A1 = GND, A0 = VS); INA237 on VIN at 0x45 (power_input); laptop-VBUS
+    INA226 at 0x44 (power_laptop); TMP1075s at 0x48–0x4F.
 
 ## Open issues / risks
-1. **`RAILS_PG` → `HUB_RESET_N`** is not connected, because it is a local net. Either promote it to a global net or
-   let this sheet pull `HUB_RESET_N` (open drain) directly. That requires the MCU sheet to drive `HUB_RESET_N` as
-   open drain.
+1. ~~`RAILS_PG` → `HUB_RESET_N`~~ resolved: `RAILS_PG` is global and usb_hub wire-ORs it through a Schottky.
 2. **RTL8156BG 0.95 V regulator is missing from the plan.** It must be added on the ethernet sheet (§5). The draft
    docs assumed an internal regulator.
 3. **48 V corner:** HS FET ~1.3 W in 3.3 × 3.3 mm. Validate the temperature on the prototype. Fallback: BSC0805LS

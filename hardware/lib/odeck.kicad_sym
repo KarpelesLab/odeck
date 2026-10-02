@@ -8009,7 +8009,7 @@
 				)
 			)
 		)
-		(property "Footprint" "odeck:FL_001"
+		(property "Footprint" "odeck:LCD_FPC_Solder_12P_P0.50mm"
 			(at 0 -21.59 0)
 			(show_name no)
 			(do_not_autoplace no)

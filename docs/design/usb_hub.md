@@ -14,10 +14,10 @@ Stock figures are from the JLC parts API on 2026-10-02.
 LAPTOP_USB_DP/DN ─────────────────────────────── USB2UP (89/90)
 HUB_UP_SS_TXP/N ◄── 220 nF ── USB3UP_TX (91/92)        USB7206C          P1 ─► CR_*      (GL3224)
 HUB_UP_SS_RXP/N ───────────► USB3UP_RX (94/95)        U601              P2 ─► USBA1_*   (USB-A #1)
-VBUS_LAPTOP ─ 47k/47k + BAT54WS clamp ─► VBUS_DET (PF30)                P3 ─► USBA2_*   (USB-A #2)
+VBUS_LAPTOP ─ 47k/68k + BAT54WS ─ 74LVC1G17 ─ 15k/49.9k ─► VBUS_DET (PF30) P3 ─► USBA2_*   (USB-A #2)
 HUB_RESET_N ─┬─ 10k↑ + 1 nF ─► RESET_N            25 MHz Y601            P4 ─► ETH_*     (RTL8156BG)
 RAILS_PG ◄───┘ D601 (BAT54WS, wire-OR)            RBIAS 12k 1 %          P5 ─► HUB_DSC_* (TUSB1046)
-HUB_SMB_CLK/DAT ─ 10k ─ HUB_SMB_PU (RP2350 GPIO) ─ 100k ─ GND           P6 ─► MCU_USB_DP/DN (RP2350, USB2)
+HUB_SMB_CLK/DAT ─ 10k ─ HUB_SMB_PU (RP2350 GPIO) ─ 4.7k ─ GND          P6 ─► MCU_USB_DP/DN (RP2350, USB2)
 USBA1_PWR_EN ═ PRT_CTL2 ═ (0R R630) ═ USBA1_OCS_N;  USBA2_PWR_EN ═ PRT_CTL3 ═ (0R R631) ═ USBA2_OCS_N
 ```
 
@@ -102,8 +102,14 @@ Straps latch at POR and on the RESET_N rising edge, and need ≥ 1 ms hold.
 ## SMBus boot behavior (RP2350 alive vs not)
 - Hub address: 7-bit **0x2D** (write 5Ah, read 5Bh).
 - Register access uses command **9937h** with a buffer of {dir, len, 32-bit address, data} (AN2935 §3).
-- The hub's SMBus pull-ups (10k each, R627/R628 on this sheet) are fed from **HUB_SMB_PU, an RP2350 GPIO**. R629 (100k)
+- The hub's SMBus pull-ups (10k each, R627/R628 on this sheet) are fed from **HUB_SMB_PU, an RP2350 GPIO**. R629 (**4.7k**)
   pulls HUB_SMB_PU to GND, and the RP2350's default pad pull-down helps too.
+  - 4.7k rather than 100k because of **RP2350 erratum E9** (DS App. D.5.1, stepping A2; fixed in A3/A4): a pad that was
+    driven high and then reverts to input (watchdog reset, reboot to BOOTSEL) can latch at about 2.2 V, and only a pull
+    of ≤ 8.2 kΩ overcomes it. At 2.2 V the hub could see pull-ups at its next reset and wait forever, with no USB and no
+    BOOTSEL. The GPIO drives 3.3 V / 4.7k ≈ 0.7 mA into R629, plus 2 × 10k into the bus lines when they are low (about
+    1.4 mA worst case). That is well within the default 4 mA drive, with a negligible VOH drop. The stepping of the JLC
+    RP2350 stock (C42415655) is unknown, so the stronger pull-down stays regardless.
   - **There must be no other pull-ups on HUB_SMB_CLK/DAT** (mcu sheet).
 
 | RP2350 state | HUB_SMB_PU | Hub sees at SMBUS_CHECK | Hub behavior |
@@ -157,12 +163,32 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
   - It is harmless: the GL3224 never runs BC detection, and in DCP mode there is no host anyway.
   - The RP2350 clears it when alive (`BC_CONFIG_P1` = 0).
 - SE1 (Apple 1/2/2.5 A) and China mode are only available via SMBus/OTP (`BC_CONFIG_Px` bits 4 and 2:1). Firmware option.
-- **VBUS_DET source.**
-  - Path: VBUS_LAPTOP → 47k/47k divider → BAT54WS clamp to +3V3.
-  - Levels: 4.4 V gives 2.2 V (VIH 2.1 V), 5.25 V gives 2.63 V (checklist asks ≤ 2.7 V), and 28 V clamps to about 3.6 V.
-    The clamp injects 0.5 mA into +3V3, and the 47k dissipates 13 mW.
+- **VBUS_DET source** (reworked after review data #2). The old 47k/47k + clamp drove PF30 to 3.57–3.63 V whenever the
+  deck sourced 9–28 V, which is above the checklist's 2.7 V and at the 3.6 V operating limit. No pure divider can map
+  both 4.4 V → ≥ 2.1 V and 28 V → ≤ 2.7 V, so a buffer was added:
+  - Path: VBUS_LAPTOP → R625 47k / R626 68k → `HUB_VBUS_SNS`, with D602 BAT54WS clamping it to +3V3. The node then
+    feeds U603 74LVC1G17 (Schmitt buffer on +3V3, 5.5 V-tolerant input, Ioff). Its output `HUB_VBUS_BUF` goes through
+    R632 15k / R633 49.9k to PF30.
+  - Sense-node levels:
+
+    | Laptop VBUS | Sense node | Threshold |
+    |---|---|---|
+    | 4.4 V | 2.60 V | above VT+ max ≈ 2.0 V |
+    | 0.8 V (vSafe0V) | 0.47 V | below VT− min ≈ 0.8 V |
+    | 28 V | clamped at about 3.6 V | fine for the LVC input |
+
+    At 28 V the clamp injects ≤ 0.47 mA into +3V3, and R625 dissipates 13 mW.
+  - PF30 high = +3V3 × 0.769, which is 2.46–2.64 V for +3V3 = 3.20–3.43 V. That satisfies ≤ 2.7 V (checklist §5.1) and
+    > VIH 2.1 V. The checklist's Fig. 5-2 values (11k/49.9k) would give 2.73 V at our 3.33 V rail, so the top resistor is
+    15k. PF30 low = buffer VOL, about 0 V.
+  - The buffer runs from +3V3, the same rail as VDD33, so VBUS_DET can never rise before VDD33.
   - VBUS on the laptop port is present only while a laptop is attached, whether the deck is sinking from it or sourcing to
     it, so VBUS present ≈ host attached. Toggling VBUS also soft-resets the hub (checklist §6.1).
+  - **Limitation (review data #6):** VBUS present does not guarantee a USB host. A powered-off or sleeping laptop, or
+    a charge-only cable, also gives VBUS. The hub then leaves DCP and waits as CDP, and the USB-A ports get neither
+    VBUS nor a DCP signature. FORCE_EN restores VBUS only.
+    - Hardware fix, not done here: replace U603 with a 74LVC1G08 whose second input is a firmware "data link
+      expected" gate. That needs a new inter-sheet net to a spare PMG1 or RP2350 pin, which this sheet does not own.
 - Charging current comes from the TPS2553 switches on the usb_a sheet. DCP still needs port VBUS.
   - The hub may keep PRT_CTL low while unenumerated (unverified).
   - The RP2350 FORCE_EN path on usb_a covers that case.
@@ -189,8 +215,8 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
   - `RAILS_PG` from the TPS62933P PG, open-drain with 100k on power_rails, through **D601 BAT54WS**: anode on
     HUB_RESET_N, cathode on RAILS_PG.
 - Result:
-  - The hub stays in standby until +1V15 is in regulation, which implies +3V3 is up. That satisfies "VCORE before or with
-    VDD33, RESET_N after VDD33" (DS §9.6.1).
+  - The hub stays in standby until +1V15 is in regulation, which implies +3V3 is up. That satisfies "VCORE **after** or with
+    VDD33, RESET_N after VDD33" (DS §9.6.1). +1V15 is enabled from +3V3, so VCORE cannot lead.
   - When the RP2350 resets the hub, RAILS_PG is not loaded, so other RAILS_PG users still read a true power-good.
   - Low level with PG asserted: ≈ 0.25 V + VOL, below VIL 0.9 V.
   - The RP2350 default pad pull-down (~50k) against the 10k pull-up gives about 2.75 V, above VIH 2.1 V. In BOOTSEL the hub
@@ -229,6 +255,11 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
 | U602 | SST26VF016B-104I/SN (DNP) | C631790 | ext | 145 | 1 |
 | Y601 | X322525MOB4SI 25 MHz | C9006 | basic | 199k | 1 |
 | D601, D602 | BAT54WS-7-F | C124205 | ext | 65k | 2 |
+| U603 | 74LVC1G17W5-7 (Diodes) SOT-25, VBUS_DET buffer | C151394 | ext | 10.8k | 1 |
+| C641 | 100 nF 0402 (U603) | C1525 | basic | — | 1 |
+| R629 | 4.7k 0402 (HUB_SMB_PU pull-down, E9) | C25900 | basic | — | 1 |
+| R626 | 68k 1 % 0402 | C36871 | ext | 245k | 1 |
+| R632, R633 | 15k 0402 (C25756, basic) / 49.9k 1 % 0402 (C25897, ext) | | | | 2 |
 | C601–C612 | 220 nF 16 V X7R 0402 | C16772 | basic | 2.3M | 12 |
 | C613–C620, C624–C632, C640 | 100 nF 0402 | C1525 | basic | 21M | 18 |
 | 4.7 µF caps | 4.7 µF 10 V X5R 0402 | C23733 | basic | 2.3M | 5 |
@@ -236,9 +267,9 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
 | C637, C638 | 20 pF C0G 0402 | C1554 | basic | 657k | 2 |
 | R (12k) | 12k 1 % 0402 (RBIAS) | C25752 | basic | 1.1M | 1 |
 | R (10k) | 10k 0402 | C25744 | basic | 21M | 9 |
-| R (100k) | 100k 0402 | C25741 | basic | 8M | 14 |
+| R (100k) | 100k 0402 | C25741 | basic | 8M | 13 |
 | R (200k) | 200k 0402 | C25764 | basic | 2.3M | 3 |
-| R625, R626 | 47k 0402 | C25792 | basic | 5.5M | 2 |
+| R625 | 47k 0402 | C25792 | basic | 5.5M | 1 |
 | R630, R631 | 0 Ω 0402 | C17168 | basic | 9M | 2 |
 
 `tools/bom_check.py`: all OK.
@@ -269,3 +300,12 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
    (about 6×6, 0.3 mm vias, tented or filled).
 8. TUSB1046/PMG1 port 5: the hub doesn't control port power for the downstream C. PMG1 owns VBUS. The hub's PRT_CTL5 is
    left unused.
+9. **Bench items (review data):**
+   - **#8 PRT_DIS straps.** The PRT_DIS_Px straps sample the D+ pull-ups of embedded devices that are already
+     powered. With everything enumerated, reset the hub over HUB_RESET_N and confirm that ports 1, 4 and 6 come back.
+   - **#9 Clock before RESET_N.** RESET_N rises about 70 µs after +1V15 is good. If the hub misbehaves on cold start,
+     change C639 1 nF to 100 nF (τ ≈ 1 ms). The firmware strap-hold wait then has to grow by about 2 ms.
+   - **#10 BC on port 1.** BC1.2 on port 1 (GL3224) is harmless, and the RP2350 clears it. If layout allows, swap the
+     port map (USB-A on ports 1/2) with the 10k PD CFG_BC_EN strap.
+   - **E9 check.** Read the RP2350 stepping on the first boards. With A3/A4, R629 could go back to a weaker value, but
+     it does not need to.

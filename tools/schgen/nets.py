@@ -16,7 +16,7 @@ GLOBAL_NETS = [
     "+5V_USBA1", "+5V_USBA2",
     # --- power-path control / status
     "EXT_PWR_PRESENT",  # high when PD-in or barrel supplies VIN
-    "PDIN_PRESENT",     # high when PD-in contract is active (disables barrel path)
+    "PDIN_PRESENT",     # high when PD-in contract is active (informational; no hardware priority)
     "VBB_PG",           # buck-boost power good
     "VBB_EN",           # buck-boost enable (PMG1)
     "VBB_VSEL0", "VBB_VSEL1", "VBB_VSEL2",  # buck-boost voltage select (PMG1 GPIO only)
@@ -35,6 +35,7 @@ GLOBAL_NETS = [
     # --- PMG1 debug / control from RP2350
     "PMG1_SWDIO", "PMG1_SWCLK", "PMG1_XRES_N",
     # --- power-good from rails
+    "PG_5V",           # LM5148 5 V buck power-good (power_rails) -> laptop sink hand-over gating
     "RAILS_PG",        # open-drain, +1V15 good (power_rails) -> wire-OR into HUB_RESET_N
     # --- USB-C ports <-> PD controller (usbc_muxes <-> pd_pmg1)
     "LAPTOP_CC1", "LAPTOP_CC2", "DS_CC1", "DS_CC2",

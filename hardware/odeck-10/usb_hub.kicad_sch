@@ -2964,6 +2964,223 @@
 				)
 				(embedded_fonts no)
 			)
+		(symbol "74xGxx:74LVC1G17"
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "U"
+					(at 0 3.81 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Value" "74LVC1G17"
+					(at 0 -3.81 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Footprint" ""
+					(at -2.54 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+					(at 0 -6.35 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+						(justify left)
+					)
+				)
+				(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "ki_keywords" "Single Gate Buff Schmitt LVC CMOS"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(property "ki_fp_filters" "SOT?23* SOT?553* Texas?R-PDSO-G5?DCK* Texas?R-PDSO-N5?DRL* Texas?X2SON*0.8x0.8mm*P0.48mm*"
+					(at 0 0 0)
+					(show_name no)
+					(do_not_autoplace no)
+					(hide yes)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(symbol "74LVC1G17_0_1"
+					(polyline
+						(pts
+							(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+					(polyline
+						(pts
+							(xy -3.81 -1.27) (xy -2.54 -1.27) (xy -2.54 1.27) (xy -1.27 1.27)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+					(polyline
+						(pts
+							(xy -2.54 -1.27) (xy -1.27 -1.27) (xy -1.27 1.27) (xy 0 1.27)
+						)
+						(stroke
+							(width 0.254)
+							(type default)
+						)
+						(fill
+							(type background)
+						)
+					)
+				)
+				(symbol "74LVC1G17_1_1"
+					(pin no_connect line
+						(at -7.62 5.08 180)
+						(length 5.08)
+						(hide yes)
+						(name "NC"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "1"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin input line
+						(at -12.7 0 0)
+						(length 5.08)
+						(name ""
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "2"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin power_in line
+						(at -5.08 -10.16 90)
+						(length 5.08)
+						(name "GND"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "3"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin output line
+						(at 10.16 0 180)
+						(length 5.08)
+						(name ""
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "4"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+					(pin power_in line
+						(at -5.08 10.16 270)
+						(length 5.08)
+						(name "VCC"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+						(number "5"
+							(effects
+								(font
+									(size 1.27 1.27)
+								)
+							)
+						)
+					)
+				)
+				(embedded_fonts no)
+			)
 		(symbol "power:GND"
 				(power global)
 				(pin_numbers
@@ -15756,7 +15973,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "VBUS_DET divider top (laptop VBUS 5-28 V)"
+		(property "Description" "VBUS sense divider top (laptop VBUS 4.4-28 V)"
 			(at 342.90 167.64 0)
 			(effects
 				(font
@@ -15830,7 +16047,7 @@
 		)
 		(uuid "a935f190-4cc4-50f7-a54b-6abd65004746")
 	)
-	(label "HUB_VBUS_DET"
+	(label "HUB_VBUS_SNS"
 		(at 342.90 173.99 270)
 		(effects
 			(font
@@ -15857,7 +16074,7 @@
 				)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "68k"
 			(at 355.60 168.91 0)
 			(effects
 				(font
@@ -15883,7 +16100,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "VBUS_DET divider bottom: 5 V -> 2.5 V"
+		(property "Description" "VBUS sense divider bottom: 4.4 V -> 2.60 V"
 			(at 353.06 167.64 0)
 			(effects
 				(font
@@ -15892,7 +16109,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25792"
+		(property "LCSC" "C36871"
 			(at 353.06 167.64 0)
 			(effects
 				(font
@@ -15926,7 +16143,7 @@
 		)
 		(uuid "cd048680-1270-5c4b-b3e1-f7aad490de58")
 	)
-	(label "HUB_VBUS_DET"
+	(label "HUB_VBUS_SNS"
 		(at 353.06 161.29 90)
 		(effects
 			(font
@@ -16037,7 +16254,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Clamps VBUS_DET to ~3.6 V when laptop VBUS is 9-28 V (0.5 mA into +3V3 at 28 V)"
+		(property "Description" "Clamps the sense node to ~3.6 V when laptop VBUS is 9-28 V (<0.5 mA into +3V3 at 28 V)"
 			(at 365.76 167.64 0)
 			(effects
 				(font
@@ -16111,7 +16328,7 @@
 		)
 		(uuid "a4a3ca92-ee58-5ee7-a8f8-7e29d2ff7f85")
 	)
-	(label "HUB_VBUS_DET"
+	(label "HUB_VBUS_SNS"
 		(at 372.11 167.64 0)
 		(effects
 			(font
@@ -16414,7 +16631,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "4.7k"
 			(at 403.86 168.91 0)
 			(effects
 				(font
@@ -16440,7 +16657,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Keeps pull-up rail at 0 V when RP2350 is off/BOOTSEL -> hub boots stand-alone"
+		(property "Description" "Keeps pull-up rail at 0 V when RP2350 is off/BOOTSEL -> hub boots stand-alone (4.7k: RP2350-E9)"
 			(at 401.32 167.64 0)
 			(effects
 				(font
@@ -16449,7 +16666,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25741"
+		(property "LCSC" "C25900"
 			(at 401.32 167.64 0)
 			(effects
 				(font
@@ -17315,6 +17532,668 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "74xGxx:74LVC1G17")
+		(at 419.10 167.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b1fe3a16-78d3-5c97-84a2-0ed4f0069fbb")
+		(property "Reference" "U603"
+			(at 419.10 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LVC1G17"
+			(at 419.10 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+			(at 419.10 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+			(at 419.10 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "VBUS_DET Schmitt buffer on +3V3: input 5.5 V tolerant, output <= +3V3"
+			(at 419.10 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C151394"
+			(at 419.10 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "74LVC1G17W5-7"
+			(at 419.10 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a51b8430-d346-505b-94ae-49842f71d02c")
+		)
+		(pin "2"
+			(uuid "3fddd03d-aef2-5701-ad9e-05cf37f36759")
+		)
+		(pin "3"
+			(uuid "310920d4-8212-5a25-9a10-a837f971c665")
+		)
+		(pin "4"
+			(uuid "5d898058-4876-5175-b6d5-7b38811bb1bd")
+		)
+		(pin "5"
+			(uuid "63f8ed03-09c0-5c59-80b4-0919c9745338")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "U603")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(no_connect
+		(at 411.48 162.56)
+		(uuid "f6a2e464-f6db-5b2d-acbf-8a1c8a7abfbb")
+	)
+	(wire
+		(pts
+			(xy 406.40 167.64) (xy 403.86 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0478a7bd-6d8b-517e-ad1a-4c600d02d7da")
+	)
+	(label "HUB_VBUS_SNS"
+		(at 403.86 167.64 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "687a3f5b-f56f-5943-8884-b18b05c62f29")
+	)
+	(wire
+		(pts
+			(xy 414.02 177.80) (xy 414.02 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a56235a-7634-5222-b385-d81f35aabfb9")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 414.02 180.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d6473606-67a6-5ee1-9e28-51345159f734")
+		(property "Reference" "#PWR0653"
+			(at 414.02 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 414.02 184.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 414.02 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "67346846-0f12-5fa3-bcec-0e8cb821803a")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "#PWR0653")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 429.26 167.64) (xy 431.80 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b67d5a6-a520-5455-8b90-4b61e37a18a4")
+	)
+	(label "HUB_VBUS_BUF"
+		(at 431.80 167.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "711466a7-eb62-5765-a269-02258f29d6a4")
+	)
+	(wire
+		(pts
+			(xy 414.02 157.48) (xy 414.02 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12f63ef5-bd7d-58e7-b920-a034d885272b")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 414.02 154.94 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0b3c4515-6a34-5cca-8955-d25ce1d3da53")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 414.02 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 434.34 167.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "031bc298-5eb9-56d9-9f09-c1ebcf0fa3c5")
+		(property "Reference" "C641"
+			(at 436.88 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 436.88 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 434.34 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 434.34 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "VBUS_DET buffer decoupling"
+			(at 434.34 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 434.34 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dc2b59ed-d96e-5047-929b-335229448fb1")
+		)
+		(pin "2"
+			(uuid "85a419a6-978d-565c-9aad-08bb888ab973")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "C641")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 434.34 163.83) (xy 434.34 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ccc2a55f-3760-5652-84ee-52f341dc88fb")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 434.34 161.29 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "88920519-6660-5713-a913-f8952df7c692")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 434.34 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 434.34 171.45) (xy 434.34 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79914d65-6819-5010-8319-b21c58bf780a")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 434.34 173.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "932815ee-ff34-5fd1-9738-42e7047ed6ca")
+		(property "Reference" "#PWR0654"
+			(at 434.34 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 434.34 177.80 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 434.34 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0eacd74d-10c8-59b3-a403-c4c0f64335b4")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "#PWR0654")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 444.50 167.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a2ce9010-a4f4-5c34-8ad2-32f9782eda6f")
+		(property "Reference" "R632"
+			(at 447.04 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "15k"
+			(at 447.04 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 444.50 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 444.50 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "VBUS_DET attenuator top (checklist fig. 5-2 topology)"
+			(at 444.50 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25756"
+			(at 444.50 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f60bf286-0edf-51f1-a4c8-091b337c18ed")
+		)
+		(pin "2"
+			(uuid "c343d111-d0d0-5bbc-9d4e-a50008adfc91")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "R632")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 444.50 163.83) (xy 444.50 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "108c70e9-7607-5f44-b074-1404e167fa4f")
+	)
+	(label "HUB_VBUS_BUF"
+		(at 444.50 161.29 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "22329ac6-3174-5ffb-bd2c-7e96d36948c5")
+	)
+	(wire
+		(pts
+			(xy 444.50 171.45) (xy 444.50 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "85f6009f-083a-5f05-a2be-5ec8a7cc95af")
+	)
+	(label "HUB_VBUS_DET"
+		(at 444.50 173.99 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0f0cae27-847f-5d0b-ba5c-dff79a78715d")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 454.66 167.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "284e6165-ee41-5b21-81bc-7617cd362d1b")
+		(property "Reference" "R633"
+			(at 457.20 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "49.9k"
+			(at 457.20 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 454.66 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 454.66 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "VBUS_DET attenuator bottom: 3.33 V -> 2.56 V (<= 2.7 V)"
+			(at 454.66 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25897"
+			(at 454.66 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a8dfa45e-04c1-528c-bf09-c6b3802a9a45")
+		)
+		(pin "2"
+			(uuid "a29d2a20-13c4-557e-9511-5f88a6e33f61")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "R633")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 454.66 163.83) (xy 454.66 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f76ffc32-1342-5dcc-ae24-97f0e3e4df7d")
+	)
+	(label "HUB_VBUS_DET"
+		(at 454.66 161.29 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b1501d47-61a4-59e4-ae86-ce2f9cc26bad")
+	)
+	(wire
+		(pts
+			(xy 454.66 171.45) (xy 454.66 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a8880fd-4206-5d4b-9a4d-10c539aa9735")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 454.66 173.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b0f34e17-1b4d-53b6-99cd-177eaabc22ea")
+		(property "Reference" "#PWR0655"
+			(at 454.66 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 454.66 177.80 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 454.66 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8c70e7a3-bb22-5d73-8d4b-625d5b043549")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/f0724ae2-a801-4111-886c-4220b020f953"
+					(reference "#PWR0655")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(text "1. USB7206C  USB 3.2 Gen2 hub, VQFN-100 12x12 (EP = VSS, via array to GND planes)"
 		(exclude_from_sim no)
 		(at 20.32 15.24 0)
@@ -17324,7 +18203,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f6a2e464-f6db-5b2d-acbf-8a1c8a7abfbb")
+		(uuid "d67fdb2a-7150-5a11-bb6a-b0a9c498c82a")
 	)
 	(text "2. HUB TX AC-COUPLING  220 nF 0402 X7R in series with every hub SS TX (upstream + 5 downstream)."
 		(exclude_from_sim no)
@@ -17335,7 +18214,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0478a7bd-6d8b-517e-ad1a-4c600d02d7da")
+		(uuid "f7cba7ea-d51a-5ce3-a2d1-033e5f0d2d19")
 	)
 	(text "Hub RX pairs have no caps here: the transmitting chip's side (TUSB1064/TUSB1046/GL3224/RTL8156/USB-A sheet) provides them."
 		(exclude_from_sim no)
@@ -17346,7 +18225,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "687a3f5b-f56f-5943-8884-b18b05c62f29")
+		(uuid "7f23c40f-43be-50f8-8a74-f647cbea8a02")
 	)
 	(text "Place caps within ~5 mm of the hub pins, symmetric per pair, cut the reference plane under the 0402 pads (L2 void) for 10G."
 		(exclude_from_sim no)
@@ -17357,7 +18236,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1a56235a-7634-5222-b385-d81f35aabfb9")
+		(uuid "9a0fa03b-ae73-5c7b-aef6-3485e8573a67")
 	)
 	(text "3. DECOUPLING  VDD33 x8 pins, VCORE x9 pins: 100 nF per pin at the pin, plus 4.7 uF + 1 nF per rail (DS fig. 4-1)."
 		(exclude_from_sim no)
@@ -17368,7 +18247,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d6473606-67a6-5ee1-9e28-51345159f734")
+		(uuid "3c979a50-0d4b-5b9a-85ab-28cc56d72349")
 	)
 	(text "VCORE ~1.31 A (10G upstream + 5x 10G ports: 410 + 5*179 mA), VDD33 ~0.09 A -> ~1.8 W total; theta-JA 19 C/W (2S2P) -> ~+35 K."
 		(exclude_from_sim no)
@@ -17379,7 +18258,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "67346846-0f12-5fa3-bcec-0e8cb821803a")
+		(uuid "4614e450-301a-5013-8f7a-7f001a19a7f8")
 	)
 	(text "+1V15 bulk 4x22 uF sits at the TPS62933P (power_rails); route +1V15 as a pour on L4 under the hub."
 		(exclude_from_sim no)
@@ -17390,7 +18269,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0b67d5a6-a520-5455-8b90-4b61e37a18a4")
+		(uuid "60a52701-c6d8-5f86-ae45-28b06c0139e0")
 	)
 	(text "4. CLOCK / BIAS / TEST / STRAPS"
 		(exclude_from_sim no)
@@ -17401,7 +18280,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "711466a7-eb62-5765-a269-02258f29d6a4")
+		(uuid "b8510371-5686-5687-874a-6041d410d649")
 	)
 	(text "Straps are latched at POR / RESET_N rising edge (hold >= 1 ms after). Config 3 (STRAP2 200k PD, STRAP1 10k PD) is the"
 		(exclude_from_sim no)
@@ -17412,7 +18291,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "12f63ef5-bd7d-58e7-b920-a034d885272b")
+		(uuid "26cd5053-4e31-55d7-b7a8-59b9e9f2362c")
 	)
 	(text "only valid USB7206C mode: PF26/27 = SMBus slave, PF15/16 = PRT_CTL3/2, PF30 = VBUS_DET, PF18/31 = I2C master (unused)."
 		(exclude_from_sim no)
@@ -17423,7 +18302,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0b3c4515-6a34-5cca-8955-d25ce1d3da53")
+		(uuid "d8bd5e7c-7120-5326-8730-0d64031a94e8")
 	)
 	(text "PF3-7 (I2S), PF18/31 (I2C master), PF19 (MIC_DET), PF29 (GPIO93): unused -> 100k PD.  PF8/9 NC.  PRT_CTL1/4/5/6 float."
 		(exclude_from_sim no)
@@ -17434,7 +18313,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ccc2a55f-3760-5652-84ee-52f341dc88fb")
+		(uuid "fa2c93a9-aa8b-5fe1-a31a-fcab613b778f")
 	)
 	(text "CFG_NON_REM 200k PU = port 1 non-removable; CFG_BC_EN 10k PU = BC1.2 on ports 1-3. RP2350 refines both over SMBus"
 		(exclude_from_sim no)
@@ -17445,7 +18324,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "88920519-6660-5713-a913-f8952df7c692")
+		(uuid "40792462-8d3f-5072-9be1-c382b92a4fa4")
 	)
 	(text "(non-removable 1/4/6, BC on 2/3 only) when it is alive; with the RP2350 dead the strap defaults are safe."
 		(exclude_from_sim no)
@@ -17456,7 +18335,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "79914d65-6819-5010-8319-b21c58bf780a")
+		(uuid "f00ca033-c546-51b3-8175-1bd9598eb0c6")
 	)
 	(text "5. RESET / VBUS_DET / SMBUS"
 		(exclude_from_sim no)
@@ -17467,7 +18346,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "932815ee-ff34-5fd1-9738-42e7047ed6ca")
+		(uuid "efb21acf-47c3-58b6-9f3e-671016debb86")
 	)
 	(text "RESET_N = HUB_RESET_N (RP2350 open-drain) AND RAILS_PG (TPS62933P PG, open drain, 100k on power_rails) via D601."
 		(exclude_from_sim no)
@@ -17478,7 +18357,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0eacd74d-10c8-59b3-a403-c4c0f64335b4")
+		(uuid "bb6afcab-97cb-5f55-84a8-12a48cbdf9dc")
 	)
 	(text "  Hub held in standby until +1V15 is in regulation (implies +3V3 up); 10k pull-up then releases it. trst >= 5 us."
 		(exclude_from_sim no)
@@ -17489,9 +18368,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "108c70e9-7607-5f44-b074-1404e167fa4f")
+		(uuid "4080a11b-fa1d-5dbd-84ba-fff7ddb04551")
 	)
-	(text "VBUS_DET (PF30): laptop VBUS / 2 (47k/47k), BAT54WS clamp to +3V3: 4.4 V -> 2.2 V (VIH 2.1), 5.25 V -> 2.63 V (<2.7 V"
+	(text "VBUS_DET (PF30): VBUS_LAPTOP -> 47k/68k (x0.591) + BAT54WS clamp to +3V3 -> HUB_VBUS_SNS -> 74LVC1G17 (+3V3, Schmitt,"
 		(exclude_from_sim no)
 		(at 304.8 182.88 0)
 		(effects
@@ -17500,9 +18379,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "22329ac6-3174-5ffb-bd2c-7e96d36948c5")
+		(uuid "a795d4ea-a79c-590a-b00b-8685773476b7")
 	)
-	(text "  per checklist), 28 V -> ~3.6 V clamp. VBUS present = laptop attached (deck sources VBUS only after attach)."
+	(text "  5.5 V-tolerant input) -> 15k/49.9k -> PF30.  Sense node: 4.4 V -> 2.60 V (> VT+ max 2.0 V), 28 V -> ~3.6 V clamp (OK for"
 		(exclude_from_sim no)
 		(at 304.8 185.42 0)
 		(effects
@@ -17511,9 +18390,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "85f6009f-083a-5f05-a2be-5ec8a7cc95af")
+		(uuid "9c8884ea-2948-5767-a347-738f98b3ebf8")
 	)
-	(text "  VBUS_DET = 0 (no laptop): BC1.2 ports run as DCP; VBUS_DET = 1: CDP once the host powers the port."
+	(text "  the LVC input), vSafe0V 0.8 V -> 0.47 V (< VT- min 0.8 V). PF30 high = +3V3 x 0.769 = 2.46-2.64 V for +3V3 3.20-3.43 V"
 		(exclude_from_sim no)
 		(at 304.8 187.96 0)
 		(effects
@@ -17522,9 +18401,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "0f0cae27-847f-5d0b-ba5c-dff79a78715d")
+		(uuid "d567ef26-84b3-5905-898c-19ab1bb42cab")
 	)
-	(text "SMBus slave addr 0x2D. Pull-ups only when HUB_SMB_PU (RP2350 GPIO) is high -> hub enters CFG_SMBUS and waits for"
+	(text "  (<= 2.7 V checklist 5.1, > VIH 2.1 V); 11k/49.9k from the checklist would give 2.73 V at our 3.33 V rail -> 15k."
 		(exclude_from_sim no)
 		(at 304.8 190.5 0)
 		(effects
@@ -17533,9 +18412,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "f76ffc32-1342-5dcc-ae24-97f0e3e4df7d")
+		(uuid "8bb8cb4e-ea96-5bb5-a10e-1b25814ff7ae")
 	)
-	(text "  the RP2350's config + USB_ATTACH_WITH_SMBUS (AA56h). HUB_SMB_PU low/floating (RP2350 off, BOOTSEL, broken FW):"
+	(text "  Buffer powered from +3V3 = same rail as VDD33 -> VBUS_DET can never rise before VDD33."
 		(exclude_from_sim no)
 		(at 304.8 193.04 0)
 		(effects
@@ -17544,9 +18423,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "b1501d47-61a4-59e4-ae86-ce2f9cc26bad")
+		(uuid "aa372781-720f-560a-8e1d-8012dbe95ae9")
 	)
-	(text "  no pull-ups seen -> hub boots from ROM+straps+OTP immediately -> RP2350 BOOTSEL (UF2) still enumerates on port 6."
+	(text "  VBUS present = laptop attached (deck sources VBUS only after attach). Limitation (review data #6): VBUS also exists for"
 		(exclude_from_sim no)
 		(at 304.8 195.58 0)
 		(effects
@@ -17555,9 +18434,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "3a8880fd-4206-5d4b-9a4d-10c539aa9735")
+		(uuid "8d7b84ef-36ed-5fb1-9d04-7b992a258989")
 	)
-	(text "  Firmware: SMB_PU high -> RESET_N low >= 5 us -> release -> wait >= 40 ms -> config -> AA56h. No other pull-ups on this bus."
+	(text "  a powered-off laptop / charge-only cable -> hub waits as CDP, USB-A get no VBUS until FORCE_EN (firmware)."
 		(exclude_from_sim no)
 		(at 304.8 198.12 0)
 		(effects
@@ -17566,7 +18445,62 @@
 			)
 			(justify left top)
 		)
-		(uuid "b0f34e17-1b4d-53b6-99cd-177eaabc22ea")
+		(uuid "d51d9017-0b81-502f-a2ee-1e47a5496024")
+	)
+	(text "  VBUS_DET = 0 (no laptop): BC1.2 ports run as DCP; VBUS_DET = 1: CDP once the host powers the port."
+		(exclude_from_sim no)
+		(at 304.8 200.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "74d3ee52-5163-59f8-8f9e-2db5477aecfb")
+	)
+	(text "SMBus slave addr 0x2D. Pull-ups only when HUB_SMB_PU (RP2350 GPIO) is high -> hub enters CFG_SMBUS and waits for"
+		(exclude_from_sim no)
+		(at 304.8 203.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "b9352b38-c0da-5e32-9e50-a507625e552a")
+	)
+	(text "  the RP2350's config + USB_ATTACH_WITH_SMBUS (AA56h). HUB_SMB_PU low/floating (RP2350 off, BOOTSEL, broken FW):"
+		(exclude_from_sim no)
+		(at 304.8 205.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "6119d7dc-5730-597a-b72c-45b13cf6252f")
+	)
+	(text "  no pull-ups seen -> hub boots from ROM+straps+OTP immediately -> RP2350 BOOTSEL (UF2) still enumerates on port 6."
+		(exclude_from_sim no)
+		(at 304.8 208.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "e2c63225-e75e-5969-87c6-96ad2373c3fa")
+	)
+	(text "  Firmware: SMB_PU high -> RESET_N low >= 5 us -> release -> wait >= 40 ms -> config -> AA56h. No other pull-ups on this bus."
+		(exclude_from_sim no)
+		(at 304.8 210.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "684daf4f-57b8-59cc-b96e-afbfdad29ca0")
 	)
 	(text "6. USB-A PORT POWER  PRT_CTLx = combined power-enable output + overcurrent input (DS 8.2)"
 		(exclude_from_sim no)
@@ -17577,7 +18511,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "8c70e7a3-bb22-5d73-8d4b-625d5b043549")
+		(uuid "0a9a350f-019c-5595-baa1-6bd4afecf5d0")
 	)
 	(text "USB-A #1 = hub port 2 (PRT_CTL2, PF16), USB-A #2 = hub port 3 (PRT_CTL3, PF15). Port on: pin = input + internal ~50k"
 		(exclude_from_sim no)
@@ -17588,7 +18522,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d67fdb2a-7150-5a11-bb6a-b0a9c498c82a")
+		(uuid "713d16a6-0069-5813-8d42-acd07c78d76e")
 	)
 	(text "  pull-up (EN high), switch FAULT# (open drain) pulls it low = overcurrent; port off: hub drives it low."
 		(exclude_from_sim no)
@@ -17599,7 +18533,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f7cba7ea-d51a-5ce3-a2d1-033e5f0d2d19")
+		(uuid "e8a4ac65-f98f-51e1-a0e3-5ba17a8cf7d9")
 	)
 	(text "  USBAx_PWR_EN and USBAx_OCS_N are therefore the SAME node (0R ties, R630/R631). Do NOT add an external pull-up."
 		(exclude_from_sim no)
@@ -17610,7 +18544,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7f23c40f-43be-50f8-8a74-f647cbea8a02")
+		(uuid "40b81e19-19b0-5928-8bcc-50297bc03b1c")
 	)
 	(text "  usb_a sheet: TPS2553 EN = PWR_EN OR FORCE_EN (gate input, high-Z), FAULT# open-drain -> OCS_N."
 		(exclude_from_sim no)
@@ -17621,7 +18555,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9a0fa03b-ae73-5c7b-aef6-3485e8573a67")
+		(uuid "a9298da2-c0a0-5e50-bee5-8041b0f25874")
 	)
 	(text "Embedded ports (1 GL3224, 4 RTL8156, 5 TUSB1046/PMG1, 6 RP2350): PRT_CTL floats (internal pull-up, never reads OC)."
 		(exclude_from_sim no)
@@ -17632,7 +18566,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3c979a50-0d4b-5b9a-85ab-28cc56d72349")
+		(uuid "dc379e16-eac3-5886-90c4-6d6a5e44c9bd")
 	)
 	(text "7. OPTIONAL SPI FLASH (DNP)  only for Microchip-supplied custom firmware; ROM + straps + SMBus/OTP is the plan"
 		(exclude_from_sim no)
@@ -17643,7 +18577,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4614e450-301a-5013-8f7a-7f001a19a7f8")
+		(uuid "357e469f-b4be-5f11-b0a1-44d500b60782")
 	)
 	(text "Hub boots from flash only if it holds a valid image with the '2DFU' signature at 0x3FFFA; a blank flash -> ROM boot."
 		(exclude_from_sim no)
@@ -17654,7 +18588,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "60a52701-c6d8-5f86-ae45-28b06c0139e0")
+		(uuid "08ea36e1-69b9-5e21-9972-8822ff4da185")
 	)
 	(text "With the flash fitted the CE#/D0 strap resistors stay (they are read before the flash is probed). Fit R614 (D3 10k PU)"
 		(exclude_from_sim no)
@@ -17665,7 +18599,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b8510371-5686-5687-874a-6041d410d649")
+		(uuid "35d0bf04-e552-5d5d-8a32-a8ba598d9d18")
 	)
 	(text "and remove R613 (D3 PD) so HOLD# is inactive. Flash images come only from Microchip -> not planned for odeck-10."
 		(exclude_from_sim no)
@@ -17676,7 +18610,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "26cd5053-4e31-55d7-b7a8-59b9e9f2362c")
+		(uuid "8afe4a72-69dd-5af4-8925-aeb2068e555f")
 	)
 	(text "8. PORT MAP (logical = physical on USB7206C)        hub side (chip rotated with pins 76-100 toward the back edge)"
 		(exclude_from_sim no)
@@ -17687,7 +18621,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d8bd5e7c-7120-5326-8730-0d64031a94e8")
+		(uuid "6afc9029-52a5-524d-b1e2-9eca8c1339ee")
 	)
 	(text "  UP  : laptop via TUSB1064     top side, center        HUB_UP_SS_*, LAPTOP_USB_DP/DN"
 		(exclude_from_sim no)
@@ -17698,7 +18632,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fa2c93a9-aa8b-5fe1-a31a-fcab613b778f")
+		(uuid "388639f0-683a-542b-8337-8f0eaefca5a1")
 	)
 	(text "  P1  : GL3224 card reader      left side, upper        CR_*       (non-removable, strap)"
 		(exclude_from_sim no)
@@ -17709,7 +18643,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "40792462-8d3f-5072-9be1-c382b92a4fa4")
+		(uuid "8523ac70-8b2f-53a3-b058-c7dc64307e5e")
 	)
 	(text "  P2  : USB-A #1                left side, lower        USBA1_*    (BC1.2, PRT_CTL2)"
 		(exclude_from_sim no)
@@ -17720,7 +18654,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f00ca033-c546-51b3-8175-1bd9598eb0c6")
+		(uuid "0f10ff63-6d58-5948-937e-bfb2a8f40b5b")
 	)
 	(text "  P3  : USB-A #2                bottom side, left       USBA2_*    (BC1.2, PRT_CTL3)"
 		(exclude_from_sim no)
@@ -17731,7 +18665,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "efb21acf-47c3-58b6-9f3e-671016debb86")
+		(uuid "01470ab5-231d-5fcc-ba56-22235ef1be86")
 	)
 	(text "  P4  : RTL8156BG 2.5GbE        bottom side, right      ETH_*      (route around the PF/right side to the back-right)"
 		(exclude_from_sim no)
@@ -17742,7 +18676,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bb6afcab-97cb-5f55-84a8-12a48cbdf9dc")
+		(uuid "d0477593-dec7-5ce3-9b01-e60acc7eb962")
 	)
 	(text "  P5  : TUSB1046 downstream C   top side, right         HUB_DSC_*"
 		(exclude_from_sim no)
@@ -17753,7 +18687,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4080a11b-fa1d-5dbd-84ba-fff7ddb04551")
+		(uuid "79f28132-fbc5-5f02-a18f-7aa813863afd")
 	)
 	(text "  P6  : RP2350 (USB2 only)      bottom-right corner     MCU_USB_DP/DN (USB2 can use an inner layer to reach the MCU)"
 		(exclude_from_sim no)
@@ -17764,6 +18698,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "a795d4ea-a79c-590a-b00b-8685773476b7")
+		(uuid "5970829f-3b28-5abb-9b7d-799a01991077")
 	)
 )

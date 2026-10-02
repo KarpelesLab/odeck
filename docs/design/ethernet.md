@@ -19,13 +19,13 @@ Source: `hardware/odeck-10/sheets/ethernet.py` (generated, netlist-verified). St
 ```
 +3V3 ─ TPS22918 (ON = ETH_RESET_N, CT 1 nF, QOD) ─► ETH_3V3 ─┬─ RTL8156BG 3.3 V pins (+ bead ─► pin 9 PLL)
                                                               └─ TPS62A02A (EN = POW_EXT_SWR) ─ 1 µH ─► ETH_0V95 ─► 0.95 V pins
-hub P4 ── ETH_SS_TX± (capped on usb_hub) ──► U3SSRX     U3SSTX ─ 220 nF ─► ETH_SS_RX± ── hub P4
+hub P4 ── ETH_SS_TX± (capped on usb_hub) ──► U3SSRX     U3SSTX ─ 100 nF ─► ETH_SS_RX± ── hub P4
        ── ETH_DP/DN ─────────────────────► U2DP/DM
 RTL MDI0..3 ──► USAKRO DGUK211Q340CD2A4D2 (2.5G magjack, CT 390 pF, green/yellow LEDs)
 RTL LED0/1/2 ─┬─ jack LEDs (LED0 green, LED1 yellow, 510 Ω from ETH_3V3)
               └─ SN74LVC3G17 (+3V3) ─► ETH_LED0..2 ─► RP2350 GPIO36-38
 24AA025E48 (I2C_SYS 0x50) ── RP2350 reads EUI-48
-RTL GPIO1/SDA, GPIO2/SCL ── 2N7002DW bridge (gates = ETH_I2C_EN) ── I2C_SYS   (MAC programming into the PHY eFuse)
+RTL GPIO1/SDA, GPIO2/SCL ── BSS138DW bridge (gates = ETH_I2C_EN AND ETH_3V3, via 74LVC1G17 on ETH_3V3) ── I2C_SYS   (MAC programming into the PHY eFuse)
 ```
 
 ## 1. Reset = power cycle
@@ -123,11 +123,23 @@ How the RTL8156BG gets its MAC (DS 6.4, 6.6, tables 20–21):
 - **U805, 24AA025E48T-I/OT** (C129895, SOT-23-6) on I2C_SYS at **0x50** (A1 = A0 = GND).
   - The 24AA**02**E48 was rejected: it ignores its chip-select bits and would occupy 0x50–0x57.
   - The RP2350 reads the EUI-48 at 0xFA–0xFF.
-- **I2C bridge Q801 (2N7002DW):**
-  - Sources sit on the PHY side, pulled up to ETH_3V3. Drains sit on I2C_SYS. Gates are `ETH_I2C_EN` with a 100k PD.
+- **I2C bridge Q801 (BSS138DW, VGS(th) 0.5–1.5 V):**
+  - Sources sit on the PHY side, pulled up to ETH_3V3. Drains sit on I2C_SYS.
+  - The gates are `ETH_BR_G`, driven by **U806 74LVC1G17 powered from ETH_3V3**. Its input is `ETH_I2C_EN` (TCA9534
+    P6, 100k PD R820), and R821 (100k) holds ETH_BR_G low.
+    - The gates can therefore be high only while ETH_I2C_EN = 1 **and** ETH_3V3 is up.
+    - With ETH_3V3 off, the driver is unpowered. The LVC Ioff input takes the 3.3 V from P6 without back-feeding
+      ETH_3V3, and R821 keeps the gates at 0 V.
+    - While ETH_3V3 decays, VOH ≤ ETH_3V3, so the gates never exceed the PHY rail. The TPS22918 QOD then takes it to
+      0 V.
+  - This fixes review mcu_ui #5. Before, ETH_I2C_EN = 1 with ETH_RESET_N = 0 (a firmware bug, or a thermal power-down
+    in the middle of a write) pulled I2C_SYS into the dead 4.7k pull-ups and PHY clamps to about 2.25 V. That is
+    below VIH, and it locked the TCA9534 that controls both signals until a power cycle. Firmware should still clear
+    P6 before powering the PHY down.
   - **Off:** the PHY can see I2C_SYS traffic through the body diodes but can never pull I2C_SYS low. An unpowered PHY is not
     back-fed.
-  - **On:** a normal bidirectional bridge. Only enable it while ETH_3V3 is up, or the dead 4.7k pull-ups clamp I2C_SYS low.
+  - **On:** a normal bidirectional bridge. The BSS138DW replaces the 2N7002DW (VGS(th) up to 2.5 V) for solid
+    conduction with a 3.3 V gate.
 - **Firmware flow:**
   1. On first boot (flag in RP2350 flash), with the PHY powered, set ETH_I2C_EN.
   2. Write the OTP code with the EUI-48.
@@ -137,6 +149,11 @@ How the RTL8156BG gets its MAC (DS 6.4, 6.6, tables 20–21):
 - **Unknowns to settle on the bench:**
   - The 7-bit slave address is not given in the datasheet. Scan with the bridge on and the PHY powered.
   - Whether the I2C slave is active on a blank eFuse.
+  - Whether the address collides with an I2C_SYS device while the bridge is on (0x20, 0x41/0x44/0x45, 0x48–0x4F,
+    0x50). Scan with the bridge on and then off.
+  - Whether the write **persists**. Write once, power-cycle with ETH_RESET_N, and read PLA_IDR back over USB. If the
+    write turns out to be volatile, use the host-tool or OS fallbacks rather than rewriting on every power-up, which
+    would race the host driver.
 - **Fallbacks:**
   - (a) A host tool (Realtek PG tool for Windows, or `rtunicpg` on Linux) writes the same EUI-48 over USB. The RP2350 shows the
     address in the status app/LCD.
@@ -164,11 +181,9 @@ How the RTL8156BG gets its MAC (DS 6.4, 6.6, tables 20–21):
 `+3V3`, `GND`, `ETH_SS_TXP/TXN/RXP/RXN`, `ETH_DP`, `ETH_DN`, `ETH_LED0..2`, `ETH_RESET_N`, `I2C_SYS_SCL`, `I2C_SYS_SDA`.
 There are no PWR_FLAGs: ETH_3V3 and ETH_0V95 are local and driven by power_out pins.
 
-## New inter-sheet net needed
-- **`ETH_I2C_EN`**: the I2C bridge enable, active high, with a 100k PD here.
-  - Proposal: promote mcu's spare TCA9534 **P6** (`IOX_P6`, which already has a 10k PD there) to the global `ETH_I2C_EN`.
-  - Until it is in `nets.py`, the net is local on this sheet. The bridge then stays off, which is safe, and MAC programming
-    falls back to the host tool.
+## Inter-sheet nets
+- `ETH_I2C_EN` is global (TCA9534 P6 on mcu). Its only pull-down is R820 (100k) on this sheet; mcu has none.
+- New local nets: `ETH_BR_G` (bridge gates).
 
 ## Part list (this sheet)
 
@@ -179,23 +194,22 @@ There are no PWR_FLAGs: ETH_3V3 and ETH_0V95 are local and driven by power_out p
 | U803 | TI TPS62A02ADRLR 2 A FPWM buck | C5820994 | 11 582 | ext |
 | U804 | TI SN74LVC3G17DCUR | C68245 | 3 108 | ext |
 | U805 | Microchip 24AA025E48T-I/OT | C129895 | 6 430 | ext |
-| Q801 | Diodes 2N7002DW-7-F | C83571 | 25 499 | ext |
+| Q801 | Diodes BSS138DW-7-F | C154900 | 121 051 | ext |
+| U806 | Diodes 74LVC1G17W5-7 (bridge gate driver) | C151394 | 10 871 | ext |
 | J801 | USAKRO DGUK211Q340CD2A4D2 2.5G magjack | C19725134 | 111 | ext |
 | L801 | Sunlord SWPA4018S1R0NT 1 µH | C91250 | 5 113 | ext |
 | FB801 | Sunlord GZ2012D101TF 100 Ω bead 0805 | C1015 | 2.3 M | basic |
 | Y801 | YXC X322525MOB4SI 25 MHz | C9006 | 199 k | basic |
 | R | 2.49k 1 % C25884, 59k 1 % C32297 | | > 100 k | ext |
 | C | 390 pF C0G C76967 | | 26 k | ext |
-| R/C basic | 0 Ω C17168, 510 Ω C25123, 4.7k C25900, 10k C25744, 100k C25741; 20 pF C1554, 1 nF C1523, 100 nF C1525, 220 nF C16772, 1 µF C52923, 2.2 µF C12530, 10 µF 0603 C19702, 22 µF 0603 C59461 | | | basic |
+| R/C basic | 0 Ω C17168, 510 Ω C25123, 4.7k C25900, 10k C25744, 100k C25741; 20 pF C1554, 1 nF C1523, 100 nF C1525 (incl. C835/C836 PHY TX AC caps, C841), 1 µF C52923, 2.2 µF C12530, 10 µF 0603 C19702, 22 µF 0603 C59461 | | | basic |
 
 DNP: the CONFIG_SEQ pull-up (10k) and the 100 nF alternate CT cap.
 
 ## Open issues / risks
 1. **I2C MACID path is unverified.** The slave address and whether it works on a blank eFuse are unknown. Bench-test early.
    The host-tool fallback always works.
-2. **The 3.3 V supply should be PWM ≥ 1 MHz** (Realtek note for the 8125B family). +3V3 comes from TPS62933 at 1.2 MHz, and
-   the TPS62933 (non-F) enters PSM at light load. If the board's +3V3 load ever falls into PSM, ripple could hurt the PHY.
-   Consider TPS62933F (FCCM) on power_rails, or accept it since the deck's +3V3 load is ≥ 0.5 A.
+2. ~~3.3 V supply PWM ≥ 1 MHz~~ — resolved: +3V3 is already the TPS62933**F** (FCCM, 1.2 MHz) on power_rails.
 3. **RTL QFN-56 footprint:** EP is 4.7 mm in the easyeda import vs 4.5 mm (J/K) in the datasheet. Pads are 0.15 mm at
    0.35 mm pitch. Check paste and mask.
 4. **Magjack stock (111)** is low. Order early, or switch footprint to C19725141.

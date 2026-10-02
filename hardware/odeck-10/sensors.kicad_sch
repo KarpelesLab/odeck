@@ -7662,7 +7662,7 @@
 		)
 		(uuid "77978159-58d5-538c-9606-733b2b08a700")
 	)
-	(text "  derating interrupt; ALERT has no per-device flag (LM75-style), so the ISR reads all 8 temperatures to find the source."
+	(text "  derating interrupt. To find the source: switch to interrupt mode (TM = 1) after boot and read the SMBus Alert Response"
 		(exclude_from_sim no)
 		(at 20.32 152.4 0)
 		(effects
@@ -7673,7 +7673,7 @@
 		)
 		(uuid "6d497b3b-48cc-5b41-8aad-f7eba0a1ee6e")
 	)
-	(text "Accuracy +-1 C max (-40..110 C); WSON EP is the thermal path - it measures the copper it sits on, not air."
+	(text "  Address 0x0C (DS 7.3.2.6, free on I2C_SYS), or simply read all 8 temperatures (~2 ms at 400 kHz)."
 		(exclude_from_sim no)
 		(at 20.32 154.94 0)
 		(effects
@@ -7684,6 +7684,17 @@
 		)
 		(uuid "d01045dc-71f5-575d-af4e-cfe4f0421403")
 	)
+	(text "Accuracy +-1 C max (-40..110 C); WSON EP is the thermal path - it measures the copper it sits on, not air."
+		(exclude_from_sim no)
+		(at 20.32 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "d5fb14f0-20ad-5467-8497-a47a1232653d")
+	)
 	(text "2. NTC HOT SPOTS  NCP18XH103F03RB 10k B3380 0603 to GND; 10k 1 % bias + 100 nF from ADC_AVDD on the MCU sheet"
 		(exclude_from_sim no)
 		(at 20.32 167.64 0)
@@ -7693,7 +7704,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d5fb14f0-20ad-5467-8497-a47a1232653d")
+		(uuid "e98406c4-505e-5a58-8d9b-b2309d0f14e1")
 	)
 	(text "TH1201 -> NTC_ADC0: buck-boost inductor hot spot.   TH1202 -> NTC_ADC1: LM5148 Q301 (high-side FET) hot spot."
 		(exclude_from_sim no)
@@ -7704,7 +7715,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e98406c4-505e-5a58-8d9b-b2309d0f14e1")
+		(uuid "9ea86cfd-064e-50ef-a74e-91f80050099a")
 	)
 	(text "Ratiometric divider (bias to ADC_AVDD = ADC reference): V = AVDD x R_NTC / (10k + R_NTC); 25 C -> 0.50, 85 C -> 0.12,"
 		(exclude_from_sim no)
@@ -7715,7 +7726,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9ea86cfd-064e-50ef-a74e-91f80050099a")
+		(uuid "49af5dfc-4da0-5b7e-816f-c514ed8d2dc7")
 	)
 	(text "  100 C -> 0.08 x AVDD (R(100 C) ~ 0.97k). Route NTC_ADCx as a guarded trace away from SW nodes; the 100 nF at the ADC pin"
 		(exclude_from_sim no)
@@ -7726,7 +7737,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "49af5dfc-4da0-5b7e-816f-c514ed8d2dc7")
+		(uuid "9e40c689-2057-54ff-b95b-62babdd4bfba")
 	)
 	(text "  (mcu sheet) filters switching noise. Thermistor GND end is the local power GND: measure at low fsw-phase-noise points."
 		(exclude_from_sim no)
@@ -7737,7 +7748,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9e40c689-2057-54ff-b95b-62babdd4bfba")
+		(uuid "93547f94-8a7b-523b-a570-aa2e8544d365")
 	)
 	(text "3. THERMOCOUPLE PADS  2x2 mm bare copper (TestPoint footprint, not in BOM), tied to GND at each hot spot"
 		(exclude_from_sim no)
@@ -7748,7 +7759,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "93547f94-8a7b-523b-a570-aa2e8544d365")
+		(uuid "097a84a0-6bbd-545f-8bcb-fc0dbddecb85")
 	)
 	(text "Bond a K-type bead with Kapton/thermal epoxy to the pad (or use it as an emissivity reference spot for an IR camera)."
 		(exclude_from_sim no)
@@ -7759,7 +7770,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "097a84a0-6bbd-545f-8bcb-fc0dbddecb85")
+		(uuid "e7fdd8a6-d9d5-5ff2-86d3-0363116ff91b")
 	)
 	(text "Pads sit in the hot part's GND/thermal pour, <= 3 mm from the package, solder-mask opened. Locations:"
 		(exclude_from_sim no)
@@ -7770,7 +7781,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e7fdd8a6-d9d5-5ff2-86d3-0363116ff91b")
+		(uuid "d286aa0e-e4c7-583c-8ee3-0aa115ebb65d")
 	)
 	(text "  TP1201  TC_BB_FET    buck-boost FETs (LM51770 bridge, hottest FET)"
 		(exclude_from_sim no)
@@ -7781,7 +7792,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d286aa0e-e4c7-583c-8ee3-0aa115ebb65d")
+		(uuid "2b12ff72-a9f9-526e-a96c-a7d749ca0550")
 	)
 	(text "  TP1202  TC_BB_L      buck-boost inductor XAL1010"
 		(exclude_from_sim no)
@@ -7792,7 +7803,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2b12ff72-a9f9-526e-a96c-a7d749ca0550")
+		(uuid "22480d49-93ea-57b3-a126-f843d6ffe8df")
 	)
 	(text "  TP1203  TC_5V_FET    LM5148 high-side FET Q301"
 		(exclude_from_sim no)
@@ -7803,7 +7814,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "22480d49-93ea-57b3-a126-f843d6ffe8df")
+		(uuid "f30ec988-55a6-57f6-8fe2-d24957907113")
 	)
 	(text "  TP1204  TC_5V_L      LM5148 inductor L301"
 		(exclude_from_sim no)
@@ -7814,7 +7825,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f30ec988-55a6-57f6-8fe2-d24957907113")
+		(uuid "fbceaac7-959b-50db-9680-c489c7b38734")
 	)
 	(text "  TP1205  TC_HUB       USB7206C package top / EP"
 		(exclude_from_sim no)
@@ -7825,7 +7836,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fbceaac7-959b-50db-9680-c489c7b38734")
+		(uuid "2a62573d-95ab-5a3c-8c46-25b5bb3e57ae")
 	)
 	(text "  TP1206  TC_LAPTOP_C  laptop USB-C VBUS pins"
 		(exclude_from_sim no)
@@ -7836,7 +7847,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2a62573d-95ab-5a3c-8c46-25b5bb3e57ae")
+		(uuid "ef8c4523-089b-59b6-a17f-bfd3bd215dca")
 	)
 	(text "  TP1207  TC_ETH       RTL8156BG"
 		(exclude_from_sim no)
@@ -7847,7 +7858,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ef8c4523-089b-59b6-a17f-bfd3bd215dca")
+		(uuid "ae5b1cea-496a-54ce-b6e8-47f49664119e")
 	)
 	(text "  TP1208  TC_ORFET     LM74700 OR-FET Q303 / sink switch area (5 V path)"
 		(exclude_from_sim no)
@@ -7858,6 +7869,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "ae5b1cea-496a-54ce-b6e8-47f49664119e")
+		(uuid "3d9810e8-4ee3-588b-b9ce-ea907d135e5b")
 	)
 )

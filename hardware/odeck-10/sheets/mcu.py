@@ -51,8 +51,8 @@ GPIO = {
     23: "MCU_LCD_MOSI",    # SPI0 TX   -> 33R -> LCD_MOSI
     24: "LCD_RST_N",       # reset default pull-down holds the panel in reset until firmware runs
     25: "LCD_BL_PWM",      # PWM4 B; reset pull-down = backlight off
-    26: "PMG1_SWCLK",      # PIO SWD probe (debugprobe-style), via solder jumpers on pd_pmg1
-    27: "PMG1_SWDIO",
+    26: "MCU_PMG1_SWCLK",  # PIO SWD probe (debugprobe-style) -> 1k -> PMG1_SWCLK, via solder jumpers on pd_pmg1
+    27: "MCU_PMG1_SWDIO",  #   1k series: limits PMG1 VDDD pull-up current into the unpowered FT pad (dead deck)
     28: "PMG1_XRES_N",     # open-drain emulation; pass FET + jumper on pd_pmg1
     29: "PDIN_PRESENT",    # 3.3 V from TPS26750 GPIO via 1k (power_input); FT pin, safe when +3V3 is off
     30: "I2C_EXT_SDA",     # PIO I2C for Qwiic (also I2C1-capable)
@@ -109,7 +109,7 @@ def build(D):
     _note(s, "2. POWER  +3V3 in; internal switching regulator makes +1V1 (DVDD). Copy the RPi minimal-board regulator layout exactly.", (x0, y0), 2.0)
     y = y0 + 15.24
     s.part("odeck:AOTA-B201610S3R3-101-T", "L", "3.3u", at=(x0 + 7.62, y), pins={"1": "VREG_LX", "2": "+1V1"}, lcsc=L_VREG,
-           desc="Core regulator inductor, polarity dot toward VREG_LX (RPi: orientation matters)")
+           desc="Core regulator inductor: polarity dot on the +1V1/DVDD (C_OUT) pad 2, VREG_LX on the un-dotted pad 1 (RP2350 DS Fig. 26)")
     s.c("4.7u", "+3V3", "GND", at=(x0 + 20.32, y), lcsc=C_4U7, desc="C6: VREG_VIN input cap, at pin 64")
     s.c("4.7u", "+1V1", "GND", at=(x0 + 30.48, y), lcsc=C_4U7, desc="C7: regulator output cap (DVDD/VREG_FB)")
     s.r("33", "+3V3", "VREG_AVDD", at=(x0 + 40.64, y), lcsc=R_33, desc="R3: VREG_AVDD RC filter (~200 uA)")
@@ -128,6 +128,9 @@ def build(D):
     for i in range(3):
         s.c("100n", "+1V1", "GND", at=(x0 + i * 10.16, y), lcsc=C_100N, desc="DVDD pin decoupling (10/32/51)")
     _note(s, "+1V1 is the RP2350 core (DVDD), made on-chip (VREG_LX -> L1001 -> VREG_FB/DVDD); it is not used elsewhere.\n"
+             "L1001 ORIENTATION: dot = +1V1/C_OUT side (pad 2), as on the Pico 2 layout (DS Fig. 26); NOT toward VREG_LX. Rotated or\n"
+             "  pin-swapped = worse regulation. Check the JLC CPL rotation/preview against the footprint dot before ordering.\n"
+             "Second 4.7u on +1V1 sits at DVDD pin 32 (bottom edge of the package), not next to L1001/C_OUT.\n"
              "VREG_PGND: own via cluster, return the C6/C7 switching loop straight to pin 62 (RPi datasheet 'External components').\n"
              "ADC_AVDD = +3V3 through 10R/4.7u: the ADC reference; NTC bias resistors hang on ADC_AVDD -> ratiometric.\n"
              "Load: ~30-60 mA at 150 MHz both cores; < 0.2 W.", (x0, y0 + 60.96))
@@ -166,6 +169,9 @@ def build(D):
                desc=f"RP2350 SWD pad: {lab}")
     _note(s, "SWD pads (TP1001-TP1004, 1.0 mm, 2.54 mm apart): SWCLK, SWDIO, RUN, GND -> pogo jig or Raspberry Pi Debug Probe.\n"
              "BOOTSEL also recovers a hub stuck waiting for SMBus config: hold BOOTSEL + power-cycle -> HUB_SMB_PU stays low.\n"
+             "PMG1 SWD (GPIO26/27 -> 1k -> PMG1_SWCLK/SWDIO) + PMG1_XRES_N (GPIO28). FIRMWARE RULE: never assert PMG1_XRES_N, start a\n"
+             "  PMG1 SWD session or enter the PMG1 I2C bootloader unless EXT_PWR_PRESENT = 1 (TCA9534 P0). Bus-powered, the PMG1 holds\n"
+             "  LAPTOP_SNK_EN: reset/flash drops +5V/+3V3, the RP2350 browns out mid-flash and the PMG1 is left bricked.\n"
              "Place the QSPI_SS resistors next to the flash; keep the QSPI bus short and direct, no stubs.",
           (x0, y0 + 81.28))
 
@@ -193,8 +199,9 @@ def build(D):
     s.r("4.7k", "I2C_EXT_SDA", "+3V3", at=(x0 + 45.72, y), lcsc=R_4K7, desc="Qwiic pull-up (Qwiic boards add their own)")
     s.r("4.7k", "I2C_EXT_SCL", "+3V3", at=(x0 + 55.88, y), lcsc=R_4K7)
     _note(s, "I2C_SYS = I2C1 (GPIO2/3), I2C_PD = I2C0 (GPIO4/5): hardware controllers, 400 kHz (1 MHz possible on I2C_PD).\n"
-             "I2C_EXT (GPIO30/31) and HUB SMBus (GPIO8/9) run on PIO I2C (clock stretching supported); both pin pairs are also\n"
-             "hardware-I2C capable if firmware wants to swap buses. Pull-ups go to +3V3: with +3V3 off (dead-deck start, PMG1 on VBUS)\n"
+             "I2C_EXT (GPIO30/31) and HUB SMBus (GPIO8/9) run on PIO I2C (clock stretching supported). GPIO8/9 map to I2C0 and\n"
+             "GPIO30/31 to I2C1 = the controllers already used by I2C_PD / I2C_SYS, so a hardware swap costs the other bus.\n"
+             "Pull-ups go to +3V3: with +3V3 off (dead-deck start, PMG1 on VBUS)\n"
              "the PD bus idles low and no current flows into the unpowered RP2350 (all pins here are fault tolerant up to 3.63 V).",
           (x0, y0 + 25.4))
 
@@ -216,10 +223,11 @@ def build(D):
         desc="TMP1075 ALERT wired-OR pull-up (the only one: sensors sheet adds none)")
     s.r("10k", "ETH_RESET_N", "+3V3", at=(x0 + 76.2, y), lcsc=R_10K,
         desc="PHY reset released by default (expander powers up as inputs) -> Ethernet works without firmware")
-    # P6 = ETH_I2C_EN (100k pull-down on the ethernet sheet)
+    # P6 = ETH_I2C_EN (100k pull-down R820 on the ethernet sheet)
     _note(s, "P0 EXT_PWR_PRESENT (3.3 V push-pull, 100k PD on pd_pmg1)  P1 LAPTOP_OVP_N (open drain, 10k PU on power_laptop)\n"
              "P2 TEMP_ALERT_N (TMP1075 wired-OR, 10k PU here)  P3/P4 CR_CD_SD_N / CR_CD_USD_N (card detect, pull-ups on card_reader)\n"
-             "P5 ETH_RESET_N (output: write 0 to reset the RTL8156BG; 10k PU here)  P6/P7 spare (10k PD; candidates: CCPROT faults).\n"
+             "P5 ETH_RESET_N (output: write 0 to reset the RTL8156BG; 10k PU here)  P6 ETH_I2C_EN (output; 100k PD R820 on ethernet)\n"
+             "P7 spare (10k PD here; firmware: configure as output low). Candidates: a CCPROT fault or USBA1_OCS_N.\n"
              "All are 0-3.3 V signals that are low or unpowered whenever +3V3 is off -> no level shifting needed. These signals are\n"
              "also seen by the PMG1 (EXT_PWR_PRESENT, LAPTOP_OVP_N) which owns the safety reaction; the RP2350 only displays them.",
           (x0, y0 + 40.64))
@@ -240,10 +248,10 @@ def build(D):
     s.c("100n", "NTC_ADC0", "GND", at=(x0 + 55.88, y), lcsc=C_100N)
     s.r("10k", "ADC_AVDD", "NTC_ADC1", at=(x0 + 68.58, y), lcsc=R_10K)
     s.c("100n", "NTC_ADC1", "GND", at=(x0 + 78.74, y), lcsc=C_100N)
-    _note(s, "ADC0/1 USBA1/2_ISENSE: INA180A2 (gain 50) output -> 10k + 10 nF. If usb_a powers the INA180 from +5V, its output can\n"
-             "  exceed 3.3 V or be live before +3V3: 10k limits the clamp current to < 0.2 mA. Prefer INA180 on +3V3 (see mcu.md).\n"
+    _note(s, "ADC0/1 USBA1/2_ISENSE: INA180A2 (gain 50, on +3V3 with 1k/100 nF on usb_a) -> 10k + 10 nF here: second RC stage,\n"
+             "  and limits injection into the non-FT pads (< 0.2 mA) should the source ever be live with +3V3 off.\n"
              "ADC2/3 NTC_ADC0/1: 10k bias from ADC_AVDD, NTC to GND remote. 25 C -> 1/2 ADC_AVDD; 100 C -> ~0.3 V.\n"
-             "ADC4/5 HDR_ADC0/1: user header (1k + ESD on display_ui), 0-3.3 V only. ADC_AVDD = 3.3 V reference (internal temp = ch 8).",
+             "ADC4/5 HDR_ADC0/1: user header (10k + 10 nF + ESD on display_ui), 0-3.3 V only. ADC_AVDD = 3.3 V reference (internal temp = ch 8).",
           (x0, y0 + 25.4))
 
     # =============================================================================================
@@ -278,12 +286,27 @@ def build(D):
     # 10. Notes
     # =============================================================================================
     _note(s, "10. CROSS-SHEET RULES\n"
-             "Dead-deck start (PMG1 on laptop VBUS, +3V3 off): every signal that can be high then (PDIN_PRESENT, PMG1_SWDIO/SWCLK pulls,\n"
-             "  CR_LED from the +5V-powered GL3224) lands on a fault-tolerant GPIO (0-39, <= 3.63 V while unpowered). ADC pins (40-47)\n"
-             "  only see sources that are off with +3V3, or go through >= 1k (ISENSE 10k, header 1k). PMG1_XRES_N has its pass FET on pd_pmg1.\n"
+             "Dead-deck start (PMG1 on laptop VBUS, +3V3 off): every signal that can be high then (PDIN_PRESENT, PMG1_SWDIO/SWCLK pulls\n"
+             "  via 1k, CR_LED from the +5V-powered GL3224) lands on a fault-tolerant GPIO (0-39, <= 3.63 V while unpowered). ADC pins\n"
+             "  (40-47) only see sources that are off with +3V3, or go through >= 1k (ISENSE 10k, header 10k). PMG1_XRES_N has its pass FET on pd_pmg1.\n"
              "HUB_SMB_CLK/DAT: no pull-ups here. HUB_SMB_PU: push-pull. HUB_RESET_N, PMG1_XRES_N: drive low or Hi-Z only.\n"
              "Reset state of all GPIOs = input + ~50k pull-down: FORCE_EN off, LCD in reset, backlight off, SMB_PU low (hub boots stand-alone).",
           (20.32, 330.2))
+    _note(s, "11. FIRMWARE RULES (full list: docs/design/mcu.md 'Firmware rules')\n"
+             "PMG1_XRES_N / PMG1 SWD / PMG1 I2C bootloader: ONLY while EXT_PWR_PRESENT = 1 (bus-powered = PMG1 is the deck's supply).\n"
+             "TCA9534: configure P7 (spare) as output low; P5/P6 outputs: clear P6 ETH_I2C_EN before driving P5 ETH_RESET_N low.\n"
+             "ETH power cycle via P5 >= 100 ms. HUB_SMB_PU high only with working firmware; AA56h after config.",
+          (20.32, 350.52))
+
+    # Review fixes (docs/review/mcu_ui.md), created last so existing reference designators do not shift.
+    s.c("4.7u", "+1V1", "GND", at=(50.8, 83.82), lcsc=C_4U7,
+        desc="Second V_OUT cap (RP2350 DS 6.3.8.1): at DVDD pin 32 (bottom edge, by XIN/XOUT), away from L1001/C_OUT")
+    s.r("1k", "MCU_PMG1_SWCLK", "PMG1_SWCLK", at=(76.2, 190.5), lcsc=R_1K,
+        desc="PMG1 SWD series R: dead deck = PMG1 VDDD (<= 3.65 V) pull-up into unpowered FT GPIO26; harmless for SWD <= 10 MHz")
+    s.r("1k", "MCU_PMG1_SWDIO", "PMG1_SWDIO", at=(86.36, 190.5), lcsc=R_1K,
+        desc="PMG1 SWD series R (GPIO27)")
+    s.r("10k", "IOX_P7", "GND", at=(391.16, 99.06), lcsc=R_10K,
+        desc="TCA9534 P7 spare: pull-down so the input never floats (no spurious INT, no extra ICC in BOOTSEL/blank firmware)")
 
     # PWR_FLAGs: RC-filtered analog supplies
     s.flag("VREG_AVDD")
