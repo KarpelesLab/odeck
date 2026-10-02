@@ -180,10 +180,11 @@ def main():
     ap.add_argument("--out", default="")
     ap.add_argument("--drc", action="store_true")
     ap.add_argument("--no-fill", action="store_true")
+    ap.add_argument("--pcb", default="", help="input board (default: the project's .kicad_pcb)")
     a = ap.parse_args()
     pd = os.path.abspath(a.project)
     proj = os.path.basename(pd)
-    pcb = os.path.join(pd, proj + ".kicad_pcb")
+    pcb = a.pcb or os.path.join(pd, proj + ".kicad_pcb")
     board = pcbnew.LoadBoard(pcb)
     only = set(x for x in a.only.split(",") if x)
     for path in sorted(glob.glob(os.path.join(pd, "routing", "*.py"))):

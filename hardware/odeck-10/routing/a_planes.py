@@ -1,5 +1,6 @@
-"""odeck-10 copper zones: GND planes (L2/L5), L4 power islands (+ GND fill), L1/L6 GND pours, keep-outs, GND
-stitching vias and edge via fence. Power-net pours on L1/L6 (and the L3 helper pours) live in b_power.py.
+"""odeck-10 copper zones: GND planes (L2/L5), L4 power islands (+ GND fill), L1/L6 GND pours and keep-outs.
+Power-net pours on L1/L6 (and the L3 helper pours) live in b_power.py; GND stitching and the edge via fence in
+z_stitch.py (last script). GND_L1 / GND_L6 can be dropped for the Freerouting pass (see GND_POURS).
 
 Layer use (JLC061611-1080A): L1 F.Cu sig/power, L2 In1.Cu GND, L3 In2.Cu sig, L4 In3.Cu power, L5 In4.Cu GND,
 L6 B.Cu sig/power. See docs/routing-notes/power.md for the island map and its reasoning.
@@ -10,7 +11,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _pwrlib as L  # noqa: E402
 
-NETS = ["GND"]   # stitching / fence vias (drawn first; HS scripts add their own GND return vias afterwards)
+NETS = []   # zones only; GND stitching / edge fence moved to z_stitch.py (runs last)
 
 # ---------------------------------------------------------------- L4 (In3.Cu) power islands
 # (name, net, polygon). Islands do not overlap; whatever is left on L4 is filled with GND (L4_GND, prio 0).
@@ -30,7 +31,7 @@ L4_ISLANDS = [
                                        (138.6, 70.4), (133.4, 70.4)]),
     ("L4_5V_BUCK", "5V_BUCK", L.rect(138.5, 80.4, 151.5, 90.3)),
     ("L4_P5V", "+5V", [(131.4, 76.0), (156.2, 76.0), (156.2, 86.0), (168.6, 86.0), (168.6, 76.4), (172.4, 76.4),
-                       (172.4, 86.0), (174.2, 86.0), (174.2, 90.4), (164.4, 90.4), (164.4, 105.7),
+                       (172.4, 86.0), (176.0, 86.0), (176.0, 90.4), (164.4, 90.4), (164.4, 105.7),
                        (180.0, 105.7), (180.0, 119.6), (198.0, 119.6), (198.0, 138.5), (100.5, 138.5),
                        (100.5, 108.0), (151.9, 108.0), (151.9, 80.4), (131.4, 80.4)]),
     ("L4_P3V3", "+3V3", [(154.4, 50.5), (183.3, 50.5), (183.3, 72.0), (222.0, 72.0), (222.0, 58.6),
@@ -39,8 +40,8 @@ L4_ISLANDS = [
                          (156.5, 85.8), (156.5, 75.7), (154.4, 75.7)]),
     ("L4_VBUS_DS", "VBUS_DS", [(166.8, 56.8), (179.7, 56.8), (179.7, 80.3), (172.9, 80.3), (172.9, 75.6),
                                (166.8, 75.6)]),
-    ("L4_P1V15", "+1V15", [(164.6, 90.8), (174.5, 90.8), (174.5, 80.6), (179.7, 80.6), (179.7, 105.4),
-                           (164.6, 105.4)]),
+    ("L4_P1V15", "+1V15", [(164.6, 90.8), (176.3, 90.8), (176.3, 86.0), (174.5, 86.0), (174.5, 80.6),
+                           (179.7, 80.6), (179.7, 105.4), (164.6, 105.4)]),
     ("L4_ETH_3V3", "ETH_3V3", [(183.6, 50.5), (202.0, 50.5), (202.0, 59.3), (192.4, 59.3), (192.4, 64.0),
                                (183.6, 64.0)]),
     ("L4_ETH_0V95", "ETH_0V95", [(192.7, 59.6), (201.8, 59.6), (201.8, 71.6), (183.6, 71.6), (183.6, 64.3),
@@ -75,30 +76,8 @@ RJ45_KO = L.rect(202.3, 50.5, 221.7, 60.0)
 AC_CAPS = (["C%d" % n for n in range(601, 613)] + ["C%d" % n for n in range(509, 523)] +
            ["C530", "C531", "C532", "C533", "C534", "C535", "C917", "C918", "C835", "C836"])
 
-# ---------------------------------------------------------------- stitching exclusions
-# High-speed corridors / channels named in the layout notes (the HS scripts place their own fences there),
-# the usbc block interior, the FPC tail area, and the power pours of b_power.py.
-STITCH_EXCLUDE = [
-    L.rect(138.0, 50.0, 180.5, 80.5),      # usbc block (dense; fences belong to the usbc routing)
-    L.rect(159.0, 80.0, 164.8, 112.5),     # hub SS escape + P1/P2 channel
-    L.rect(166.8, 78.0, 174.5, 92.0),      # UP/P5 corridor
-    L.rect(165.5, 103.5, 181.0, 108.6),    # P3 / P4 run
-    L.rect(136.8, 107.8, 165.0, 112.6),    # CR SS + hub->front hand-off band
-    L.rect(136.8, 107.8, 142.0, 121.0),    # CR SS escape
-    L.rect(149.0, 104.0, 154.0, 124.5),    # USB-A port 1 channel
-    L.rect(168.0, 104.0, 173.0, 124.5),    # USB-A port 2 channel
-    L.rect(107.0, 103.5, 138.5, 129.5),    # card reader: SD bus fan-out, microSD escape, CR USB2 on B.Cu
-    L.rect(177.5, 64.0, 183.5, 109.0),     # Ethernet USB pairs along the x = 180 block boundary
-    L.rect(126.5, 128.6, 182.0, 133.4),    # microSD band
-    L.rect(127.5, 114.5, 135.0, 133.4),    # microSD escape from U901
-    L.rect(178.5, 119.5, 193.0, 133.4),    # microSD rise + J902 row
-    L.rect(180.0, 58.5, 194.0, 65.5),      # Ethernet USB corridor
-    L.rect(198.5, 63.5, 220.0, 73.0),      # MDI bundle
-    L.rect(193.5, 69.0, 202.5, 92.0),      # LCD FPC tail / J1103
-    L.rect(100.0, 62.0, 116.5, 108.5),     # LM51770 column + input FETs (own via arrays in b_power)
-    L.rect(138.0, 78.0, 158.5, 108.5),     # LM5148 stage (own via arrays in b_power)
-]
-
+# The L1/L6 GND pours: the autoroute step removes these zones before exporting the DSN and re-applies them after.
+GND_POURS = ["GND_L1", "GND_L6"]
 
 # Every zone / rule area this script creates (same-named zones are replaced on each run).
 ZONES = (["GND_L2", "GND_L5", "L4_GND", "GND_L1", "GND_L6"] + [z[0] for z in L4_ISLANDS] +
@@ -121,7 +100,8 @@ def route(board, r):
 
     # --- keep-outs
     for i, (hx, hy) in enumerate(L.HOLES):
-        L.add_keepout(board, "KO_HOLE_%d" % (i + 1), L.ALL_CU, L.circle(hx, hy, 4.0))
+        # tracks/vias only: the holes are GND (z_stitch.py), so the planes should reach their pads
+        L.add_keepout(board, "KO_HOLE_%d" % (i + 1), L.ALL_CU, L.circle(hx, hy, 4.0), pours=False)
     for name, poly in SW_KO:
         # Q302 SW EP keeps its thermal vias down to the bottom SW pour (layout notes), so vias stay allowed there
         L.add_keepout(board, name, ["In2.Cu", "In3.Cu"], poly, vias=(name != "KO_5V_SW_Q302"))
@@ -140,33 +120,3 @@ def route(board, r):
             x0, y0, x1, y1 = (L.MM(bb.GetLeft()), L.MM(bb.GetTop()), L.MM(bb.GetRight()), L.MM(bb.GetBottom()))
             L.add_keepout(board, "VOID_%s_%s" % (ref, p.GetNumber()), [layer], L.rect(x0, y0, x1, y1),
                           tracks=False, vias=False, pours=True)
-
-    # --- GND stitching grid (4 mm) + edge fence (2.5 mm pitch, 1.4 mm in from the edge)
-    import b_power
-    excl = STITCH_EXCLUDE + [poly for (_n, _net, _l, poly, _p) in b_power.POURS] + \
-        [poly for _n, poly in SW_KO] + [poly for _n, poly in L3_KO]
-    # no stitching via inside a part's courtyard (big parts that are fine to stitch under are exempt)
-    for fp in board.GetFootprints():
-        if fp.GetReference() in ("U1101", "J901", "J701", "J702", "J801") or fp.GetReference().startswith("H"):
-            continue
-        cy = fp.GetCourtyard(L.pcbnew.B_CrtYd if fp.IsFlipped() else L.pcbnew.F_CrtYd)
-        if cy.OutlineCount():
-            bb = cy.BBox()
-            excl.append(L.rect(L.MM(bb.GetLeft()), L.MM(bb.GetTop()), L.MM(bb.GetRight()), L.MM(bb.GetBottom())))
-    vp = L.ViaPlacer(board, keepouts=excl)
-    n_grid = vp.grid(r, "GND", L.rect(101.0, 51.0, 229.0, 138.0), 4.0, size=0.45, drill=0.25)
-    fence = L.ViaPlacer(board, keepouts=STITCH_EXCLUDE[:1] + [poly for (_n, _net, _l, poly, _p) in b_power.POURS])
-    n_f = 0
-    e = 1.4
-    for (ax, ay, bx, by) in ((100 + e, 50 + e, 230 - e, 50 + e), (230 - e, 50 + e, 230 - e, 139 - e),
-                             (230 - e, 139 - e, 100 + e, 139 - e), (100 + e, 139 - e, 100 + e, 50 + e)):
-        import math
-        n = int(math.hypot(bx - ax, by - ay) / 2.5)
-        for k in range(n + 1):
-            x, y = ax + (bx - ax) * k / n, ay + (by - ay) * k / n
-            for d in (0.0, 0.5, -0.5, 1.0, -1.0):
-                dx, dy = (d, 0) if ay == by else (0, d)
-                if fence.place(r, "GND", x + dx, y + dy, 0.45, 0.25):
-                    n_f += 1
-                    break
-    print("a_planes: %d stitching vias, %d fence vias" % (n_grid, n_f))

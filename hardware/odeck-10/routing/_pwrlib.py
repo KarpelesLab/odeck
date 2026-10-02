@@ -15,10 +15,9 @@ BX0, BY0, BX1, BY1 = 100.0, 50.0, 230.0, 139.0
 EDGE = 0.5            # zone outline inset from the board edge (DRC copper-to-edge is 0.3)
 HOLES = [(104, 54), (226, 54), (104, 135), (226, 135)]   # M3 mounting holes (no net)
 
-# 48 V / 28 V rails (0.3 mm to other nets for new copper; the HV net class in the .kicad_pro matches nothing, see
-# the notes). Switch nodes and IC pins at 0.5 mm pitch are exempt by necessity.
-HV_NETS = {"VIN", "VIN_OR", "VBAR", "VBUS_PDIN", "BAR_MID", "PD_MID", "VBB_OUT", "BB_PSO", "SRC_MID", "VBUS_LSW",
-           "VBUS_LAPTOP"}
+# Nets in the HV net class of odeck-10.kicad_pro: the .kicad_dru "high voltage" rule wants 0.3 mm between them and
+# any non-HV copper (pad-to-pad inside a footprint exempt).
+HV_NETS = {"VIN", "VIN_OR", "VBUS_PDIN", "VBAR", "VBUS_LAPTOP", "VBB_OUT", "VBUS_LSW", "BB_SW1", "BB_SW2", "BAR_SW"}
 
 
 def short(n):
@@ -137,8 +136,11 @@ class ViaPlacer:
                                   hs, cu))
         self.refresh()
 
+    ghost_tracks = []      # copper of scripts that run later (HS routes), class-wide: treated as obstacles
+    ghost_vias = []
+
     def refresh(self):
-        self.tracks, self.vias = [], []
+        self.tracks, self.vias = list(ViaPlacer.ghost_tracks), list(ViaPlacer.ghost_vias)
         for t in self.board.GetTracks():
             n = short(t.GetNetname())
             if t.GetClass() == "PCB_VIA":
@@ -162,7 +164,7 @@ class ViaPlacer:
                 return False
         v = pcbnew.VECTOR2I(mm(x), mm(y))
         for p, ref, pn, (l, t, rr, b), hs, cu in self.pads:
-            hv = pn and ((pn in HV_NETS) != (net in HV_NETS) or (pn in HV_NETS and net in HV_NETS and pn != net))
+            hv = (pn in HV_NETS) != (net in HV_NETS)
             c = max(clr, hvclr) if hv else clr
             if x < l - rad - c - 0.05 or x > rr + rad + c + 0.05 or y < t - rad - c - 0.05 or y > b + rad + c + 0.05:
                 continue
@@ -179,12 +181,12 @@ class ViaPlacer:
             if n == net:
                 if d < max(rad + vs / 2 + 0.1, drill / 2 + vd / 2 + 0.25):
                     return False
-            elif d < rad + vs / 2 + max(clr, hvclr if (n in HV_NETS or net in HV_NETS) else clr):
+            elif d < rad + vs / 2 + max(clr, hvclr if ((n in HV_NETS) != (net in HV_NETS)) else clr):
                 return False
         for n, ax, ay, bx, by, w, layer in self.tracks:
             if n == net:
                 continue
-            c = max(clr, hvclr) if (n in HV_NETS or net in HV_NETS) else clr
+            c = max(clr, hvclr) if ((n in HV_NETS) != (net in HV_NETS)) else clr
             if _seg_dist(x, y, ax, ay, bx, by) < rad + w / 2 + c:
                 return False
         return True
@@ -299,10 +301,24 @@ class GridRouter:
                     if test(x, y0 + j * s, infl):
                         arr[j * nx + i] = 1
 
-        def mark2(li, bx0, by0, bx1, by1, test, infl0, c, ishv):
+        def mark2(li, bx0, by0, bx1, by1, test, infl0, c, ishv, soft_ok=False):
+            # HV clearance is hard, except against pads of the end-point footprints (fine-pitch pins next to the
+            # pin being entered), where it is relaxed within 1 mm of the end points
+            if ishv and c > clr and (not soft_ok or li is None):     # vias always keep the HV clearance
+                mark(li, bx0, by0, bx1, by1, test, infl0 + c)
+                return
             mark(li, bx0, by0, bx1, by1, test, infl0 + clr)
             if ishv and c > clr:
                 mark(li, bx0, by0, bx1, by1, test, infl0 + c, True)
+
+        va_, vb_ = pcbnew.VECTOR2I(mm(a[0]), mm(a[1])), pcbnew.VECTOR2I(mm(b[0]), mm(b[1]))
+        end_refs = set()
+        for p, ref, pn, (l, t, rr, bb), hs, cu in self.vp.pads:
+            if l - 0.1 <= a[0] <= rr + 0.1 and t - 0.1 <= a[1] <= bb + 0.1 or \
+                    l - 0.1 <= b[0] <= rr + 0.1 and t - 0.1 <= b[1] <= bb + 0.1:
+                if any(p.GetEffectiveShape(lyr).Collide(va_, mm(0.05)) or p.GetEffectiveShape(lyr).Collide(vb_, mm(0.05))
+                       for lyr in cu):
+                    end_refs.add(ref)
 
         for p, ref, pn, (l, t, rr, bb), hs, cu in self.vp.pads:
             if rr < x0 - 2 or l > x1 + 2 or bb < y0 - 2 or t > y1 + 2:
@@ -320,7 +336,7 @@ class GridRouter:
                 if any(p.GetEffectiveShape(lyr).Collide(va, 0) or p.GetEffectiveShape(lyr).Collide(vb, 0)
                        for lyr in cu):
                     continue
-            ishv = hv or pn in HV_NETS
+            ishv = hv != (pn in HV_NETS)
             c = max(clr, 0.3) if ishv else clr
             for layer in cu:
                 shp = p.GetEffectiveShape(layer)
@@ -328,13 +344,13 @@ class GridRouter:
                 def tp(x, y, infl, shp=shp):
                     return shp.Collide(pcbnew.VECTOR2I(mm(x), mm(y)), mm(infl))
                 if layer in lid:
-                    mark2(lid.index(layer), l, t, rr, bb, tp, hw, c, ishv)
-                mark2(None, l, t, rr, bb, tp, vr, c, ishv)
+                    mark2(lid.index(layer), l, t, rr, bb, tp, hw, c, ishv, ref in end_refs)
+                mark2(None, l, t, rr, bb, tp, vr, c, ishv, ref in end_refs)
         for n, vx, vy, vs, vd in self.vp.vias:
             if n == net and (not strict or math.hypot(vx - a[0], vy - a[1]) < 0.6 or
                              math.hypot(vx - b[0], vy - b[1]) < 0.6):
                 continue
-            ishv = hv or n in HV_NETS
+            ishv = hv != (n in HV_NETS)
             c = max(clr, 0.3) if ishv else clr
             f = lambda x, y, infl, vx=vx, vy=vy: math.hypot(x - vx, y - vy) < infl
             for li in range(L):
@@ -343,7 +359,7 @@ class GridRouter:
         for n, ax, ay, bx, by, w, layer in self.vp.tracks:
             if n == net:
                 continue
-            ishv = hv or n in HV_NETS
+            ishv = hv != (n in HV_NETS)
             c = max(clr, 0.3) if ishv else clr
             f = lambda x, y, infl, ax=ax, ay=ay, bx=bx, by=by: _seg_dist(x, y, ax, ay, bx, by) < infl
             if layer in lid:
@@ -497,3 +513,49 @@ class GridRouter:
             r.track(net, xy, layers[li], width)
         self.vp.refresh()
         return True
+
+
+def load_ghosts(board, router_cls, names):
+    """Apply the routing scripts `names` (module names in this directory) to a fresh copy of the board file and
+    return their tracks/vias as (tracks, vias) lists in ViaPlacer format. Lets an early script (b_power) keep clear of
+    copper drawn by scripts that run after it (the high-speed routes)."""
+    import os, io, glob, contextlib, importlib.util
+    here = os.path.dirname(os.path.abspath(__file__))
+    path = board.GetFileName()
+    if not path or not os.path.exists(path):
+        return [], []
+    tmp = pcbnew.LoadBoard(path)
+    owned = set()
+    for name in names:
+        fn = os.path.join(here, name + ".py")
+        if not os.path.exists(fn):
+            continue
+        spec = importlib.util.spec_from_file_location("ghost_" + name, fn)
+        mod = importlib.util.module_from_spec(spec)
+        with contextlib.redirect_stdout(io.StringIO()):
+            spec.loader.exec_module(mod)
+            nets = set()
+            for n in getattr(mod, "NETS", []):
+                for k in tmp.GetNetsByName().keys():
+                    if str(k) == n or str(k).split("/")[-1] == n:
+                        nets.add(str(k))
+            for t in list(tmp.GetTracks()):
+                if t.GetNetname() in nets:
+                    tmp.Remove(t)
+            try:
+                mod.route(tmp, router_cls(tmp))
+            except Exception as e:      # a broken HS script must not stop the power routing
+                print("ghost %s failed: %s" % (name, e))
+        owned |= nets
+    tracks, vias = [], []
+    for t in tmp.GetTracks():
+        if t.GetNetname() not in owned and short(t.GetNetname()) != "GND":
+            continue
+        n = short(t.GetNetname())
+        if t.GetClass() == "PCB_VIA":
+            p = t.GetPosition()
+            vias.append((n, MM(p.x), MM(p.y), MM(t.GetWidth(pcbnew.F_Cu)), MM(t.GetDrillValue())))
+        else:
+            a, b = t.GetStart(), t.GetEnd()
+            tracks.append((n, MM(a.x), MM(a.y), MM(b.x), MM(b.y), MM(t.GetWidth()), t.GetLayer()))
+    return tracks, vias

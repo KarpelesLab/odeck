@@ -130,13 +130,14 @@ NETS = [
     "VBUS_DS",
     "USBA1_SW_IN", "USBA2_SW_IN",
     "ETH_0V95", "ETH_3V3", "CR_SD_VCC", "CR_USD_VCC",
+    "GND",      # hot-loop GND via rows and the GND escapes above (z_stitch.py adds the board-wide stitching last)
 ]
 
 # Pads that may hold a via (EP thermal arrays; filled via-in-pad is free on JLC 6-layer).
 EP_OK = {("Q201", "9"), ("Q204", "9"), ("Q213", "8"), ("Q214", "8"), ("Q301", "8"), ("Q302", "9"),
          ("Q303", "9"), ("Q217", "9"), ("D101", "1"), ("Q104", "1"), ("Q104", "2"), ("Q104", "3"),
          ("R312", "2"), ("C324", "1"), ("C323", "1"), ("R202", "1"), ("R137", "2"), ("R303", "2"),
-         ("Q303", "1"), ("Q303", "2"), ("Q303", "3")}
+         ("Q303", "1"), ("Q303", "2"), ("Q303", "3"), ("R415", "1"), ("C421", "1")}
 
 # ------------------------------------------------------------------------------------------------ via fields
 # (net, area (x0,y0,x1,y1) or polygon, max count, pitch, size, drill)
@@ -148,7 +149,7 @@ VIAS = [
     ("VBUS_PDIN", (129.4, 63.6, 130.3, 67.2), 3, 1.2, 0.6, 0.3),   # D101.1 / Q104 sources (filled via-in-pad)
     ("VBUS_PDIN", (132.15, 64.4, 133.0, 65.6), 1, 0.9, 0.6, 0.3),  # C101
     ("VBUS_PDIN", (127.2, 60.9, 128.9, 63.4), 1, 0.9, 0.5, 0.25),  # C102
-    ("VIN", [(109.4, 74.9), (112.0, 74.9), (112.0, 76.45), (115.6, 76.45), (115.6, 78.3), (109.4, 78.3)], 8, 0.9,
+    ("VIN", [(109.4, 74.9), (112.0, 74.9), (112.0, 76.4), (115.6, 76.4), (115.6, 78.3), (109.4, 78.3)], 12, 0.85,
      0.6, 0.3, True),                                               # R137.2 (outer half) -> L4 VIN tab
     # buck leg
     ("VIN", (107.4, 99.6, 111.5, 103.0), 12, 1.1, 0.6, 0.3),       # Q201 EP (thermal + VIN to L4/L6)
@@ -174,6 +175,7 @@ VIAS = [
     ("VBUS_LAPTOP", (133.2, 63.9, 138.3, 70.2), 8, 0.9, 0.6, 0.3),  # C233 / R243.2 -> L4
     ("VBUS_LAPTOP", (139.0, 60.2, 143.6, 61.8), 8, 0.8, 0.6, 0.3),  # D501.1 -> L4 / L6
     ("VBUS_LAPTOP", (141.6, 61.6, 142.8, 63.4), 1, 0.9, 0.6, 0.3),  # C501
+    ("VBUS_LAPTOP", (138.6, 53.6, 153.6, 61.4), 14, 1.4, 0.6, 0.3),  # stitch the L6 pour fragments (USB2/SBU/CC cut it)
     ("+5V", (131.3, 75.8, 132.9, 78.2), 4, 0.8, 0.6, 0.3, True),    # U206 OUT -> L4 +5V
     # LM5148 stage
     ("VIN", (140.3, 96.5, 143.0, 99.3), 9, 0.9, 0.6, 0.3),          # Q301 drain/EP (thermal)
@@ -183,8 +185,9 @@ VIAS = [
     ("5V_SW", (145.9, 97.0, 149.9, 100.3), 9, 1.0, 0.6, 0.3),       # Q302 EP -> bottom SW pour (thermal)
     ("5V_BUCK", (152.5, 87.25, 155.7, 87.9), 5, 0.7, 0.6, 0.3),     # R303.2 (outer half) -> Q303 sources / L6
     ("5V_BUCK", (139.3, 82.95, 148.75, 90.55), 10, 1.2, 0.6, 0.3),  # bottom pour -> L4 copy
-    ("+5V", (158.0, 87.3, 162.8, 88.6), 10, 0.75, 0.6, 0.3, True),  # R312.2 bottom pour -> L4 +5V (east of U303)
-    ("+5V", (155.3, 87.3, 158.0, 92.8), 8, 0.75, 0.6, 0.3),         # R312.2 -> L4 +5V (after the sense routes)
+    ("+5V", (155.4, 87.3, 158.9, 88.5), 10, 0.75, 0.6, 0.3, True),  # R312.2 (outer half, via-in-pad) -> L4 +5V
+    ("+5V", (158.9, 87.3, 162.8, 88.6), 6, 0.75, 0.6, 0.3, True),   # R312.2 bottom pour east of U303 -> L4
+    ("+5V", (155.3, 88.5, 158.6, 92.8), 6, 0.75, 0.6, 0.3),         # R312.2 pour -> L4 (after the sense routes)
     ("+5V", (154.6, 102.6, 157.4, 108.0), 5, 0.9, 0.6, 0.3),        # C323
     ("+5V", (155.6, 94.8, 157.6, 98.2), 3, 0.9, 0.6, 0.3),          # C324
     # small bucks
@@ -209,24 +212,33 @@ VIAS = [
 
 
 # ------------------------------------------------------------------------------------------------ local routes
+# U201 pins are entered at the toe (or the inner end) rather than the pad centre, so no track runs along a 0.5 mm
+# pitch pad next to its HV neighbour.
 # (net, from, to, layers, width). from/to: (ref, pad) = pad centre, (ref, pad, dx, dy) = offset from it (Kelvin
 # taps at the inner pad edge), or (x, y). Routed by the small grid router in this order.
 F, B, I2 = "F.Cu", "B.Cu", "In2.Cu"
 ROUTES = [
     # LM51770 gate drive (0 ohm resistors R203-R206 in the loop), bootstrap and driver returns. Bootstrap/SW
     # returns first (shortest loops), then gate drives, then the Kelvin taps (which may use L3).
-    ("BB_SW2", ("U201", "25"), ("C220", "2"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
-    ("BB_HB2", ("U201", "26"), ("C220", "1"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
-    ("BB_SW2", ("C220", "2"), ("Q203", "8"), (F,), 0.3),
-    ("BB_HO2", ("U201", "27"), ("R206", "1"), (F, I2, B), 0.25, {"via": (0.4, 0.2), "window": 5.0}),
-    ("BB_LO2", ("U201", "29"), ("R205", "1"), (F, I2, B), 0.25, {"via": (0.4, 0.2), "window": 5.0}),
+    # R202 output-current sense first: pins 22 (VBB_OUT) / 23 (PSO) leave north up the toe column (C220 is now on
+    # the bottom), U201.20 joins C210 directly
+    ("VBB_OUT", ("R202", "2", -0.5, 0.0), ("U201", "22", -0.65, 0.0), (F, I2), 0.15, {"via": (0.4, 0.2), "window": 4.0}),
+    ("BB_PSO", ("R202", "1", 0.5, 0.0), ("U201", "23", -0.65, 0.0), (F, I2), 0.15, {"via": (0.4, 0.2), "window": 4.0}),
+    ("VBB_OUT", ("U201", "20", -0.65, 0.0), ("C210", "1"), (F,), 0.2),
+    # boost bootstrap: C220 (bottom) under pins 25/26, reached through small vias next to the pin ends
+    ("BB_SW2", ("U201", "25", -0.65, 0.0), ("Q203", "8"), (F,), 0.25),
+    ("BB_SW2", ("U201", "25", 0.65, 0.0), ("C220", "2"), (F, B), 0.2, {"via": (0.35, 0.15), "no_body": True}),
+    ("BB_HB2", ("U201", "26", 0.65, 0.0), ("@via", 1), (F,), 0.2, {"no_body": True}),     # @via 1 = DIRECT_VIAS[1]
+    ("BB_HB2", ("@via", 1), ("C220", "1"), (B,), 0.2, {"no_body": True}),
+    ("BB_HO2", ("U201", "27", -0.65, 0.0), ("R206", "1"), (F, I2, B), 0.25, {"via": (0.4, 0.2), "window": 5.0}),
+    ("BB_LO2", ("U201", "29", -0.65, 0.0), ("R205", "1"), (F, I2, B), 0.25, {"via": (0.4, 0.2), "window": 5.0}),
     ("BB_G3", ("R205", "2"), ("Q203", "4"), (F, I2, B), 0.3, {"window": 6.0}),
     ("BB_G4", ("R206", "2"), ("Q204", "4"), (F, I2, B), 0.3, {"window": 6.0}),
-    ("BB_SW1", ("U201", "36"), ("C219", "2"), (F,), 0.25),
-    ("BB_HB1", ("U201", "35"), ("C219", "1"), (F,), 0.25),
+    ("BB_SW1", ("U201", "36", -0.65, 0.0), ("C219", "2"), (F,), 0.25),
+    ("BB_HB1", ("U201", "35", -0.65, 0.0), ("C219", "1"), (F,), 0.25),
     ("BB_SW1", ("C219", "2"), ("Q201", "1"), (F, I2), 0.3),
-    ("BB_HO1", ("U201", "34"), ("R203", "1"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
-    ("BB_LO1", ("U201", "32"), ("R204", "1"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
+    ("BB_HO1", ("U201", "34", -0.65, 0.0), ("R203", "1"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
+    ("BB_LO1", ("U201", "32", -0.65, 0.0), ("R204", "1"), (F, I2), 0.25, {"via": (0.4, 0.2)}),
     ("BB_G1", ("Q201", "4"), ("R203", "2"), (F, I2), 0.3),
     ("BB_G2", ("R204", "2"), ("Q202", "4"), (F, I2), 0.3),
     # R201 current sense (Kelvin from the inner pad edges) -> R210/R211/C221 filter -> CSA/CSB
@@ -234,17 +246,12 @@ ROUTES = [
     ("BB_LS", ("R201", "2", -0.5, 0.0), ("R211", "1"), (F, B), 0.15),
     ("BB_CSA", ("R210", "2"), ("C221", "1"), (B,), 0.15),
     ("BB_CSB", ("R211", "2"), ("C221", "2"), (B,), 0.15),
-    ("BB_CSB", ("C221", "2"), ("U201", "38"), (B, F, I2), 0.15, {"via": (0.4, 0.2)}),
-    # R202 output-current sense: PSO and VBB_OUT taps
-    # R202 output-current sense (PSO / VBB_OUT), routed after the boost-leg drive so it takes what is left
-    ("VBB_OUT", ("U201", "20"), ("C210", "1"), (F,), 0.2),
-    # pins 22/23 drop through 0.4 mm vias at their inner ends (above the EP corner), then run on L3
-    ("VBB_OUT", ("U201", "22"), (116.45, 84.15), (F,), 0.15,
-     {"end_via": (116.3, 84.0, 116.6, 84.2), "via": (0.4, 0.2), "no_body": True, "tight": True}),
-    ("BB_PSO", ("U201", "23"), (116.4, 84.95), (F,), 0.15,
-     {"end_via": (116.3, 84.85, 116.55, 85.0), "via": (0.4, 0.2), "no_body": True, "tight": True}),
-    ("VBB_OUT", ("@via", 0), ("R202", "2", -0.5, 0.0), (I2, F), 0.15, {"via": (0.4, 0.2), "window": 4.0}),
-    ("BB_PSO", ("@via", 1), ("R202", "1", 0.5, 0.0), (I2, F), 0.15, {"via": (0.4, 0.2), "window": 4.0}),
+    ("BB_CSB", ("C221", "2"), ("U201", "38", -0.65, 0.0), (B, F, I2), 0.15, {"via": (0.4, 0.2)}),
+    # GND of the parts that now sit on the bottom inside the boost switch-node area (no vias allowed under SW2):
+    # out on L6 to a via north of the area (C114, R122) or south of it (TP1202)
+    ("GND", ("R122", "2"), (109.8, 79.0), (B,), 0.25, {"end_via": (108.4, 78.4, 112.4, 79.3), "cross_pours": True}),
+    ("GND", ("C114", "2"), ("R122", "2"), (B,), 0.25, {"cross_pours": True}),
+    ("GND", ("TP1202", "1"), (108.1, 86.3), (B,), 0.3, {"end_via": (106.0, 85.9, 110.5, 88.0)}),
     # ideal-diode / source-switch gate drives
     ("BAR_DGATE", ("Q106", "4"), ("U105", "1"), (B, I2), 0.25),
     ("BAR_HGATE", ("Q107", "4"), ("U105", "8"), (B, I2), 0.25),
@@ -254,7 +261,7 @@ ROUTES = [
     ("SRC_HGATE", ("Q214", "4"), ("U202", "8"), (F, B, I2), 0.25),
     # input-current (R137 -> INA237 U109) and laptop-current (R243 -> INA226 U204) Kelvin taps
     ("VIN", ("R137", "2", 0.0, -0.45), ("U109", "9"), (B, I2), 0.15),
-    ("VIN_OR", ("R137", "1", 0.0, 0.45), ("U109", "10"), (B, I2), 0.15, {"via": (0.4, 0.2)}),
+    ("VIN_OR", ("R137", "1", 0.0, 0.45), ("U109", "10"), (B, I2, F), 0.15, {"via": (0.4, 0.2), "window": 5.0}),
     ("VIN", ("U109", "9"), ("U109", "8"), (B,), 0.15),
     ("VBUS_LSW", ("R243", "1", 0.0, -0.4), ("U204", "10"), (F, B, I2), 0.15),
     ("VBUS_LAPTOP", ("R243", "2", 0.0, 0.4), ("U204", "9"), (F, B, I2), 0.15),
@@ -285,7 +292,6 @@ ROUTES = [
     ("1V15_SW", ("C337", "2"), ("L303", "1"), (B, F), 0.3),
     ("1V15_BST", ("C337", "1"), ("U305", "6"), (B, F), 0.25),
     ("+5V", ("U305", "3"), ("C336", "1"), (F,), 0.25),
-    ("+5V", ("C336", "1"), (173.8, 90.0), (F,), 0.3, {"end_via": (164.6, 86.4, 174.0, 90.1)}),
     ("ETH_SW", ("U803", "2"), ("L801", "1"), (F,), 0.3),
     # USB-A port current-sense Kelvin taps (INA180 IN+/IN- from the inner edges of R704/R709)
     ("+5V", ("R704", "1", 0.35, 0.0), ("U703", "3"), (B, I2), 0.15),
@@ -296,8 +302,12 @@ ROUTES = [
     ("CR_USD_VCC", ("U901", "24"), ("C916", "1"), (B,), 0.25),
     ("CR_USD_VCC", ("C916", "1"), ("C915", "1"), (B,), 0.4),
     ("CR_SD_VCC", ("U901", "23"), ("C913", "1"), (B, I2), 0.25, {"via": (0.4, 0.2)}),
-    ("CR_SD_VCC", ("C913", "1"), ("C914", "1"), (B,), 0.4),
-    ("CR_SD_VCC", ("C914", "1"), ("J901", "4"), (B, F), 0.4),
+    ("CR_SD_VCC", ("C913", "1"), ("C914", "1"), (B, I2), 0.4, {"via": (0.45, 0.25)}),
+    ("CR_SD_VCC", ("C914", "1"), ("J901", "4"), (B, I2, F), 0.4, {"via": (0.45, 0.25), "window": 4.0}),
+    # downstream USB-C VBUS: A-row pins joined to the B-row pins between the rows (if the HS vias leave room)
+    ("VBUS_DS", ("J502", "A4"), ("J502", "B9"), (F,), 0.2, {"cross_pours": True, "window": 1.0}),
+    ("VBUS_DS", ("J502", "B9"), (172.5, 57.4), (F,), 0.25, {"end_via": (171.4, 56.6, 173.7, 57.95), "via": (0.5, 0.25)}),
+    ("VBUS_DS", ("J502", "B4"), (170.0, 57.4), (F,), 0.25, {"end_via": (168.8, 56.6, 171.1, 57.95), "via": (0.5, 0.25)}),
 ]
 
 # Plain straight links: USB-C receptacle A-row VBUS pins to the B-row VBUS pins right behind them.
@@ -306,17 +316,15 @@ LINKS = [
     ("VBUS_PDIN", ("J101", "A9"), ("J101", "B4"), 0.25),
     ("VBUS_LAPTOP", ("J501", "A4"), ("J501", "B9"), 0.25),
     ("VBUS_LAPTOP", ("J501", "A9"), ("J501", "B4"), 0.25),
-    ("VBUS_DS", ("J502", "A4"), ("J502", "B9"), 0.2),     # J502 is all-SMD: A4 joined to B9 behind it (A9 is
-    # left to the usbc routing: its DS_TX2 via/GND via sit between A9 and B4)
 ]
 # Vias straight through overlapping top/bottom pads (filled via-in-pad): CSA filter cap under its U201 pin.
 DIRECT_VIAS = [
     ("BB_CSA", (114.67, 91.7), 0.35, 0.15, {("U201", "37"), ("C221", "1")}),
+    ("BB_HB2", (116.25, 86.2), 0.35, 0.15, set()),     # next to the inner end of U201.26, over C220 pad 1
+    ("+5V", (170.85, 78.6), 0.6, 0.3, {("R415", "1"), ("C421", "1")}),      # R415 pad 1 / C421 pad 1 -> L4 +5V
 ]
 # Pad -> short stub -> via (J502 VBUS pins are all SMD).
 STUBS = [
-    ("VBUS_DS", ("J502", "B4"), (170.0, 57.5), 0.3),
-    ("VBUS_DS", ("J502", "B9"), (172.5, 57.5), 0.3),
 ]
 
 
@@ -342,8 +350,15 @@ def _side(r, spec):
     return None
 
 
+# Scripts that run after this one and whose copper is final: everything here keeps clear of it.
+HS_SCRIPTS = ["c_hs_usbc", "d_hs_hub", "e_hs_eth_sd"]
+
+
 def route(board, r):
     del _END_VIAS[:]
+    L.ViaPlacer.ghost_tracks, L.ViaPlacer.ghost_vias = L.load_ghosts(board, type(r), HS_SCRIPTS)
+    print("b_power: keeping clear of %d HS tracks / %d HS vias" % (len(L.ViaPlacer.ghost_tracks),
+                                                                  len(L.ViaPlacer.ghost_vias)))
     for name, net, layer, poly, prio in POURS:
         L.add_zone(board, r, name, net, layer, poly, priority=prio, clearance=0.3, min_width=0.25, full=True)
     ap = __import__("a_planes")
@@ -406,7 +421,10 @@ def route(board, r):
         body.append(rect(bx0, by0, bx1, by1))
     for net, xy, size, drill, allow in DIRECT_VIAS:
         vp_tight.refresh()
-        if not vp_tight.place(r, net, xy[0], xy[1], size, drill, allow_pads=allow, clr=0.15):
+        if vp_tight.place(r, net, xy[0], xy[1], size, drill, allow_pads=allow, clr=0.15, hvclr=0.15):
+            _END_VIAS.append(xy)
+        else:
+            _END_VIAS.append(None)
             failed.append((net, "direct via", xy))
         vp.refresh()
     for rt in ROUTES:
@@ -417,7 +435,7 @@ def route(board, r):
             la = None
         if lb not in layers:
             lb = None
-        if (a[0] == "@via" and a[1] >= len(_END_VIAS)) or (b[0] == "@via" and b[1] >= len(_END_VIAS)):
+        if any(s[0] == "@via" and (s[1] >= len(_END_VIAS) or _END_VIAS[s[1]] is None) for s in (a, b)):
             failed.append((net, a, b, "missing via"))
             continue
         pa, pb = _pt(r, a), _pt(r, b)
@@ -465,6 +483,7 @@ def route(board, r):
             failed.append((net, a, xy))
     vp.refresh()
     fields(False)
+    L.ViaPlacer.ghost_tracks, L.ViaPlacer.ghost_vias = [], []
     for net, area, n, k in report:
         if k < n:
             print("b_power: %-12s %s placed %d/%d vias" % (net, area, k, n))

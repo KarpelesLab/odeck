@@ -16,3 +16,4 @@ hardware/*/gerbers/
 # Python
 __pycache__/
 *.pyc
+hardware/*/build/

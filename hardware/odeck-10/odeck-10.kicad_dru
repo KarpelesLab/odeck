@@ -12,9 +12,10 @@
   (constraint clearance (min 0.3mm)))
 
 # 48 V / 28 V nets: 0.3 mm to other nets for copper we draw (tracks, vias, zones). Pad-to-pad inside a footprint
-# follows the manufacturer's land pattern.
+# follows the manufacturer's land pattern, and so do tracks entering the 0.5 mm-pitch pins of the HV-rated
+# controllers/FETs/connectors (U10x, U20x, Q20x, J101, J501) and anything inside U201's courtyard.
 (rule "high voltage"
-  (condition "A.NetClass == 'HV' && B.NetClass != 'HV' && !(A.Type == 'Pad' && B.Type == 'Pad')")
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV' && !(A.Type == 'Pad' && B.Type == 'Pad') && !((A.Type == 'Pad' && (A.memberOfFootprint('U10*') || A.memberOfFootprint('U20*') || A.memberOfFootprint('Q20*') || A.memberOfFootprint('J101') || A.memberOfFootprint('J501'))) || (B.Type == 'Pad' && (B.memberOfFootprint('U10*') || B.memberOfFootprint('U20*') || B.memberOfFootprint('Q20*') || B.memberOfFootprint('J101') || B.memberOfFootprint('J501'))) || (A.intersectsCourtyard('U201') && B.intersectsCourtyard('U201')))")
   (constraint clearance (min 0.3mm)))
 
 # SKRTLAE010 side-push button: manufacturer land pattern puts its locating NPTH close to the GND tabs
