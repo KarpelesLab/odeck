@@ -1,7 +1,7 @@
 # odeck-10 — 10 Gbps prototype
 
 First odeck build. Goal: a fully working, fully open USB-C deck assembled entirely by JLCPCB
-(LCSC stock, plus Mouser/DigiKey consigned parts where needed), validating everything the
+(**JLC parts only, ≥ 5 in stock — no consignment**, decided 2026-10-02; check with `tools/bom_check.py`), validating everything the
 later 20G/40G versions will reuse: power architecture, MCU/LCD firmware, card reader, 2.5GbE,
 board outline and silkscreen style. Only the core and high-speed section change later.
 
@@ -92,7 +92,7 @@ Hardware backstops that stay independent of *all* firmware:
   LM5148 5 V stage, USB7206C, PMG1/TUSB1064 area, laptop USB-C connector, RJ45/RTL8156, LCD, board edge/ambient.
   Plus a few NTC 0603 (NCP18XH103, C13564) on RP2350 ADC pins for hot spots too small for an SOIC/WSON.
 - **Power monitors:** INA226 (36 V max, C49851) on laptop VBUS and 5 V rail; VIN (up to 48 V) needs an
-  85 V part — INA228/INA238 (0–1 JLC stock → consign from Mouser/DigiKey).
+  85 V part — INA237 (C2864837, pin-compatible with INA228/INA238).
 - RP2350 logs everything over USB (CDC/serial or the status app) and shows it on the LCD; firmware
   derating policy is tuned from this data. Pads for external thermocouples on key spots.
 
@@ -134,6 +134,40 @@ Hardware backstops that stay independent of *all* firmware:
    → consign from Mouser/DigiKey.
 6. Thermal budget vs board size — board may grow beyond 100×60; decide after prototype heat data.
 7. Stackup: 6-layer standard likely enough for 10G; decide during layout.
+
+## Schematic status
+| Sheet | Status | Design notes |
+|---|---|---|
+| power_input | drafted, netlist-verified | `design/power_input.md` |
+| power_laptop | drafted, netlist-verified | `design/power_laptop.md` |
+| power_rails | drafted, netlist-verified | `design/power_rails.md` |
+| pd_pmg1, usbc_muxes, usb_hub, usb_a, ethernet, card_reader, mcu, display_ui, sensors | TODO | |
+
+## I2C address map (so far)
+| Bus | Addr | Device |
+|---|---|---|
+| I2C_SYS | 0x41 | INA226, +5V rail (power_rails) |
+| I2C_SYS | 0x44 | INA226, laptop VBUS (power_laptop) |
+| I2C_SYS | 0x45 | INA237, VIN (power_input) |
+| I2C_SYS | 0x48–0x4F | TMP1075 ×8 (sensors) — reserved |
+| I2C_PD | 0x21 | TPS26750 target (power_input) — check vs PMG1 HPI address |
+| TPS26750 private | 0x50 | AT24C512C config EEPROM (RP2350 writes it via TPS26750 pass-through — confirm) |
+
+## Cross-sheet integration items (from power sheet design)
+1. **RTL8156BG needs an external 0.95 V rail** (internal-regulator BGS variant not stocked): regulator on the
+   ethernet sheet (e.g. TLV62569 from +3V3, enabled by the PHY's POW_EXT_SWR pin).
+2. **GL3224 runs from 5 V** (4.75–5.25 V): check +5V sag in bus-powered mode (sink switch drop).
+3. **RAILS_PG** (open-drain, +1V15 good) should wire-OR onto HUB_RESET_N → MCU drives HUB_RESET_N open-drain;
+   promote RAILS_PG to a global net when building usb_hub/mcu.
+4. **LAPTOP_SNK_EN must work with a dead deck** (bus-powered cold start, no +3V3 yet): pd_pmg1 must drive it
+   from VBUS-powered logic (PMG1 powered from laptop VBUS).
+5. **PD-in TVS** (SMCJ51A, 82 V clamp at full surge) exceeds TPD4S480 VBUS abs max (63 V) — revisit clamp.
+6. **Footprints to check before layout:** PJ-063BH (pad spacing mismatch found), XAL1010, HTSSOP-38 (LM51770),
+   TPS25947, electrolytics, all easyeda imports.
+7. **LM51770 compensation** needs simulation/Bode (shared VSEL RC node adds lag); LM74800 charge-pump start at
+   5.1 V output to bench-check (or default 5.2 V). Full 140 W needs VIN ≳ 16 V.
+8. **LM5148** at 8 A from 48 V ≈ 91 % (≈ 3.9 W) — ~1 W above budget; high-side FET is the hot spot.
+9. TPS26750 boots in AlwaysEnableSink so the deck works with a blank EEPROM; draws from 5 V sources before a contract.
 
 ## Notes on a 20 Gbps step
 USB 3.2 Gen2x2 (20G) is **not supported by Apple Silicon Macs** (they fall back to 10G), uses all 4

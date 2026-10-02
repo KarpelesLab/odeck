@@ -58,7 +58,7 @@ def first(node, key):
     return r[0] if r else None
 
 def q(s):
-    return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
+    return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
 
 def U():
     return str(uuid.uuid4())
@@ -372,6 +372,8 @@ def verify(project_dir, sheets):
     errors = []
     for s in sheets:
         for (ref, pin), net in s.expected.items():
+            if ref.startswith("#"):      # PWR_FLAG / power symbols are not in the netlist
+                continue
             got = actual.get((ref, pin))
             if net is None:
                 if got and not got.startswith("unconnected-"):

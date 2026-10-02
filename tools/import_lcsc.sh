@@ -14,5 +14,5 @@ trap 'rmdir "$LIB/.lock"' EXIT INT TERM
 "$E2K" --full --overwrite --output "$LIB/odeck" --lcsc_id "$@"
 # absolute 3D model paths -> relative to the project dir (projects live in hardware/<name>/)
 sed -i '' "s#$LIB/odeck.3dshapes/#\${KIPRJMOD}/../lib/odeck.3dshapes/#g" odeck.pretty/*.kicad_mod
-"$KCLI" sym upgrade odeck.kicad_sym >/dev/null
+"$KCLI" sym upgrade --force odeck.kicad_sym >/dev/null
 "$KCLI" fp upgrade odeck.pretty >/dev/null 2>&1 || true
