@@ -52,8 +52,8 @@ def place(board, h):
     P("C624", *hp(4.6, -7.4), 0, B)       # VCORE pin 78
     P("C618", *hp(2.4, -7.4), 0, B)       # VDD33 pin 79
     P("C625", *hp(0.2, -7.4), 0, B)       # VCORE pin 85
-    P("C613", *hp(-2.0, -7.4), 0, B)      # VDD33 pin 88
-    P("C626", *hp(-4.2, -7.4), 0, B)      # VCORE pin 93
+    P("C613", *hp(-4.2, -7.4), 0, B)      # VDD33 (+3V3 pad 1 right behind pin 99, so its toe via can land on it)
+    P("C626", *hp(-2.0, -7.4), 0, B)      # VCORE (+1V15 pad 1 behind pin 93); swapped with C613 2026-10-03
     P("C614", *hp(-6.4, -7.4), 0, B)      # VDD33 pin 99
     # top edge, bottom side, row 2 (y_rel -8.65): RBIAS + bulk
     P("R601", *hp(-5.0, -8.65), 0, B)     # RBIAS 12k 1 % (pin 100)
@@ -97,22 +97,24 @@ def place(board, h):
     # --- SS TX AC caps (top, in-line, <= 5 mm from the pins)
     P("C601", HX - 1.9, HY - 9.8, 90, T)   # UP TXP  (pins 91/92 -> TUSB1064)
     P("C602", HX - 0.65, HY - 9.8, 90, T)  # UP TXN
-    P("C611", HX + 1.35, HY - 9.8, 90, T)  # P5 TXP (pins 83/84 -> TUSB1046)
-    P("C612", HX + 2.6, HY - 9.8, 90, T)   # P5 TXN
-    P("C603", 160.55, 101.0, 90, T)        # P1 TXP (pins 7/8 -> GL3224), outer lane of the left channel
-    P("C604", 161.8, 101.0, 90, T)         # P1 TXN
-    P("C605", 162.3, 105.4, 90, T)         # P2 TXP (pins 16/17 -> USB-A #1), inner lane
-    P("C606", 163.55, 105.4, 90, T)        # P2 TXN
-    P("C607", HX - 4.2, 106.55, 90, T)     # P3 TXP (pins 29/30 -> USB-A #2, straight down)
-    P("C608", HX - 2.95, 106.55, 90, T)    # P3 TXN
-    P("C609", 175.4, 105.5, 0, T)          # P4 TXP (pins 36/37 -> RTL8156BG, turns right)
-    P("C610", 175.4, 106.75, 0, T)         # P4 TXN
+    P("C612", HX + 1.35, HY - 9.8, 90, T)  # P5 TXN (pin 84 at x 172.6)  -- C611/C612 swapped 2026-10-03:
+    P("C611", HX + 2.6, HY - 9.8, 90, T)   # P5 TXP (pin 83 at x 173.0)     P/N order now matches the hub pins
+    P("C603", 160.55, 101.0, 270, T)       # P1 TXP (pins 7/8 -> GL3224), outer lane of the left channel
+    P("C604", 161.8, 101.0, 270, T)        # P1 TXN
+    P("C605", 162.3, 105.4, 270, T)        # P2 TXP (pins 16/17 -> USB-A #1), inner lane
+    P("C606", 163.55, 105.4, 270, T)       # P2 TXN
+    P("C607", HX - 4.2, 106.55, 270, T)    # P3 TXP (pins 29/30 -> USB-A #2, straight down)
+    P("C608", HX - 2.95, 106.55, 270, T)   # P3 TXN
+    # (C603-C608 rot 270: pad 1 = hub-side net faces north toward the hub pins)
+    P("C609", 177.4, 105.5, 0, T)          # P4 TXP (pins 36/37 -> RTL8156BG, turns right); 2 mm east of the
+    P("C610", 177.4, 106.75, 0, T)         # P4 TXN    pin 43-48 pocket so the +3V3/PF3-PF7 escape vias fit
 
     # --- VBUS_DET buffer chain (VBUS_LAPTOP -> 47k/68k + clamp -> 74LVC1G17 -> 15k/49.9k -> pin 2)
-    P("D602", 158.15, 81.5, 0, T)         # BAT54WS clamp to +3V3
-    P("C641", 157.3, 83.25, 0, T)         # U603 100n
-    P("U603", 158.15, 86.1, 90, T)        # 74LVC1G17
-    P("R626", 158.75, 89.3, 0, T)         # 68k (0603)
+    # (packed toward y 80 / x 160 so the top side over R312 pad 2 (+5V, 157.2,87.4) stays free for its L4 vias)
+    P("D602", 158.9, 81.4, 0, T)          # BAT54WS clamp to +3V3
+    P("C641", 156.6, 81.4, 90, T)         # U603 100n (pad 1 +3V3 toward pin 5)
+    P("U603", 158.15, 84.55, 90, T)       # 74LVC1G17
+    P("R626", 159.75, 88.6, 270, T)       # 68k (0603), vertical, east of the R312.2 via field
     P("R632", 158.6, 91.3, 0, T)          # 15k -> HUB_VBUS_DET
     P("R625", 160.75, 96.3, 90, B)        # 47k from VBUS_LAPTOP
     P("R633", 160.6, 99.15, 90, B)        # 49.9k (0603) at pin 2

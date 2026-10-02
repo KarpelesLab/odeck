@@ -57,8 +57,9 @@ def place(board, h):
     rx, ry = RTL_C
     P("U801", rx, ry, 90)                 # MDI side -> +x (jack), USB side -> -x (hub), pins 1-14 -> +y
     # USB 3 TX AC caps in-line on the PHY TX pair (pins 43/44, left side, top), heading left to the hub
-    P("C835", 191.4, 61.15, 0)
-    P("C836", 191.4, 62.4, 0)
+    # rot 180 (2026-10-03): pad 1 (ETH_TX*_IC) faces east toward U801 pins 43/44
+    P("C835", 191.4, 61.15, 180)
+    P("C836", 191.4, 62.4, 180)
     # MDI centre-tap caps right below jack pins 5/6 (top side, under the panel's top edge: 0402 <= 1.2 mm)
     P("C837", 211.0, 72.6, 0)             # 390 pF
     P("C838", 213.15, 72.6, 0)            # alt CT cap (DNP)
@@ -130,10 +131,11 @@ def place(board, h):
     P("U1002", 225.85, 64.0, 270)         # QSPI flash above the QSPI pins
     B("C1022", 227.6, 69.4, 0)            # flash VCC (pin 8, bottom-right)
     # core regulator (copy of the Pico 2 arrangement: L + C_in + C_out tight at pins 61-65)
-    P("L1001", 226.4, 71.35, 180)         # pad 1 (VREG_LX) right, pad 2 (+1V1, dot) left over VREG_FB
-    P("C1002", 223.9, 71.4, 90)           # C_out (+1V1) beside L pad 2
-    P("C1001", 226.4, 69.4, 0)            # C_in (VREG_VIN pin 64)
-    P("C1003", 228.95, 71.45, 90)           # VREG_AVDD (pin 61)
+    # whole regulator group nudged 0.15 mm north (2026-10-03) for the USB pin 66/67 escape vias above the pins
+    P("L1001", 226.4, 71.2, 180)         # pad 1 (VREG_LX) right, pad 2 (+1V1, dot) left over VREG_FB
+    P("C1002", 223.9, 71.25, 90)           # C_out (+1V1) beside L pad 2
+    P("C1001", 226.4, 69.25, 0)            # C_in (VREG_VIN pin 64)
+    P("C1003", 228.95, 71.3, 90)           # VREG_AVDD (pin 61)
     B("R1001", 228.5, 73.25, 0)           # VREG_AVDD RC
     B("R1007", 224.85, 72.25, 90)          # USB DP 27R (pins 66/67 just below)
     B("R1008", 226.1, 72.25, 90)           # USB DM 27R

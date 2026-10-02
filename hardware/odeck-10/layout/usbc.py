@@ -62,7 +62,8 @@ def place(board, h):
     h.put("C512", 148.12, 64.6, 90)         # UP_TX2_N
     h.put("C510", 152.45, 64.6, 90)         # UP_TX1_N
     h.put("C509", 153.67, 64.6, 90)         # UP_TX1_P
-    h.put("U501", XJ1, 63.05, 0, B)         # TPD4S480: C_CC/C_SBU pins face J501
+    h.put("U501", XJ1, 65.05, 0, B)         # TPD4S480: C_CC/C_SBU pins face J501; 2 mm south (2026-10-03) so the
+                                            # A-row slow nets (CC1/SBU1/D+-) get via room below the A row
     h.put("C502", 153.95, 62.8, 90, B)      # VBIAS 100n/100V 0805
     h.put("C503", 155.75, 62.35, 90, B)     # VPWR (PMG1_VDDD) 1u
     h.put("R501", 157.0, 62.35, 90, B)      # FLT pull-up
@@ -78,7 +79,7 @@ def place(board, h):
     h.put("C506", 158.3, 73.85, 90, B)      # pin 28 (bottom edge)
     h.put("C507", 155.75, 74.6, 0, B)       # 10u 0603
     # left-edge straps EQ0/EQ1/I2C_EN (bottom, under the lane fan-in)
-    grid(h, ["R512", "R513", "R510", "R511", "R508", "R509"], 151.75, 66.85, 2)
+    grid(h, ["R512", "R513", "R510", "R511", "R508", "R509"], 151.75, 67.65, 2)   # 0.8 mm south to clear U501
     # top-edge straps SSEQ1/DPEQ1 (bottom, above the top-right corner)
     grid(h, ["R514", "R515", "R518", "R519"], 159.0, 62.3, 2)
     # bottom edge: SBU 2M pull-downs, AUX bias (top)
@@ -109,7 +110,11 @@ def place(board, h):
     h.put("C528", 167.7, 73.85, 90, B)      # pin 28 (bottom edge)
     h.put("C529", 165.45, 74.8, 0, B)      # 10u 0603
     grid(h, ["R533", "R534", "R537", "R538"], 164.95, 61.95, 2)            # top-edge straps
-    grid(h, ["R531", "R532", "R529", "R530", "R523", "R524", "R522"], 169.95, 66.15, 2)  # right-edge straps
+    # right-edge straps EQ0/EQ1/CAD_SNK: two vertical columns west of x 171.1 (2026-10-03) so the D507/D506 gap
+    # column x 171.2-172.3 is free of bottom pads from y 61.2 to 70.6 (through vias for the J502 slow nets)
+    for k, (ra, rb) in enumerate([("R531", "R532"), ("R529", "R530"), ("R523", "R524")]):
+        h.put(ra, 169.5, 66.55 + 2.05 * k, 90, B)
+        h.put(rb, 170.6, 66.55 + 2.05 * k, 90, B)
     h.put("R525", 164.9, 73.8, 0)           # DS_AUX_P 100k -> GND
     h.put("R526", 164.9, 75.05, 0)          # DS_AUX_N 100k -> 3V3
     h.put("R542", 167.95, 74.05, 0)         # DS_SBU1 2M 0603
@@ -122,10 +127,12 @@ def place(board, h):
     h.put("C535", 169.77, 64.8, 90)         # DS_TX2_N
     h.put("C533", 174.0, 64.8, 90)          # DS_TX1_N
     h.put("C532", 175.22, 64.8, 90)         # DS_TX1_P
-    h.put("U504", XJ2, 63.4, 0, B)          # TPD6S300: C_CC/C_SBU pins face J502, D+/D- ESD on pins 19/20
-    h.put("C537", 174.0, 63.4, 90, B)       # VBIAS 100n/50V 0603
-    h.put("C538", 175.55, 63.0, 90, B)      # VPWR (+3V3) 1u
-    h.put("R541", 176.8, 63.0, 90, B)      # FLT pull-up
+    # U504 3.2 mm east (2026-10-03): frees the bottom under the D507/D506 gap (x 171.2-172.3) for through vias;
+    # D+/D- ESD pins 19/20 face that via column, CC/SBU pins 1-5 face J502
+    h.put("U504", XJ2 + 3.2, 63.4, 0, B)    # TPD6S300
+    h.put("C537", 177.08, 62.72, 270, B)    # VBIAS 100n/50V 0603 (east of U504)
+    h.put("C538", 176.85, 65.3, 90, B)      # VPWR (+3V3) 1u at pin 10
+    h.put("R541", 177.95, 65.3, 90, B)      # FLT pull-up
 
     # ---------------- downstream VBUS: TVS + caps at J502, back-to-back switch + shunt toward +5V (hubrails) ----------------
     h.put("D505", 178.15, 64.95, 90)        # SMAJ6.0A VBUS_DS, right of J502
@@ -162,7 +169,10 @@ def place(board, h):
 
     # ---------------- PMG1 periphery ----------------
     grid(h, ["R407", "R408", "R409"], 150.6, 76.15, 3)       # MUX_UP CTL0/CTL1/FLIP pull-downs (bottom)
-    grid(h, ["R410", "R411", "R412"], 170.0, 71.2, 3)        # MUX_DS CTL0/CTL1/FLIP pull-downs (bottom)
+    # MUX_DS CTL0/CTL1/FLIP pull-downs + DS HPD series R (bottom): under the TX1/RX1 lane copper south of U504,
+    # where no through via fits anyway (2026-10-03; was a row at y 71.2 / grid cell)
+    for k, r in enumerate(["R410", "R411", "R412", "R522"]):
+        h.put(r, 173.7, 66.6 + 1.25 * k, 0, B)
     h.put("R414", 152.2, 74.05, 0)          # HPD0_OUT -> UP_HPD 1k
     h.put("R413", 152.2, 75.3, 0)           # HPD1_OUT -> DS_HPD 1k
     h.put("R404", 152.2, 76.55, 0)          # P3V3_SNS 10k

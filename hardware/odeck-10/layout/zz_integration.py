@@ -3,7 +3,9 @@
 - Thermocouple pads re-assigned to the block whose hot spot they measure (sensors.py labels):
   TP1202 TC_BB_L (L201, power), TP1204 TC_5V_L (L301, hubrails), TP1205 TC_HUB (U601, hubrails),
   TP1206 TC_LAPTOP_C (J501 VBUS, usbc), TP1208 TC_ORFET (Q303, hubrails).
-- R908 (microSD CLK series termination, added after the block placement) next to GL3224's S2CK pin.
+- R908 (microSD CLK series termination, added after the block placement) at the U901 pin-29 escape via row.
+- ("@", (x, y), side) targets an absolute point instead of a footprint; ("=", (x, y), side) places exactly there
+  (courtyards still checked by apply_layout.py) (2026-10-03 routing fixes).
 Each part goes to the nearest free spot (courtyard-clear, both sides checked for THT) around its target.
 """
 import math
@@ -15,12 +17,13 @@ REFS = ["TP1202", "TP1204", "TP1205", "TP1206", "TP1208", "R908"]
 
 # ref -> (target ref, target pad or None for footprint centre, preferred side)
 TARGETS = {
-    "TP1202": ("L201", None, "bottom"),
+    "TP1202": ("@", (108.1, 84.45), "bottom"),  # under L201 (bottom), clear of the Q204 EP thermal-via area
     "TP1204": ("L301", None, "bottom"),
     "TP1205": ("U601", None, "bottom"),
-    "TP1206": ("J501", None, "top"),
+    "TP1206": ("=", (143.7, 64.84), "top"),     # J501 VBUS side (between C501 and TP403), outside the laptop SS lane fan-in
     "TP1208": ("Q303", None, None),          # same side as Q303
-    "R908":   ("U901", "S2CK_M2D0", None),   # GL3224 slot-2 clock pin, same side as U901
+    "R908":   ("=", (119.4, 114.9), "bottom"),  # µSD CLK source R, west of the U901 escape via row (CLK via 123.2,114.3);
+                                                # fixed: the free-spot search treats the J901 socket outline (NPTH) as blocking
 }
 
 
@@ -52,6 +55,18 @@ def place(board, h):
     eb = board.GetBoardEdgesBoundingBox()
     edge = (MM(eb.GetLeft()), MM(eb.GetTop()), MM(eb.GetRight()), MM(eb.GetBottom()))
     for ref, (tref, tpad, side) in TARGETS.items():
+        if tref == "=":
+            h.put(ref, tpad[0], tpad[1], 0, side)
+            continue
+        if tref == "@":
+            tx, ty = tpad
+            h.put(ref, tx, ty, 0, side)
+            l, t, r, b = h.bbox(ref)
+            w, hh = r - l, b - t
+            boxes = _boxes(board, {ref})
+            best = _search(boxes, side, tx, ty, w, hh, edge)
+            _commit(h, ref, best, side, l, t, r, b, tref)
+            continue
         tf = h.fp(tref)
         if side is None:
             side = "bottom" if tf.IsFlipped() else "top"
@@ -66,21 +81,30 @@ def place(board, h):
         l, t, r, b = h.bbox(ref)
         w, hh = r - l, b - t
         boxes = _boxes(board, {ref})
-        best = None
-        for rad in range(0, 60):
-            for k in range(-rad, rad + 1):
-                for di, dj in ((k, -rad), (k, rad), (-rad, k), (rad, k)):
-                    cx, cy = tx + di * 0.5, ty + dj * 0.5
-                    if _free(boxes, side, cx - w / 2, cy - hh / 2, cx + w / 2, cy + hh / 2, edge):
-                        d = math.hypot(di, dj)
-                        if best is None or d < best[0]:
-                            best = (d, cx, cy)
-            if best:
-                break
+        best = _search(boxes, side, tx, ty, w, hh, edge)
+        _commit(h, ref, best, side, l, t, r, b, tref)
+
+
+def _search(boxes, side, tx, ty, w, hh, edge):
+    best = None
+    for rad in range(0, 60):
+        for k in range(-rad, rad + 1):
+            for di, dj in ((k, -rad), (k, rad), (-rad, k), (rad, k)):
+                cx, cy = tx + di * 0.5, ty + dj * 0.5
+                if _free(boxes, side, cx - w / 2, cy - hh / 2, cx + w / 2, cy + hh / 2, edge):
+                    d = math.hypot(di, dj)
+                    if best is None or d < best[0]:
+                        best = (d, cx, cy)
         if best:
-            _, cx, cy = best
-            # footprint origin may not be the bbox centre
-            ox, oy = MM(h.fp(ref).GetPosition().x) - (l + r) / 2, MM(h.fp(ref).GetPosition().y) - (t + b) / 2
-            h.put(ref, cx + ox, cy + oy, 0, side)
-        else:
-            print(f"zz_integration: no free spot for {ref} near {tref}")
+            break
+    return best
+
+
+def _commit(h, ref, best, side, l, t, r, b, tref):
+    if best:
+        _, cx, cy = best
+        # footprint origin may not be the bbox centre
+        ox, oy = MM(h.fp(ref).GetPosition().x) - (l + r) / 2, MM(h.fp(ref).GetPosition().y) - (t + b) / 2
+        h.put(ref, cx + ox, cy + oy, 0, side)
+    else:
+        print(f"zz_integration: no free spot for {ref} near {tref}")

@@ -11,9 +11,10 @@
   (condition "(A.NetClass == 'USB_90' || A.NetClass == 'HS_85') && A.Type == 'Track' && B.Type == 'Track' && !A.isCoupledDiffPair()")
   (constraint clearance (min 0.3mm)))
 
-# 48 V / 28 V nets
+# 48 V / 28 V nets: 0.3 mm to other nets for copper we draw (tracks, vias, zones). Pad-to-pad inside a footprint
+# follows the manufacturer's land pattern.
 (rule "high voltage"
-  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV' && !(A.Type == 'Pad' && B.Type == 'Pad')")
   (constraint clearance (min 0.3mm)))
 
 # SKRTLAE010 side-push button: manufacturer land pattern puts its locating NPTH close to the GND tabs
