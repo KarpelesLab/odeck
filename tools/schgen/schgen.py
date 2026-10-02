@@ -166,7 +166,7 @@ class Sheet:
         return f"{prefix}{self.ref_base + n}"
 
     def part(self, lib_id, prefix, value, fp="", at=None, pins=None, nc=(), unit=None, lcsc=None, mpn=None,
-             datasheet="", desc="", rot=0, ref=None, dnp=False, extra=None):
+             datasheet="", desc="", rot=0, ref=None, dnp=False, extra=None, in_bom=True):
         """Add a part. pins: {pin name or number: net}. Pins with the same name all get that net.
         Every pin must be mapped or listed in nc (by name or number)."""
         sym = load_symbol(lib_id)
@@ -185,6 +185,7 @@ class Sheet:
         p = Part(self, sym, ref or self._ref(prefix), value, fp, (snap(at[0], 2.54), snap(at[1], 2.54)),
                  dict(pins or {}), set(map(str, nc)), unit, props, rot)
         p.dnp = dnp
+        p.in_bom = in_bom
         self.parts.append(p)
         return p
 
@@ -285,7 +286,7 @@ class Sheet:
                                     for pin, _ in pin_nets if pin["unit"] in (0, unit))
                 body.append(
                     f'\t(symbol\n\t\t(lib_id {q(p.sym.lib_id)})\n\t\t(at {ux:.2f} {uy:.2f} {p.rot})\n\t\t(unit {unit})\n'
-                    f'\t\t(exclude_from_sim no)\n\t\t(in_bom yes)\n\t\t(on_board yes)\n\t\t(dnp {"yes" if p.dnp else "no"})\n'
+                    f'\t\t(exclude_from_sim no)\n\t\t(in_bom {"yes" if p.in_bom else "no"})\n\t\t(on_board yes)\n\t\t(dnp {"yes" if p.dnp else "no"})\n'
                     f'\t\t(uuid "{U()}")\n{ptxt}{pin_uuids}'
                     f'\t\t(instances\n\t\t\t(project {q(project)}\n\t\t\t\t(path {q(inst_path)}\n\t\t\t\t\t(reference {q(p.ref)})\n'
                     f'\t\t\t\t\t(unit {unit})\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n')

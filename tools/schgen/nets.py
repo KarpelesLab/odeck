@@ -10,7 +10,9 @@ GLOBAL_NETS = [
     "VBUS_PDIN",      # PD-in USB-C VBUS (sink, up to 48 V)
     "VBUS_DS",        # downstream USB-C VBUS (5 V source)
     "VBB_OUT",        # buck-boost output before laptop source switch (5-28 V)
+    "VBUS_LSW",       # laptop source switch output, upstream of the 5 mOhm shunt (PMG1 port-0 CSA +)
     "+5V", "+3V3", "+1V15", "+1V1",
+    "PMG1_VDDD",      # PMG1 internal supply (from +3V3 or laptop VBUS) - exists in a dead deck
     "+5V_USBA1", "+5V_USBA2",
     # --- power-path control / status
     "EXT_PWR_PRESENT",  # high when PD-in or barrel supplies VIN
@@ -32,6 +34,21 @@ GLOBAL_NETS = [
     "DP_ML0_P", "DP_ML0_N", "DP_ML1_P", "DP_ML1_N", "DP_AUX_P", "DP_AUX_N", "DP_HPD",
     # --- PMG1 debug / control from RP2350
     "PMG1_SWDIO", "PMG1_SWCLK", "PMG1_XRES_N",
+    # --- power-good from rails
+    "RAILS_PG",        # open-drain, +1V15 good (power_rails) -> wire-OR into HUB_RESET_N
+    # --- USB-C ports <-> PD controller (usbc_muxes <-> pd_pmg1)
+    "LAPTOP_CC1", "LAPTOP_CC2", "DS_CC1", "DS_CC2",
+    "MUX_UP_CTL0", "MUX_UP_CTL1", "MUX_UP_FLIP",     # TUSB1064 (laptop side) control from PMG1 port 0
+    "MUX_DS_CTL0", "MUX_DS_CTL1", "MUX_DS_FLIP",     # TUSB1046 (downstream side) control from PMG1 port 1
+    "UP_HPD", "DS_HPD",                               # HPD to/from muxes (see pd_pmg1 design notes)
+    # --- hub links. SS pairs named from the HUB's point of view (TX = hub transmits).
+    "HUB_DSC_SS_TXP", "HUB_DSC_SS_TXN", "HUB_DSC_SS_RXP", "HUB_DSC_SS_RXN", "HUB_DSC_DP", "HUB_DSC_DN",  # -> TUSB1046
+    "USBA1_SS_TXP", "USBA1_SS_TXN", "USBA1_SS_RXP", "USBA1_SS_RXN", "USBA1_DP", "USBA1_DN",
+    "USBA2_SS_TXP", "USBA2_SS_TXN", "USBA2_SS_RXP", "USBA2_SS_RXN", "USBA2_DP", "USBA2_DN",
+    "CR_SS_TXP", "CR_SS_TXN", "CR_SS_RXP", "CR_SS_RXN", "CR_DP", "CR_DN",          # GL3224 card reader
+    "ETH_SS_TXP", "ETH_SS_TXN", "ETH_SS_RXP", "ETH_SS_RXN", "ETH_DP", "ETH_DN",    # RTL8156BG
+    "MCU_USB_DP", "MCU_USB_DN",                                                     # RP2350 (USB2-only hub port)
+    "USBA1_PWR_EN", "USBA2_PWR_EN", "USBA1_OCS_N", "USBA2_OCS_N",                  # hub port power / overcurrent
     # --- misc control
     "USBA1_FORCE_EN", "USBA2_FORCE_EN", "USBA1_ISENSE", "USBA2_ISENSE",
 ]

@@ -141,7 +141,10 @@ Hardware backstops that stay independent of *all* firmware:
 | power_input | drafted, netlist-verified | `design/power_input.md` |
 | power_laptop | drafted, netlist-verified | `design/power_laptop.md` |
 | power_rails | drafted, netlist-verified | `design/power_rails.md` |
-| pd_pmg1, usbc_muxes, usb_hub, usb_a, ethernet, card_reader, mcu, display_ui, sensors | TODO | |
+| pd_pmg1 | drafted, netlist-verified (CYPM1321 — has dead-battery Rd) | `design/pd_pmg1.md` |
+| usbc_muxes | drafted, netlist-verified | `design/usbc_muxes.md` |
+| usb_hub | drafted, netlist-verified | `design/usb_hub.md` |
+| usb_a, ethernet, card_reader, mcu, display_ui, sensors | TODO | |
 
 ## I2C address map (so far)
 | Bus | Addr | Device |
@@ -150,7 +153,9 @@ Hardware backstops that stay independent of *all* firmware:
 | I2C_SYS | 0x44 | INA226, laptop VBUS (power_laptop) |
 | I2C_SYS | 0x45 | INA237, VIN (power_input) |
 | I2C_SYS | 0x48–0x4F | TMP1075 ×8 (sensors) — reserved |
-| I2C_PD | 0x21 | TPS26750 target (power_input) — check vs PMG1 HPI address |
+| I2C_PD | 0x21 | TPS26750 target (power_input) |
+| I2C_PD | 0x42 | PMG1-S3 HPI (pd_pmg1) |
+| HUB SMBus | 0x2D | USB7206C (usb_hub) |
 | TPS26750 private | 0x50 | AT24C512C config EEPROM (RP2350 writes it via TPS26750 pass-through — confirm) |
 
 ## Cross-sheet integration items (from power sheet design)
@@ -168,6 +173,21 @@ Hardware backstops that stay independent of *all* firmware:
    5.1 V output to bench-check (or default 5.2 V). Full 140 W needs VIN ≳ 16 V.
 8. **LM5148** at 8 A from 48 V ≈ 91 % (≈ 3.9 W) — ~1 W above budget; high-side FET is the hot spot.
 9. TPS26750 boots in AlwaysEnableSink so the deck works with a blank EEPROM; draws from 5 V sources before a contract.
+
+### From data-path sheets
+10. **PMG1 CC pins are 6 V-rated** → laptop port CC/SBU behind TPD4S480 (EPR, dead-battery Rd enabled, powered
+    from PMG1_VDDD; EPR_EN tied high — confirm with TI that permanent EPR mode is fine at low VBUS).
+11. **PMG1 firmware duties:** GPIO-switched port-0 power path while still using PMG1 CSA (Infineon example uses
+    the internal gate driver — confirm stack allows it); pulse mux CTL0 to power muxes down when unattached;
+    advertise pin assignment D on the laptop port; forward IRQ_HPD; VBUS discharge after voltage step-downs.
+12. **Hub port power pin is shared PRTPWR/OCS** → USBAx_PWR_EN and USBAx_OCS_N are one node (0 Ω joined);
+    usb_a sheet must not add a pull-up there.
+13. **MCU sheet:** no pull-ups on HUB_SMB_*; HUB_SMB_PU from a push-pull GPIO; HUB_RESET_N driven open-drain.
+14. **AC coupling convention:** hub sheet caps all hub TX; device-side sheets cap their TX toward the hub
+    (card_reader, ethernet, usb_a connectors per USB 3.x rules).
+15. **Footprints to verify:** both USB-C receptacles (DX07 THT B-row numbering), PMG1 BGA-97 (0.5 mm), USB7206C VQFN-100.
+16. Low stock: CYPM1321 (20), TUSB1046 (42), TUSB1064 (53), USB7206CT (21) — order the prototype run early.
+17. Two linear redrivers in series at HBR3 — EQ is a first guess (both sides have bench-tunable strap footprints).
 
 ## Notes on a 20 Gbps step
 USB 3.2 Gen2x2 (20G) is **not supported by Apple Silicon Macs** (they fall back to 10G), uses all 4
