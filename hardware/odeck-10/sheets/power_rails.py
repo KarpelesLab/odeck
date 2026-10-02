@@ -147,16 +147,17 @@ def build(D):
     # 3. +3V3 rail: TPS62933, +5V -> 3.33 V / 3 A, 1.2 MHz
     # =============================================================================================
     x0 = 340.36
-    _note(s, "3. +3V3  TPS62933 (3.8-30 V in, 3 A)  +5V -> 3.33 V, 1.2 MHz", (x0, 22.86), 2.0)
+    _note(s, "3. +3V3  TPS62933F forced-PWM (3.8-30 V in, 3 A)  +5V -> 3.33 V, 1.2 MHz", (x0, 22.86), 2.0)
     y = 53.34
     s.c("10u", "+5V", "GND", size="0805", at=(x0, y), lcsc=C_10U_25V)
     s.c("10u", "+5V", "GND", size="0805", at=(x0 + 10.16, y), lcsc=C_10U_25V)
     s.c("100n", "+5V", "GND", at=(x0 + 20.32, y), lcsc=C_100N_16V)
     s.r("100k", "+5V", "3V3_EN", at=(x0 + 30.48, y), lcsc=R_100K, desc="EN divider: on at 4.31 V")
     s.r("39k", "3V3_EN", "GND", at=(x0 + 40.64, y), lcsc=R_39K)
-    s.part("odeck:TPS62933DRLR", "U", "TPS62933", at=(x0 + 71.12, y),
+    s.part("odeck:TPS62933DRLR", "U", "TPS62933F", at=(x0 + 71.12, y),
            pins={"VIN": "+5V", "EN": "3V3_EN", "RT": "GND", "SS": "3V3_SS", "FB": "3V3_FB",
-                 "BST": "3V3_BST", "SW": "3V3_SW", "GND": "GND"}, desc="3 A sync buck, RT=GND -> 1.2 MHz")
+                 "BST": "3V3_BST", "SW": "3V3_SW", "GND": "GND"}, lcsc="C5219272", mpn="TPS62933FDRLR",
+           desc="3 A sync buck, forced PWM (RTL8156BG needs >=1 MHz PWM supply), RT=GND -> 1.2 MHz; same pinout as TPS62933")
     s.c("22n", "3V3_SS", "GND", at=(x0 + 101.6, y), lcsc=C_22N, desc="tSS = 22n*0.8/5.5u = 3.2 ms")
     s.c("100n", "3V3_BST", "3V3_SW", at=(x0 + 111.76, y), lcsc=C_100N_16V, desc="CBST")
     s.part("odeck:MWSA0503S-2R2MT", "L", "2.2u", at=(x0 + 132.08, y + 15.24),

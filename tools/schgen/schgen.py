@@ -60,8 +60,18 @@ def first(node, key):
 def q(s):
     return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
 
-def U():
-    return str(uuid.uuid4())
+_NS = uuid.UUID("6f64656b-0000-4000-8000-736368676e30")   # fixed namespace for odeck schgen
+_ustate = {"sheet": None, "n": 0}
+
+def U(key=None):
+    """Deterministic UUIDs so rebuilds don't churn git or break schematic<->PCB links.
+    Keyed UUIDs (symbols: sheet+ref+unit) are stable across edits; unkeyed ones follow generation order."""
+    if _ustate["sheet"] is None:
+        return str(uuid.uuid4())
+    if key is None:
+        _ustate["n"] += 1
+        key = f"#{_ustate['n']}"
+    return str(uuid.uuid5(_NS, f"{_ustate['sheet']}:{key}"))
 
 def snap(v, g=GRID):
     return round(round(v / g) * g, 4)
@@ -245,6 +255,7 @@ class Sheet:
         project = os.path.basename(self.dir)
         inst_path = f"/{root_uuid}/{sheet_uuid}"
 
+        _ustate["sheet"], _ustate["n"] = self.filename, 0
         out = [f'(kicad_sch\n\t(version 20260306)\n\t(generator "eeschema")\n\t(generator_version "10.0")\n'
                f'\t(uuid "{old_uuid or U()}")\n\t(paper "{self.paper}")\n'
                f'\t(title_block\n\t\t(title {q(self.title)})\n\t\t(rev "A")\n\t\t(company "odeck")\n'
@@ -282,12 +293,12 @@ class Sheet:
                 ptxt = "".join(
                     f'\t\t(property {q(k)} {q(v)}\n\t\t\t(at {x:.2f} {y:.2f} 0)\n\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n'
                     + ("\t\t\t\t(hide yes)\n" if hide else "") + "\t\t\t)\n\t\t)\n" for k, v, (x, y), hide in props)
-                pin_uuids = "".join(f'\t\t(pin {q(pin["number"])}\n\t\t\t(uuid "{U()}")\n\t\t)\n'
+                pin_uuids = "".join(f'\t\t(pin {q(pin["number"])}\n\t\t\t(uuid "{U(f"pin:{p.ref}:{pin["number"]}")}")\n\t\t)\n'
                                     for pin, _ in pin_nets if pin["unit"] in (0, unit))
                 body.append(
                     f'\t(symbol\n\t\t(lib_id {q(p.sym.lib_id)})\n\t\t(at {ux:.2f} {uy:.2f} {p.rot})\n\t\t(unit {unit})\n'
                     f'\t\t(exclude_from_sim no)\n\t\t(in_bom {"yes" if p.in_bom else "no"})\n\t\t(on_board yes)\n\t\t(dnp {"yes" if p.dnp else "no"})\n'
-                    f'\t\t(uuid "{U()}")\n{ptxt}{pin_uuids}'
+                    f'\t\t(uuid "{U(f"sym:{p.ref}:{unit}")}")\n{ptxt}{pin_uuids}'
                     f'\t\t(instances\n\t\t\t(project {q(project)}\n\t\t\t\t(path {q(inst_path)}\n\t\t\t\t\t(reference {q(p.ref)})\n'
                     f'\t\t\t\t\t(unit {unit})\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n')
                 for pin, net in pin_nets:

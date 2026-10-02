@@ -49,6 +49,19 @@ GLOBAL_NETS = [
     "ETH_SS_TXP", "ETH_SS_TXN", "ETH_SS_RXP", "ETH_SS_RXN", "ETH_DP", "ETH_DN",    # RTL8156BG
     "MCU_USB_DP", "MCU_USB_DN",                                                     # RP2350 (USB2-only hub port)
     "USBA1_PWR_EN", "USBA2_PWR_EN", "USBA1_OCS_N", "USBA2_OCS_N",                  # hub port power / overcurrent
+    # --- MCU <-> display & UI (mcu <-> display_ui)
+    "LCD_SCK", "LCD_MOSI", "LCD_CS_N", "LCD_DC", "LCD_RST_N", "LCD_BL_PWM",
+    "BTN_A_N", "BTN_B_N",                     # user buttons (active low)
+    "I2C_EXT_SCL", "I2C_EXT_SDA",             # Qwiic / user I2C (separate from I2C_SYS)
+    "HDR_GPIO0", "HDR_GPIO1", "HDR_GPIO2", "HDR_GPIO3", "HDR_GPIO4", "HDR_GPIO5",
+    "HDR_GPIO6", "HDR_GPIO7", "HDR_ADC0", "HDR_ADC1",   # user header (RP2350B spare pins)
+    # --- MCU <-> ethernet / card reader / sensors
+    "ETH_LED0", "ETH_LED1", "ETH_LED2",       # RTL8156BG LED pins (link speed / activity) -> MCU inputs
+    "ETH_RESET_N",
+    "ETH_I2C_EN",                             # TCA9534 P6 -> enables PHY I2C bridge for one-time MAC eFuse write
+    "CR_CD_SD_N", "CR_CD_USD_N", "CR_LED",    # card detect + activity from card reader / sockets
+    "TEMP_ALERT_N",                           # TMP1075 ALERT wired-OR (open drain)
+    "NTC_ADC0", "NTC_ADC1",                   # hot-spot NTCs -> RP2350 ADC
     # --- misc control
     "USBA1_FORCE_EN", "USBA2_FORCE_EN", "USBA1_ISENSE", "USBA2_ISENSE",
 ]

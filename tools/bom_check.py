@@ -38,6 +38,8 @@ for f in sorted(glob.glob(os.path.join(a.project, "*.kicad_sch"))):
         else:
             missing.append((ref.group(1), val.group(1) if val else "", os.path.basename(f)))
 bad = []
+total = 0.0
+ext = 0
 for code, refs in sorted(uses.items()):
     c = jlc(code)
     stock = c.get("stockCount", 0) if c else None
@@ -48,7 +50,14 @@ for code, refs in sorted(uses.items()):
     print(f"{'OK ' if ok else 'BAD'} {code:<11} {name[:28]:<28} {lt:<7} stock={stock!s:<7} qty/board={need:<3} {', '.join(r for r, _, _ in refs[:6])}{' …' if need > 6 else ''}")
     if not ok:
         bad.append(code)
+    if c:
+        prices = c.get("componentPrices") or []
+        if prices:
+            total += float(prices[0]["productPrice"]) * need
+        if c.get("componentLibraryType") != "base":
+            ext += 1
 for ref, val, f in missing:
     print(f"NOLCSC {ref:<8} {val:<20} {f}")
 print(f"\n{len(uses)} unique parts, {len(bad)} failing, {len(missing)} without LCSC")
+print(f"parts cost/board at qty-1 prices: ${total:.2f}; extended (non-basic) unique parts: {ext} (JLC fee ~${3 * ext} per order)")
 sys.exit(1 if bad or missing else 0)

@@ -3943,7 +3943,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b353727d-e061-40f7-88c2-d6da72c6a983")
+		(uuid "b0dfc228-b134-5aec-91ea-64e5161f0532")
 		(property "Reference" "C301"
 			(at 27.94 49.53 0)
 			(effects
@@ -3997,10 +3997,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "2ffd55fa-889f-48cc-ab05-26bc033c50bc")
+			(uuid "78acafd7-9166-5689-9e62-ae843ba2b719")
 		)
 		(pin "2"
-			(uuid "f1761244-574e-41c7-87a6-b399f774d422")
+			(uuid "e71f6a21-dc72-5a9e-8eb4-a19b228696e3")
 		)
 		(instances
 			(project "odeck-10"
@@ -4019,7 +4019,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "05835118-1f50-4eea-81de-b05e202e7247")
+		(uuid "0488580c-b0d4-56c8-94d7-877c8b6714b3")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4031,7 +4031,7 @@
 			)
 			(justify left)
 		)
-		(uuid "2b9364d1-5550-4dfe-837a-e21213304200")
+		(uuid "9df33a65-53d9-5595-823a-783fc0f82811")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 25.40 44.45 0)
 			(effects
@@ -4050,7 +4050,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "32f994be-54c3-464a-bf15-8956c4900e63")
+		(uuid "47a6ff98-b5b2-5a23-a3a0-4d3eb549bb5c")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4060,7 +4060,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cead9158-44a2-4498-9e2d-52807bae71c7")
+		(uuid "141fb11d-ebb7-5c7b-a900-d806f0f676e2")
 		(property "Reference" "#PWR0301"
 			(at 25.40 57.15 0)
 			(effects
@@ -4089,7 +4089,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "cc5bc443-b9e5-4aa9-8509-fe9dde86879b")
+			(uuid "efc43d11-0bc9-5afc-bbc1-439241ced478")
 		)
 		(instances
 			(project "odeck-10"
@@ -4108,7 +4108,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aa3952ae-8bce-46fc-b849-41f0be998fa2")
+		(uuid "05a26ac7-d667-50a3-b4a9-518a970fa484")
 		(property "Reference" "C302"
 			(at 40.64 49.53 0)
 			(effects
@@ -4162,10 +4162,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "de63ac42-b352-4b11-a61d-7b91836968b7")
+			(uuid "584c3613-0e44-5d7a-b947-32661309aa54")
 		)
 		(pin "2"
-			(uuid "e7e59b94-8348-484c-9101-32becb66234f")
+			(uuid "bf081186-a48a-5dc0-8d9e-72f63a6a5771")
 		)
 		(instances
 			(project "odeck-10"
@@ -4184,7 +4184,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9ae06feb-3e6e-425e-9100-e4558716eaaf")
+		(uuid "45e5f38a-f562-59d2-b907-7760660d4b96")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4196,7 +4196,7 @@
 			)
 			(justify left)
 		)
-		(uuid "90a1ec30-7a5f-4bd2-9158-7bb977120a4e")
+		(uuid "82afe655-affa-55f5-bafb-804d60547a12")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 38.10 44.45 0)
 			(effects
@@ -4215,7 +4215,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b072a9f1-6dae-4e8b-bd69-355d0e1851b4")
+		(uuid "8ece0175-26d9-5299-bdbf-4b7cbcb6f83b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4225,7 +4225,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9bb46f57-bca6-455a-bd7c-3903d52b3f72")
+		(uuid "f9c83c22-4c7d-5ffc-8e9d-7ca576e305e1")
 		(property "Reference" "#PWR0302"
 			(at 38.10 57.15 0)
 			(effects
@@ -4254,7 +4254,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "481d21b9-fed7-4e6a-b548-db1a374fbbb7")
+			(uuid "c9eca0a9-08d0-5e59-b7f7-0aeadf9d7e67")
 		)
 		(instances
 			(project "odeck-10"
@@ -4273,7 +4273,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ffe914b2-6586-48e6-84f2-ed591446dbc6")
+		(uuid "8d9c47ae-0899-5c6b-8cb7-faca3d82609e")
 		(property "Reference" "C303"
 			(at 53.34 49.53 0)
 			(effects
@@ -4327,10 +4327,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "eba8f096-b3ef-46bc-b07c-84b1a389748e")
+			(uuid "8a3bc450-d204-5ed6-992b-95cc5ccce189")
 		)
 		(pin "2"
-			(uuid "ff69101e-1dbe-4ab3-bf1d-aa2475ac7ff6")
+			(uuid "28ae0258-2ae5-5ff9-8218-f54f0e2b5d7d")
 		)
 		(instances
 			(project "odeck-10"
@@ -4349,7 +4349,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a09262b6-cb45-49a4-9a8e-57d2ad39463e")
+		(uuid "e371faa3-5be6-5f80-aa12-31e2a496d4f4")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4361,7 +4361,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f373ebbd-afb9-4ee7-bc01-437a99446392")
+		(uuid "51499520-1a5b-5282-92d3-03855c4bbdae")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 50.80 44.45 0)
 			(effects
@@ -4380,7 +4380,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "00befe14-7f66-4962-8bfa-42776b3b73c4")
+		(uuid "92a897f2-39d8-5adb-8cba-31bbce5c4c55")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4390,7 +4390,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8dcecfc5-4228-4217-ba2f-6b214dbf5574")
+		(uuid "ac01db8a-67a6-501f-958f-bd436290f33d")
 		(property "Reference" "#PWR0303"
 			(at 50.80 57.15 0)
 			(effects
@@ -4419,7 +4419,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "45cfa224-c81a-4f90-8673-62b678113abf")
+			(uuid "4c794f1a-022e-5386-905f-17c45d0f1a20")
 		)
 		(instances
 			(project "odeck-10"
@@ -4438,7 +4438,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aec132a5-1603-4e8f-8612-7b0be96fa12b")
+		(uuid "20999ed0-df4b-5323-8dae-2155aababdfa")
 		(property "Reference" "C304"
 			(at 66.04 49.53 0)
 			(effects
@@ -4492,10 +4492,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "76a1e401-1733-4183-b73f-fc5d22ecc738")
+			(uuid "83c2c05a-3de9-5f9e-9451-bd55237f20b8")
 		)
 		(pin "2"
-			(uuid "de7f484b-d683-4ba0-b477-ddee1feb3f11")
+			(uuid "c93a6326-7e58-53a9-ac43-95716d2dbd7e")
 		)
 		(instances
 			(project "odeck-10"
@@ -4514,7 +4514,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "138a7188-252e-4d54-9e96-bf220dcd0402")
+		(uuid "b95811d1-530d-5507-a429-2809991a2ca4")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4526,7 +4526,7 @@
 			)
 			(justify left)
 		)
-		(uuid "e42ef52f-29fd-4a62-aa37-c729096ec583")
+		(uuid "49d75d26-40ca-5071-8bea-cb95955f941e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 63.50 44.45 0)
 			(effects
@@ -4545,7 +4545,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "94401308-64f0-4a71-afe6-da334bc21393")
+		(uuid "0e5a1141-060f-5866-93dd-bc54d6985f54")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4555,7 +4555,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2cda7f83-e826-465f-8236-832647744bbb")
+		(uuid "f2c03446-e906-5ad9-a2ec-d1bc1360f848")
 		(property "Reference" "#PWR0304"
 			(at 63.50 57.15 0)
 			(effects
@@ -4584,7 +4584,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "bcbc11bd-cb3b-4830-8546-001075f5e90a")
+			(uuid "fbc8a8ae-bdae-54ff-882f-fc9a5b106ccc")
 		)
 		(instances
 			(project "odeck-10"
@@ -4603,7 +4603,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a3b73a47-611d-4ee2-8123-a2424d6936ad")
+		(uuid "0580988f-bb63-5b32-adf7-c962c14c7121")
 		(property "Reference" "C305"
 			(at 78.74 49.53 0)
 			(effects
@@ -4657,10 +4657,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "5a42742b-549c-4531-8198-677a6743e3d3")
+			(uuid "16a035e7-c179-549a-9548-9e9cf21158c8")
 		)
 		(pin "2"
-			(uuid "fbe846e5-ae3b-4119-a5ec-44ff3c965421")
+			(uuid "6baf848f-9bf6-5f61-a822-a76b9fd0e839")
 		)
 		(instances
 			(project "odeck-10"
@@ -4679,7 +4679,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e310983f-81d7-4108-913a-5ccc0cd05ed9")
+		(uuid "156049d5-c308-5aaa-bdba-382848da6fb4")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4691,7 +4691,7 @@
 			)
 			(justify left)
 		)
-		(uuid "ca8beda2-ea36-4fda-bfec-3e6ef51b1938")
+		(uuid "50d6a36b-6014-512f-a10e-efb6f1344322")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 76.20 44.45 0)
 			(effects
@@ -4710,7 +4710,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6a30fdca-f3b0-4df3-8b93-190b8a8600b2")
+		(uuid "2e15a9a5-c139-5583-8c3c-dca347553c44")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4720,7 +4720,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e30f78bb-21fa-46c6-8f1e-06f723e954a5")
+		(uuid "7a4a31b3-666e-5f65-9423-76182839647c")
 		(property "Reference" "#PWR0305"
 			(at 76.20 57.15 0)
 			(effects
@@ -4749,7 +4749,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "0f40b5ad-e855-4ac5-879d-e64591e94e86")
+			(uuid "e2e686ab-65bb-536c-8192-2feff071b167")
 		)
 		(instances
 			(project "odeck-10"
@@ -4768,7 +4768,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b173c3fd-c088-443d-a602-b65843b45167")
+		(uuid "dd279a46-b437-572e-97d3-ed82576c0795")
 		(property "Reference" "C306"
 			(at 91.44 49.53 0)
 			(effects
@@ -4822,10 +4822,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "8382b931-2569-4bdd-8320-556d15293eaf")
+			(uuid "4c295e98-17ea-54a8-809c-f41bd5dc6a70")
 		)
 		(pin "2"
-			(uuid "31dc2d63-fa76-4040-92b2-c8327f2fea4c")
+			(uuid "ca5e04f7-e48b-5262-9b71-d4023a7e92f2")
 		)
 		(instances
 			(project "odeck-10"
@@ -4844,7 +4844,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d24a3f7e-bf03-4b71-bbb5-e725b04eac16")
+		(uuid "ce66f4a0-7741-5a04-ad1a-07df71f46def")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -4856,7 +4856,7 @@
 			)
 			(justify left)
 		)
-		(uuid "24084f50-6c5b-41dd-9ca8-7430929fd837")
+		(uuid "768902ba-2a98-57e2-ba3b-968c37fee9f4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 88.90 44.45 0)
 			(effects
@@ -4875,7 +4875,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1fa03744-60a9-4378-a449-214f6790c2c3")
+		(uuid "2969c85b-b632-5834-9d77-845ebd302a5d")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -4885,7 +4885,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "95ff0ef8-af0f-4241-ac64-e785326fd633")
+		(uuid "67528fec-5f92-5110-b574-13bc15577100")
 		(property "Reference" "#PWR0306"
 			(at 88.90 57.15 0)
 			(effects
@@ -4914,7 +4914,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "bceae076-0228-42bf-bd73-1ba430be32c5")
+			(uuid "cc528e36-cb99-5b41-9347-46df060ec3e8")
 		)
 		(instances
 			(project "odeck-10"
@@ -4933,7 +4933,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "50b354b8-839a-4c5c-9479-10070666ff30")
+		(uuid "a5d8fdf4-e348-5333-b5d6-14bc7e5bfada")
 		(property "Reference" "C307"
 			(at 104.14 49.53 0)
 			(effects
@@ -4987,10 +4987,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "79e425df-71a6-49d6-9d77-c8f4e4bb4f54")
+			(uuid "795bace2-9d89-5633-8d1f-ffe62dd5f014")
 		)
 		(pin "2"
-			(uuid "4f6b0ced-75ea-4d0a-8638-bbb189165699")
+			(uuid "0da88dbd-6c71-5146-96f9-644445434250")
 		)
 		(instances
 			(project "odeck-10"
@@ -5009,7 +5009,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "44354df1-b298-408c-8d65-1bf3d2d07e24")
+		(uuid "2ca150e6-a1f6-5b1a-8b78-4c7d5313fddd")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -5021,7 +5021,7 @@
 			)
 			(justify left)
 		)
-		(uuid "de590901-4d68-4594-971b-89956d49f637")
+		(uuid "17702271-d2ee-52ac-ad35-4e4c0d98af7b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 101.60 44.45 0)
 			(effects
@@ -5040,7 +5040,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1f8176e2-38f6-451e-a23d-224d622150b4")
+		(uuid "62f79ca0-3c9a-5f86-8699-6dab1775d584")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5050,7 +5050,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d876b3a4-f59c-4c5b-b9d7-cccf7f5ede63")
+		(uuid "6ea8bfbf-3fa9-5acc-a42e-eae441de8a42")
 		(property "Reference" "#PWR0307"
 			(at 101.60 57.15 0)
 			(effects
@@ -5079,7 +5079,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "bee7c258-9e18-45db-8c27-ce7fa8acada6")
+			(uuid "e6fecf19-45a2-5a16-94d7-29906af381ef")
 		)
 		(instances
 			(project "odeck-10"
@@ -5098,7 +5098,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2b738895-40fe-491d-a2bc-c566d7eca12b")
+		(uuid "087be8d1-d3e0-5812-9b15-f9aa7839b006")
 		(property "Reference" "Q301"
 			(at 132.08 43.18 0)
 			(effects
@@ -5161,28 +5161,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "adbc1aec-caf8-494d-ab3c-c2300d7477df")
+			(uuid "a87f7416-3062-5563-8504-1248cc23b7fd")
 		)
 		(pin "2"
-			(uuid "85432c6e-ab92-45c9-ad43-fde9df433fad")
+			(uuid "4f1c89a9-b89b-5a5c-a096-4060235aeaae")
 		)
 		(pin "3"
-			(uuid "52452ec4-fce5-4ddc-92aa-499adcb40954")
+			(uuid "4f8e8db3-51bb-57f7-b0a1-f22997f3a342")
 		)
 		(pin "4"
-			(uuid "2cad99fd-233c-4e97-a9f3-4d3c0d280635")
+			(uuid "824630ac-b468-56eb-bf8b-de9410b9b85e")
 		)
 		(pin "5"
-			(uuid "ecbf461e-6598-4836-8ba8-c29d05d2c734")
+			(uuid "e1284c59-a917-530b-949c-e44441aff552")
 		)
 		(pin "6"
-			(uuid "6dc79c15-2cfa-4506-9480-e5e8c7d97274")
+			(uuid "89efdeef-e2a6-5cc1-a9e1-3b049145408e")
 		)
 		(pin "7"
-			(uuid "d19326f0-3d86-4c83-a338-98e0cab61d49")
+			(uuid "28b6df7f-4201-525e-8295-9bdcc2b56ca1")
 		)
 		(pin "8"
-			(uuid "e4941b8e-3f2d-406d-b6ca-6b93aa6606e4")
+			(uuid "a6cd6736-65f7-59b4-841c-8904c9e6f28b")
 		)
 		(instances
 			(project "odeck-10"
@@ -5201,7 +5201,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c3a84928-ec31-4bdf-be6c-2cecb3d984dc")
+		(uuid "92cc19f9-7436-5925-847e-1b8f20a37114")
 	)
 	(label "5V_SW"
 		(at 123.19 46.99 180)
@@ -5211,7 +5211,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "49cec5a3-d325-45bf-a718-fd081964a827")
+		(uuid "90c02813-8779-5d56-807c-54da0a004d37")
 	)
 	(wire
 		(pts
@@ -5221,7 +5221,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2cbe947f-13f1-47ac-99bd-317397a57108")
+		(uuid "323912e7-00c8-5cec-8bf4-28be8140df05")
 	)
 	(label "5V_SW"
 		(at 123.19 49.53 180)
@@ -5231,7 +5231,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "286918c1-6194-465a-a86f-ab3de5cd7ea2")
+		(uuid "032373b4-9714-582c-be87-643f3099b9da")
 	)
 	(wire
 		(pts
@@ -5241,7 +5241,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "edd10531-d068-4963-a66e-06feda81d052")
+		(uuid "f4f1c4af-4f77-50a4-a891-18cd1659cee4")
 	)
 	(label "5V_SW"
 		(at 123.19 52.07 180)
@@ -5251,7 +5251,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "7c102353-9ab6-4d5e-8757-8e61164f41c0")
+		(uuid "6109c7e9-d985-5a5d-a2f0-2e05c3ce1894")
 	)
 	(wire
 		(pts
@@ -5261,7 +5261,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4ccef1e4-cc17-4180-b4dd-0dd59ed20874")
+		(uuid "59142521-2c92-5cd0-b1d4-9d55f5c70297")
 	)
 	(label "5V_HG"
 		(at 123.19 54.61 180)
@@ -5271,7 +5271,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "f370f744-6e57-4883-bb78-e57c15cd2079")
+		(uuid "ae0cdb2d-061c-5f53-8abc-a68f5eb7282b")
 	)
 	(wire
 		(pts
@@ -5281,7 +5281,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "49b7ce57-f894-448c-a5b9-73c4fae92990")
+		(uuid "3e1686cc-13df-563c-98a5-c2ca69ebc520")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -5293,7 +5293,7 @@
 			)
 			(justify left)
 		)
-		(uuid "e9d41ea8-005e-4af2-bb32-e657fbc3a3a4")
+		(uuid "c2fc7615-da4d-5342-b7d0-06bd2b021ca5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.97 54.61 0)
 			(effects
@@ -5312,7 +5312,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d483553a-a468-4d69-a2d8-0cb32eebfe4c")
+		(uuid "fe44c3ab-102c-5d0e-91ad-22b112b17256")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -5324,7 +5324,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b2db8482-81fd-45dd-9e9f-16e33e4550b4")
+		(uuid "c6788ab0-dc28-58c5-8f9b-df4679313f01")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.97 52.07 0)
 			(effects
@@ -5343,7 +5343,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c767acb4-f922-49a6-b9b9-ca9e8315ca29")
+		(uuid "0b00dc61-a566-580f-8775-0bee7a8eab31")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -5355,7 +5355,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f9f57fed-92b5-44e5-a5ab-5b3a7d980845")
+		(uuid "e207e015-085a-5b59-9c82-7190d9a6eb6a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.97 49.53 0)
 			(effects
@@ -5374,7 +5374,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bc732a45-ab24-492c-b2da-17f48353af68")
+		(uuid "780df3e9-85da-598c-bbdf-e33db47de3b1")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -5386,7 +5386,7 @@
 			)
 			(justify left)
 		)
-		(uuid "6af2a5f1-06b1-48d6-ba0b-dc3346dcce88")
+		(uuid "75c2cb2a-6b7e-5197-b53c-98335bfa7c0a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.97 46.99 0)
 			(effects
@@ -5405,7 +5405,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f42d47c1-ae27-498a-bb51-96b0f957ad2c")
+		(uuid "5cce3a13-642d-544f-9d72-82fdc1f0ade0")
 		(property "Reference" "Q302"
 			(at 132.08 72.39 0)
 			(effects
@@ -5468,31 +5468,31 @@
 			)
 		)
 		(pin "1"
-			(uuid "74564dfc-bca1-4dae-8928-64aff6deeb7c")
+			(uuid "dffbfcea-53eb-5f09-b707-2318939e3a77")
 		)
 		(pin "2"
-			(uuid "0984136a-4141-4870-91ae-db6e290fab5e")
+			(uuid "6e0c829a-67f4-567a-9d76-726349fa2cb1")
 		)
 		(pin "3"
-			(uuid "a7013fc1-90e2-4034-8a7c-a62f50586c0d")
+			(uuid "2ebd7bcf-cee4-57a3-85da-d59f5ab09859")
 		)
 		(pin "4"
-			(uuid "6b04d714-e511-4e89-855e-be8cee12469c")
+			(uuid "027777cd-fa14-57a5-a810-7376bd729b1d")
 		)
 		(pin "5"
-			(uuid "95d7f0bf-a658-4560-84dd-49c541892d76")
+			(uuid "aa20045e-6b6e-5691-86bc-c9990fff682f")
 		)
 		(pin "6"
-			(uuid "8d316860-b4c6-48e7-926d-3a5795f645c9")
+			(uuid "13a7b746-fd91-577c-a2d7-1b0062377dd7")
 		)
 		(pin "7"
-			(uuid "414f9a5a-050b-493c-8701-6e5e40162c81")
+			(uuid "cd05ba43-1a5d-5a1b-857b-62640b933e11")
 		)
 		(pin "8"
-			(uuid "939dc655-0cac-4ed3-86d2-1e0bea4b1929")
+			(uuid "b8f60617-5158-5f08-b31c-9e1a50b72779")
 		)
 		(pin "9"
-			(uuid "3c235ed1-0a6c-4f15-b7b7-445c0fac3bb1")
+			(uuid "3b9aa999-e6db-57c7-8da3-5787117fbc54")
 		)
 		(instances
 			(project "odeck-10"
@@ -5511,7 +5511,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6deefc26-e7f4-42ed-bd5a-30068fb59a49")
+		(uuid "c3c59e80-c54a-5b2c-8665-3400009e8ca7")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5521,7 +5521,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "edb29450-b7ec-4c07-94f4-32beb0287804")
+		(uuid "2899b85b-b499-5a8a-9bb4-8367028a9d5e")
 		(property "Reference" "#PWR0308"
 			(at 121.92 81.28 0)
 			(effects
@@ -5550,7 +5550,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6ea3b2a0-4dd9-4a04-8e7a-7f9531ee5afc")
+			(uuid "2d834f76-f494-5a5f-a10c-6c53d0df7f30")
 		)
 		(instances
 			(project "odeck-10"
@@ -5569,7 +5569,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "083bcace-084d-4b20-ba37-a91623c5e4b4")
+		(uuid "f2b5c8fb-5b3e-5a32-a7bd-1ea50d9f7987")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5579,7 +5579,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aac677e6-612a-4527-97f6-25a2e76822b8")
+		(uuid "166716fb-ac1d-51c0-b921-61bad1de1a49")
 		(property "Reference" "#PWR0309"
 			(at 121.92 83.82 0)
 			(effects
@@ -5608,7 +5608,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "bba2736c-5f9f-4c0c-9b7e-2e8a3719fb4b")
+			(uuid "2e378e8a-c9e5-56de-a366-0e77d3f3c23d")
 		)
 		(instances
 			(project "odeck-10"
@@ -5627,7 +5627,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e32b0006-ee26-4a81-b7a3-ecc82dc98132")
+		(uuid "b290f1f0-f4da-5cb8-8d06-ed67faf11c7c")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5637,7 +5637,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c0c49559-711a-4b1f-ac6d-075f126fc71a")
+		(uuid "ed040f08-7a47-5e4b-8d90-57efe562d90b")
 		(property "Reference" "#PWR0310"
 			(at 121.92 86.36 0)
 			(effects
@@ -5666,7 +5666,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "f36a4c2b-5584-450a-be56-2badf5eb5d70")
+			(uuid "180e8d7f-7a9e-5b15-b464-49466e5fa85e")
 		)
 		(instances
 			(project "odeck-10"
@@ -5685,7 +5685,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fc74c01b-bac6-4d28-ac39-5cbdf44660eb")
+		(uuid "d2a7b8bb-02db-5c4b-9423-219debab3591")
 	)
 	(label "5V_LG"
 		(at 121.92 88.90 180)
@@ -5695,7 +5695,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "4ceed4ee-f61f-4e08-b6ec-4874fbb91cc0")
+		(uuid "721c4634-f15c-5e9a-bf3d-74d01c01af7c")
 	)
 	(wire
 		(pts
@@ -5705,7 +5705,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e776ebcd-aedd-411b-97af-902c521a49f8")
+		(uuid "efa7d14f-ba6a-5ac1-b620-1c95419870bb")
 	)
 	(label "5V_SW"
 		(at 142.24 88.90 0)
@@ -5715,7 +5715,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "689ca418-5854-4e59-ab6a-ac74d089ed30")
+		(uuid "46b0bc0c-2bd6-5e83-8883-034f182d5c27")
 	)
 	(wire
 		(pts
@@ -5725,7 +5725,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0c3c14ca-3d96-4a4a-a278-03c6229b6651")
+		(uuid "95afc06d-211e-5e68-ae06-592af9dfdf17")
 	)
 	(label "5V_SW"
 		(at 142.24 86.36 0)
@@ -5735,7 +5735,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "b4f1fe15-c82a-4aeb-ab94-2246a5548d30")
+		(uuid "9fb91b7f-20da-55be-acbd-542c4d52e8d4")
 	)
 	(wire
 		(pts
@@ -5745,7 +5745,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f088c52a-677b-4439-b5b8-8b7c71c0d187")
+		(uuid "3a23ee30-dc8d-52dc-b741-ad00418c46fc")
 	)
 	(label "5V_SW"
 		(at 142.24 83.82 0)
@@ -5755,7 +5755,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "830c43d9-beb2-451a-ab5a-cde0090cc8ba")
+		(uuid "16f575b7-6c03-5503-ab21-38e5de0edc8c")
 	)
 	(wire
 		(pts
@@ -5765,7 +5765,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8d530ac4-3705-4aa4-b9c2-622121198f17")
+		(uuid "080a85d2-36e9-5bcf-9fea-588fc18dfdf8")
 	)
 	(label "5V_SW"
 		(at 142.24 81.28 0)
@@ -5775,7 +5775,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "a2eb0c7a-5b88-4b30-a2b6-ec0b0f194f24")
+		(uuid "c70df528-540c-5dde-adb7-18ea33f16938")
 	)
 	(wire
 		(pts
@@ -5785,7 +5785,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1141ee43-aa2e-45e8-b4e2-daaf6cdbed56")
+		(uuid "279b0479-a0eb-53c9-bdae-fecbc5b54b70")
 	)
 	(label "5V_SW"
 		(at 132.08 73.66 90)
@@ -5795,7 +5795,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "6858c8ed-89fe-4050-bf5a-e7d3f3ada77c")
+		(uuid "6d0f82b7-e78c-5856-bfc4-8ec80f473bba")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -5805,7 +5805,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a1ea7d72-c9c0-42f5-8d5e-483cba1cfdbd")
+		(uuid "a0167bf6-cbf0-5145-b669-354b242cc74e")
 		(property "Reference" "R301"
 			(at 162.56 49.53 0)
 			(effects
@@ -5859,10 +5859,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7dd6c0e-2653-405d-9d3c-c8621d531ea3")
+			(uuid "97c3478e-68b2-54c8-83b3-cbe83f2d7056")
 		)
 		(pin "2"
-			(uuid "dd7aa8fa-cda7-4be8-a25c-8ddc785f0496")
+			(uuid "98989753-8875-5ecb-ae21-6aa17c403e5d")
 		)
 		(instances
 			(project "odeck-10"
@@ -5881,7 +5881,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "07686b18-a66a-4e31-9de4-0f9ae8eaba77")
+		(uuid "7b063152-17d1-5472-ba4a-04d1830d9c97")
 	)
 	(label "5V_HO"
 		(at 160.02 44.45 90)
@@ -5891,7 +5891,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "02394653-bcef-4edd-ac60-a3e00fd2984f")
+		(uuid "390077c9-5ac7-5964-bba6-925e50f785e0")
 	)
 	(wire
 		(pts
@@ -5901,7 +5901,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c7ce9f3f-6fb2-4111-9b15-d20b82b7033e")
+		(uuid "4bdb84e7-7778-5a31-9911-87a8daea34d0")
 	)
 	(label "5V_HG"
 		(at 160.02 57.15 270)
@@ -5911,7 +5911,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "5b3e2452-12ab-4099-9e07-253889f30953")
+		(uuid "586a2884-3973-5eba-8403-39bd58eab7c8")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -5921,7 +5921,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9f95326f-7650-4485-b517-fe3eca4f72c7")
+		(uuid "92e260b8-4410-5157-9028-a33fa37fca59")
 		(property "Reference" "C308"
 			(at 172.72 49.53 0)
 			(effects
@@ -5975,10 +5975,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "afaa4e1c-a53f-4352-8e24-5935c90b181a")
+			(uuid "2a39a148-7ef8-5568-803b-cb8b200a1d36")
 		)
 		(pin "2"
-			(uuid "5cc7cc56-fba5-4c19-aa97-0f6c02a3d132")
+			(uuid "82bc8742-54f6-5243-8a1b-c4e92421b9a6")
 		)
 		(instances
 			(project "odeck-10"
@@ -5997,7 +5997,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4a6b1ffa-bea0-4873-bc7b-0e81b113935a")
+		(uuid "1cc05385-68c5-5571-a737-5548e09cff79")
 	)
 	(label "5V_BOOT"
 		(at 170.18 44.45 90)
@@ -6007,7 +6007,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "07238fdc-965e-4c48-b2ff-982e6074f855")
+		(uuid "34fd631c-4063-57b7-bd25-ebbd545b8158")
 	)
 	(wire
 		(pts
@@ -6017,7 +6017,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "164d1650-f12a-430b-830c-d097d73af1d4")
+		(uuid "d96f6978-48ca-5905-9ec5-d85bce2a434f")
 	)
 	(label "5V_SW"
 		(at 170.18 57.15 270)
@@ -6027,7 +6027,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "b9a0100e-4f35-4004-93f9-1189ccb37c6c")
+		(uuid "f4d7a882-bde8-5dbe-8d69-f668bcd28e37")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -6037,7 +6037,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp yes)
-		(uuid "16cab892-88b2-4c1f-8797-7d101ef15545")
+		(uuid "594da7d7-a9a9-5847-9dfd-ded4f057d539")
 		(property "Reference" "R302"
 			(at 162.56 82.55 0)
 			(effects
@@ -6091,10 +6091,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "306dbcff-be19-4be8-b133-58715cad6de4")
+			(uuid "37d4302b-6cba-550d-9438-4c7c1e08bf24")
 		)
 		(pin "2"
-			(uuid "e7011cb3-21e7-4bd8-9e32-3214402f91cb")
+			(uuid "199c153f-5917-5555-9dc3-1a2c7c6a64d1")
 		)
 		(instances
 			(project "odeck-10"
@@ -6113,7 +6113,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "dc54aa77-af5e-4bc6-a13b-a0794dbee22c")
+		(uuid "415ee238-c166-56ab-a7b2-7856728bf0da")
 	)
 	(label "5V_SW"
 		(at 160.02 77.47 90)
@@ -6123,7 +6123,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "482856c3-70ff-47b4-97dc-d9f20743a378")
+		(uuid "1ff60d0b-80ba-5433-a98d-0476e913a595")
 	)
 	(wire
 		(pts
@@ -6133,7 +6133,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9a076f49-a7e6-4b13-8ee8-ad63e4fd544a")
+		(uuid "f8c018f2-a5e8-5d2b-a2ae-69666707a3c7")
 	)
 	(label "5V_SNB"
 		(at 160.02 90.17 270)
@@ -6143,7 +6143,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "2c53a6d8-3020-4110-ab17-5cf900a67b28")
+		(uuid "3a5dbde7-8263-5b18-9290-a255052d89dc")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -6153,7 +6153,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp yes)
-		(uuid "d36d569b-aea9-4401-9a81-c2ce3004ee25")
+		(uuid "fcbc925f-68a3-5964-8b35-a6536ea38536")
 		(property "Reference" "C309"
 			(at 172.72 82.55 0)
 			(effects
@@ -6207,10 +6207,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "b90abb19-d896-48bf-a1ec-0b24464f6246")
+			(uuid "9fd68d3e-d674-5d66-b24b-16acab733592")
 		)
 		(pin "2"
-			(uuid "90095930-35e0-421c-addf-0fa5730c7c94")
+			(uuid "108fe96b-37e1-5e9e-9abb-5465c7679376")
 		)
 		(instances
 			(project "odeck-10"
@@ -6229,7 +6229,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7e9153b6-b367-43ca-aa35-9952ba4a3e02")
+		(uuid "eaa2f8f5-3999-534a-8229-6aa70ff2ed9f")
 	)
 	(label "5V_SNB"
 		(at 170.18 77.47 90)
@@ -6239,7 +6239,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f7f78ca8-1d6f-40b8-bb2c-a70367a69692")
+		(uuid "b9127607-367e-5235-943e-22537fbe72fe")
 	)
 	(wire
 		(pts
@@ -6249,7 +6249,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "926ef235-ec62-4b74-ae59-0661c4e587c9")
+		(uuid "989f1922-499c-5b2c-876d-2574008d54cf")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -6259,7 +6259,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8eebedb0-7bda-48af-96cc-f8725051cebb")
+		(uuid "f766f3db-f929-5984-b7bd-e5bacf17a0ec")
 		(property "Reference" "#PWR0311"
 			(at 170.18 90.17 0)
 			(effects
@@ -6288,7 +6288,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "22fe23ae-4d35-4c47-949b-23519dd7e9b7")
+			(uuid "afaca83c-da7c-5b30-afa1-7393e8131e83")
 		)
 		(instances
 			(project "odeck-10"
@@ -6307,7 +6307,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ef758531-bbb7-4d27-b9f7-9681501966b8")
+		(uuid "48d1867a-6000-5147-b1cd-0756e019694a")
 		(property "Reference" "L301"
 			(at 195.58 62.23 0)
 			(effects
@@ -6370,10 +6370,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "ebeaed60-cc2a-4abf-9948-cd820e1b991c")
+			(uuid "7f08bd66-1836-5a05-9a7d-fb20b243ceb7")
 		)
 		(pin "2"
-			(uuid "b16d6fde-ea14-48dd-bd16-b0b135f74280")
+			(uuid "3b33a958-11ef-5736-bdf5-471d2d6af061")
 		)
 		(instances
 			(project "odeck-10"
@@ -6392,7 +6392,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "03aabd26-de64-4bd5-913f-7ad22dbcde3f")
+		(uuid "ecdab9f5-c3b1-5779-9d11-f3f35db695ee")
 	)
 	(label "5V_SW"
 		(at 187.96 66.04 180)
@@ -6402,7 +6402,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "7a5e7349-b21b-4587-b953-fa979ef0d5a9")
+		(uuid "3480f075-e552-5fdc-9e13-1d272aeb247d")
 	)
 	(wire
 		(pts
@@ -6412,7 +6412,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5e929836-449f-42f8-a90e-8c4bd66f9941")
+		(uuid "b57c158f-bbd3-57e1-8a02-14c494bf2646")
 	)
 	(label "5V_ISNS"
 		(at 203.20 66.04 0)
@@ -6422,7 +6422,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "5fb234b6-9fda-4d68-8f85-5e6c88123e6d")
+		(uuid "95677a8f-0355-52c5-9f1a-91e0c15389b4")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -6432,7 +6432,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "abfb14d4-e6bf-44cb-87c9-7bc6ff18222a")
+		(uuid "10d54eee-07c8-599b-9d5f-419504216114")
 		(property "Reference" "R303"
 			(at 218.44 64.77 0)
 			(effects
@@ -6486,10 +6486,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d25d8e91-16ce-4c11-a728-7f61bf6e9b3c")
+			(uuid "f2a90d76-47a4-50b9-b56c-c1c5217d3945")
 		)
 		(pin "2"
-			(uuid "dcced29b-3bf4-440d-aabf-a7cbeaf0eb64")
+			(uuid "5e622f47-088e-5b37-8234-131574d13c4a")
 		)
 		(instances
 			(project "odeck-10"
@@ -6508,7 +6508,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d0fb9b01-5b37-4eb2-b918-88d231077123")
+		(uuid "2755386c-d0e3-59be-be48-c30c024c1b1d")
 	)
 	(label "5V_ISNS"
 		(at 215.90 59.69 90)
@@ -6518,7 +6518,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "248c02eb-038b-4ade-9c28-49613f229a01")
+		(uuid "8a74ea4d-8e1a-557a-b7bc-cb94973f1169")
 	)
 	(wire
 		(pts
@@ -6528,7 +6528,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9b144db2-1d6a-453c-b070-db7c1ab2ebf6")
+		(uuid "a5838541-0a8c-5530-b52c-0d50b0f99c6f")
 	)
 	(label "5V_BUCK"
 		(at 215.90 72.39 270)
@@ -6538,7 +6538,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "49c6d5d6-0da9-441f-a516-6a0c7d5938a8")
+		(uuid "83732dc2-851b-5524-9cff-b02acfae2051")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -6548,7 +6548,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9dee03e6-5b23-409f-8237-07c5cf72a7ac")
+		(uuid "60e175e8-9716-536b-8f76-fe8ad6353d9a")
 		(property "Reference" "C310"
 			(at 233.68 64.77 0)
 			(effects
@@ -6602,10 +6602,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "1d6345bf-e4b0-4938-a8ca-31ad7acbade2")
+			(uuid "58397b11-236d-5d4a-a6f2-85db7bbcc018")
 		)
 		(pin "2"
-			(uuid "1246c4bb-a72d-4234-bb6a-3ad831702a69")
+			(uuid "147f5e79-c0b4-54fd-a901-f1253b5d48ea")
 		)
 		(instances
 			(project "odeck-10"
@@ -6624,7 +6624,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7c832305-8686-4c73-99fc-6dbb7bed20a6")
+		(uuid "abd41ebf-22f9-5e9c-b872-31e7d245b9e4")
 	)
 	(label "5V_BUCK"
 		(at 231.14 59.69 90)
@@ -6634,7 +6634,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "450e7e1c-193e-499d-b606-2d565040ae1d")
+		(uuid "4f32930e-83b0-5678-8227-8588f5780f77")
 	)
 	(wire
 		(pts
@@ -6644,7 +6644,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "952e09ee-3f78-4461-95b7-c29c8a52e6d2")
+		(uuid "aef95dbb-4423-5303-bc0e-594c622ebec3")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -6654,7 +6654,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "95b5ff4d-9696-4079-8c57-91bad5cf5ca6")
+		(uuid "efd902ae-a9fa-5715-91d8-7d2b13f25804")
 		(property "Reference" "#PWR0312"
 			(at 231.14 72.39 0)
 			(effects
@@ -6683,7 +6683,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "7ede238d-4023-4db1-aba1-c4a9ab90f449")
+			(uuid "acbb9af2-c299-5362-b2ee-f4cce9d3ea3e")
 		)
 		(instances
 			(project "odeck-10"
@@ -6702,7 +6702,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4e08a6a3-372e-4669-9afa-55e227faca6d")
+		(uuid "7d38598c-d50d-56b0-b1dc-1e2538edcb68")
 		(property "Reference" "C311"
 			(at 246.38 64.77 0)
 			(effects
@@ -6756,10 +6756,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "24a4eac6-a360-4694-97f9-e388ae69526f")
+			(uuid "9b729799-d510-56fc-a1c3-b06d548950d2")
 		)
 		(pin "2"
-			(uuid "53d8e3ef-9c79-4d92-914e-f07da536c309")
+			(uuid "5c4deb25-1aaa-521e-a497-76d722944b44")
 		)
 		(instances
 			(project "odeck-10"
@@ -6778,7 +6778,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "67af9a7b-e6fb-4dd1-8575-f9d01910cf5a")
+		(uuid "7ec706e8-6b4d-5172-bd73-c831f8267d9a")
 	)
 	(label "5V_BUCK"
 		(at 243.84 59.69 90)
@@ -6788,7 +6788,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "1ea0ffb1-10ad-48ed-92ba-ce7922307476")
+		(uuid "529da05e-7672-546b-b869-53372d85759e")
 	)
 	(wire
 		(pts
@@ -6798,7 +6798,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e1ad9673-e2a4-4ed1-a586-efdb040072b0")
+		(uuid "e6ae6b65-30bd-53dc-a704-cddbcac0c713")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -6808,7 +6808,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "37e339e7-0d14-47ab-9911-7e736aa2d9ba")
+		(uuid "50c8dc5e-1434-552b-8214-cfc4ac5b48f5")
 		(property "Reference" "#PWR0313"
 			(at 243.84 72.39 0)
 			(effects
@@ -6837,7 +6837,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "31941a91-34f1-4949-9146-d8e5bcbd90db")
+			(uuid "0f26ef63-4b29-5d18-a34e-a7223c4282fc")
 		)
 		(instances
 			(project "odeck-10"
@@ -6856,7 +6856,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "60e3f226-8d63-48fe-9681-55f4bcab4bbd")
+		(uuid "b939ffb6-baba-5f6c-b0d4-e748a6d37839")
 		(property "Reference" "C312"
 			(at 259.08 64.77 0)
 			(effects
@@ -6910,10 +6910,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "51fda775-0522-4132-887f-f228c25a509b")
+			(uuid "6639a685-e421-5652-9d70-78dd8f63404c")
 		)
 		(pin "2"
-			(uuid "a2577548-eab8-44c2-a342-27056297fa76")
+			(uuid "a2b42ef2-4c86-5c07-8d98-c5d6db9acf90")
 		)
 		(instances
 			(project "odeck-10"
@@ -6932,7 +6932,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "96c570b1-6ac5-413d-b080-ccd4c578fc6f")
+		(uuid "8b4d4803-37ea-5a25-8936-22db57365582")
 	)
 	(label "5V_BUCK"
 		(at 256.54 59.69 90)
@@ -6942,7 +6942,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "c143e6b2-d40b-4d28-ae3f-2c443a80fe98")
+		(uuid "dc7de089-d4b8-556f-8eda-b30651ab6478")
 	)
 	(wire
 		(pts
@@ -6952,7 +6952,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ccfc6150-65e5-44fe-8e44-a7879c615660")
+		(uuid "a8350448-5828-5774-8a7b-99694f98edef")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -6962,7 +6962,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "35c0f1a7-a977-49a7-8e96-19cdc25be338")
+		(uuid "d92ea9c2-bb2e-56b9-bdac-1a7efc6d2b79")
 		(property "Reference" "#PWR0314"
 			(at 256.54 72.39 0)
 			(effects
@@ -6991,7 +6991,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "61a2624f-c6b0-40e5-89c8-8e21521eb6c9")
+			(uuid "d8e72829-d341-5d52-8769-e5ac1dc8c8f2")
 		)
 		(instances
 			(project "odeck-10"
@@ -7010,7 +7010,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f21d3950-7833-4b1d-9b2f-d114ed5c3681")
+		(uuid "6b35a1e6-2c85-50a2-b88c-23b091d9b2b9")
 		(property "Reference" "C313"
 			(at 271.78 64.77 0)
 			(effects
@@ -7064,10 +7064,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "65c9517f-f078-4eb6-8c7e-284962f80692")
+			(uuid "2599eea0-9a3d-5a64-a2dd-5b1a7d2f1b6c")
 		)
 		(pin "2"
-			(uuid "ad0e1cf4-4a65-4d90-aecc-3f8ff906d8fc")
+			(uuid "c64d7425-5366-52c0-8c34-dd703f3dc618")
 		)
 		(instances
 			(project "odeck-10"
@@ -7086,7 +7086,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "47421652-e7b5-4b5f-affd-f3455f2105c3")
+		(uuid "4906762d-c365-5499-b86e-b8fec38b7703")
 	)
 	(label "5V_BUCK"
 		(at 269.24 59.69 90)
@@ -7096,7 +7096,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "faedfa2a-7a4e-4e60-a9ca-c0032e5da081")
+		(uuid "8c8d672f-b9c8-5e89-a685-6776630bf135")
 	)
 	(wire
 		(pts
@@ -7106,7 +7106,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a5566725-31d1-43fb-81be-ec8b06fe8171")
+		(uuid "b223ca97-b613-5923-8448-f91c59376334")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7116,7 +7116,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f747378a-d8f5-45c7-a82a-3174c0eadc01")
+		(uuid "b3b2e5f4-a802-545d-aee1-853abb3de680")
 		(property "Reference" "#PWR0315"
 			(at 269.24 72.39 0)
 			(effects
@@ -7145,7 +7145,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "a1f8050f-e3d8-4784-b732-e738367b0fd8")
+			(uuid "3c38019c-d23b-5134-a82f-90b5b41f152a")
 		)
 		(instances
 			(project "odeck-10"
@@ -7164,7 +7164,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "24ffe209-8bfa-429b-868b-93a5978b0d44")
+		(uuid "b17818cb-416a-5bf1-a584-2a665f5c2529")
 		(property "Reference" "C314"
 			(at 284.48 64.77 0)
 			(effects
@@ -7218,10 +7218,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "11c79c44-c7a2-408b-8f3f-ccd174e5eb22")
+			(uuid "f2d2cc24-1fbe-5666-9bde-c9e0bc21c920")
 		)
 		(pin "2"
-			(uuid "4a77ca8c-24ec-4b90-a23e-70644e68f01c")
+			(uuid "586dd0bc-e735-543f-a9ea-563dc9b0ffa3")
 		)
 		(instances
 			(project "odeck-10"
@@ -7240,7 +7240,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "74e0b8bb-871d-4b02-8095-1c0f9acfcd34")
+		(uuid "1c61cd8c-f2f0-56f1-b9e3-4a77655bd87b")
 	)
 	(label "5V_BUCK"
 		(at 281.94 59.69 90)
@@ -7250,7 +7250,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9f6eb978-916f-468e-acb7-9489afc1f7bb")
+		(uuid "4d0d8261-a78b-58d5-a10c-18148cdf1e6c")
 	)
 	(wire
 		(pts
@@ -7260,7 +7260,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bf7c5db5-6213-422d-825f-3b548ff42bbd")
+		(uuid "38176d31-cf63-5616-a992-cb86b8b88c2c")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7270,7 +7270,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "02a028ba-a3ee-47d8-9b02-e5fae926b2da")
+		(uuid "edd6a663-4b57-5d4c-a638-cb04f4af91eb")
 		(property "Reference" "#PWR0316"
 			(at 281.94 72.39 0)
 			(effects
@@ -7299,7 +7299,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "15edf831-67f3-4d73-b713-5d0968bb72d4")
+			(uuid "367c81e8-cba8-5e9b-96e3-c3729623869e")
 		)
 		(instances
 			(project "odeck-10"
@@ -7318,7 +7318,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "38a58433-b8d3-47f4-b8ee-add4c406ac84")
+		(uuid "f64e262d-ea11-5155-a3c0-94f1999cfc12")
 		(property "Reference" "C315"
 			(at 297.18 64.77 0)
 			(effects
@@ -7372,10 +7372,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "2793d2d1-0b0b-4306-aef0-8fa452f1abce")
+			(uuid "8944a3bb-3c87-5364-8c6c-6d076125eceb")
 		)
 		(pin "2"
-			(uuid "2414de1a-6f9a-42d6-a9fb-9705f8e1c691")
+			(uuid "09e89563-3e11-5dea-8330-6caeb9ef63fe")
 		)
 		(instances
 			(project "odeck-10"
@@ -7394,7 +7394,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0af7e019-58ae-4c34-95ec-5d9f33ca2d82")
+		(uuid "14f1a2da-0a5d-59d1-bd89-561d4d48382e")
 	)
 	(label "5V_BUCK"
 		(at 294.64 59.69 90)
@@ -7404,7 +7404,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "8f79c51b-4f77-4152-aeb6-bce330a2cf1c")
+		(uuid "bcfb2ef3-1ab3-547e-b064-ed6cc4278f2c")
 	)
 	(wire
 		(pts
@@ -7414,7 +7414,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cd533ca5-c0a1-45f0-b297-e5464264ae73")
+		(uuid "742c3877-5963-5728-a1f9-c99579481526")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7424,7 +7424,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f3ed876e-bf50-4f71-9023-838b3fda4261")
+		(uuid "964d7c9f-a464-5fe9-bc1f-86580de53719")
 		(property "Reference" "#PWR0317"
 			(at 294.64 72.39 0)
 			(effects
@@ -7453,7 +7453,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "46624129-f48b-4a33-be04-4b935c971426")
+			(uuid "bf7a2bf0-d574-5ad4-a707-95f38ba2bbfe")
 		)
 		(instances
 			(project "odeck-10"
@@ -7472,7 +7472,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9f358f76-4597-47a3-a287-b8f23414a0bc")
+		(uuid "5367d1b5-df01-5e2d-8020-345344cc9a10")
 		(property "Reference" "U301"
 			(at 101.60 120.65 0)
 			(effects
@@ -7535,79 +7535,79 @@
 			)
 		)
 		(pin "1"
-			(uuid "4733173a-a1a4-4656-93cb-940146984f54")
+			(uuid "93d23b0a-fe56-55c9-81b6-1cff2c3f9f4a")
 		)
 		(pin "2"
-			(uuid "cc03305d-a995-4665-8fe6-ef310f10106e")
+			(uuid "e988ca14-4f0a-5bca-9349-11ab3bb9295f")
 		)
 		(pin "3"
-			(uuid "dc0cdc7c-e79b-41b1-82d3-1440f4fa661d")
+			(uuid "a0c1ec75-d674-565a-a8ef-c0c35654d290")
 		)
 		(pin "4"
-			(uuid "abe1e5b9-1e56-4a48-9909-5a478b4606ab")
+			(uuid "07fee739-e2c7-57cf-b963-801ae94f6ac7")
 		)
 		(pin "5"
-			(uuid "1491ad93-3d38-4305-84d8-6eebe5087507")
+			(uuid "7d261e3c-4a25-5158-ae1a-53652a274281")
 		)
 		(pin "6"
-			(uuid "8bc53647-f9d0-4a0b-bed0-9800d1ed3886")
+			(uuid "fd3c9da6-69b6-54dd-b2fe-ba1ce035c2a6")
 		)
 		(pin "7"
-			(uuid "ac9a7bed-c0ee-441d-8ef2-7306fe7c5d13")
+			(uuid "31623a41-84e8-5a7d-9566-af18561f0c49")
 		)
 		(pin "8"
-			(uuid "802ce025-8d9a-4228-95a4-b3c1af85a0b4")
+			(uuid "fdfa849d-4ea2-58e8-aea7-538ea5fb38e6")
 		)
 		(pin "9"
-			(uuid "854214e5-1343-4a4f-a246-7b7d93b06153")
+			(uuid "7a114a79-33da-5696-96e1-2c387565299b")
 		)
 		(pin "10"
-			(uuid "03166296-0992-464a-ae67-e881242565a9")
+			(uuid "c988bf5b-47eb-58c3-a93d-ffdb2cfbcbfb")
 		)
 		(pin "11"
-			(uuid "96b31a14-beee-4118-9f89-563a46755f1c")
+			(uuid "10dd1c81-60f7-514a-834d-b515ba1f1358")
 		)
 		(pin "12"
-			(uuid "4f58287b-431e-4ff2-8371-bba4b05b3ac0")
+			(uuid "0029456b-3e26-51ae-b500-b37b2d8c9cc3")
 		)
 		(pin "13"
-			(uuid "7b2bbdbe-0b5b-4bd7-9ecb-0f55cde90a0d")
+			(uuid "41c10c34-5cc3-5e11-b816-5d07170b3218")
 		)
 		(pin "14"
-			(uuid "df9edf9c-dbde-4528-a4c1-287cc5089d5c")
+			(uuid "68e5f331-e060-5e28-b4a0-2678f635604d")
 		)
 		(pin "15"
-			(uuid "59515668-5b8b-406f-8742-7662a96199f3")
+			(uuid "a88a665e-9f5a-5a81-91b1-d64f8f8ab278")
 		)
 		(pin "16"
-			(uuid "ccc44b3d-ee24-4ff6-8528-ebb7f888f60d")
+			(uuid "94098afd-332d-5083-9ffc-5be40cebbc71")
 		)
 		(pin "17"
-			(uuid "e4285a72-39dc-4aec-a420-09c87511e100")
+			(uuid "6e7fb70c-ec71-5600-9415-5e7ba27319c1")
 		)
 		(pin "18"
-			(uuid "3c9b1828-54d2-4697-8e05-49ff9e9d4137")
+			(uuid "40ef0d90-44ae-5b8c-a9a5-2e4645bfdfa0")
 		)
 		(pin "19"
-			(uuid "8fba9ac2-0130-47f2-952d-037c86da43ee")
+			(uuid "aabc609b-6ff5-5d0a-bc95-015be2e97df1")
 		)
 		(pin "20"
-			(uuid "ab846f1a-152d-4d64-a0d5-440bbacf1d44")
+			(uuid "9c6cb4ac-b9ab-5451-86f2-851c49c27428")
 		)
 		(pin "21"
-			(uuid "d1eae9a6-3039-477d-aaca-a25a57d3a593")
+			(uuid "16c6ac17-8f00-56cb-b609-ca44e316b1ad")
 		)
 		(pin "22"
-			(uuid "cae5084b-ca4d-43cc-9d7d-8ac0926d8f16")
+			(uuid "99fa9296-27b3-5e4c-831e-b0f524519357")
 		)
 		(pin "23"
-			(uuid "c5b81290-fd54-4ef4-802c-ec77278dcbd1")
+			(uuid "f3dcabc1-0d8e-505f-86e5-80849f82fbac")
 		)
 		(pin "24"
-			(uuid "70fab0fa-e35b-44d4-9256-947c082e1e2d")
+			(uuid "38776c9b-52bf-5732-a33b-d4196bc3f43a")
 		)
 		(pin "25"
-			(uuid "bbec2f22-8be3-43a2-a50a-f1770ca0faa3")
+			(uuid "725abc92-3b5f-5706-8e4c-87c581894646")
 		)
 		(instances
 			(project "odeck-10"
@@ -7626,7 +7626,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "085cbc49-a8cb-461d-9dc8-e3e287b5f309")
+		(uuid "f95f8a21-340d-5d1e-8d87-d1235df8e11e")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7636,7 +7636,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8aafd988-3ac5-4935-8a7b-482e422dfa1b")
+		(uuid "0d3531c6-820b-518a-9d5b-a061431c28b8")
 		(property "Reference" "#PWR0318"
 			(at 80.01 140.97 0)
 			(effects
@@ -7665,7 +7665,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "667c0ffb-9d34-44e4-bb7e-0d95bf72aa52")
+			(uuid "0686c9a0-e3fb-5c67-9b90-ebb2cfa63985")
 		)
 		(instances
 			(project "odeck-10"
@@ -7684,7 +7684,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e0a0fad0-3659-4bed-80a9-f1e304699c91")
+		(uuid "4b73b7cd-0639-51b3-88e8-05cab7cabdf9")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7694,7 +7694,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3144cacb-d918-42a5-b600-cd28a0a8abdd")
+		(uuid "aae7ecde-1da8-5bc7-9cb9-cf9ce27222f2")
 		(property "Reference" "#PWR0319"
 			(at 80.01 143.51 0)
 			(effects
@@ -7723,7 +7723,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "d532c7a9-4ac6-4b2e-a273-6e3a5adbdd58")
+			(uuid "132f8ef6-7dc3-5771-9b7e-d53d105c77d7")
 		)
 		(instances
 			(project "odeck-10"
@@ -7742,7 +7742,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1c54e1cb-b24d-410d-87f4-49955d99502c")
+		(uuid "e46c72a8-b5d2-58c7-adeb-f1308e0e18d0")
 	)
 	(label "5V_CNFG"
 		(at 95.25 167.64 270)
@@ -7752,7 +7752,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "8079a774-2b82-4232-9908-a4e1e8268314")
+		(uuid "41c5a69d-3e81-5a87-a772-719343ffc1d1")
 	)
 	(wire
 		(pts
@@ -7762,7 +7762,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "52f3842b-0787-446c-b2d5-85887d9d957c")
+		(uuid "1fa8d4fe-08cc-54b0-8fc2-e1106da3ba5c")
 	)
 	(label "5V_RT"
 		(at 100.33 167.64 270)
@@ -7772,7 +7772,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "a7bb94dd-080b-4591-ab7a-a02b8cd72c49")
+		(uuid "36a6668a-f175-531a-92c2-eea7cedaec09")
 	)
 	(wire
 		(pts
@@ -7782,7 +7782,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4196d90e-0478-41f9-856a-ce39939cced8")
+		(uuid "15ece98a-c1f5-5891-9a2a-89d044283303")
 	)
 	(label "5V_COMP"
 		(at 80.01 137.16 180)
@@ -7792,7 +7792,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "03e0347c-a1e2-48bf-8d5e-9fedb4e16544")
+		(uuid "cd01e3b0-527c-5407-835c-9cd498f2a28d")
 	)
 	(wire
 		(pts
@@ -7802,7 +7802,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c915bd31-766d-437e-b9e3-0cd73ad69c23")
+		(uuid "60b2f8d5-57e7-57a9-8e2d-b6d2604a9fc9")
 	)
 	(label "5V_FB"
 		(at 80.01 130.81 180)
@@ -7812,7 +7812,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "5bf800b6-b838-4d5c-8302-9afec0041d31")
+		(uuid "494773a1-8eaa-5fd2-b483-fdbb34b21ce9")
 	)
 	(wire
 		(pts
@@ -7822,7 +7822,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a19182ba-a7d8-4fa8-84c3-83f43cf84cd4")
+		(uuid "8aee6cd6-27f9-5eb1-be25-6ffeb56a44d4")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7832,7 +7832,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b77c36ce-375c-4cce-986d-2a5456d65539")
+		(uuid "d055ac80-fe07-5e64-a630-03e04c7bcc7a")
 		(property "Reference" "#PWR0320"
 			(at 110.49 167.64 0)
 			(effects
@@ -7861,7 +7861,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "74d989ba-9c18-4a6e-a986-c5f3e0c5c9ee")
+			(uuid "ca97082d-d153-5415-a304-2bcb9ff1cf9c")
 		)
 		(instances
 			(project "odeck-10"
@@ -7880,7 +7880,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e6a4ed1a-fe5f-4795-afe1-46c0e60ba65f")
+		(uuid "51916cae-c574-5262-bb1b-015b25720bb0")
 	)
 	(label "5V_VDDA"
 		(at 105.41 167.64 270)
@@ -7890,7 +7890,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "bb4f253e-1b74-462b-862a-6d5e11f29477")
+		(uuid "a21752b2-ea68-5787-84b0-22d8c65c9338")
 	)
 	(wire
 		(pts
@@ -7900,7 +7900,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2c36bd57-60ac-436d-97dd-33ab34b5df23")
+		(uuid "31eac136-7466-5e29-b8eb-4198b55b4d6a")
 	)
 	(label "5V_VCC"
 		(at 106.68 121.92 90)
@@ -7910,7 +7910,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "dc5e84b6-50dd-4a9f-a9f0-ceae64f6e514")
+		(uuid "54ec547d-2fab-5656-b022-e4e8e4e04645")
 	)
 	(wire
 		(pts
@@ -7920,7 +7920,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4d27b7c1-ec1e-44e0-b6e9-fe18c096523c")
+		(uuid "79467006-40a3-5a17-80c4-1c7ab1db7089")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7930,7 +7930,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5d299749-c373-44e7-87f3-2af676bbe82a")
+		(uuid "53a73abe-de15-5889-b8da-4af5104d68d8")
 		(property "Reference" "#PWR0321"
 			(at 123.19 140.97 0)
 			(effects
@@ -7959,7 +7959,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "f182876a-bb76-449a-94f0-fb5b4be043bc")
+			(uuid "cddc13e6-961c-54fe-a25e-740e3b55bb92")
 		)
 		(instances
 			(project "odeck-10"
@@ -7978,7 +7978,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0efc3ceb-ebf0-4574-8f88-910f9797628d")
+		(uuid "c32adf31-395a-5fd2-b3ec-c6d2916e2f8f")
 	)
 	(label "5V_LG"
 		(at 123.19 138.43 0)
@@ -7988,7 +7988,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "51db7a2c-6243-4fe4-99c2-a981ab59d481")
+		(uuid "6c396b30-3284-5eee-a1fc-5eb5a419832d")
 	)
 	(wire
 		(pts
@@ -7998,7 +7998,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "12d46cf9-8c60-469e-a4d1-be23fc558738")
+		(uuid "eb5d294f-8919-5700-bdfa-8b8c57782afe")
 	)
 	(label "5V_VINC"
 		(at 92.71 121.92 90)
@@ -8008,7 +8008,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "b52069c8-9f9b-4454-a54a-0aae94559027")
+		(uuid "df82881c-5391-56f8-bf27-7c656dd2c82e")
 	)
 	(wire
 		(pts
@@ -8018,7 +8018,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2adab808-06ce-41d2-9819-5dcf2ea53b2c")
+		(uuid "86f86d87-abdd-564e-93cc-f6474985c7d5")
 	)
 	(label "5V_HO"
 		(at 123.19 133.35 0)
@@ -8028,7 +8028,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2b0ade30-c94e-4c66-8397-cebcbb5c704c")
+		(uuid "c40240ab-580d-536d-849b-e3e771088d71")
 	)
 	(wire
 		(pts
@@ -8038,7 +8038,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6475aadb-9239-4ae7-9d43-a8985357b2fd")
+		(uuid "24c11995-f568-5912-8590-b51da9fc78f8")
 	)
 	(label "5V_SW"
 		(at 123.19 135.89 0)
@@ -8048,7 +8048,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "84d4bdc9-7b38-4765-a2bc-400702547751")
+		(uuid "bcbdb0b0-c263-59e6-bb5f-2102f5e212b4")
 	)
 	(wire
 		(pts
@@ -8058,7 +8058,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "28105a8e-3196-4361-be02-e5fb90b39f52")
+		(uuid "904f3ef4-98bb-5f02-93f2-c70df572cfb1")
 	)
 	(label "5V_BOOT"
 		(at 123.19 130.81 0)
@@ -8068,7 +8068,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "da2a85d2-2d37-44bb-83cf-06c278f74d0e")
+		(uuid "11fdd6ab-a85c-51b3-86e4-22d152d3afa6")
 	)
 	(wire
 		(pts
@@ -8078,7 +8078,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7ef62623-3b95-4590-a809-5a22aa9584e7")
+		(uuid "7f3ff516-d636-52b3-8289-7a478b5e706d")
 	)
 	(label "5V_BUCK"
 		(at 80.01 156.21 180)
@@ -8088,7 +8088,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "241b1101-611f-44ff-b33e-6d137e20f248")
+		(uuid "07288afe-f7f0-5562-b158-3463c0f5bd12")
 	)
 	(wire
 		(pts
@@ -8098,7 +8098,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5a0a71f9-d966-498d-8055-5a9513f40e39")
+		(uuid "018e9db9-6ba8-529c-ae16-b0383af067e3")
 	)
 	(label "PG_5V"
 		(at 123.19 148.59 0)
@@ -8108,7 +8108,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9cd0fbe9-425e-453a-aa4a-288c22173a62")
+		(uuid "15baa3b6-26b4-54a0-8be5-1b09fe79f78c")
 	)
 	(wire
 		(pts
@@ -8118,7 +8118,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ea101c25-99b1-4bc4-9a8a-c80eef2f077c")
+		(uuid "bf0248f1-e887-516e-833a-55f142242fee")
 	)
 	(label "5V_VDDA"
 		(at 123.19 151.13 0)
@@ -8128,7 +8128,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2cd61d0f-c2ba-4e5f-94eb-e5a5fefafb33")
+		(uuid "5c79f75b-04f3-5c99-a2f9-e474e4d71719")
 	)
 	(wire
 		(pts
@@ -8138,7 +8138,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e090b087-b7cb-4403-852f-3d0345068f63")
+		(uuid "84573477-d178-516f-9a55-7875e04ffb9b")
 	)
 	(label "5V_EN"
 		(at 101.60 121.92 90)
@@ -8148,7 +8148,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "e68ad036-2162-403d-a8a8-a7726d27b290")
+		(uuid "87b00dff-994c-5dd9-8a9b-bbfd6d981b8c")
 	)
 	(wire
 		(pts
@@ -8158,7 +8158,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4f2e0ff8-343c-464b-8751-e1a9a905cfda")
+		(uuid "af97e083-b357-501b-8c2b-f8cdbfbaff46")
 	)
 	(label "5V_ISNS"
 		(at 123.19 143.51 0)
@@ -8168,7 +8168,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "06b6d77a-d139-43eb-8012-868a7f0594aa")
+		(uuid "bf30e7ae-7c60-54c6-9331-f72e92aa1a4e")
 	)
 	(wire
 		(pts
@@ -8178,7 +8178,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a619189c-476b-49c3-bd6a-a71329d9a9ba")
+		(uuid "758238e2-5e81-54d4-b8b5-f8ff7a91df8d")
 	)
 	(label "5V_BUCK"
 		(at 123.19 146.05 0)
@@ -8188,7 +8188,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9c2f2e06-6e24-43ca-b7f3-5183465006f9")
+		(uuid "ef35356e-f207-50ee-b9cf-5dc6fc3aa981")
 	)
 	(wire
 		(pts
@@ -8198,7 +8198,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b960893c-d03d-46b6-bb4c-e074b0ec5a93")
+		(uuid "2d8a9ff3-5f66-50c5-80b2-b5acf4d12b8b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8208,7 +8208,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f400825b-b3ed-42a3-9c85-c811b516d25f")
+		(uuid "38cd741c-922a-5753-b913-ccaadeb80f3c")
 		(property "Reference" "#PWR0322"
 			(at 80.01 146.05 0)
 			(effects
@@ -8237,7 +8237,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6c0fdd4d-dd53-4e75-8385-37db8162b3da")
+			(uuid "24160f41-3d89-549c-9d3d-9e73f86eba1c")
 		)
 		(instances
 			(project "odeck-10"
@@ -8256,7 +8256,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bf2b178b-5418-4570-8431-3ea703d8b59d")
+		(uuid "df0d6f6a-0ef5-5134-a67d-f565efce69e5")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8266,7 +8266,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "bf4ff4f1-d0b3-4162-bab4-dc691cf6b7c8")
+		(uuid "a6567dae-dd84-53e4-a924-6bef883f6c81")
 		(property "Reference" "#PWR0323"
 			(at 80.01 148.59 0)
 			(effects
@@ -8295,7 +8295,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "091ffcd5-e973-479f-b0ec-a1bd8562ace5")
+			(uuid "da51ceb8-4b64-5e61-82ac-5a08cf579352")
 		)
 		(instances
 			(project "odeck-10"
@@ -8314,7 +8314,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c67eafc1-2b80-40d6-96a0-a1837084d655")
+		(uuid "d4e492e1-1e73-5198-9483-68b7a4855444")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8324,7 +8324,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2490d0b7-0757-495e-ba61-3eda3d0ef9f6")
+		(uuid "c9b00ad2-f268-53b4-ad7a-468d301c9030")
 		(property "Reference" "#PWR0324"
 			(at 80.01 151.13 0)
 			(effects
@@ -8353,7 +8353,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "58930941-ef65-4920-84ca-221e5ba03271")
+			(uuid "168d792b-149e-57d0-bc6b-c0d8bc7937a5")
 		)
 		(instances
 			(project "odeck-10"
@@ -8372,7 +8372,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "35e4bcb1-91f3-4f54-9265-129c9c8d91d3")
+		(uuid "898df802-0ea8-5228-a26b-13a465058217")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8382,7 +8382,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e80c8bef-4152-4977-9bbe-cdf5b7e12a10")
+		(uuid "a240494d-a811-5e37-95fa-3107b07d1cfc")
 		(property "Reference" "#PWR0325"
 			(at 80.01 153.67 0)
 			(effects
@@ -8411,7 +8411,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "04491542-c4ac-4bb5-a9f4-6b52c0f0e443")
+			(uuid "35e30cd1-bc7a-589c-b74e-e20f87942f2b")
 		)
 		(instances
 			(project "odeck-10"
@@ -8430,7 +8430,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ef1afd5d-cdc4-4427-a52a-4d1a8d4ee6bb")
+		(uuid "7a7953ba-46bf-5cbd-849c-f675e59cdade")
 		(property "Reference" "D301"
 			(at 30.48 191.77 0)
 			(effects
@@ -8484,10 +8484,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "17856769-1713-4f7a-95ce-01c39965b933")
+			(uuid "bb9b94c0-673e-5318-809e-195d871b1d33")
 		)
 		(pin "2"
-			(uuid "4350a0df-eaf9-4662-88e1-660103a85f02")
+			(uuid "704e5019-d377-509e-af85-70fee5fd11ce")
 		)
 		(instances
 			(project "odeck-10"
@@ -8506,7 +8506,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "93c46da4-3697-4436-ab5a-662d9442237d")
+		(uuid "77848130-711f-5100-b40c-2c617e4763e8")
 	)
 	(label "5V_VINC"
 		(at 24.13 195.58 180)
@@ -8516,7 +8516,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "59817b83-8a68-4635-93cb-203288f838b9")
+		(uuid "e87d9715-b032-5b80-b071-e7f891cb5118")
 	)
 	(wire
 		(pts
@@ -8526,7 +8526,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0b8f2dba-a9d5-460e-8bb0-d24e03a94c80")
+		(uuid "707379c5-7606-55d7-a81f-bcb1782d6008")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -8538,7 +8538,7 @@
 			)
 			(justify left)
 		)
-		(uuid "634fa0bd-0b1d-46a6-821b-930db492e3b3")
+		(uuid "8e9179f3-c889-5384-8738-8e1a43d265c9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 36.83 195.58 0)
 			(effects
@@ -8557,7 +8557,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "692561f0-4050-4482-bb49-a1c8efdd2d9e")
+		(uuid "e587cc4d-7b35-5e9c-af90-b5effa6790be")
 		(property "Reference" "C316"
 			(at 50.80 194.31 0)
 			(effects
@@ -8611,10 +8611,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "bd789607-1e81-4290-a301-85a41b1bfde0")
+			(uuid "694c4ce4-e87e-5549-8821-b05201d7e7ef")
 		)
 		(pin "2"
-			(uuid "6a5b44b6-b53e-48fa-9825-eef2b92301e6")
+			(uuid "4e291647-7a3d-500c-8d36-16199734e56c")
 		)
 		(instances
 			(project "odeck-10"
@@ -8633,7 +8633,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cac25ac7-89a2-422f-90b9-bd1ab6758e80")
+		(uuid "f5d4cc76-25fe-5774-9cf1-1206e9c07c9b")
 	)
 	(label "5V_VINC"
 		(at 48.26 189.23 90)
@@ -8643,7 +8643,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "26c95add-3d50-4d62-acc9-05c12d183de3")
+		(uuid "ddc1a948-008d-5ec7-90ea-1a194b2d29d4")
 	)
 	(wire
 		(pts
@@ -8653,7 +8653,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cdbe0322-89d8-4659-b963-66011d76bcca")
+		(uuid "ea73fbad-5627-5fcd-ab7d-8d2ae65df7b8")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8663,7 +8663,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "467f4d61-375a-406f-a824-67e0ca4b29ee")
+		(uuid "ff5e434c-7172-5133-a0ee-f4f1b5300563")
 		(property "Reference" "#PWR0326"
 			(at 48.26 201.93 0)
 			(effects
@@ -8692,7 +8692,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "fe7d7121-4048-439f-962d-6eda41395e00")
+			(uuid "e03b29a3-51de-50a5-8169-2ff513b63a23")
 		)
 		(instances
 			(project "odeck-10"
@@ -8711,7 +8711,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ea3eb9c4-8cc7-4584-9181-1c671a7997d2")
+		(uuid "101ad6ae-853d-5ced-892b-652cfc771e62")
 		(property "Reference" "R304"
 			(at 60.96 194.31 0)
 			(effects
@@ -8765,10 +8765,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "dc20074e-dc8a-4e66-bec4-1d974fb7eecd")
+			(uuid "ba3932f0-818c-5d77-a42f-0ba61076bd17")
 		)
 		(pin "2"
-			(uuid "6d59ff74-373f-45a8-8ae0-d853e3d112df")
+			(uuid "1765057b-5f54-51d9-9185-69cc0fd8ab1b")
 		)
 		(instances
 			(project "odeck-10"
@@ -8787,7 +8787,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5833363a-774e-41db-a91c-8284c2aeda0b")
+		(uuid "a6150e45-303c-5be2-ab2c-cd242c285019")
 	)
 	(global_label "VIN"
 		(shape passive)
@@ -8799,7 +8799,7 @@
 			)
 			(justify left)
 		)
-		(uuid "ca4d998b-ce61-40f7-8b59-1d12cf6df401")
+		(uuid "ceb18f2d-9fca-58d2-bc50-33ae0ebf8f8a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 58.42 189.23 0)
 			(effects
@@ -8818,7 +8818,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cff1ce72-55b6-4ecb-b380-ad4fa9467719")
+		(uuid "3cad8a43-67b4-5ad2-88c8-a2cb030eb43e")
 	)
 	(label "5V_EN"
 		(at 58.42 201.93 270)
@@ -8828,7 +8828,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "272e7ea1-627a-4520-b593-0352c0040721")
+		(uuid "cf767d4d-a507-5776-b965-48b13259b751")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -8838,7 +8838,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e445e9d8-10bd-42f6-8e0f-c081866c9447")
+		(uuid "717eb7b0-2483-55c3-a4c1-9722bb590570")
 		(property "Reference" "R305"
 			(at 71.12 194.31 0)
 			(effects
@@ -8892,10 +8892,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "fc1cfcc0-cf18-4c28-a6b6-e3cbc0881b01")
+			(uuid "68d58d1d-05d8-5407-9ddc-60eb510907d2")
 		)
 		(pin "2"
-			(uuid "11041f87-8a6f-4c87-98cb-ab6ef4785c99")
+			(uuid "90f4513a-4210-50f0-86c2-7530c2f4b632")
 		)
 		(instances
 			(project "odeck-10"
@@ -8914,7 +8914,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "13e828b9-6d54-4293-a3e0-90666b171821")
+		(uuid "8991f1f8-6a52-58e8-a550-ffc5de5cfec3")
 	)
 	(label "5V_EN"
 		(at 68.58 189.23 90)
@@ -8924,7 +8924,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "fe20f502-1124-4696-9b61-285265f04180")
+		(uuid "0a99400c-2558-5221-8b12-40e901f3694f")
 	)
 	(wire
 		(pts
@@ -8934,7 +8934,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0227a7d9-f656-4a68-be56-18f2231eca2b")
+		(uuid "5b2a0aad-8c8c-5515-b633-6429e1e6a6ee")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8944,7 +8944,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e549b0ba-ec63-450d-abaa-b29c2d769204")
+		(uuid "f1e75e45-e541-519d-9c9e-79b9683d0af0")
 		(property "Reference" "#PWR0327"
 			(at 68.58 201.93 0)
 			(effects
@@ -8973,7 +8973,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "b757396a-94d0-47e4-8ff8-10c5dc021fb0")
+			(uuid "b357f07b-9407-57bc-8636-b61675044b5e")
 		)
 		(instances
 			(project "odeck-10"
@@ -8992,7 +8992,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7a32e3a9-766f-4124-b3fa-c04b1c68800e")
+		(uuid "b081936a-b46d-5b11-9a9f-8a5ab231f4aa")
 		(property "Reference" "C317"
 			(at 81.28 194.31 0)
 			(effects
@@ -9046,10 +9046,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e2298bb7-8792-4c2d-81e5-be0b698c8b1c")
+			(uuid "eae442e9-f090-51a1-8681-eadae8a61e08")
 		)
 		(pin "2"
-			(uuid "4d38d29a-b737-437a-a41e-a1345d60be71")
+			(uuid "fb772ac0-fc9e-5b58-9814-16244ed89dc4")
 		)
 		(instances
 			(project "odeck-10"
@@ -9068,7 +9068,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cc3996cc-b3fb-4ae5-a8da-a1963822c968")
+		(uuid "7944ae86-97d9-5f9c-b649-93977e08b2f3")
 	)
 	(label "5V_VCC"
 		(at 78.74 189.23 90)
@@ -9078,7 +9078,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "6b693671-87c5-4f0d-9696-18b474d55658")
+		(uuid "2ceffe0d-012e-5755-bf6d-13e92a2a88d0")
 	)
 	(wire
 		(pts
@@ -9088,7 +9088,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2bca65c0-463e-498d-93e4-76b74525d9da")
+		(uuid "7c698807-a32a-5c1f-a7a6-eba794269195")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -9098,7 +9098,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "887b9684-561f-4806-a2f7-f780af7f5932")
+		(uuid "250541e9-95dc-5899-9b53-ef72a8ae3c05")
 		(property "Reference" "#PWR0328"
 			(at 78.74 201.93 0)
 			(effects
@@ -9127,7 +9127,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "ec3c6b80-b1a1-40a4-ad51-2c4c14c22860")
+			(uuid "46863aeb-d372-565a-a75f-5507a38533e9")
 		)
 		(instances
 			(project "odeck-10"
@@ -9146,7 +9146,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "65d541ed-8a44-4686-9099-b4c206c5386d")
+		(uuid "ac6beaac-b1a8-5a85-a261-87e850baa1b5")
 		(property "Reference" "C318"
 			(at 91.44 194.31 0)
 			(effects
@@ -9200,10 +9200,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "1028e200-74ca-4972-9e66-31e72f1573eb")
+			(uuid "e824f1e7-006a-5a1d-8255-29c6a15cecea")
 		)
 		(pin "2"
-			(uuid "49df4681-0020-40ae-a031-706057e760c1")
+			(uuid "66b4c5ca-931e-5199-88b9-f31a1f684fd5")
 		)
 		(instances
 			(project "odeck-10"
@@ -9222,7 +9222,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1680b641-1867-44e0-904e-4f45f900ff5a")
+		(uuid "6e8ad7ec-0043-58f2-90b8-9f35acd39071")
 	)
 	(label "5V_VDDA"
 		(at 88.90 189.23 90)
@@ -9232,7 +9232,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "5aca73b8-ae04-4c86-ad52-128237fba169")
+		(uuid "b1ebbaa4-2a7a-591b-ad7f-0480272972d6")
 	)
 	(wire
 		(pts
@@ -9242,7 +9242,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c310cba5-a018-48b2-a179-c176f00089d1")
+		(uuid "72cf4857-eb87-5271-9904-d62f74e7641e")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -9252,7 +9252,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b008e885-eb58-49c3-bdf4-9eb419add9f7")
+		(uuid "35327228-089c-5975-8183-a2c7bb5ff41b")
 		(property "Reference" "#PWR0329"
 			(at 88.90 201.93 0)
 			(effects
@@ -9281,7 +9281,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "67c993ee-8ce7-40ca-aa2e-e2db63d903d9")
+			(uuid "54fed881-1bf9-5147-84ff-a340643b4b96")
 		)
 		(instances
 			(project "odeck-10"
@@ -9300,7 +9300,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "25caddda-9f66-4178-8121-5fec478326bc")
+		(uuid "f10b1739-2af8-5d45-9788-a93ed3e29d4f")
 		(property "Reference" "R306"
 			(at 101.60 194.31 0)
 			(effects
@@ -9354,10 +9354,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "7a294664-0383-4869-a569-00599ed34110")
+			(uuid "5f46d8aa-240c-59e3-ba4e-00eb10fe1d97")
 		)
 		(pin "2"
-			(uuid "072fa2f7-d340-40bb-9d6c-b49717768d6d")
+			(uuid "01d83780-08fe-522d-8117-ca218f28dacc")
 		)
 		(instances
 			(project "odeck-10"
@@ -9376,7 +9376,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cc3851e1-fe8a-406b-9bb4-1c777570c0c2")
+		(uuid "8916fa43-ed55-5e52-a398-d4536bafec91")
 	)
 	(label "5V_RT"
 		(at 99.06 189.23 90)
@@ -9386,7 +9386,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "fd79638f-4c7a-4950-be0b-050b4cdbd908")
+		(uuid "fce2ea20-a664-57b7-afd8-c008e8344095")
 	)
 	(wire
 		(pts
@@ -9396,7 +9396,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "dc4d7b22-5258-496a-b769-46fb6779ce36")
+		(uuid "b32df341-cf02-5dec-871c-82171c26ee3b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -9406,7 +9406,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "29d07323-2ae0-444e-abfe-1237e11ee3d7")
+		(uuid "366ae47b-7066-5b7e-8798-fc4c1c6337f1")
 		(property "Reference" "#PWR0330"
 			(at 99.06 201.93 0)
 			(effects
@@ -9435,7 +9435,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "37515193-affe-4044-9d5a-af819827ab37")
+			(uuid "ae18ec77-0d61-50b0-83ee-c6bb2addf130")
 		)
 		(instances
 			(project "odeck-10"
@@ -9454,7 +9454,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ca589666-7dc2-4ef3-be7e-4a4ef7112e2e")
+		(uuid "851ce4c2-5ff1-537d-9487-cdb79e1283d2")
 		(property "Reference" "R307"
 			(at 111.76 194.31 0)
 			(effects
@@ -9508,10 +9508,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "0c4b6bd7-821e-4e6f-9d6c-ad1cdc3bbf76")
+			(uuid "ac8cb870-334c-5333-a801-091eab0986da")
 		)
 		(pin "2"
-			(uuid "a3d09ebe-0ce1-4f7b-ada3-833c078a2f2a")
+			(uuid "689e7e87-d055-5a21-9ba0-8022b27b235a")
 		)
 		(instances
 			(project "odeck-10"
@@ -9530,7 +9530,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "13648de4-272c-41f1-9485-6adaa93b2f2b")
+		(uuid "757b263e-3b5a-57a9-b4e4-1e1697eb7758")
 	)
 	(label "5V_CNFG"
 		(at 109.22 189.23 90)
@@ -9540,7 +9540,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "0520ef0c-71fe-4e18-ad5e-745167de1716")
+		(uuid "9dc0d80a-7447-5112-a69d-debba9ab704c")
 	)
 	(wire
 		(pts
@@ -9550,7 +9550,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e726120a-ae8e-44b6-b133-b80a04b7bdc5")
+		(uuid "895fa6ab-93e1-5279-974a-90b82301ab85")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -9560,7 +9560,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3bcb4ea6-ae9d-49a7-8fe1-cb20f05cb98f")
+		(uuid "a6f94870-264c-598c-b16d-867654a46c12")
 		(property "Reference" "#PWR0331"
 			(at 109.22 201.93 0)
 			(effects
@@ -9589,7 +9589,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "04ea6e7d-2147-4ca9-8580-1660b50dbc23")
+			(uuid "7ff9e256-0dda-56d7-bffe-e9a4263b362f")
 		)
 		(instances
 			(project "odeck-10"
@@ -9608,7 +9608,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1e1ceb93-f887-4396-a291-8733bb673dc0")
+		(uuid "d0ec2b90-9a20-5253-93e6-8b4c1c27c170")
 		(property "Reference" "R308"
 			(at 121.92 194.31 0)
 			(effects
@@ -9662,10 +9662,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e6b7115a-d517-4ce9-bedc-3548029111e6")
+			(uuid "4675409c-5c46-526e-9293-f8b919a7f51c")
 		)
 		(pin "2"
-			(uuid "e9350daf-8d59-4580-9515-0ecc0922837b")
+			(uuid "32116c15-d692-50d8-8834-34fcfe287957")
 		)
 		(instances
 			(project "odeck-10"
@@ -9684,7 +9684,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5dcc5c7b-275c-4ac5-8f64-3421d53dfd89")
+		(uuid "76d69d4d-3e5d-546d-b116-fc12029a04fa")
 	)
 	(label "5V_BUCK"
 		(at 119.38 189.23 90)
@@ -9694,7 +9694,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "a4a9f080-00f8-43c2-8862-f13ffe36b69a")
+		(uuid "53d2a2ff-3de3-5168-b136-c8072fe2f632")
 	)
 	(wire
 		(pts
@@ -9704,7 +9704,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2730fbd9-22bc-420c-8ef9-080ee8ae9304")
+		(uuid "e49cd388-acd2-5ee8-9fde-f72a042602f9")
 	)
 	(label "5V_FB"
 		(at 119.38 201.93 270)
@@ -9714,7 +9714,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "4a2b91c2-a10e-4904-a70c-908f2a7b8d76")
+		(uuid "4be96d06-f6cd-51f1-824d-98f1b8dd4d5d")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -9724,7 +9724,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "28c7f1a2-81f8-4965-9845-0254eea1d3ab")
+		(uuid "acfc8310-e9e8-539e-b9cc-d22bc008ff10")
 		(property "Reference" "R309"
 			(at 132.08 194.31 0)
 			(effects
@@ -9778,10 +9778,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c04c7562-d949-4298-81cf-dad80182f04f")
+			(uuid "8b2f6ae7-283a-5b7d-8557-1c03634ff8a8")
 		)
 		(pin "2"
-			(uuid "c516a7c9-794e-4cc0-b86f-dd99a3322728")
+			(uuid "7de920e7-70f4-5f07-9160-70fa8df09245")
 		)
 		(instances
 			(project "odeck-10"
@@ -9800,7 +9800,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fd475d74-726f-4ef5-8a0c-aa295775c8df")
+		(uuid "edc33937-68cd-5c02-9fa2-1a3197630758")
 	)
 	(label "5V_FB"
 		(at 129.54 189.23 90)
@@ -9810,7 +9810,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "3d7dbd34-9172-4090-b307-0d43fce29d51")
+		(uuid "f3c7e8f0-8af8-53c9-9b35-eec6210bcdfb")
 	)
 	(wire
 		(pts
@@ -9820,7 +9820,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "13f842d5-1d83-40ec-8fc8-9a2fa37d124c")
+		(uuid "3763d04e-a229-5d50-a788-8402239c30f4")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -9830,7 +9830,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1242c6b3-4c17-4e7a-9b3d-14feceae4327")
+		(uuid "d3417b72-962d-524d-809a-ddc767785375")
 		(property "Reference" "#PWR0332"
 			(at 129.54 201.93 0)
 			(effects
@@ -9859,7 +9859,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "a9b60fa5-993c-483d-a408-98a9bbbfc463")
+			(uuid "64b9c3c5-c588-5df5-a16a-b82b1cff0018")
 		)
 		(instances
 			(project "odeck-10"
@@ -9878,7 +9878,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0abcdc4e-265e-4f2c-864d-e7ff31213d55")
+		(uuid "f09a16d6-b075-5a5d-a7dc-3d582345cd08")
 		(property "Reference" "R310"
 			(at 142.24 194.31 0)
 			(effects
@@ -9932,10 +9932,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "96f8a691-bae4-49b2-8e16-7bb085976c9a")
+			(uuid "ddc6b964-535b-56c6-bd40-532d16bff26c")
 		)
 		(pin "2"
-			(uuid "189ed9fc-1aaf-4c38-94b0-56b428835242")
+			(uuid "549d889b-d847-5974-85bd-4f09e4aa84be")
 		)
 		(instances
 			(project "odeck-10"
@@ -9954,7 +9954,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "159dd091-2861-48b9-8179-49e8d4d53504")
+		(uuid "eb6b9836-c0e5-518f-a221-27fa274a0ce4")
 	)
 	(label "5V_COMP"
 		(at 139.70 189.23 90)
@@ -9964,7 +9964,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2dada6b9-2276-471d-9dae-d6e7df93eef5")
+		(uuid "51bfc958-e82d-5188-856f-74902cb13f1d")
 	)
 	(wire
 		(pts
@@ -9974,7 +9974,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fe0778cb-0ab3-4d57-b981-489afa19fe81")
+		(uuid "c8548dfe-9839-5b1a-b6d0-b7d75462743f")
 	)
 	(label "5V_CC"
 		(at 139.70 201.93 270)
@@ -9984,7 +9984,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "6fc80710-1a54-4267-a85a-6b2fa0e6bdb7")
+		(uuid "0fc249cb-6ad9-540a-9b7d-a4148723b812")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -9994,7 +9994,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2c23cdaf-13e5-4b86-b5d5-2668a5252790")
+		(uuid "90ce75fa-0543-5adc-88fb-49099e954a67")
 		(property "Reference" "C319"
 			(at 152.40 194.31 0)
 			(effects
@@ -10048,10 +10048,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c81da6c8-afbf-41e8-aedc-569d1813f029")
+			(uuid "5244a1b3-f7e1-52b4-b100-efe29818ee36")
 		)
 		(pin "2"
-			(uuid "993c9460-8feb-4480-8f2a-33bd16656c98")
+			(uuid "821be558-2378-5dbb-9771-397b2ff5c738")
 		)
 		(instances
 			(project "odeck-10"
@@ -10070,7 +10070,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0da1addd-11d8-4459-82fd-4cc8eb648960")
+		(uuid "dc57fb71-04ce-5063-b812-931db2d6bf79")
 	)
 	(label "5V_CC"
 		(at 149.86 189.23 90)
@@ -10080,7 +10080,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "cca90de2-ab0f-4f11-ac39-ef8c27bbc62c")
+		(uuid "dd753178-659c-545b-805c-d66ef517667a")
 	)
 	(wire
 		(pts
@@ -10090,7 +10090,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b47cfbc4-5ff0-4eac-aa0d-db11297152ab")
+		(uuid "b3341c19-a987-52bc-bbf0-07f8afd56873")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -10100,7 +10100,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "17de86f1-85e0-44b4-8970-22ea1eec3721")
+		(uuid "29334f64-3b9f-5bad-87b1-e93751508e18")
 		(property "Reference" "#PWR0333"
 			(at 149.86 201.93 0)
 			(effects
@@ -10129,7 +10129,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "1b14e57d-ff9e-457e-866e-7856395f365e")
+			(uuid "90d854ed-0c04-5af6-b7a0-0337b192e485")
 		)
 		(instances
 			(project "odeck-10"
@@ -10148,7 +10148,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1484949b-57d5-4ab4-873b-d698c2a4daa0")
+		(uuid "aa32641a-2c1b-528d-8ad2-871e2254a8ce")
 		(property "Reference" "C320"
 			(at 162.56 194.31 0)
 			(effects
@@ -10202,10 +10202,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "adc098af-5640-4d16-b877-3e5c9f520922")
+			(uuid "3e1888cd-d797-5996-abee-44292060bbd0")
 		)
 		(pin "2"
-			(uuid "e4872fb4-1164-4f73-98c1-59121c876cb9")
+			(uuid "7c370dd8-9fbd-57c8-8854-82446b8efd2b")
 		)
 		(instances
 			(project "odeck-10"
@@ -10224,7 +10224,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "23758196-881b-4ffa-a523-daa0ca28a826")
+		(uuid "8363d28c-ea91-5e77-a976-295c5f708ae1")
 	)
 	(label "5V_COMP"
 		(at 160.02 189.23 90)
@@ -10234,7 +10234,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "0db624cb-96ac-489e-b4a0-8c20b002d6c9")
+		(uuid "5fe7942f-a115-506a-a632-2f921d788073")
 	)
 	(wire
 		(pts
@@ -10244,7 +10244,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "93c5ec9e-b500-4791-bb0a-8f60bb4e8ff7")
+		(uuid "f3d8e687-ac2d-5378-929b-0538a8157360")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -10254,7 +10254,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6c5aae23-604c-440d-a2c5-c292de6e8de5")
+		(uuid "ff5618a2-b72e-52b6-97b0-78d505730048")
 		(property "Reference" "#PWR0334"
 			(at 160.02 201.93 0)
 			(effects
@@ -10283,7 +10283,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "459d720b-50a9-4ac2-921d-ddc3c0b7a249")
+			(uuid "d020c05e-e0af-5933-a20d-4b28dbcfa8e9")
 		)
 		(instances
 			(project "odeck-10"
@@ -10302,7 +10302,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "44022008-6b7a-41fb-a645-f240d11d2041")
+		(uuid "f628ebb8-3777-50f7-9568-d4152ce62b85")
 		(property "Reference" "R311"
 			(at 172.72 194.31 0)
 			(effects
@@ -10356,10 +10356,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "8887fe96-9cac-4788-9b0f-55b990ec0e33")
+			(uuid "e4d70f8a-e02a-5ac3-936c-11519e273b37")
 		)
 		(pin "2"
-			(uuid "3d0d91dd-d188-45ff-8320-280995f7c8a1")
+			(uuid "ab2fb0ab-5ac8-541d-b1f6-24e32ebf7ddb")
 		)
 		(instances
 			(project "odeck-10"
@@ -10378,7 +10378,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ce0acada-422d-4db5-931e-4426c0dfa128")
+		(uuid "a61c5494-16fa-5e86-81f6-775734332cfe")
 	)
 	(label "5V_BUCK"
 		(at 170.18 189.23 90)
@@ -10388,7 +10388,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "837a9aeb-4fe1-405f-9b07-7512baa002b1")
+		(uuid "d4d5ed64-c6c3-5bfc-b1d6-7d4b2b6e2fc1")
 	)
 	(wire
 		(pts
@@ -10398,7 +10398,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "074f0557-cf22-419f-a3ca-a6e8b7b04dcd")
+		(uuid "7f6d30c1-e72a-5ef5-a6ee-4c4cea1b014f")
 	)
 	(label "PG_5V"
 		(at 170.18 201.93 270)
@@ -10408,7 +10408,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "04ff329a-7c09-4fd0-9bdb-686c7b352ca8")
+		(uuid "53510cc4-2be6-5842-8671-6a96ae07fdc0")
 	)
 	(symbol
 		(lib_id "odeck:BSC0901NS")
@@ -10418,7 +10418,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d069eb32-2cef-428a-a8fa-57e0773e9722")
+		(uuid "81870373-6551-5000-9976-c39adffaed42")
 		(property "Reference" "Q303"
 			(at 50.80 262.89 0)
 			(effects
@@ -10481,31 +10481,31 @@
 			)
 		)
 		(pin "1"
-			(uuid "9904b19f-7174-44be-a75f-88a257d86dc5")
+			(uuid "e2e6c0c4-ad48-5318-951b-bc6162084329")
 		)
 		(pin "2"
-			(uuid "3df94dd3-7fe2-47b2-970e-a80cedabe92b")
+			(uuid "6523b849-8440-5b62-8a69-c1b580431cc3")
 		)
 		(pin "3"
-			(uuid "1718b394-3f35-4591-ae98-2a8313f758b5")
+			(uuid "2b774f7c-08c7-5a1a-adb3-a74cc417c072")
 		)
 		(pin "4"
-			(uuid "e0f5957f-fe52-4e8c-9580-5373f3163484")
+			(uuid "216bceeb-9e52-54bf-a59f-bdc12c092b78")
 		)
 		(pin "5"
-			(uuid "259935b3-3b9f-4e43-9854-d0310322d31e")
+			(uuid "8c441a4e-1157-5f67-8079-cc202830fc25")
 		)
 		(pin "6"
-			(uuid "c46c0ea8-7564-4f81-bd37-5540779a2e8c")
+			(uuid "14ec44dc-e212-5faa-ba3f-56519aadf094")
 		)
 		(pin "7"
-			(uuid "616e3edb-c181-40c7-99f6-f0cb6e68a090")
+			(uuid "9e7ae8ca-fe13-541b-b07d-beaa6f0f7cb3")
 		)
 		(pin "8"
-			(uuid "d52313bc-d135-482f-be91-1e312e8d88c9")
+			(uuid "f71bb2a8-2dc0-5d27-bac0-5f448daac7cc")
 		)
 		(pin "9"
-			(uuid "9dbdeef8-4f9b-4dc8-84d4-866b2c8e8c5b")
+			(uuid "7e9bd6ed-25c1-50aa-a3f6-88ea966d4f9a")
 		)
 		(instances
 			(project "odeck-10"
@@ -10524,7 +10524,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "827d1b97-7e39-42be-b4a1-aeb0e52edcda")
+		(uuid "6c31f4c6-c5d6-593c-8fa4-ac73b6f60366")
 	)
 	(label "5V_BUCK"
 		(at 40.64 269.24 180)
@@ -10534,7 +10534,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "3dc4b0a3-28a2-49d8-a6ea-ea79c54a3c73")
+		(uuid "0b989e2f-2ee9-5934-9a33-5280e7792495")
 	)
 	(wire
 		(pts
@@ -10544,7 +10544,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8693cf1e-4c71-4783-9ebd-4c97e29bcb73")
+		(uuid "d6dc1c0b-2578-5cf4-aa09-ac05ca8bc899")
 	)
 	(label "5V_BUCK"
 		(at 40.64 271.78 180)
@@ -10554,7 +10554,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "262cada1-92bd-4c48-8932-e212cc1771f2")
+		(uuid "6e45c8dc-91c5-53f6-85d2-13aa361b41ee")
 	)
 	(wire
 		(pts
@@ -10564,7 +10564,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "3ec89271-1949-4eb4-b196-01079e4a4376")
+		(uuid "cd019ce0-6c3f-542c-af60-f9ca347ceece")
 	)
 	(label "5V_BUCK"
 		(at 40.64 274.32 180)
@@ -10574,7 +10574,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "e1f66b4e-c2f6-4c1b-bc67-8b77b2451569")
+		(uuid "2b1f3cd3-989a-580d-b0f6-73e2864794fd")
 	)
 	(wire
 		(pts
@@ -10584,7 +10584,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "24521ab1-1884-4833-96b0-cc0ce667d80b")
+		(uuid "5727f90e-628f-5678-8907-b9e682b0f6d9")
 	)
 	(label "5V_ORG"
 		(at 40.64 276.86 180)
@@ -10594,7 +10594,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "fef2a1e6-6a53-4600-aa7a-cbccf21719e0")
+		(uuid "65baa46c-86c8-5e5e-a483-f8c8c9b3e3fe")
 	)
 	(wire
 		(pts
@@ -10604,7 +10604,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "764f4568-a946-40fa-8341-7701a61917e4")
+		(uuid "6a6aadfc-752b-5c83-b529-543d27b491f0")
 	)
 	(label "5V_OR"
 		(at 60.96 276.86 0)
@@ -10614,7 +10614,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "7af7dc26-1100-4d08-adfe-c8a7bd62609f")
+		(uuid "6879a501-d266-5609-b6fd-12d07875340c")
 	)
 	(wire
 		(pts
@@ -10624,7 +10624,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c82ac7f2-eb2f-4c61-a68f-da6bcb3d7d51")
+		(uuid "87511385-9e19-573a-8278-5c96cf340482")
 	)
 	(label "5V_OR"
 		(at 60.96 274.32 0)
@@ -10634,7 +10634,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "b56312a9-9153-4e2d-b500-3b63be80fa4c")
+		(uuid "6f0bbe5b-8adb-5ad1-9e2e-e26bd80683a8")
 	)
 	(wire
 		(pts
@@ -10644,7 +10644,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7ed9aa51-1f06-423e-a74c-fb9334e86229")
+		(uuid "ca0bb37b-e6bb-59c4-978f-dd356d72f43f")
 	)
 	(label "5V_OR"
 		(at 60.96 271.78 0)
@@ -10654,7 +10654,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "8a1949c5-8971-471a-b511-d8ccdfb60102")
+		(uuid "cfb3a8c4-4aaf-5192-9dd9-2b72f3e2ced3")
 	)
 	(wire
 		(pts
@@ -10664,7 +10664,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "defc1f2c-0aac-463e-b6c6-47e253cf9a25")
+		(uuid "c095dda6-9edb-5913-a8f7-fdefbf7e7d97")
 	)
 	(label "5V_OR"
 		(at 60.96 269.24 0)
@@ -10674,7 +10674,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "159d89d8-f23d-4711-a45d-83f5587bbfac")
+		(uuid "64c41a80-1ca6-5e59-9e45-5b358cab2719")
 	)
 	(wire
 		(pts
@@ -10684,7 +10684,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5e6197b2-e55f-4271-a309-26e1cd76ae8e")
+		(uuid "980fc7b1-eace-5474-a7d3-01f4a08d303d")
 	)
 	(label "5V_OR"
 		(at 60.96 266.70 0)
@@ -10694,7 +10694,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "1320318b-a7ed-42fa-a73a-e75c4ff10428")
+		(uuid "cea06e71-9b48-5269-8aef-6892af9cc197")
 	)
 	(symbol
 		(lib_id "odeck:LM74700QDBVTQ1")
@@ -10704,7 +10704,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cc0ecf0d-bc66-4fd7-86fe-db32877fa39b")
+		(uuid "67723991-d4c8-5ee0-92fb-1c8448c6c346")
 		(property "Reference" "U302"
 			(at 101.60 265.43 0)
 			(effects
@@ -10767,22 +10767,22 @@
 			)
 		)
 		(pin "1"
-			(uuid "3991c607-30cb-42f9-b960-6176f683a993")
+			(uuid "d0e60e16-d2b3-59e6-9f93-c6a9bc52cd46")
 		)
 		(pin "2"
-			(uuid "1febf0e9-a863-46df-986b-41aa298b581a")
+			(uuid "0607cbce-01dd-58f0-a17d-a5b82fc65520")
 		)
 		(pin "3"
-			(uuid "006c4dd1-b706-4d83-9dee-ffef5a947028")
+			(uuid "1379d7cb-72c9-5b5d-9565-494d4b49c466")
 		)
 		(pin "4"
-			(uuid "3e524ee8-a5a2-487e-b815-d1cc1a658bfc")
+			(uuid "6379c5e6-ce92-5aa1-abf0-320dac03a7f5")
 		)
 		(pin "5"
-			(uuid "22bdaef4-5a76-46fb-a915-1c8efe4e968d")
+			(uuid "e185657c-8a51-53a3-978f-45a44bcacfb4")
 		)
 		(pin "6"
-			(uuid "748da8d4-ed29-4e09-81f8-bb801529fffa")
+			(uuid "d9fedd1a-105a-5de3-9c99-981b7496ab67")
 		)
 		(instances
 			(project "odeck-10"
@@ -10801,7 +10801,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fdfb3b72-c92f-441f-863b-0d67395ddefd")
+		(uuid "50df1de8-26a9-5de4-a6ee-a49d28231cdf")
 	)
 	(label "5V_VCAP"
 		(at 85.09 269.24 180)
@@ -10811,7 +10811,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "65044688-b4a6-41d3-9520-9833cdfa15b4")
+		(uuid "8376b1f0-93f6-5c0d-874f-85d1fffce56a")
 	)
 	(wire
 		(pts
@@ -10821,7 +10821,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "10630f9a-4b4f-4c0a-9fbe-c01a80e4fddf")
+		(uuid "8c292122-b608-5c4c-9d5a-f2f195a55aa1")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -10831,7 +10831,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aef5f0b8-3534-4c52-a2f8-ef9aa9eb0c33")
+		(uuid "9cc9ee26-71a9-5870-8507-4434dd9afc64")
 		(property "Reference" "#PWR0335"
 			(at 85.09 271.78 0)
 			(effects
@@ -10860,7 +10860,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "3d6ecb0d-2459-43fb-b8d9-159d10602e4a")
+			(uuid "e463cd85-d110-547a-a85b-00d79053bc93")
 		)
 		(instances
 			(project "odeck-10"
@@ -10879,7 +10879,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5e457c13-5d0f-4e04-af81-29abbbcafe09")
+		(uuid "15d0fa08-9ced-5ca0-8227-270acb1e490b")
 	)
 	(label "5V_BUCK"
 		(at 85.09 274.32 180)
@@ -10889,7 +10889,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "1fecf074-39b3-4912-857d-980c09ca871c")
+		(uuid "54ed138c-c575-5356-a8c3-223d40825d12")
 	)
 	(wire
 		(pts
@@ -10899,7 +10899,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7e8ef40a-50dd-4a16-b332-fbed97735587")
+		(uuid "2a60e078-122c-5b03-8d1b-86b6370a7680")
 	)
 	(label "5V_OR"
 		(at 118.11 274.32 0)
@@ -10909,7 +10909,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "acaca4cd-0a43-46be-ab69-404e0c10ce83")
+		(uuid "cf3b1cb9-d80e-5892-b2a0-cf3ea3efd545")
 	)
 	(wire
 		(pts
@@ -10919,7 +10919,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7eef6a28-faa8-48f4-b73c-d59ec3b602a7")
+		(uuid "3a0a38c0-90cf-5bd9-a68e-6fea794b833c")
 	)
 	(label "5V_ORG"
 		(at 118.11 271.78 0)
@@ -10929,7 +10929,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2b2cc69a-43b1-46e5-810b-e8a1673117f7")
+		(uuid "aceec547-c475-586b-ab13-f020b58af41e")
 	)
 	(wire
 		(pts
@@ -10939,7 +10939,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9f3e5f18-36f5-434d-8c5b-4ca56deb19bd")
+		(uuid "8f24c6ea-82f5-5dff-a714-6832d9eda494")
 	)
 	(label "5V_BUCK"
 		(at 118.11 269.24 0)
@@ -10949,7 +10949,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "183b1fbc-b8d1-4db0-9d22-164f7275030a")
+		(uuid "9a76d11a-68f8-5e0b-aa94-cf52badb78e7")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -10959,7 +10959,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "88da77b4-be13-4cca-aec0-6a2665db73c2")
+		(uuid "4c804343-ed56-5498-92da-bff78c89984d")
 		(property "Reference" "C321"
 			(at 137.16 270.51 0)
 			(effects
@@ -11013,10 +11013,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "a27958be-96d9-4a1a-85d2-854826cd8890")
+			(uuid "25eb648a-c82a-5c7b-a912-a5b37a244be5")
 		)
 		(pin "2"
-			(uuid "ed002584-ef2f-4898-ac63-45056b0d06c7")
+			(uuid "47f5e100-ce91-5d6d-a847-cfd0c587675d")
 		)
 		(instances
 			(project "odeck-10"
@@ -11035,7 +11035,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e054f2d0-a1f2-48fb-9fb3-9d13d42ddf7d")
+		(uuid "5835de8b-8248-5ec3-99e4-1aa80636bfe9")
 	)
 	(label "5V_VCAP"
 		(at 134.62 265.43 90)
@@ -11045,7 +11045,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f586d4f5-ac11-4383-bf78-76166dca3318")
+		(uuid "4c887bb5-6211-55c7-8881-d326eb78e50e")
 	)
 	(wire
 		(pts
@@ -11055,7 +11055,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8858799d-2eab-4eea-87a9-4251f92d08c8")
+		(uuid "b04791b3-ba25-525e-b345-472fd426fc8a")
 	)
 	(label "5V_BUCK"
 		(at 134.62 278.13 270)
@@ -11065,7 +11065,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "f4eac030-c062-492d-befe-44e6d7d44b2d")
+		(uuid "6ad184df-3ac0-5401-958b-b84e478c4216")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -11075,7 +11075,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a6f45753-1eef-4bed-9609-118593704b05")
+		(uuid "1343d360-d32f-5a27-9c5b-cbae0a32a630")
 		(property "Reference" "C322"
 			(at 149.86 270.51 0)
 			(effects
@@ -11129,10 +11129,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "ccd9434b-8c96-43ef-af17-9d0c2457c138")
+			(uuid "74424499-19a5-54f6-962d-51b959b00712")
 		)
 		(pin "2"
-			(uuid "591aed3c-3ac3-4166-a45d-6cb77b4ab0dd")
+			(uuid "35966291-750f-5b6e-af4f-9ceedba4ccec")
 		)
 		(instances
 			(project "odeck-10"
@@ -11151,7 +11151,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "96f4aeb0-ada4-45f7-af22-c25ecfd58f9e")
+		(uuid "a07cfd52-3b52-5cf2-8899-8d54e29941da")
 	)
 	(label "5V_OR"
 		(at 147.32 265.43 90)
@@ -11161,7 +11161,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "4c951ac9-a7f5-45d4-9405-2ec1aefb39fd")
+		(uuid "c1d3b860-955d-513d-827f-4a467e260c0e")
 	)
 	(wire
 		(pts
@@ -11171,7 +11171,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "79417c22-3f7f-4546-b414-3ed2b5b64d4e")
+		(uuid "dcf4a4d3-1b9d-50d1-9ea9-9c41c0d57066")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -11181,7 +11181,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "41c95975-76f0-4fa7-b6b8-fee2daa2c04e")
+		(uuid "09442982-01c7-539d-beec-03393255cf43")
 		(property "Reference" "#PWR0336"
 			(at 147.32 278.13 0)
 			(effects
@@ -11210,7 +11210,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "c807176a-8ddc-4731-8064-80a5add59582")
+			(uuid "c4ebbca7-681a-55f0-bb26-826f30a7d4c5")
 		)
 		(instances
 			(project "odeck-10"
@@ -11229,7 +11229,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "094dbc3d-7239-4aec-a6cd-d13060b2ac74")
+		(uuid "e7646780-6e69-54c9-94ec-9c5989cdda9f")
 		(property "Reference" "R312"
 			(at 162.56 270.51 0)
 			(effects
@@ -11283,10 +11283,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "bcd706f2-4230-467d-8b0c-d774dde0ed6f")
+			(uuid "2427896f-8147-5243-810b-71201cf75f0f")
 		)
 		(pin "2"
-			(uuid "685700a6-1799-4177-90b0-63360d025501")
+			(uuid "649ff9fe-9e1a-5d38-ae45-47f6bdba73d7")
 		)
 		(instances
 			(project "odeck-10"
@@ -11305,7 +11305,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6ace3cd1-e3ff-4c64-a30c-75f798bc5b48")
+		(uuid "68368c80-4799-5aed-b274-90a69c6947f8")
 	)
 	(label "5V_OR"
 		(at 160.02 265.43 90)
@@ -11315,7 +11315,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "c4557414-befd-4a4a-9098-816587b87f53")
+		(uuid "d2a90ceb-5672-579c-b3d0-9c7cc20e46b1")
 	)
 	(wire
 		(pts
@@ -11325,7 +11325,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e0d5cd27-7d0a-4478-be37-316a93b7ca41")
+		(uuid "822ffadc-882f-5328-b44f-10b03d2a3814")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -11337,7 +11337,7 @@
 			)
 			(justify right)
 		)
-		(uuid "d137991a-c1e3-436a-b684-9fc6062b77f6")
+		(uuid "f6edc6dd-362f-51be-89bf-408fa921cfbb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 160.02 278.13 0)
 			(effects
@@ -11356,7 +11356,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f9250134-331e-47f6-9200-d7147b86e6c1")
+		(uuid "d0e0056b-c6c3-5371-92e2-41fd2b2c3fe9")
 		(property "Reference" "U303"
 			(at 205.74 262.89 0)
 			(effects
@@ -11419,34 +11419,34 @@
 			)
 		)
 		(pin "1"
-			(uuid "c4f74dc3-a3d0-4fb6-b1ec-24db9461677c")
+			(uuid "44fe7b0d-cafa-5a47-9390-4890ee7eef7e")
 		)
 		(pin "2"
-			(uuid "88075e64-beb5-4ad2-b07a-e755a4f849ae")
+			(uuid "a11b4915-f107-5489-b398-93c2ac3d87b1")
 		)
 		(pin "3"
-			(uuid "acf06de8-d567-4bfc-b110-737576dac93b")
+			(uuid "3f966f20-65d6-5ad4-a0a2-1c85e9ab81f1")
 		)
 		(pin "4"
-			(uuid "ef025c15-36f2-48b9-a3ae-4f20c247cb6b")
+			(uuid "2add2fec-cdee-5fe0-b7de-f92baf2b18ea")
 		)
 		(pin "5"
-			(uuid "e132bec2-5dfd-4ec1-89cc-9bc97d4d1183")
+			(uuid "525b23a1-ee53-5cbb-a18b-d764be38b028")
 		)
 		(pin "6"
-			(uuid "10988823-feeb-41c0-96e2-0599b86c9568")
+			(uuid "c0b12932-4791-5b61-8d05-91f811391976")
 		)
 		(pin "7"
-			(uuid "c6bf0f5e-c114-4e22-bb79-d1db0e7e9719")
+			(uuid "73b06819-0dcb-5430-9e01-d041bbac0cf9")
 		)
 		(pin "8"
-			(uuid "9bd511cb-f2b3-4974-8c65-03c53fc62695")
+			(uuid "b02cc821-6885-593d-848d-b7c961ed9c06")
 		)
 		(pin "9"
-			(uuid "58dc8390-b6c9-4e92-898c-d798bc70a8b7")
+			(uuid "9f42d92f-cde3-5493-93cd-970e826437ff")
 		)
 		(pin "10"
-			(uuid "cd1466b5-8f3b-487d-921b-29bb9157970a")
+			(uuid "ce0513d8-06b1-59a7-a75c-96ed24843685")
 		)
 		(instances
 			(project "odeck-10"
@@ -11465,7 +11465,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e574ce1a-7c52-4e88-885b-fc86eb272769")
+		(uuid "6abc2d1e-e584-5d9a-85b8-02e6e7c8fca9")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -11475,7 +11475,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ed59b6a1-5eff-46b8-bcef-dc352a67d5f4")
+		(uuid "7bd436fd-6263-5b6b-903a-8c12aff6c9f7")
 		(property "Reference" "#PWR0337"
 			(at 190.50 266.70 0)
 			(effects
@@ -11504,7 +11504,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "275a31eb-c27e-4d30-9be9-d70c7cbffce9")
+			(uuid "b8a4f1c7-d3f3-5c8b-b90b-478aee5823be")
 		)
 		(instances
 			(project "odeck-10"
@@ -11523,7 +11523,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2f4a6745-587a-4689-b440-7476aa639b27")
+		(uuid "fe6f2490-650c-5f46-b31e-0243d27f76de")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -11535,7 +11535,7 @@
 			)
 			(justify right)
 		)
-		(uuid "e016f377-969b-4c76-a687-9f49341755f1")
+		(uuid "c4700933-7acb-5868-b423-61772ddc3d11")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.50 269.24 0)
 			(effects
@@ -11548,7 +11548,7 @@
 	)
 	(no_connect
 		(at 193.04 271.78)
-		(uuid "333385ad-ee11-4312-80ff-72b3b5fe0d43")
+		(uuid "a6697cc5-81f7-5d04-9120-eb0c50908bb9")
 	)
 	(wire
 		(pts
@@ -11558,7 +11558,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2d16ea55-1aef-4508-98b3-b8240ad785d2")
+		(uuid "fd97063d-dc9c-5ee3-9faf-8d0ed966598b")
 	)
 	(global_label "I2C_SYS_SDA"
 		(shape passive)
@@ -11570,7 +11570,7 @@
 			)
 			(justify right)
 		)
-		(uuid "c46e8b58-e796-4884-a034-8330127959b9")
+		(uuid "4534723f-9be2-5b53-9c9a-7f927c6de772")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.50 274.32 0)
 			(effects
@@ -11589,7 +11589,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5c8150fb-0fac-4637-aad7-3e7a7b3ea1f5")
+		(uuid "e434c8e8-a6e0-59ed-a901-3d5a6904ab30")
 	)
 	(global_label "I2C_SYS_SCL"
 		(shape passive)
@@ -11601,7 +11601,7 @@
 			)
 			(justify right)
 		)
-		(uuid "aadde72f-97a1-4950-84ed-0f67ad833d93")
+		(uuid "407f4fda-f83d-5a14-b3f6-8c77f62388c2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 190.50 276.86 0)
 			(effects
@@ -11620,7 +11620,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d3fb00ad-5106-43ec-984b-39c608940da2")
+		(uuid "c608de0d-05ee-595d-b27a-66839204c404")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -11632,7 +11632,7 @@
 			)
 			(justify left)
 		)
-		(uuid "c44b63b1-d431-481c-83cc-ed9a2561d77b")
+		(uuid "2366235f-7b54-5ca2-a7db-8b20239b1e53")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 220.98 276.86 0)
 			(effects
@@ -11651,7 +11651,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6dd24f47-5188-49a7-a21f-ef4b3d7d94e9")
+		(uuid "3370968c-1682-5999-86e7-949362c6a902")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -11661,7 +11661,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b22f7d1d-be5a-491d-bc10-d7019625dada")
+		(uuid "fc9c6cb2-6e26-520a-9aba-92777dec9baf")
 		(property "Reference" "#PWR0338"
 			(at 220.98 274.32 0)
 			(effects
@@ -11690,7 +11690,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "8b8cfb1c-129a-46f7-b422-55a2921c0714")
+			(uuid "606fd5ce-cd41-5dc2-9d34-4142b2372411")
 		)
 		(instances
 			(project "odeck-10"
@@ -11709,7 +11709,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ddd31bbc-36bb-4af1-9246-b19bd1746de0")
+		(uuid "b12dc4e2-7a16-51d5-9e3f-18157f3dfbf6")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -11721,7 +11721,7 @@
 			)
 			(justify left)
 		)
-		(uuid "422773b8-891a-4752-89ba-bd235a56158d")
+		(uuid "8914fbea-49a7-5a48-aa17-fe35324c7f28")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 220.98 271.78 0)
 			(effects
@@ -11740,7 +11740,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "773c0127-b93f-4d71-9f20-0f7a5e44b212")
+		(uuid "525e4b41-d07f-5c78-98db-e880025e6ff7")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -11752,7 +11752,7 @@
 			)
 			(justify left)
 		)
-		(uuid "44655b87-253d-4867-97b8-66f0a32ddb9b")
+		(uuid "28e55a6c-97af-525b-97c8-7d4a72ab80c5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 220.98 269.24 0)
 			(effects
@@ -11771,7 +11771,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "731ba78e-2e7e-464f-98e8-119abf8f2376")
+		(uuid "4df88e6b-53cc-5f1e-a646-8544e6f17e3e")
 	)
 	(label "5V_OR"
 		(at 220.98 266.70 0)
@@ -11781,7 +11781,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "d7b69059-2cec-4dbb-8aff-31219432b290")
+		(uuid "5d4705f4-ffcf-5c63-b16c-305a205bbda9")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -11791,7 +11791,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1e9a3513-93e2-42db-b761-04174da6396e")
+		(uuid "abe28e77-cd67-51ef-8200-fb79bc1abc5d")
 		(property "Reference" "C323"
 			(at 241.30 270.51 0)
 			(effects
@@ -11845,10 +11845,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "684a09b8-84f1-43b0-918b-253762c93afe")
+			(uuid "867ae62b-15c4-570a-a8ba-6e740207aaec")
 		)
 		(pin "2"
-			(uuid "0576d4d1-7369-40a9-98a0-45cd057dbebd")
+			(uuid "faba9f89-9a45-5d35-b0f8-f6f545ffa71b")
 		)
 		(instances
 			(project "odeck-10"
@@ -11867,7 +11867,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f40b84d3-33e7-4898-94fa-432f156fac3e")
+		(uuid "9e022088-db2f-5a44-88f4-c117460a190e")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -11879,7 +11879,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0e6941f1-ea94-43c4-b23f-44a9fdd81638")
+		(uuid "2d420ab2-5799-51db-a197-5d745b86236b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 238.76 265.43 0)
 			(effects
@@ -11898,7 +11898,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5b85964f-fb72-4de5-a15b-b4bc63d4ab14")
+		(uuid "f1ea04ce-14a0-5be8-9cb3-65bb068f048a")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -11908,7 +11908,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "77e524f3-24e9-4dfd-a452-97065360a15f")
+		(uuid "2eccc235-fd22-58a3-a42d-f2672a19c28c")
 		(property "Reference" "#PWR0339"
 			(at 238.76 278.13 0)
 			(effects
@@ -11937,7 +11937,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "100dfa11-0d62-49a1-915d-8da7dae50a50")
+			(uuid "205801ba-c09f-5cad-b225-1c593fd11a62")
 		)
 		(instances
 			(project "odeck-10"
@@ -11956,7 +11956,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cdd42552-62b4-411e-9437-8820fc31cc1d")
+		(uuid "a1539259-0214-53df-b38b-ea9e1b0bb76d")
 		(property "Reference" "C324"
 			(at 256.54 270.51 0)
 			(effects
@@ -12010,10 +12010,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "aa50c465-96c7-469c-9992-f7592e910450")
+			(uuid "604b1ec6-6ff8-5acf-8005-ffb494e24d65")
 		)
 		(pin "2"
-			(uuid "da94828b-e1b6-4a80-8cf2-dcd1595e8634")
+			(uuid "2b9d69ad-deb7-595e-a69f-5658c3a31d54")
 		)
 		(instances
 			(project "odeck-10"
@@ -12032,7 +12032,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5974847c-ff03-4432-a57d-8a923085a5b2")
+		(uuid "8dedc2d3-1953-5331-9c84-61dde4e5e97e")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12044,7 +12044,7 @@
 			)
 			(justify left)
 		)
-		(uuid "887c68ea-c58d-447d-9347-ee80bd76f07e")
+		(uuid "472387da-91f3-55a0-a0d6-592fb6c81459")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 254.00 265.43 0)
 			(effects
@@ -12063,7 +12063,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "28f86251-38af-474d-87c0-0c010ce1195a")
+		(uuid "a2e0976d-6ec2-52cb-b837-783d6e1a2553")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12073,7 +12073,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aa2576ad-ad20-4f34-be7a-401103add00f")
+		(uuid "d413ad87-82a1-5749-b997-fc1745acf4e9")
 		(property "Reference" "#PWR0340"
 			(at 254.00 278.13 0)
 			(effects
@@ -12102,7 +12102,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "05c845e8-8202-4586-96a4-df4e134a901a")
+			(uuid "4392bff8-7164-57a9-bb89-8eba42997215")
 		)
 		(instances
 			(project "odeck-10"
@@ -12121,7 +12121,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "980376ce-b4f6-42e0-90fa-d2706fb1a5b4")
+		(uuid "91842125-2841-50f2-8223-911f44fb6012")
 		(property "Reference" "C325"
 			(at 266.70 270.51 0)
 			(effects
@@ -12175,10 +12175,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "b30141ae-ea1f-47f3-acb8-08df7c100798")
+			(uuid "bffa8acb-05e0-5151-9551-bc04b96c8019")
 		)
 		(pin "2"
-			(uuid "8cd391dd-5892-4da9-aced-3c7b90356f18")
+			(uuid "75f4637d-f920-585a-b713-781e8695227a")
 		)
 		(instances
 			(project "odeck-10"
@@ -12197,7 +12197,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "11d6f5a8-3358-48b2-8353-883651f0c922")
+		(uuid "99f439d2-ca38-5f9d-9a97-231380549370")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12209,7 +12209,7 @@
 			)
 			(justify left)
 		)
-		(uuid "24c17308-7c41-4c72-a378-1934ef042eea")
+		(uuid "998ad259-12c4-5856-84cf-06cf3697fdb0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 264.16 265.43 0)
 			(effects
@@ -12228,7 +12228,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2d6754cc-33a9-4cc1-a525-5a286536d3c7")
+		(uuid "315401ad-3d66-5b30-b71d-b3139dd57a47")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12238,7 +12238,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "acbe0261-69af-4a2b-b9f6-0dd59afd321e")
+		(uuid "fe36d189-b02e-5c33-b020-e60fc541f12d")
 		(property "Reference" "#PWR0341"
 			(at 264.16 278.13 0)
 			(effects
@@ -12267,7 +12267,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "66123db8-bc2f-4c5d-827e-09b4895857b7")
+			(uuid "7ea63a40-8ba0-52a7-aefd-6fb6f9266644")
 		)
 		(instances
 			(project "odeck-10"
@@ -12286,7 +12286,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f8f00201-b0f3-4bc1-a80a-aa285d5674c2")
+		(uuid "cb1954f4-9e29-5ce3-a6d3-f52e68f9b5e4")
 		(property "Reference" "C326"
 			(at 276.86 270.51 0)
 			(effects
@@ -12340,10 +12340,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "67307cb6-977b-42eb-9334-b625d98ab854")
+			(uuid "0c7a7132-f377-592e-b712-68d3510a00ae")
 		)
 		(pin "2"
-			(uuid "a351c2a6-7388-413e-b941-898b3009adb5")
+			(uuid "330d291c-bb58-5f0f-bd45-ed5654971cb1")
 		)
 		(instances
 			(project "odeck-10"
@@ -12362,7 +12362,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "78cab7c6-218d-4036-81b1-ba8caf044fba")
+		(uuid "fbb5e0af-f367-542c-9630-461b19afb48f")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12374,7 +12374,7 @@
 			)
 			(justify left)
 		)
-		(uuid "13b276f8-b9de-4943-8468-800bfc913174")
+		(uuid "5ebfa0b7-1448-5166-978d-ec7000467b08")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 274.32 265.43 0)
 			(effects
@@ -12393,7 +12393,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9a614e79-b642-4c3f-a545-686759a2e9af")
+		(uuid "597f8c91-dafa-558b-8359-10f5ff3cb5aa")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12403,7 +12403,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8485158a-acc4-43a3-ad25-7b3e70068649")
+		(uuid "db6b3a6e-b6b5-5eab-9be1-07383742e473")
 		(property "Reference" "#PWR0342"
 			(at 274.32 278.13 0)
 			(effects
@@ -12432,7 +12432,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6b0cf130-726c-4d88-9530-33fd28dc282d")
+			(uuid "d0f5b437-e0d9-5bbe-b1f3-d61a91d1cea4")
 		)
 		(instances
 			(project "odeck-10"
@@ -12451,7 +12451,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "778497c0-a220-4c19-acd2-3a4fff0044b8")
+		(uuid "2706b0b9-cc35-57e6-b01e-83455e678c90")
 		(property "Reference" "#FLG301"
 			(at 292.10 270.51 0)
 			(effects
@@ -12496,7 +12496,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "9e8560bc-e0ab-4e5f-a680-cbc1ff3a7dbd")
+			(uuid "6060f912-7c01-53f2-88a8-be8c038cd87c")
 		)
 		(instances
 			(project "odeck-10"
@@ -12515,7 +12515,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5d6e9575-92b3-4d7e-8138-5343dd9ea1c3")
+		(uuid "36ba8728-8b9e-5ae7-a53b-e9f8eb00c409")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12527,7 +12527,7 @@
 			)
 			(justify right)
 		)
-		(uuid "95b1a813-585a-40be-849c-201ebfe2f5bc")
+		(uuid "eb6a0650-acd3-5a51-87aa-5ae1984c80a7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 289.56 274.32 0)
 			(effects
@@ -12546,7 +12546,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2280c34a-da8b-4e79-8bda-2a6348262eb5")
+		(uuid "33ca97f2-4e6f-5c8d-8b7f-f4df08d507e5")
 		(property "Reference" "C327"
 			(at 342.90 52.07 0)
 			(effects
@@ -12600,10 +12600,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "80990210-8ec3-44f2-bfde-4bb2c7cee1d4")
+			(uuid "0d17032b-d130-58b3-afa1-eb3fb4811afa")
 		)
 		(pin "2"
-			(uuid "accb549f-d23c-4f30-b3dc-658ea4bc9da5")
+			(uuid "c6f4a3a4-21dc-590e-89d2-4231612f2779")
 		)
 		(instances
 			(project "odeck-10"
@@ -12622,7 +12622,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "41f7a1f1-5ebd-43e0-a205-96c20779a443")
+		(uuid "cf665f77-ffd6-5c2b-a766-1344fbb8c750")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12634,7 +12634,7 @@
 			)
 			(justify left)
 		)
-		(uuid "e27cf16e-84d8-44d7-80ab-9aeeb554342e")
+		(uuid "a478da11-48a6-5224-8665-6f97edc5c9e1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 340.36 46.99 0)
 			(effects
@@ -12653,7 +12653,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a3540ef4-6b5d-4672-9c2c-756aa70e54d0")
+		(uuid "80fa3cb8-55de-55a4-9063-01eb1da2ab07")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12663,7 +12663,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "393a7ddd-971f-4a1e-8412-5794cebbad71")
+		(uuid "5f31d7ca-6b52-5322-8f51-eae1f91bac79")
 		(property "Reference" "#PWR0343"
 			(at 340.36 59.69 0)
 			(effects
@@ -12692,7 +12692,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "f52440e9-abd1-4479-a046-f87f6f3806ee")
+			(uuid "aa60272d-8b08-5ea2-9a7e-9bcece9698c4")
 		)
 		(instances
 			(project "odeck-10"
@@ -12711,7 +12711,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fdc125c3-d002-440e-9f0c-fc6955ca9a2c")
+		(uuid "35cb8b53-0904-5984-91c1-2c4d88491c42")
 		(property "Reference" "C328"
 			(at 353.06 52.07 0)
 			(effects
@@ -12765,10 +12765,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c15cfac9-17ac-45d4-a8f7-79f125c78530")
+			(uuid "9bc39be1-b8e2-55b6-a245-0333c65e02d5")
 		)
 		(pin "2"
-			(uuid "86b07037-fc6d-496c-af06-7e2f9343ddb3")
+			(uuid "789f88b8-c570-598e-9fab-62d9e2a23a16")
 		)
 		(instances
 			(project "odeck-10"
@@ -12787,7 +12787,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "aae1ea96-e427-4ba8-88d2-baa15e376b83")
+		(uuid "c1e31f14-415e-5405-a564-66f4358d0a6f")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12799,7 +12799,7 @@
 			)
 			(justify left)
 		)
-		(uuid "d015dc6f-8b41-49d2-89d8-e8a5f3078b49")
+		(uuid "612c2e6e-0e63-5770-ae9d-b9db82ca2cc3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 350.52 46.99 0)
 			(effects
@@ -12818,7 +12818,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c17ea4ea-68b0-48ef-ab26-b0326e219a61")
+		(uuid "8f492014-ac77-544c-9e99-066e69c0fc7b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12828,7 +12828,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c1a0dbba-78e2-4c05-bd7e-10324ca0ca20")
+		(uuid "1dcf4aea-b4fe-5807-ab79-a569685d22f0")
 		(property "Reference" "#PWR0344"
 			(at 350.52 59.69 0)
 			(effects
@@ -12857,7 +12857,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "a3504b99-7826-4306-a7e3-024a76713b7b")
+			(uuid "4fabcbd2-8ea5-5cc6-8dfc-55dea1a1746f")
 		)
 		(instances
 			(project "odeck-10"
@@ -12876,7 +12876,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "23b73576-5365-48df-ae59-ecdbb2193d9c")
+		(uuid "a75a9184-af6d-5df9-b013-92c0277fe575")
 		(property "Reference" "C329"
 			(at 363.22 52.07 0)
 			(effects
@@ -12930,10 +12930,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "07e52733-440d-46db-8d75-ab4132380f76")
+			(uuid "0329e667-595c-530c-9697-6273374305e3")
 		)
 		(pin "2"
-			(uuid "5f8b6d88-1f47-47f5-9f0b-9dcb83d3c7c0")
+			(uuid "d353925b-d8f1-5b37-9bd6-afb2d85c937d")
 		)
 		(instances
 			(project "odeck-10"
@@ -12952,7 +12952,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2a9f6748-3b7e-4321-904b-6ec2676377ab")
+		(uuid "c05cc643-44a9-5aa1-b6ab-0a5c0fc50ca0")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -12964,7 +12964,7 @@
 			)
 			(justify left)
 		)
-		(uuid "86fd8086-285e-462e-83a7-7039d21a0e2d")
+		(uuid "6a2e4050-7ba5-5fa2-87f2-ef127927a0f1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 360.68 46.99 0)
 			(effects
@@ -12983,7 +12983,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2e3838dd-009c-4410-be78-1fff274718f8")
+		(uuid "523077e9-29c3-58bd-a466-0e846d1bc548")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -12993,7 +12993,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c05f92a1-1247-4ddd-b0dd-551cf0df124d")
+		(uuid "f6982042-5b6a-5da8-b676-e229c8b68fc0")
 		(property "Reference" "#PWR0345"
 			(at 360.68 59.69 0)
 			(effects
@@ -13022,7 +13022,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "2469d301-7135-48d9-8bb7-eaae731c1bd3")
+			(uuid "0c4b8b5d-ded3-5a04-8550-345850a6d51c")
 		)
 		(instances
 			(project "odeck-10"
@@ -13041,7 +13041,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aa0b0245-bfd2-4a61-ac47-33d9fae1bd06")
+		(uuid "5f41c696-a635-51ab-b363-7cfe5008c2ea")
 		(property "Reference" "R313"
 			(at 373.38 52.07 0)
 			(effects
@@ -13095,10 +13095,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d095bf85-d640-4308-b382-1e2a5e3bd79c")
+			(uuid "d6584841-76a8-5a32-bbf4-0579081c1845")
 		)
 		(pin "2"
-			(uuid "4da2ef9b-1588-4d1b-b22b-ad28e8def5cc")
+			(uuid "791c5e0a-880c-575d-81b4-7b6292d480ca")
 		)
 		(instances
 			(project "odeck-10"
@@ -13117,7 +13117,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1f8ec2e9-6aab-47c7-87bb-cac6b2438e48")
+		(uuid "1dc9af02-8131-53a5-841e-7cff0b8f1edb")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -13129,7 +13129,7 @@
 			)
 			(justify left)
 		)
-		(uuid "88ae9bf9-893d-4354-8896-491c4162d4d4")
+		(uuid "ed96c12f-23cb-5ded-bd39-eaa067bccbaf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 370.84 46.99 0)
 			(effects
@@ -13148,7 +13148,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "882de00d-2784-49ba-93af-8bfd5f9a641e")
+		(uuid "674cd2cf-b777-512f-a85d-9050d2a43813")
 	)
 	(label "3V3_EN"
 		(at 370.84 59.69 270)
@@ -13158,7 +13158,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "9e8ff4d8-639b-4e82-80d7-6f0ab8f014d3")
+		(uuid "dc368821-53e1-5b7d-8c25-9f5ea4874be9")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -13168,7 +13168,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3aa13e59-6c18-4646-863a-3ea5bb881c14")
+		(uuid "169c2013-e5ce-5348-861c-cc0da5ce13b5")
 		(property "Reference" "R314"
 			(at 383.54 52.07 0)
 			(effects
@@ -13222,10 +13222,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "b48788a1-9507-4b73-a4f3-fa04b35fba09")
+			(uuid "acef859d-3403-5307-be78-9db403e94373")
 		)
 		(pin "2"
-			(uuid "4b5282e0-1126-49c1-9962-e5838fb65864")
+			(uuid "d18dd8f8-0499-550b-9e39-c18ba5725ad8")
 		)
 		(instances
 			(project "odeck-10"
@@ -13244,7 +13244,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d24afa55-6915-4790-9b9a-0102905eba7c")
+		(uuid "d08c3978-bbfa-507b-bf90-94ef83e43b8d")
 	)
 	(label "3V3_EN"
 		(at 381.00 46.99 90)
@@ -13254,7 +13254,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "b610be9a-8b15-41be-a740-b085e2deb317")
+		(uuid "78112a62-ef75-59d6-b023-8a75d18392a2")
 	)
 	(wire
 		(pts
@@ -13264,7 +13264,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "acb15266-032f-4d81-b105-87c0416e5135")
+		(uuid "d732863e-2cbf-5e56-a4e0-93cb9a70679f")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -13274,7 +13274,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "49115155-02da-487c-b8b3-8e2a90760a3d")
+		(uuid "ee8327f3-993d-5529-baa8-0b0ad7658ec4")
 		(property "Reference" "#PWR0346"
 			(at 381.00 59.69 0)
 			(effects
@@ -13303,7 +13303,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "ae389255-4ce3-4753-a576-f8491a26f312")
+			(uuid "1fc7a88c-d3ef-5149-aba3-d1531f09b7e5")
 		)
 		(instances
 			(project "odeck-10"
@@ -13322,7 +13322,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "96ed0b67-4649-4828-9328-1fa0691e7aad")
+		(uuid "c16987ef-3f93-5203-9ece-a14eb2ba6e61")
 		(property "Reference" "U304"
 			(at 411.48 45.72 0)
 			(effects
@@ -13331,7 +13331,7 @@
 				)
 			)
 		)
-		(property "Value" "TPS62933"
+		(property "Value" "TPS62933F"
 			(at 411.48 60.96 0)
 			(effects
 				(font
@@ -13357,7 +13357,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "3 A sync buck, RT=GND -> 1.2 MHz"
+		(property "Description" "3 A sync buck, forced PWM (RTL8156BG needs >=1 MHz PWM supply), RT=GND -> 1.2 MHz; same pinout as TPS62933"
 			(at 411.48 53.34 0)
 			(effects
 				(font
@@ -13366,7 +13366,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C3200405"
+		(property "LCSC" "C5219272"
 			(at 411.48 53.34 0)
 			(effects
 				(font
@@ -13375,7 +13375,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "TPS62933DRLR"
+		(property "MPN" "TPS62933FDRLR"
 			(at 411.48 53.34 0)
 			(effects
 				(font
@@ -13385,28 +13385,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "277b4d18-6307-4683-b523-22233956c6cd")
+			(uuid "e05884d9-9a92-5fa3-afb1-443ff153682b")
 		)
 		(pin "2"
-			(uuid "bd0b0bea-e1a4-44c0-b9e9-7408d4fc6b0b")
+			(uuid "78915f18-0723-5f53-b9c9-7043ff0ddb87")
 		)
 		(pin "3"
-			(uuid "6e7ff42f-c3f7-4232-9ee5-9ca2935ec29e")
+			(uuid "14d1f80a-91f9-570c-a3ea-2b2783a9359c")
 		)
 		(pin "4"
-			(uuid "eebbf497-a82a-4b52-9bfd-40f3f8ce7fd8")
+			(uuid "9a6bd0cd-7f85-5835-9c82-2e6008fc039a")
 		)
 		(pin "5"
-			(uuid "b647a073-cc5e-4a50-a013-b5fabcb607ee")
+			(uuid "7ef2974b-4764-5c3f-b1e4-cc56f7e7818d")
 		)
 		(pin "6"
-			(uuid "dfe343f9-cf98-4663-bd71-511e3aa7fbfa")
+			(uuid "d229f569-7cf2-5c40-a1aa-7fa72ba1dc12")
 		)
 		(pin "7"
-			(uuid "1f2249fa-4282-4081-9f9d-c9f79cc5a7ab")
+			(uuid "021dd860-b955-5fd0-a62f-9a044e5fa306")
 		)
 		(pin "8"
-			(uuid "233c2b30-c9ac-49fa-aa9f-a53898a55a91")
+			(uuid "8fd77863-11e9-56d6-b2ba-83d5d4074aae")
 		)
 		(instances
 			(project "odeck-10"
@@ -13425,7 +13425,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "29ce8e13-8392-4bf6-83e1-944a38d95bff")
+		(uuid "0cbe81b2-dd58-5ca2-8e0d-bd58fa278df9")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -13435,7 +13435,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4aecc839-f930-428a-a293-ed19bd38c6eb")
+		(uuid "84ccde95-2077-5aa6-83d7-34b538fdea19")
 		(property "Reference" "#PWR0347"
 			(at 400.05 49.53 0)
 			(effects
@@ -13464,7 +13464,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "7669e05c-c2cb-4650-8a9a-65135469ac83")
+			(uuid "5d81410e-dd82-54f2-a603-3a961e9ec764")
 		)
 		(instances
 			(project "odeck-10"
@@ -13483,7 +13483,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a618bed7-57c3-426d-b770-37bc5f4073ff")
+		(uuid "8574bef8-ebea-5662-9eb7-acce84567016")
 	)
 	(label "3V3_EN"
 		(at 400.05 52.07 180)
@@ -13493,7 +13493,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "653ce0d0-1e7e-4ebd-8c6c-f27dd78c5a6b")
+		(uuid "1db6d5ce-89f7-575b-bd3f-485f7b1c6048")
 	)
 	(wire
 		(pts
@@ -13503,7 +13503,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1e8aabd9-469e-45ed-b286-bef7834fc29d")
+		(uuid "a16ca913-187a-572b-abb6-2c092e62ca53")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -13515,7 +13515,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b0a67f4d-9997-4555-84df-3a33882974a1")
+		(uuid "393d1a8a-9821-5688-a27a-b91fdd0de16e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 400.05 54.61 0)
 			(effects
@@ -13534,7 +13534,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "37bce9b8-d562-4461-b24e-218f5ff6a221")
+		(uuid "b435795f-4dc2-56be-846b-1db10799155c")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -13544,7 +13544,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5c8be790-6c9b-4d73-9efc-d7e7fc687ca4")
+		(uuid "45babf0e-2e89-5e90-979b-c9876c538ef2")
 		(property "Reference" "#PWR0348"
 			(at 400.05 57.15 0)
 			(effects
@@ -13573,7 +13573,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "595de6a5-98d3-4b32-a2da-efe295b18c97")
+			(uuid "02de1ae0-f872-5c49-99e1-fa2b05da6170")
 		)
 		(instances
 			(project "odeck-10"
@@ -13592,7 +13592,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "58af8b6d-5951-471b-9251-518253f6bf10")
+		(uuid "2b3da51c-f234-5ea0-bf5b-d2b36817b1a6")
 	)
 	(label "3V3_SW"
 		(at 422.91 57.15 0)
@@ -13602,7 +13602,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "572baa98-5308-46bb-8e5a-a94587d09011")
+		(uuid "9be8fe87-4310-5a84-adf5-26ca758d5816")
 	)
 	(wire
 		(pts
@@ -13612,7 +13612,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4a417fff-ab83-48d8-a4b8-74467447a012")
+		(uuid "991735de-20ff-5919-ad15-401611385045")
 	)
 	(label "3V3_BST"
 		(at 422.91 54.61 0)
@@ -13622,7 +13622,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "7554cb37-d5d7-4dc2-bb46-26d36ef9ea4d")
+		(uuid "0a287485-1074-58cd-b5db-7c044b3b99eb")
 	)
 	(wire
 		(pts
@@ -13632,7 +13632,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "61de62e8-7956-466c-b8ad-770ca56cb867")
+		(uuid "aa516988-a8a0-5b25-8f69-f3cc075d93d1")
 	)
 	(label "3V3_SS"
 		(at 422.91 52.07 0)
@@ -13642,7 +13642,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9b692485-b308-4975-98c8-973507d9302d")
+		(uuid "0d8bf2b6-ce1f-55b1-acfa-8fd7b839df6c")
 	)
 	(wire
 		(pts
@@ -13652,7 +13652,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e185074e-a04f-49b6-9fe5-ccf8b1c47188")
+		(uuid "d4bdbfeb-5a4a-51a1-91eb-8cfb9809b771")
 	)
 	(label "3V3_FB"
 		(at 422.91 49.53 0)
@@ -13662,7 +13662,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2617a01d-b0dd-4a38-a78d-17499a044f56")
+		(uuid "3feac7ec-fe26-5b36-b4c0-93e9db0bf119")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -13672,7 +13672,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2095491c-f332-467d-a5dc-2477e9d99cc4")
+		(uuid "73d27016-5f1d-555b-b471-a0d9339f3c1a")
 		(property "Reference" "C330"
 			(at 444.50 52.07 0)
 			(effects
@@ -13726,10 +13726,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "184cabdc-f9fe-4b9f-b788-e60ed00c4bc5")
+			(uuid "18731c0c-a30a-545b-b517-89f5883d9077")
 		)
 		(pin "2"
-			(uuid "7edaf866-0ee8-4017-b102-957304ac0b39")
+			(uuid "48200b6b-5259-5b57-a845-d850453c14ac")
 		)
 		(instances
 			(project "odeck-10"
@@ -13748,7 +13748,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b2ec00d3-6b50-450f-8f2e-feb4377ce317")
+		(uuid "98e3fece-d08f-5740-aacf-cb7251b6c978")
 	)
 	(label "3V3_SS"
 		(at 441.96 46.99 90)
@@ -13758,7 +13758,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "287914cc-ceec-4437-a8a9-ff511f320414")
+		(uuid "c1b49bc1-0903-5d22-99ec-942e296ab026")
 	)
 	(wire
 		(pts
@@ -13768,7 +13768,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d99d9f2b-9812-47e4-83c8-d64811cab649")
+		(uuid "ef3bfd02-bee2-589b-b9af-e2e18203ec81")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -13778,7 +13778,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e7e31403-c635-4246-bbe8-d1eca7c74165")
+		(uuid "4fbabd1a-bbf3-5191-bed3-27447a2ced21")
 		(property "Reference" "#PWR0349"
 			(at 441.96 59.69 0)
 			(effects
@@ -13807,7 +13807,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "2d5f457d-c847-402a-93c4-a4fb0365f3f2")
+			(uuid "a5cc5fea-b887-574a-a47a-4eedd1863962")
 		)
 		(instances
 			(project "odeck-10"
@@ -13826,7 +13826,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "29c1d97d-f343-42b3-98d9-33d9bbdcd085")
+		(uuid "dbf002a1-4f12-5e2c-bb8b-41305dfcfd08")
 		(property "Reference" "C331"
 			(at 454.66 52.07 0)
 			(effects
@@ -13880,10 +13880,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "9e2df178-ca33-4360-b533-c418de5ad038")
+			(uuid "d48a2b03-8a61-5831-9736-2834074a57ff")
 		)
 		(pin "2"
-			(uuid "9951d125-3e6d-4ecf-9a8e-3aa1bc9f6559")
+			(uuid "74dda142-7302-58b9-8c6f-c2343ce1488e")
 		)
 		(instances
 			(project "odeck-10"
@@ -13902,7 +13902,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "db7c5557-5e02-40f7-b8af-1669fe1fd5d0")
+		(uuid "bd067209-987e-5261-941f-819c5eca9a14")
 	)
 	(label "3V3_BST"
 		(at 452.12 46.99 90)
@@ -13912,7 +13912,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f36a361f-904b-4674-929c-983a5d196579")
+		(uuid "5d6a26aa-ef15-5340-a28b-0be26190a2fd")
 	)
 	(wire
 		(pts
@@ -13922,7 +13922,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "aa02cc5b-388c-4ce7-a98f-1108e0e06726")
+		(uuid "0fb07f2d-e1af-5d78-8334-1df68e2433ff")
 	)
 	(label "3V3_SW"
 		(at 452.12 59.69 270)
@@ -13932,7 +13932,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "c741cf4c-9c49-4406-b6bc-41f4db7b941f")
+		(uuid "5667e57a-1f59-5ab9-82b2-7a05e5944a83")
 	)
 	(symbol
 		(lib_id "odeck:MWSA0503S-2R2MT")
@@ -13942,7 +13942,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1f9dc7e4-feb3-460b-bb15-fe0b235c924a")
+		(uuid "af4be4ca-20de-5c36-b593-f737e8ee295d")
 		(property "Reference" "L302"
 			(at 472.44 64.77 0)
 			(effects
@@ -14005,10 +14005,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "cd983c26-36f2-463d-8f79-6a075efdd97d")
+			(uuid "1fb040c9-8c06-5b5a-9cc9-26129f531bad")
 		)
 		(pin "2"
-			(uuid "36161a35-ba50-454c-817d-8d4618bb68e1")
+			(uuid "e246545e-8e9a-53fa-8a38-f0a5d2421981")
 		)
 		(instances
 			(project "odeck-10"
@@ -14027,7 +14027,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "88dbc917-068f-4d40-88d1-0969b0f8eda0")
+		(uuid "99bb0eb7-be43-5d3a-87f7-e12b9472cab5")
 	)
 	(label "3V3_SW"
 		(at 464.82 68.58 180)
@@ -14037,7 +14037,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "4e11838f-27d5-43e1-895d-85e33d7955b2")
+		(uuid "67fdce56-ee98-51a7-9e97-4530f45fdb48")
 	)
 	(wire
 		(pts
@@ -14047,7 +14047,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8f6b55c3-8c15-4e9c-86c7-f501163851ca")
+		(uuid "65922641-a59a-5dce-95a6-cd81e7cf6138")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14059,7 +14059,7 @@
 			)
 			(justify left)
 		)
-		(uuid "f389b8ca-f4ee-4a2e-b579-4195ed79036d")
+		(uuid "51634472-0098-5531-ba2d-1e98888b88d9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 480.06 68.58 0)
 			(effects
@@ -14078,7 +14078,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "81408f4e-bbb0-4662-aa7d-79578a4b761d")
+		(uuid "9fcaee93-9cb9-557b-bf9a-d7f2a4acf355")
 		(property "Reference" "R315"
 			(at 495.30 52.07 0)
 			(effects
@@ -14132,10 +14132,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "70efb6c3-5f6d-45d9-8026-d24d3f1d4413")
+			(uuid "371ff67d-4fb2-5fb4-9ea3-71d24a6354da")
 		)
 		(pin "2"
-			(uuid "b11784ce-3023-4d9c-a3cb-9f55d246b5e2")
+			(uuid "f8f97446-f962-576a-a871-ae54e2b04b3d")
 		)
 		(instances
 			(project "odeck-10"
@@ -14154,7 +14154,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ef60a976-7187-4cc0-9e72-15b672a96e79")
+		(uuid "191c05b3-d9b4-5eda-b27e-799dad8475db")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14166,7 +14166,7 @@
 			)
 			(justify left)
 		)
-		(uuid "6ecc47e8-6412-4000-98d6-641db28d16b2")
+		(uuid "f8481955-70c5-575f-8439-30663d894815")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 492.76 46.99 0)
 			(effects
@@ -14185,7 +14185,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "45434c7a-c3c9-4f6a-9b89-2aaa01847a40")
+		(uuid "34fdc468-0259-511e-92fe-d7bb86f3c2bb")
 	)
 	(label "3V3_FB"
 		(at 492.76 59.69 270)
@@ -14195,7 +14195,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "2e648984-54e6-430a-a3f8-ce24164de283")
+		(uuid "b6f64276-3649-503c-b36e-e64507785ae4")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -14205,7 +14205,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d608e64c-1bfb-4ab5-952e-07a8c5887916")
+		(uuid "07356827-b177-5051-865b-b97b6c5337ab")
 		(property "Reference" "R316"
 			(at 505.46 52.07 0)
 			(effects
@@ -14259,10 +14259,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c1936b1d-9d4f-4ccb-ae84-e7db7ce59c4a")
+			(uuid "7b59b825-17f8-5491-871f-93d02d57ed52")
 		)
 		(pin "2"
-			(uuid "717b2872-b4a0-47fd-9663-1e8c15a03387")
+			(uuid "218a05f4-59fc-5541-a6d7-09ca12f3815d")
 		)
 		(instances
 			(project "odeck-10"
@@ -14281,7 +14281,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "87b27264-112c-4b3d-a663-1502390d45e8")
+		(uuid "8a9be18e-7d6d-52bc-8112-14c53fc498fe")
 	)
 	(label "3V3_FB"
 		(at 502.92 46.99 90)
@@ -14291,7 +14291,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "233bc7f9-f064-4c9f-9db8-611df9e5c39a")
+		(uuid "d77167ee-19fb-5683-9890-4808994013db")
 	)
 	(wire
 		(pts
@@ -14301,7 +14301,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cfb2c8cd-df4a-4424-9b31-5ec96a9f0b92")
+		(uuid "dbae4dea-4212-58a0-aa27-aff3538e5ed4")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -14311,7 +14311,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3619288a-30ae-428f-94fa-d1244fe8b242")
+		(uuid "849a3582-8818-54f2-82a4-de5ae762bcc6")
 		(property "Reference" "#PWR0350"
 			(at 502.92 59.69 0)
 			(effects
@@ -14340,7 +14340,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "991b34ba-acf5-40a3-87b7-49d346f83b20")
+			(uuid "ee0c2fed-57a7-5e25-981a-4854178e7b98")
 		)
 		(instances
 			(project "odeck-10"
@@ -14359,7 +14359,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "cc94498c-7223-47c8-8456-0580a941a947")
+		(uuid "e20f45e3-f2dd-5478-9574-a5efdf5d9d9b")
 		(property "Reference" "C332"
 			(at 515.62 52.07 0)
 			(effects
@@ -14413,10 +14413,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "790b04c8-fda8-4d6b-8ac4-6a91bde29f01")
+			(uuid "a7fc8e32-3045-55fb-bc32-cf4596c2223a")
 		)
 		(pin "2"
-			(uuid "60d168c7-e74f-4ffa-bfc2-4fbec9789ca1")
+			(uuid "e150e8d9-8e8a-58c9-8fe4-a381d63ea580")
 		)
 		(instances
 			(project "odeck-10"
@@ -14435,7 +14435,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cf1ad106-d498-44e7-be6f-0b9d68938cd5")
+		(uuid "ed63ffde-644c-5969-b8ec-9f3c8d943e20")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14447,7 +14447,7 @@
 			)
 			(justify left)
 		)
-		(uuid "a321d8b7-9567-460b-a535-8c6e5f9e0256")
+		(uuid "5dc65c51-7b8d-5e40-8eb6-0f16d52a0d07")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 513.08 46.99 0)
 			(effects
@@ -14466,7 +14466,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "83ef1f0f-9029-4647-ac28-f2ce61eda378")
+		(uuid "38d62ec6-3fdf-545b-b2ad-0022da48a233")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -14476,7 +14476,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "99ee3512-3ba3-4331-8c38-3d3e2ff4ae74")
+		(uuid "3dea4001-8e54-5574-9754-f98f8fcebd76")
 		(property "Reference" "#PWR0351"
 			(at 513.08 59.69 0)
 			(effects
@@ -14505,7 +14505,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "9b343409-1792-4cdd-8181-c4a190a9f149")
+			(uuid "b7643ec3-39e8-5ee5-9162-500ad1c1e969")
 		)
 		(instances
 			(project "odeck-10"
@@ -14524,7 +14524,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "44d5ed8f-5903-484b-b7ea-b6317526aa5e")
+		(uuid "8bf93ff7-3282-5958-808e-7c4707d48763")
 		(property "Reference" "C333"
 			(at 525.78 52.07 0)
 			(effects
@@ -14578,10 +14578,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "d83e297e-88c4-46c0-9c06-fd9b5199dece")
+			(uuid "e02368c8-b709-5c5a-b4f6-574f87389d2d")
 		)
 		(pin "2"
-			(uuid "3d614092-c2c0-41c6-8b3b-6b8afa76315c")
+			(uuid "d7de03d1-99a5-5baa-b925-2f9a9308bd38")
 		)
 		(instances
 			(project "odeck-10"
@@ -14600,7 +14600,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4ac55160-cd3a-4450-a3ac-9ed987a54406")
+		(uuid "55b1ac0e-e895-50d0-bdd6-5997a5b94009")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14612,7 +14612,7 @@
 			)
 			(justify left)
 		)
-		(uuid "9fd8b041-a3d0-436b-96e2-524128e4ca37")
+		(uuid "d1c4517a-f181-51f0-a960-9a2c32c53914")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 523.24 46.99 0)
 			(effects
@@ -14631,7 +14631,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "54116871-a634-48a5-a1a0-a3ec9bda46f7")
+		(uuid "b2a17ad0-eda6-5a5b-a204-98439c6dc294")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -14641,7 +14641,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b9d2b651-6eb5-4d05-a40a-48c58f694a00")
+		(uuid "c5825b85-050b-573a-90b6-a0f21d7cd9c6")
 		(property "Reference" "#PWR0352"
 			(at 523.24 59.69 0)
 			(effects
@@ -14670,7 +14670,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "717bb249-1ea4-40cd-b5b7-2a0269ecd407")
+			(uuid "7df21c91-0019-503b-87c4-1fa4a950aa6e")
 		)
 		(instances
 			(project "odeck-10"
@@ -14689,7 +14689,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a8154694-c277-4952-b7fb-20989020cd39")
+		(uuid "416544a7-a1ce-5417-816d-695a3e9040c4")
 		(property "Reference" "C334"
 			(at 535.94 52.07 0)
 			(effects
@@ -14743,10 +14743,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "4db365fd-e2c8-4bbc-8da9-db53057186f7")
+			(uuid "f5395f65-c759-5ca6-9976-837b8f3ab079")
 		)
 		(pin "2"
-			(uuid "ae3203d0-5f4b-4a67-9412-57c24addb6c1")
+			(uuid "bd55a62f-fa58-5367-becb-53b1c40ac963")
 		)
 		(instances
 			(project "odeck-10"
@@ -14765,7 +14765,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "23364db2-747f-4458-a12a-f7e624ef0e25")
+		(uuid "e6abf6df-3fe3-50d0-a30c-964c3badd636")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14777,7 +14777,7 @@
 			)
 			(justify left)
 		)
-		(uuid "bfd15d7d-97c2-47a4-81df-13b5ea200436")
+		(uuid "3c8ba97c-031c-5db4-8e88-a5dd77d3718f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 533.40 46.99 0)
 			(effects
@@ -14796,7 +14796,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2d164b37-ef4a-4f6b-ab85-0b7102c71dc1")
+		(uuid "346ce7ee-deec-5a86-b225-d3c28d01539c")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -14806,7 +14806,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "55afa7bb-37c4-450f-9a45-b7677af3159b")
+		(uuid "64237720-bc19-5f97-a817-5fcea06ade20")
 		(property "Reference" "#PWR0353"
 			(at 533.40 59.69 0)
 			(effects
@@ -14835,7 +14835,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "768aaa2d-982d-4315-95c4-3322a7026f3b")
+			(uuid "05566b5c-58de-5724-89b1-53cc252f61b0")
 		)
 		(instances
 			(project "odeck-10"
@@ -14854,7 +14854,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "45d845d3-0908-4194-9889-fa2b3f31ad5a")
+		(uuid "16dc1474-9723-5991-bd8d-7e2a663ffc00")
 		(property "Reference" "#FLG302"
 			(at 553.72 52.07 0)
 			(effects
@@ -14899,7 +14899,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "fcb0323d-39af-4404-bc4e-bdea7a0d2818")
+			(uuid "a582d129-8e11-5279-8f14-68a39bf503ab")
 		)
 		(instances
 			(project "odeck-10"
@@ -14918,7 +14918,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "42dec043-6740-4ef8-ad5a-61abbe56d2a9")
+		(uuid "9c000bf1-146f-5e7b-ac66-da87e85dcdfb")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -14930,7 +14930,7 @@
 			)
 			(justify right)
 		)
-		(uuid "adbea040-3c1f-4327-8897-87620f156b01")
+		(uuid "b2a5ddb3-d18d-59ca-9fed-ca90d7fcf9f4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 551.18 55.88 0)
 			(effects
@@ -14949,7 +14949,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4a72049d-9cf6-484c-a2df-67fd0f5a7d0b")
+		(uuid "dfd3ad92-9f50-5308-a16a-95aedd984b59")
 		(property "Reference" "C335"
 			(at 342.90 161.29 0)
 			(effects
@@ -15003,10 +15003,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "4a220cf4-20b3-477c-a259-4c199219c4c3")
+			(uuid "91290027-4b7e-5ff7-9f4e-f928bcd5edd8")
 		)
 		(pin "2"
-			(uuid "dd1fe43d-54a8-4a21-9a59-0a2c084f34ed")
+			(uuid "59681e0b-f973-5442-ad6e-6fb045dbbaf3")
 		)
 		(instances
 			(project "odeck-10"
@@ -15025,7 +15025,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "583e8f0b-e112-4946-b0e1-b8d9d330d193")
+		(uuid "99c93205-efdf-54c2-b945-29a203a6e10c")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -15037,7 +15037,7 @@
 			)
 			(justify left)
 		)
-		(uuid "38d86fb7-6a2f-4aae-8f8a-072af9aa264a")
+		(uuid "25c25972-5ef8-56d3-8dc2-7a3f04e4d400")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 340.36 156.21 0)
 			(effects
@@ -15056,7 +15056,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "63d86a9a-18f5-442d-ac2b-abe8c39ca0a8")
+		(uuid "5d8d991a-de74-5e11-9c0e-aa4a4f3485eb")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15066,7 +15066,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "db5cb9a2-207c-49f1-802f-06210045a8c4")
+		(uuid "4f5ed9b4-a2ce-58f6-9655-c4f93718b28e")
 		(property "Reference" "#PWR0354"
 			(at 340.36 168.91 0)
 			(effects
@@ -15095,7 +15095,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "fb499868-2a97-4f89-b704-30c29af9eb61")
+			(uuid "5ee01229-b0fe-52f8-8100-3b340396f033")
 		)
 		(instances
 			(project "odeck-10"
@@ -15114,7 +15114,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8b1793d7-84db-4f4b-a439-8cfa68b8377d")
+		(uuid "8dc5c958-557b-52eb-9894-1fc8b13dcdb5")
 		(property "Reference" "C336"
 			(at 353.06 161.29 0)
 			(effects
@@ -15168,10 +15168,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "1412a049-87b8-4a30-b971-b422a16aaad5")
+			(uuid "695a41bd-6b39-5a45-b401-f20935890ce2")
 		)
 		(pin "2"
-			(uuid "12edd3a2-e5e0-4a15-945b-f431fc34a24a")
+			(uuid "e8640b5b-9f31-5088-b830-fd4e9273f701")
 		)
 		(instances
 			(project "odeck-10"
@@ -15190,7 +15190,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2215555a-e410-4e57-bc2d-0b4414e53de4")
+		(uuid "cbca627a-2550-5266-a247-a5dfa3d8390d")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -15202,7 +15202,7 @@
 			)
 			(justify left)
 		)
-		(uuid "8d900023-9c65-4cbb-8293-acb374e5c1b9")
+		(uuid "6b2a606f-f49d-5057-b214-9bff14d1e8d7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 350.52 156.21 0)
 			(effects
@@ -15221,7 +15221,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e16c1615-6165-448f-9988-0380400dd03f")
+		(uuid "2782dd4b-67a1-5a6e-8b8e-0fa9a3f4577f")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15231,7 +15231,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3c8c218e-89ea-4872-840c-a9b05ea55831")
+		(uuid "c7b8b8d0-e56c-5669-aba2-63711e0a1754")
 		(property "Reference" "#PWR0355"
 			(at 350.52 168.91 0)
 			(effects
@@ -15260,7 +15260,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "17aa3dcd-b914-4110-b6c3-be2c2f35c994")
+			(uuid "9c19ccab-515d-5fc0-81a3-7110e4fe59cc")
 		)
 		(instances
 			(project "odeck-10"
@@ -15279,7 +15279,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9df7e237-d77c-4956-9789-2d05a516b883")
+		(uuid "67c0327e-688c-5185-8d50-e246fbaaca76")
 		(property "Reference" "C337"
 			(at 363.22 161.29 0)
 			(effects
@@ -15333,10 +15333,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "9cdc679a-f744-4e5f-a64f-b35294b13bd0")
+			(uuid "f1ee2391-2ba3-5211-b1c7-46c95ced1f2f")
 		)
 		(pin "2"
-			(uuid "f8f0b131-fc3b-452e-b22b-440e8bd02fae")
+			(uuid "6cd3d78c-12e9-51e6-9476-dc9cc8cf6486")
 		)
 		(instances
 			(project "odeck-10"
@@ -15355,7 +15355,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fabb23bd-2b5d-4d30-a4c8-bfc9a1532608")
+		(uuid "6273684d-48c6-5312-bdd2-fad8eaedd3a0")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -15367,7 +15367,7 @@
 			)
 			(justify left)
 		)
-		(uuid "3b290efd-e940-4d7d-a044-2ed6fafbe260")
+		(uuid "72047f16-d34a-5972-abc5-fcb0beb278c1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 360.68 156.21 0)
 			(effects
@@ -15386,7 +15386,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a9554fdd-0dcc-448e-bc5d-f1319d50a037")
+		(uuid "3ef8d53c-0ed5-5d32-bb6c-bac78ebc784d")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15396,7 +15396,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e8284bd0-ee5d-498b-97b0-4780c1529f6c")
+		(uuid "2ed301a3-795c-512b-8812-b10f7a9b1425")
 		(property "Reference" "#PWR0356"
 			(at 360.68 168.91 0)
 			(effects
@@ -15425,7 +15425,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "17d09ddc-1c21-4ddf-af4c-886494e0286c")
+			(uuid "12e48481-58e7-5029-933b-2dfcb5763a07")
 		)
 		(instances
 			(project "odeck-10"
@@ -15444,7 +15444,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "23b6ad78-3bd9-46be-9e66-c85fa1c92b55")
+		(uuid "45a70da0-6b92-5f50-bf34-0f08ff69615a")
 		(property "Reference" "R317"
 			(at 373.38 161.29 0)
 			(effects
@@ -15498,10 +15498,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "33076152-75ec-485d-a34a-a3d2868186a8")
+			(uuid "8bb318b4-23b5-54e5-a50a-33ba860664fb")
 		)
 		(pin "2"
-			(uuid "526ebe80-951a-4092-94a5-fabc1b9c1d1c")
+			(uuid "d8bfb422-52cb-5bdc-be41-4d682469379b")
 		)
 		(instances
 			(project "odeck-10"
@@ -15520,7 +15520,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "91e6721a-76f3-4987-bce4-84ec1a32a7b2")
+		(uuid "da79d337-e962-592a-97e0-0ad1f7cbf13d")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -15532,7 +15532,7 @@
 			)
 			(justify left)
 		)
-		(uuid "34df1354-d7a9-4660-bd47-234356dc7e50")
+		(uuid "caf38b1f-1562-5df4-88eb-1625c1103530")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 370.84 156.21 0)
 			(effects
@@ -15551,7 +15551,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5e12f588-bcd3-4f54-8af3-64cf93206e62")
+		(uuid "d69d3f45-3698-5901-b335-9d259b88ab46")
 	)
 	(label "1V15_EN"
 		(at 370.84 168.91 270)
@@ -15561,7 +15561,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "401675b8-deec-4a7a-9412-6dfd947b5051")
+		(uuid "953f6a4f-bc2f-5f1f-9676-6c3006f18e10")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -15571,7 +15571,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b33a910d-74dc-4d3b-8153-12295d37d48e")
+		(uuid "d1dabba9-dd23-509c-9fe3-1e23e1b3f34f")
 		(property "Reference" "R318"
 			(at 383.54 161.29 0)
 			(effects
@@ -15625,10 +15625,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "da27417e-f524-4c8a-ac29-f8c4530052b4")
+			(uuid "2fa86387-8031-518b-90f5-fc7660400028")
 		)
 		(pin "2"
-			(uuid "a2c1063a-fb69-4d06-ada4-d978270f8a9f")
+			(uuid "829e08c4-eab4-5d9c-8be0-9241f16e4bcb")
 		)
 		(instances
 			(project "odeck-10"
@@ -15647,7 +15647,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cd8a61b2-33d7-48ad-846f-707bdda120f1")
+		(uuid "665ae9b4-7a79-5c4d-9d6b-0d841ad07a13")
 	)
 	(label "1V15_EN"
 		(at 381.00 156.21 90)
@@ -15657,7 +15657,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "08956dc3-6b83-44e7-bee8-7f3c45960d10")
+		(uuid "60209aab-2543-522f-941b-af2233c28071")
 	)
 	(wire
 		(pts
@@ -15667,7 +15667,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0f8616ee-9400-4b90-8fe6-40324856f9f5")
+		(uuid "1fd6fff9-596c-5adb-b502-0978589c55c5")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15677,7 +15677,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1b8a4bec-d467-4b7c-8c48-0fded83f1384")
+		(uuid "20b553fe-2303-53a3-b7f5-ba2dd6ce6577")
 		(property "Reference" "#PWR0357"
 			(at 381.00 168.91 0)
 			(effects
@@ -15706,7 +15706,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "ab69b5b6-b961-4aa5-b502-d97a48c5cec5")
+			(uuid "4c1ab3c3-df0d-5e91-9999-aa518cf59600")
 		)
 		(instances
 			(project "odeck-10"
@@ -15725,7 +15725,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5b75a1c1-62f4-4a53-9012-21b5668c0263")
+		(uuid "ce73a589-0534-5d12-b549-1b0bc5c9b89d")
 		(property "Reference" "U305"
 			(at 411.48 154.94 0)
 			(effects
@@ -15788,28 +15788,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "e04bc3ab-41e9-408b-8b70-fb718433a8c0")
+			(uuid "b0b0fd38-9829-50a5-8d89-d048f601d898")
 		)
 		(pin "2"
-			(uuid "2988309c-708b-458e-8d97-5a700bb8a729")
+			(uuid "2555fc3f-4122-5e06-ac28-d6fc6e6a4058")
 		)
 		(pin "3"
-			(uuid "4ab8cfaa-a925-4c6d-bdaf-2d2b3fcbdc4d")
+			(uuid "919861ac-9cea-5ce8-a64f-7f3491d2a2d8")
 		)
 		(pin "4"
-			(uuid "82ffe872-0fda-4cc8-b7e3-90ab7da4958d")
+			(uuid "6cfb501f-b56d-5768-a654-d8609ac65389")
 		)
 		(pin "5"
-			(uuid "5e29763d-1b09-4d77-9132-c9ecd93b54d3")
+			(uuid "a58afde0-1f47-55f7-afaf-ac6c398464ed")
 		)
 		(pin "6"
-			(uuid "5887eaf1-dfac-4b9c-9fe3-1eee528b2d30")
+			(uuid "27517604-b2a6-526c-b0e5-17cca2409862")
 		)
 		(pin "7"
-			(uuid "65518472-4e2e-4c18-b134-f9f7e5ba8745")
+			(uuid "31adbf3e-1254-5f6b-ac99-c714ce21d69f")
 		)
 		(pin "8"
-			(uuid "f42351a7-956e-48bd-9bd5-3ca2eabcc80b")
+			(uuid "031261e7-19bc-5832-89ad-0fd6387e6429")
 		)
 		(instances
 			(project "odeck-10"
@@ -15828,7 +15828,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a5405760-ae00-4b2e-b8ff-c9008520d253")
+		(uuid "17889023-1118-5bc7-a387-b590853b26da")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15838,7 +15838,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1c5996e8-573c-489c-afb3-ff9e4763a3d5")
+		(uuid "a2930968-8818-5b4f-add3-0bb6c0f5f64e")
 		(property "Reference" "#PWR0358"
 			(at 400.05 158.75 0)
 			(effects
@@ -15867,7 +15867,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "cc804a45-4e2a-4a26-9493-8e301b3c0aac")
+			(uuid "e48f5dbf-470e-5f0e-b8ad-575770319280")
 		)
 		(instances
 			(project "odeck-10"
@@ -15886,7 +15886,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "46fe6b7a-2f9d-4422-a727-19d9499a781a")
+		(uuid "dda907ca-58cf-5d79-abf8-9aa3b1509920")
 	)
 	(label "1V15_EN"
 		(at 400.05 161.29 180)
@@ -15896,7 +15896,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "0d0d4658-d6cd-4e6f-9d28-9dfe8f41d3ba")
+		(uuid "ba2c03e7-5d34-5115-af72-7875d489cd58")
 	)
 	(wire
 		(pts
@@ -15906,7 +15906,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "001c59f8-0cb8-4e53-8370-97070fd8321b")
+		(uuid "67215344-3ef5-50ac-ab24-8ed76daa4b49")
 	)
 	(global_label "+5V"
 		(shape passive)
@@ -15918,7 +15918,7 @@
 			)
 			(justify right)
 		)
-		(uuid "d9dcc4c9-c8b1-4fb9-9718-5cf8202195ff")
+		(uuid "0ca4abb8-5348-5ae3-9e62-c5f1be47af7b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 400.05 163.83 0)
 			(effects
@@ -15937,7 +15937,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e5676777-3701-4781-bd06-383866895211")
+		(uuid "b2843ead-1641-55c4-89cb-a55e556afd24")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -15947,7 +15947,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3fa82088-8b50-46df-8a9d-aeb85f5eb0a8")
+		(uuid "bbb01268-059f-57cd-ae95-c15f33ca89a7")
 		(property "Reference" "#PWR0359"
 			(at 400.05 166.37 0)
 			(effects
@@ -15976,7 +15976,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "84f253ca-8b80-4e25-ac2a-8674408f5af8")
+			(uuid "4c613adb-b25b-553a-927d-59b584f5e8e9")
 		)
 		(instances
 			(project "odeck-10"
@@ -15995,7 +15995,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "23242e58-fc04-4263-a1f7-d38aa7aab6d8")
+		(uuid "6822e2f5-6415-545d-a68c-7b4ef392fded")
 	)
 	(label "1V15_SW"
 		(at 422.91 166.37 0)
@@ -16005,7 +16005,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "77b0ee1e-d82b-45e2-873a-dd3b78cb6c6c")
+		(uuid "5667899c-62b4-5894-9d52-f4a7fba8b942")
 	)
 	(wire
 		(pts
@@ -16015,7 +16015,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4953eef3-7905-4052-9844-107e176a6054")
+		(uuid "21378070-622f-532e-84bc-0d815c7275a5")
 	)
 	(label "1V15_BST"
 		(at 422.91 163.83 0)
@@ -16025,7 +16025,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9268ed46-7092-4e15-8e91-bc9aacb0160f")
+		(uuid "f7cd9147-002b-52ae-93a9-564770a2b592")
 	)
 	(wire
 		(pts
@@ -16035,7 +16035,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "37e05431-cc95-4b3f-83ee-ea948eaa2f73")
+		(uuid "b6fb0417-a181-5b72-9345-cc8e12f80632")
 	)
 	(global_label "RAILS_PG"
 		(shape passive)
@@ -16047,7 +16047,7 @@
 			)
 			(justify left)
 		)
-		(uuid "2bc7d2e9-6a28-43bb-ae6c-5e5b664dbeee")
+		(uuid "83a98dcd-4334-5270-be60-28a6203c0350")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 422.91 161.29 0)
 			(effects
@@ -16066,7 +16066,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0fa7beef-09b8-4158-b8dc-ae6ec785d2a0")
+		(uuid "17c2af65-fa13-5c81-bda9-e86a7c067aa5")
 	)
 	(label "1V15_FB"
 		(at 422.91 158.75 0)
@@ -16076,7 +16076,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "09d12d9b-fa14-4d6a-b932-965f7c519c54")
+		(uuid "b23d0c16-88d2-57bc-b429-726d5751a690")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -16086,7 +16086,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "97b4322b-bd08-4c78-81c4-5d9ca5947b3f")
+		(uuid "6a851a95-e80f-57d7-9d00-ba4107f76b5b")
 		(property "Reference" "R319"
 			(at 444.50 161.29 0)
 			(effects
@@ -16140,10 +16140,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "88bb1bb2-d9bc-46a4-a92f-9b6fda6b573b")
+			(uuid "aa874ec1-f335-59ce-8ab7-ba279bf03071")
 		)
 		(pin "2"
-			(uuid "d8ef54ef-40ef-4cbc-a55a-5d5d1636a9ed")
+			(uuid "458848b9-697d-55df-af24-f269bb3463c3")
 		)
 		(instances
 			(project "odeck-10"
@@ -16162,7 +16162,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9cb44985-66ee-4096-b96e-20ac0dd5d1c1")
+		(uuid "8fb128ca-9591-50b7-8acc-874b249c732c")
 	)
 	(global_label "RAILS_PG"
 		(shape passive)
@@ -16174,7 +16174,7 @@
 			)
 			(justify left)
 		)
-		(uuid "c9e8516f-0c6e-430a-9e51-2e08e659e793")
+		(uuid "a78571cd-4624-5580-8464-6f6eb956fc1a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 441.96 156.21 0)
 			(effects
@@ -16193,7 +16193,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "03938c62-5da1-42dd-a68e-3013025b5a44")
+		(uuid "a5e76c68-4b63-5ca8-8545-9a15b205b6d9")
 	)
 	(global_label "+3V3"
 		(shape passive)
@@ -16205,7 +16205,7 @@
 			)
 			(justify right)
 		)
-		(uuid "50700d55-7677-4d3f-af50-d67e576a853f")
+		(uuid "8e149ca7-1cab-5269-bc78-2da1a7bb89cf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 441.96 168.91 0)
 			(effects
@@ -16224,7 +16224,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "41759f6f-a8cc-4f6e-9d36-6e90c7e86090")
+		(uuid "6669a5ce-64b7-584d-80d1-927f912a1b55")
 		(property "Reference" "C338"
 			(at 454.66 161.29 0)
 			(effects
@@ -16278,10 +16278,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "60cda64b-e415-4e67-a043-c494aebb4389")
+			(uuid "5a1aa8ae-c885-59a7-8c44-20b13956ae46")
 		)
 		(pin "2"
-			(uuid "fd2a567f-d6a4-4f7a-8ac0-1de9bc081d43")
+			(uuid "1a6f0235-d4f2-59c3-a74c-b2bb8f19571a")
 		)
 		(instances
 			(project "odeck-10"
@@ -16300,7 +16300,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b5c9f3f4-4b8d-495b-b8a8-850c06b643cd")
+		(uuid "0d445fef-75bf-5db9-b504-b7f14b313c18")
 	)
 	(label "1V15_BST"
 		(at 452.12 156.21 90)
@@ -16310,7 +16310,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "7d088559-03f4-45c9-a6be-366efc3985da")
+		(uuid "fce78800-cb9e-52a7-81ab-e1a20316b40b")
 	)
 	(wire
 		(pts
@@ -16320,7 +16320,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "eb6ed31d-c478-4b38-84af-a121d2674918")
+		(uuid "47153eae-243c-5932-b6e7-b7515bc164db")
 	)
 	(label "1V15_SW"
 		(at 452.12 168.91 270)
@@ -16330,7 +16330,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "3c7d2f85-3a37-42f5-8fef-fc001428cdb2")
+		(uuid "fea3c976-1a06-567f-a474-046ae0b897d0")
 	)
 	(symbol
 		(lib_id "odeck:MWSA0503S-1R5MT")
@@ -16340,7 +16340,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a880636e-c704-46af-aea5-19f5a5d3a3ea")
+		(uuid "eb4c7ab5-921d-522b-a742-3256ec28ce91")
 		(property "Reference" "L303"
 			(at 472.44 173.99 0)
 			(effects
@@ -16403,10 +16403,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "dd1fa645-cb1f-453a-bd55-5f42294cc804")
+			(uuid "c93351a2-07c3-58c5-8495-4c4f51d0f630")
 		)
 		(pin "2"
-			(uuid "faab8e23-6b27-4415-930a-e21b23db2263")
+			(uuid "099fc3d2-7552-51e0-b253-3913200a05d8")
 		)
 		(instances
 			(project "odeck-10"
@@ -16425,7 +16425,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e4b3276e-2550-41d1-a63f-88c7dced45bd")
+		(uuid "e0ec1ce6-c575-56dc-a61c-84fc13c9ec49")
 	)
 	(label "1V15_SW"
 		(at 464.82 177.80 180)
@@ -16435,7 +16435,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "cf55b855-27ec-42b3-823d-674864bee2c0")
+		(uuid "a4cdfd9f-92ec-5f48-a945-fce6458960ab")
 	)
 	(wire
 		(pts
@@ -16445,7 +16445,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2d7e18ac-1ac4-4518-9b3c-6de4e5f5cd0f")
+		(uuid "baff76a0-a79b-5457-bbc1-f721928c024f")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -16457,7 +16457,7 @@
 			)
 			(justify left)
 		)
-		(uuid "40554270-f9cd-40f8-896a-7ba84325d41e")
+		(uuid "2906d73f-550f-5153-8231-87a14ce065ec")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 480.06 177.80 0)
 			(effects
@@ -16476,7 +16476,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9d8a8ee6-2052-40c3-bbf3-3a08dc06af91")
+		(uuid "0e03966b-04e9-56c2-b575-754a330d7ec6")
 		(property "Reference" "R320"
 			(at 495.30 161.29 0)
 			(effects
@@ -16530,10 +16530,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "3db54ffd-6ecd-491b-933d-05cb6c236b04")
+			(uuid "1589cfa9-61fd-5aa8-a232-4baebc9a02cf")
 		)
 		(pin "2"
-			(uuid "38a92f8e-0d58-4ee1-88d2-7cef4f9c711a")
+			(uuid "0efea6e0-beb3-5b5e-9371-8cce55a78817")
 		)
 		(instances
 			(project "odeck-10"
@@ -16552,7 +16552,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "5e90745f-f97f-4b77-90ec-4951678803e7")
+		(uuid "6f01523d-0245-5188-8712-3d502e2634a4")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -16564,7 +16564,7 @@
 			)
 			(justify left)
 		)
-		(uuid "1cb3fc61-2148-4f1c-9ac7-2336c8613e39")
+		(uuid "694d7969-7bb1-528d-8dba-8be5c24ca6fe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 492.76 156.21 0)
 			(effects
@@ -16583,7 +16583,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d47945f0-8c6f-48d6-842f-c974d420d61b")
+		(uuid "6f560562-7d90-519e-a471-48886b173a73")
 	)
 	(label "1V15_FB"
 		(at 492.76 168.91 270)
@@ -16593,7 +16593,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "8de148cb-a542-447e-926a-e9b5db3b8d51")
+		(uuid "c9b57020-613f-5835-a4b6-93721efa7e66")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -16603,7 +16603,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7b922a56-b521-4e74-856f-6e1bcc5f4e1b")
+		(uuid "7d0691fd-cb2b-50f5-a79e-2d2b2596faac")
 		(property "Reference" "R321"
 			(at 505.46 161.29 0)
 			(effects
@@ -16657,10 +16657,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "6b58f96d-7ade-4ac0-9dfc-d895eac04aeb")
+			(uuid "0cd3acd6-61c4-5bf3-85e5-22b70079d29b")
 		)
 		(pin "2"
-			(uuid "9f92aa8f-f4ba-4584-a837-421f7fd5beb8")
+			(uuid "ef761f80-ba8b-5936-9504-6a14397a3e57")
 		)
 		(instances
 			(project "odeck-10"
@@ -16679,7 +16679,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1b10a3ed-df4b-4cbe-a2d6-07f5f69c9d18")
+		(uuid "0e9cd88b-502c-53c8-8301-3b14901550be")
 	)
 	(label "1V15_FB"
 		(at 502.92 156.21 90)
@@ -16689,7 +16689,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "50e30aeb-107d-4dde-8e84-408094d03a74")
+		(uuid "a062f7d7-ba99-53c5-a4f8-7f1a9d2612c1")
 	)
 	(wire
 		(pts
@@ -16699,7 +16699,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f7fb7123-bc85-4f4b-ae6f-8460958bebde")
+		(uuid "c8ddb692-f828-5d1a-a294-d3620249a580")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -16709,7 +16709,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "dc320a94-4214-4c3c-8114-6baaf4c622a6")
+		(uuid "372f01ea-205b-50ff-b63c-e8e075d528d7")
 		(property "Reference" "#PWR0360"
 			(at 502.92 168.91 0)
 			(effects
@@ -16738,7 +16738,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6d1ade0f-9303-4428-8931-90f47f5fa1ff")
+			(uuid "6a07949c-ac13-5449-9722-ee81f8ca8251")
 		)
 		(instances
 			(project "odeck-10"
@@ -16757,7 +16757,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "08c333fd-2d5c-4cbb-83e6-006644e734be")
+		(uuid "e375934b-a89a-533d-bc60-2d605e8c1aae")
 		(property "Reference" "C339"
 			(at 515.62 161.29 0)
 			(effects
@@ -16811,10 +16811,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "6b6dbafd-1be1-4b43-8ac1-94d20e26d84b")
+			(uuid "a85f30f5-6377-5a33-ad3e-afe4ad07c485")
 		)
 		(pin "2"
-			(uuid "97202c32-544f-4fa2-9939-89f2abb6a638")
+			(uuid "e6f84042-453b-53c8-b56b-9aa6fbcaa059")
 		)
 		(instances
 			(project "odeck-10"
@@ -16833,7 +16833,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ae2f9fad-388a-4055-9870-57a5530047dc")
+		(uuid "6a6ee9bb-94e3-52d4-a676-3420442e5db4")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -16845,7 +16845,7 @@
 			)
 			(justify left)
 		)
-		(uuid "b4650eee-76bb-49ef-8f96-34cc823ef73d")
+		(uuid "4d2d166c-7437-52f8-a69b-69bd9a95b044")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 513.08 156.21 0)
 			(effects
@@ -16864,7 +16864,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fbbc6aac-a0a2-4f7b-b9ab-99ac7d3993b9")
+		(uuid "defbca69-597c-5f31-8a7c-4cd0005a80ab")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -16874,7 +16874,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a7d9470f-a56c-43e8-a050-081480049bf7")
+		(uuid "b42bdefd-34d8-5977-ac90-df78f993629f")
 		(property "Reference" "#PWR0361"
 			(at 513.08 168.91 0)
 			(effects
@@ -16903,7 +16903,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6e382209-922f-4765-8801-87e0658b24d7")
+			(uuid "cec06262-e5bd-59df-a701-9a63fc388272")
 		)
 		(instances
 			(project "odeck-10"
@@ -16922,7 +16922,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "35ec164d-dfb6-4b7a-8bf0-f0be980b3388")
+		(uuid "4a6ed046-5638-5752-830e-d6befd05ac66")
 		(property "Reference" "C340"
 			(at 525.78 161.29 0)
 			(effects
@@ -16976,10 +16976,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "3bcfeb15-6614-48fe-a764-d8a1ea223ed1")
+			(uuid "6ca556e5-d41c-5b60-8c3a-ba3211cbae30")
 		)
 		(pin "2"
-			(uuid "66779d07-0c60-4da4-87ab-ba1319cf2365")
+			(uuid "f7dfa828-2c16-5ba8-9bac-fc38552d7550")
 		)
 		(instances
 			(project "odeck-10"
@@ -16998,7 +16998,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f9f854a8-27f2-4217-b0f8-bb580136b93c")
+		(uuid "54a07d22-9ea8-5764-b23a-c3284d85ef0c")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -17010,7 +17010,7 @@
 			)
 			(justify left)
 		)
-		(uuid "a8020f89-ac58-43d1-bbd5-c8c634558211")
+		(uuid "73649e5e-90e9-5def-ae63-414081d3c42c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 523.24 156.21 0)
 			(effects
@@ -17029,7 +17029,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8f3727d8-6cff-4e16-a131-2f831115d88b")
+		(uuid "33e36523-4b8d-57ad-8da3-663111ce0157")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -17039,7 +17039,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5ce26bff-0b04-4901-ae54-afe29b3bea84")
+		(uuid "340a385e-41d2-5dae-8f31-475568f47a3e")
 		(property "Reference" "#PWR0362"
 			(at 523.24 168.91 0)
 			(effects
@@ -17068,7 +17068,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "47883974-23f9-449f-8b05-1ed0803aa815")
+			(uuid "c65f0cee-d1cd-5672-b979-2f0b6da8c724")
 		)
 		(instances
 			(project "odeck-10"
@@ -17087,7 +17087,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e737220a-5bdd-4a97-b873-b7c4da949ec4")
+		(uuid "9a73f779-2c18-5c82-950f-47a44fefa8ef")
 		(property "Reference" "C341"
 			(at 535.94 161.29 0)
 			(effects
@@ -17141,10 +17141,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "43351217-172a-4d7b-ad79-100df5c2f644")
+			(uuid "e007eac3-610a-57ea-9cc6-48df0287deef")
 		)
 		(pin "2"
-			(uuid "9670c245-fda6-4612-8751-5e3e79b09ccf")
+			(uuid "73bf05c0-d4b9-55d0-9103-86df327e41c8")
 		)
 		(instances
 			(project "odeck-10"
@@ -17163,7 +17163,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "93eb7eb9-d331-4cf9-b8ab-d9d433dc3ee5")
+		(uuid "ce4ed879-1a60-566e-aeef-c6a9d15a5a79")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -17175,7 +17175,7 @@
 			)
 			(justify left)
 		)
-		(uuid "4f1056be-e31f-47d7-aa15-4fc31b7e0da6")
+		(uuid "d7a123d4-8570-5c7e-8611-1e5d7d263af0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 533.40 156.21 0)
 			(effects
@@ -17194,7 +17194,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b1f3be86-630f-40f5-8432-8d4e2053f09b")
+		(uuid "d8bae820-4152-56dd-8c57-7954effcdb9a")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -17204,7 +17204,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f518326f-59f1-4c22-bdd4-c142b3da2911")
+		(uuid "fa8c40d7-3004-5583-be36-6e7ae54dd1a9")
 		(property "Reference" "#PWR0363"
 			(at 533.40 168.91 0)
 			(effects
@@ -17233,7 +17233,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "5fbec5d4-9627-4d35-895c-30dd99c65290")
+			(uuid "3c6654cb-090f-561c-8d1d-d61a8de0585b")
 		)
 		(instances
 			(project "odeck-10"
@@ -17252,7 +17252,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7b2dd4fe-0656-4827-9864-60daa76c2d49")
+		(uuid "037e1309-aaf8-52e4-bba7-beec68e17915")
 		(property "Reference" "C342"
 			(at 546.10 161.29 0)
 			(effects
@@ -17306,10 +17306,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "9322be21-6f74-4813-b7d6-a30ca4855a00")
+			(uuid "2d4221bb-574a-5b01-882c-851fac0ae79a")
 		)
 		(pin "2"
-			(uuid "d89442fe-cbd2-401a-84b0-fce9869c6115")
+			(uuid "8ee56bc9-525a-53b9-84c4-ee8a6f781248")
 		)
 		(instances
 			(project "odeck-10"
@@ -17328,7 +17328,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c3305cf7-56f2-4bf9-9de9-5050f7775ce0")
+		(uuid "83e63b91-550d-5c59-84c4-bd3a6141fd72")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -17340,7 +17340,7 @@
 			)
 			(justify left)
 		)
-		(uuid "394d2de4-7432-44c0-b967-92593f48392a")
+		(uuid "e40606e5-8005-52c3-8a27-3f68a83a9ece")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 543.56 156.21 0)
 			(effects
@@ -17359,7 +17359,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "575c9ff0-6c5f-4337-aded-d2abe251409c")
+		(uuid "2a80aef9-0abd-5aa2-a21a-22ffb5c20c5b")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -17369,7 +17369,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "bd0433cc-2caf-4550-b25e-94c5a757be70")
+		(uuid "29e64c04-8053-50c0-82dc-1c47828625e7")
 		(property "Reference" "#PWR0364"
 			(at 543.56 168.91 0)
 			(effects
@@ -17398,7 +17398,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "7decb437-5ba2-4a70-9b3b-460003a1949d")
+			(uuid "74c62d95-6f23-5b91-917a-6b6c42d3b1ed")
 		)
 		(instances
 			(project "odeck-10"
@@ -17417,7 +17417,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "dbb8ff3c-b454-4b0b-9450-c6ec1268283d")
+		(uuid "bd7771d4-4c35-502e-8220-901af5217c7e")
 		(property "Reference" "#FLG303"
 			(at 563.88 161.29 0)
 			(effects
@@ -17462,7 +17462,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "384852fe-903c-4f04-b559-fe2a87ac81e2")
+			(uuid "b2eca091-8ad7-5ec6-903a-c4472f115392")
 		)
 		(instances
 			(project "odeck-10"
@@ -17481,7 +17481,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "14c4c627-2ca2-4d6a-b799-3d6bbb7dfd37")
+		(uuid "00acfa6a-056c-58ec-b41e-79f7cdba639a")
 	)
 	(global_label "+1V15"
 		(shape passive)
@@ -17493,7 +17493,7 @@
 			)
 			(justify right)
 		)
-		(uuid "aa56a4be-cd1b-490e-9e5d-ae210d45a7dd")
+		(uuid "df0131ef-bd26-5c5c-9414-c94e0d8b96cd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 561.34 165.10 0)
 			(effects
@@ -17512,7 +17512,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aa21cf7d-ea33-49e2-a323-d698bb3d388e")
+		(uuid "e33f4df8-0001-5c4e-8f28-5a19959a4db5")
 		(property "Reference" "#FLG304"
 			(at 22.86 29.21 0)
 			(effects
@@ -17557,7 +17557,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "a5fa9768-de64-4df3-889b-dcabb2cad563")
+			(uuid "c58af013-762d-526c-aad1-73dff391c2cc")
 		)
 		(instances
 			(project "odeck-10"
@@ -17576,7 +17576,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d8d29656-62ea-4598-8c2e-8d8053b2ff04")
+		(uuid "2a955b15-c3ac-5536-bea1-b05171f4406c")
 	)
 	(label "5V_VINC"
 		(at 20.32 33.02 270)
@@ -17586,7 +17586,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "93cc07b9-1c6e-436d-839e-01e88b11851b")
+		(uuid "9dec86ca-c890-5e16-9df5-cf51d25e55eb")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -17596,7 +17596,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "82f03c8f-2bda-4af4-a54f-54ab71fcc837")
+		(uuid "0bc2a5cb-b84b-57f5-99b0-b374e89f8449")
 		(property "Reference" "#FLG305"
 			(at 38.10 29.21 0)
 			(effects
@@ -17641,7 +17641,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "8bb85e44-8085-43f6-915e-c04058fd8adb")
+			(uuid "f7e4466c-dd28-58ee-acca-fc4037820ea5")
 		)
 		(instances
 			(project "odeck-10"
@@ -17660,7 +17660,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ea1d61c9-98a0-4baa-94a5-21dae2813a2f")
+		(uuid "8da14bce-bf5b-5bed-84a3-16a4e675f256")
 	)
 	(label "5V_BUCK"
 		(at 35.56 33.02 270)
@@ -17670,7 +17670,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "48252a27-2723-4347-89f6-1ddab36421de")
+		(uuid "48461ab6-1b93-53c7-8fbe-8b72d8fc56f7")
 	)
 	(text "1. +5V MAIN BUCK  LM5148 (80 V sync buck controller)  VIN 9-50 V -> 5V_BUCK = 5.13 V, 8 A, fsw 300 kHz"
 		(exclude_from_sim no)
@@ -17681,7 +17681,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1cf59fea-b46b-4d0f-aef3-377e4a0fc7c6")
+		(uuid "a41ae18f-122b-52d1-931b-20699f5e3047")
 	)
 	(text "fsw = 1e6/(45*73.2k+53) = 299 kHz; tON at 50.4 V = 340 ns >> 50 ns min; dropout below ~5.3 V (VIN UVLO is 8 V)."
 		(exclude_from_sim no)
@@ -17692,7 +17692,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2e184546-a721-4c32-bf30-e69a562ebd38")
+		(uuid "1f806194-6702-5987-94c9-f8727da116bb")
 	)
 	(text "L = 4.7 uH: dI = 3.25 A p-p at 48 V, 2.7 A at 20 V. Slope comp: L_ideal = Vo*Rs/(24*f) = 2.85 uH -> 1.65x (stable)."
 		(exclude_from_sim no)
@@ -17703,7 +17703,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "327b9ee0-d609-4917-8f77-c01c84378137")
+		(uuid "d222d31b-7f93-5ddf-8df0-424bffa9ff17")
 	)
 	(text "Rs = 4 mOhm, VCS-TH 49/60/73 mV -> peak limit 12.3/15/18.3 A, DC >= 10.6 A at 48 V; short-circuit peak 18.7 A < 24 A Isat."
 		(exclude_from_sim no)
@@ -17714,7 +17714,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e7b5cc00-6e0e-4a6e-aa73-fc9949a7a131")
+		(uuid "ccd51a25-4f9d-596e-bda7-4a78f72f905e")
 	)
 	(text "Comp (gm 1.2 mS, Gcs 10): RCOMP 10k, CCOMP 10n (zero 1.6 kHz), CHF 100p (pole 159 kHz)."
 		(exclude_from_sim no)
@@ -17725,7 +17725,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "26ec0a4c-031e-441a-bb06-1b0dab8b724d")
+		(uuid "9b654e02-388b-5d15-bba1-0989270ddf4e")
 	)
 	(text "  fc = 18 kHz with ~430 uF total (+5V bulk + ceramics); 52 kHz with buck-side ceramics only (~150 uF) - both < fsw/5."
 		(exclude_from_sim no)
@@ -17736,7 +17736,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "75333847-99b4-4fe3-be33-67a556dc86c4")
+		(uuid "4470eb00-8a67-5405-aa6c-64ab63d57330")
 	)
 	(text "PFM/SYNC = VDDA: diode emulation, no negative inductor current (cannot pump +5V energy back into VIN)."
 		(exclude_from_sim no)
@@ -17747,7 +17747,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e6491c6b-ce58-4774-8960-0a0072ad50ff")
+		(uuid "98947ab4-1e6c-578e-ae7c-65bdef1f3dc2")
 	)
 	(text "VCCX = own output (> 4.3 V): gate drive from 5 V instead of the VIN LDO (saves ~0.5 W at 48 V)."
 		(exclude_from_sim no)
@@ -17758,7 +17758,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d673181b-f78c-473d-857d-12bb070061c3")
+		(uuid "ff13e637-f254-5da2-a1ef-c5ff1d70f127")
 	)
 	(text "Loss at 8 A: ~2.6 W (20 V in, 94 %), ~3.6 W (48 V in, 92 %); incl. OR-FET + INA shunt: 93.3 % / 91.4 %."
 		(exclude_from_sim no)
@@ -17769,7 +17769,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a584a621-772a-4a17-90eb-d259078a2d8d")
+		(uuid "62d8d2cc-8a1c-505c-a9b6-972e0bb832a2")
 	)
 	(text "2. BACKFEED BLOCK  5V_BUCK -> ideal diode (LM74700 + BSC0901NS) -> 5V_OR -> 2 mOhm shunt -> +5V"
 		(exclude_from_sim no)
@@ -17780,7 +17780,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3c0b0d5a-5088-4d79-8984-d06409134f96")
+		(uuid "3a4b9fc4-ec91-5ffa-9da4-278c56aad481")
 	)
 	(text "PROBLEM: in bus-powered mode +5V is fed from laptop VBUS (sink switch, power_laptop sheet) while VIN is absent."
 		(exclude_from_sim no)
@@ -17791,7 +17791,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ced7f366-8194-4d5c-8bd6-5292cdce196d")
+		(uuid "e2d5f697-d7ad-517a-982d-3f6cbc09431d")
 	)
 	(text "A plain sync buck would conduct +5V -> L -> Q301 body diode -> VIN (~4.3 V on VIN, which would also wake the"
 		(exclude_from_sim no)
@@ -17802,7 +17802,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7be19849-ddcf-48be-aa51-8a4ff8938623")
+		(uuid "457d4d56-c59e-5072-96a5-f156eae2fd85")
 	)
 	(text "LM51770 buck-boost at its 3.5 V UVLO and the LM5148's VOUT->VIN ESD diode would conduct too)."
 		(exclude_from_sim no)
@@ -17813,7 +17813,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "0afd6498-ce48-4cf4-9f56-c424be5a0c3e")
+		(uuid "b59edbb2-6955-5c7d-bfc8-a29a9bce3f19")
 	)
 	(text "FIX: the buck regulates its own node 5V_BUCK; LM74700 + Q303 form an ideal diode 5V_BUCK -> +5V."
 		(exclude_from_sim no)
@@ -17824,7 +17824,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "565bbd6d-82a4-4f6e-8831-d84b1fff9bcb")
+		(uuid "5d758d20-c0e9-58ca-8967-ac5b47f6eb9d")
 	)
 	(text "  VIN absent: LM74700 unpowered (ANODE ~0 V), Q303 off, its body diode reverse-biased -> zero reverse current."
 		(exclude_from_sim no)
@@ -17835,7 +17835,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "51493110-0a9e-4681-b11f-e2e8f2081306")
+		(uuid "084691bd-f3e9-5cd5-aecf-e51fbbbf8b37")
 	)
 	(text "  Buck running: Q303 regulated to 20 mV forward drop (0.16 W at 8 A); reverse current -> gate pulled in <0.75 us."
 		(exclude_from_sim no)
@@ -17846,7 +17846,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ba192787-7c96-41fe-8398-e58a539ca709")
+		(uuid "0e8027a7-6812-5364-ae4f-f8374df156f6")
 	)
 	(text "  Nothing on this sheet ties VIN-side pins to +5V (FB, VCCX, VOUT/ISNS+, PG pull-up all on 5V_BUCK)."
 		(exclude_from_sim no)
@@ -17857,7 +17857,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7b6ede30-df25-4a77-8e31-cce0f6efb7cc")
+		(uuid "4cbf856f-a162-52fc-84df-3379a34dac12")
 	)
 	(text "  VIN at a few volts: EN/UVLO divider keeps the LM5148 off below 7.0-8.0 V, D301 isolates its VIN pin."
 		(exclude_from_sim no)
@@ -17868,7 +17868,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "c4db51cd-2bd5-4c17-a2fc-c65b231f22d4")
+		(uuid "bfe60aeb-6dfe-55fb-8fc6-3d5eabe9129f")
 	)
 	(text "Handover: external power arrives -> buck soft-starts (3 ms) into 5V_BUCK -> diode conducts once 5V_BUCK > +5V,"
 		(exclude_from_sim no)
@@ -17879,7 +17879,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "39293929-de14-4f03-ae7d-2cf404112c4d")
+		(uuid "3dc9ff99-e58a-50b1-b30e-0fe314046d24")
 	)
 	(text "  +5V rises 5.0 -> 5.11 V, EXT_PWR_PRESENT opens the sink switch. Loss of VIN: +5V held by 330 uF + ceramics."
 		(exclude_from_sim no)
@@ -17890,7 +17890,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "8d99fcae-ddea-4ab1-a3c7-8fd5b26a874c")
+		(uuid "1d2abe39-6a1c-5af4-b86a-cec2cbdc377b")
 	)
 	(text "INA226 @ 0x41 (A1=GND, A0=VS): 2 mOhm, 8 A = 16 mV of +-81.92 mV FS; CURRENT_LSB 0.5 mA -> CAL = 5120."
 		(exclude_from_sim no)
@@ -17901,7 +17901,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "092a5ca1-ee98-4d40-8aed-cfbda7f41843")
+		(uuid "9c73c796-32ad-5b58-9caf-0616c81c19d4")
 	)
 	(text "  Measures buck output only; bus-powered +5V current is seen by the laptop-VBUS INA226 (power_laptop)."
 		(exclude_from_sim no)
@@ -17912,7 +17912,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "887e8182-97e5-480e-beb4-93e51ac1028d")
+		(uuid "7f3b044e-6945-57a5-b431-aa09783d13d9")
 	)
 	(text "  ALERT unused (firmware polls); I2C pull-ups live on the MCU sheet."
 		(exclude_from_sim no)
@@ -17923,9 +17923,9 @@
 			)
 			(justify left top)
 		)
-		(uuid "282ab78b-dbf8-4337-a942-693acb854d2f")
+		(uuid "cf84ea65-db57-5cc7-aaa8-db0159326283")
 	)
-	(text "3. +3V3  TPS62933 (3.8-30 V in, 3 A)  +5V -> 3.33 V, 1.2 MHz"
+	(text "3. +3V3  TPS62933F forced-PWM (3.8-30 V in, 3 A)  +5V -> 3.33 V, 1.2 MHz"
 		(exclude_from_sim no)
 		(at 340.36 22.86 0)
 		(effects
@@ -17934,7 +17934,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2ecd5e38-141a-4349-8983-04b717e9093c")
+		(uuid "63fe691a-dfc2-5b50-8f3a-cca97eda3618")
 	)
 	(text "dI = 3.33*(1-3.33/5.13)/(2.2u*1.2M) = 0.44 A p-p (15 % of 3 A). Cout 3x22 uF (~35 uF eff. at 3.3 V; TI table: 30 uF typ, 10 uF min)."
 		(exclude_from_sim no)
@@ -17945,7 +17945,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "70767e80-4a1b-4d38-b2fc-36121c1a054f")
+		(uuid "7c344d72-f079-5656-9267-bfdf6f487295")
 	)
 	(text "Soft start 3.2 ms (3.9 ms worst): inside RTL8156BG 3.3 V rise 0.5-10 ms and USB7206C <= 5 ms."
 		(exclude_from_sim no)
@@ -17956,7 +17956,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "43ded986-3f23-4e9c-b84f-18f06480e039")
+		(uuid "3eca636c-6cb6-5f02-a978-3b7dea3e89bd")
 	)
 	(text "EN divider 100k/39k: starts at +5V > 4.31 V (stops ~4.0 V) so a sagging bus-powered +5V cannot half-start the rail."
 		(exclude_from_sim no)
@@ -17967,7 +17967,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1917fdd9-1cf3-4337-8064-d49389254ff3")
+		(uuid "80104eeb-77e4-57e5-a67e-21a0acca6596")
 	)
 	(text "Load ~1.5 A typ / 2.2 A max (hub VDD33, RTL8156BG, muxes, PMG1, RP2350, LCD, SD cards): ~0.3-0.7 W loss."
 		(exclude_from_sim no)
@@ -17978,7 +17978,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a2fe3db9-4cde-489d-afd4-d5ac452ce9a8")
+		(uuid "959014f1-217f-5dad-b24a-285117c60be3")
 	)
 	(text "4. +1V15  USB7206C VCORE (1.09-1.21 V, 1.15 V nom.)  TPS62933P  +5V -> 1.154 V, 1.2 MHz"
 		(exclude_from_sim no)
@@ -17989,7 +17989,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "575d29fa-d537-402b-809d-9e775c9f9de0")
+		(uuid "53656571-ceef-5178-b156-fdecd3408822")
 	)
 	(text "USB7206C (DS00003850F): VCORE 1.09-1.21 V; ~1.31 A with all 5 ports at 10G (410 mA + 179 mA/port). 1.154 V +-1.5 % -> 1.137-1.171 V."
 		(exclude_from_sim no)
@@ -18000,7 +18000,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "815234fd-ffb8-47f3-87a7-ced2d559c438")
+		(uuid "2969f2d9-7964-5ca9-9294-98309afe7d0e")
 	)
 	(text "Sequencing (sec. 9.6.1): VCORE rises after or with VDD33 -> EN from +3V3 divider; rise times <= 5 ms -> fixed 2 ms SS."
 		(exclude_from_sim no)
@@ -18011,7 +18011,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "80fedbb2-0c14-43e3-93ef-2977372eb92d")
+		(uuid "c10bdaf9-2b8d-5cd0-93d3-064dc25785ec")
 	)
 	(text "dI = 1.15*(1-1.15/5.13)/(1.5u*1.2M) = 0.50 A p-p (17 % of 3 A, >10 % min for PCM). Cout 4x22 uF (+ hub 9x4.7 uF)."
 		(exclude_from_sim no)
@@ -18022,7 +18022,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3a77c540-5365-4e1f-b165-1eb08565330d")
+		(uuid "aee394fd-c8e8-5a1c-a90a-5fa1cc80b4be")
 	)
 	(text "RAILS_PG (open drain, 100k to +3V3): high only when +1V15 is in regulation, which implies +3V3 is up."
 		(exclude_from_sim no)
@@ -18033,7 +18033,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "8305c833-071f-49fa-ba40-a530264871bd")
+		(uuid "87ef9f03-0475-526f-b492-3ca24a156a64")
 	)
 	(text "  LOCAL NET - intended to be wire-ORed onto HUB_RESET_N (hold hub in reset until VCORE is good). See docs."
 		(exclude_from_sim no)
@@ -18044,7 +18044,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "02b8fcb2-82a2-416e-ba66-3815772f6955")
+		(uuid "99b2ffd8-18fb-587f-b712-f49548de3ea0")
 	)
 	(text "5. RAILS NOT CREATED HERE"
 		(exclude_from_sim no)
@@ -18055,7 +18055,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "c07d1a15-6c65-45d1-bf5a-c44c882c79a2")
+		(uuid "dfa08860-ee01-5833-9f3a-a0ffa3bd9752")
 	)
 	(text "+1V1: not needed. RP2350 core (DVDD 1.1 V) comes from its internal switching regulator (VREG_VIN from +3V3)."
 		(exclude_from_sim no)
@@ -18066,7 +18066,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d3211ac7-672a-4823-8083-384588134ea5")
+		(uuid "2cc10993-bccd-5ae1-bcff-175f1692dd11")
 	)
 	(text "RTL8156BG (non-S) has NO internal regulator: it needs an external 0.95 V (0.92-0.98 V, <= 650 mA) buck that it"
 		(exclude_from_sim no)
@@ -18077,7 +18077,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1945f94b-4937-416d-81e2-c4e748eef803")
+		(uuid "671ffaeb-533a-5d21-acdc-701831514221")
 	)
 	(text "  enables itself via pin 5 POW_EXT_SWR (rise 0.5-2.2 ms). Only the RTL8156BGS has REG_OUT, and it is not stocked."
 		(exclude_from_sim no)
@@ -18088,7 +18088,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "62fc1af7-dccb-4f25-84a0-5bde351d476c")
+		(uuid "8398e546-5f1b-557c-b65d-e37550568f6f")
 	)
 	(text "  -> place a dedicated 0.95 V buck (e.g. TLV62569 from +3V3, EN = POW_EXT_SWR) on the ethernet sheet."
 		(exclude_from_sim no)
@@ -18099,7 +18099,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "a247a3ae-e5f6-45a6-a553-aa5d7b8be1d0")
+		(uuid "57c2c714-cbfa-5be5-a545-78a0c66a42e7")
 	)
 	(text "GL3224: single 5 V supply (4.75-5.25 V) on its VBUS pin, internal 3.3 V / 1.2 V regulators -> fed from +5V."
 		(exclude_from_sim no)
@@ -18110,7 +18110,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "6bc23c3c-0494-464a-93bb-074f4f713ecf")
+		(uuid "9b64724d-9636-5e3e-9ac9-3a1ad8e8716c")
 	)
 	(text "Sequencing: hub needs VCORE >= after VDD33 (done here); RTL8156BG sequences its own 0.95 V; GL3224 needs none."
 		(exclude_from_sim no)
@@ -18121,6 +18121,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "13524758-3575-4881-a349-6fb939818ad5")
+		(uuid "81a8cf5e-b160-5da1-a379-ec1267eb681e")
 	)
 )

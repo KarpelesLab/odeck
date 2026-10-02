@@ -144,7 +144,16 @@ Hardware backstops that stay independent of *all* firmware:
 | pd_pmg1 | drafted, netlist-verified (CYPM1321 — has dead-battery Rd) | `design/pd_pmg1.md` |
 | usbc_muxes | drafted, netlist-verified | `design/usbc_muxes.md` |
 | usb_hub | drafted, netlist-verified | `design/usb_hub.md` |
-| usb_a, ethernet, card_reader, mcu, display_ui, sensors | TODO | |
+| usb_a | drafted, netlist-verified | `design/usb_a.md` |
+| card_reader | drafted, netlist-verified (GL3224 is 5 Gbps) | `design/card_reader.md` |
+| ethernet | drafted, netlist-verified | `design/ethernet.md` |
+| mcu | drafted, netlist-verified (TCA9534 expander for slow status I/O) | `design/mcu.md` |
+| display_ui | drafted, netlist-verified | `design/display_ui.md` |
+| sensors | drafted, netlist-verified | `design/sensors.md` |
+
+**All 12 sheets drafted (2026-10-02):** 181 unique parts, all JLC stock ≥ 5, netlist verify OK, ERC clean except one
+spare-pin label. Parts ≈ $160/board at qty-1 prices; 125 extended part types (~$375 JLC fee per order — swap
+passives to basic parts to cut this). Lowest stock: CYPM1321 (20), USB7206CT (21), TUSB1046 (42), TUSB1064 (53).
 
 ## I2C address map (so far)
 | Bus | Addr | Device |
@@ -152,7 +161,9 @@ Hardware backstops that stay independent of *all* firmware:
 | I2C_SYS | 0x41 | INA226, +5V rail (power_rails) |
 | I2C_SYS | 0x44 | INA226, laptop VBUS (power_laptop) |
 | I2C_SYS | 0x45 | INA237, VIN (power_input) |
-| I2C_SYS | 0x48–0x4F | TMP1075 ×8 (sensors) — reserved |
+| I2C_SYS | 0x48–0x4F | TMP1075 ×8 (sensors) |
+| I2C_SYS | 0x20 | TCA9534 I/O expander (mcu) |
+| I2C_SYS | 0x50 | 24AA025E48 EUI-48 MAC EEPROM (ethernet) |
 | I2C_PD | 0x21 | TPS26750 target (power_input) |
 | I2C_PD | 0x42 | PMG1-S3 HPI (pd_pmg1) |
 | HUB SMBus | 0x2D | USB7206C (usb_hub) |
@@ -188,6 +199,19 @@ Hardware backstops that stay independent of *all* firmware:
 15. **Footprints to verify:** both USB-C receptacles (DX07 THT B-row numbering), PMG1 BGA-97 (0.5 mm), USB7206C VQFN-100.
 16. Low stock: CYPM1321 (20), TUSB1046 (42), TUSB1064 (53), USB7206CT (21) — order the prototype run early.
 17. Two linear redrivers in series at HBR3 — EQ is a first guess (both sides have bench-tunable strap footprints).
+
+### From remaining sheets
+18. **RP2350B pins ran out** (54 needed / 48) → TCA9534 at 0x20 for EXT_PWR_PRESENT, LAPTOP_OVP_N, TEMP_ALERT_N,
+    card detects, ETH_RESET_N, ETH_I2C_EN. Hub SMBus and Qwiic on PIO I2C.
+19. **RTL8156BG has no reset pin** → ETH_RESET_N switches the PHY's 3.3 V (TPS22918); hold low ≥ 100 ms.
+    +3V3 regulator changed to TPS62933F (forced PWM — Realtek wants ≥ 1 MHz PWM supply).
+20. **MAC address:** blank RTL8156BG has no unique MAC; plan = RP2350 reads 24AA025E48 and writes the PHY eFuse
+    once over the PHY's I2C (bridge enabled by ETH_I2C_EN). Slave address/feasibility unverified → bench-test early;
+    fallback host tool / OS override.
+21. **LCD FPC tail** has a stiffener (connector-style): confirm JLC can solder it; fallback 12-pin 0.5 mm FPC connector.
+22. Forced-5 V on USB-A: check whether USB7206C presents the BC1.2 signature on a port it considers off.
+23. More footprints to verify: USB-A (GSB4111312HR), TPS2553 SOT-23-6 (shared name), SD-111, DM3AT,
+    RTL8156BG EP size (4.7 vs 4.5 mm), RJ45 (shell pad renumbered), RP2350B QFN-80, LCD FPC (hand-made).
 
 ## Notes on a 20 Gbps step
 USB 3.2 Gen2x2 (20G) is **not supported by Apple Silicon Macs** (they fall back to 10G), uses all 4
