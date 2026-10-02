@@ -8,8 +8,8 @@ usable as a bare PCB straight out of the box.
 - **Upstream:** USB-C, USB4 40 Gbps (TB3/TB4 host compatible), PD source to host up to **140 W (PD 3.1 EPR, 28 V × 5 A)**, 100 W SPR fallback.
 - **Downstream:**
   - 1× USB-C USB4/TB (daisy chain, DP alt mode monitor — "USB display")
-  - 1× HDMI (target HDMI 2.1 / 4K120 via DP→HDMI PCON; 4K60 minimum)
-  - 2–3× USB-A 10 Gbps
+  - 1× HDMI (target HDMI 2.1 / 4K120 via DP→HDMI PCON; 4K60 minimum) — 40G version; odeck-10 uses DP alt mode on the downstream USB-C only
+  - 2× USB-A 10 Gbps
   - SD (UHS-I min, UHS-II stretch) + microSD
   - 2.5GbE RJ45
 - **Power:** both modes
@@ -34,9 +34,10 @@ usable as a bare PCB straight out of the box.
   - Drives the LCD, collects status (I2C/SMBus to PD controllers & hub, LED pins of PHY/card reader)
   - USB device on an internal hub port: UF2 drag-and-drop firmware updates through the deck itself,
     optional host-side status app, can reflash other on-board SPI flashes
-  - **Power safety must not depend on MCU firmware:** PD controllers boot autonomously from their own
-    EEPROM/config with safe defaults; MCU only monitors and requests changes. Custom user firmware can't
-    fry the laptop.
+  - **RP2350 flashes every other programmable component** (PD controllers, config EEPROMs, hub config);
+    its firmware bundles their images so a single UF2 updates the whole deck.
+  - PD controllers still boot autonomously from their own flash/EEPROM at runtime; hardware backstops
+    (independent VBUS OVP, power-good gating) protect the laptop regardless of any firmware.
   - **User GPIO expansion (optional, unpopulated by default or low-profile):** 2.54 mm header with spare
     GPIOs (incl. ADC-capable pins, PIO-friendly), 3V3 / 5V / GND, series resistors + ESD; Qwiic/STEMMA QT
     (JST-SH 4-pin) I2C connector; SWD pads; BOOTSEL + reset buttons

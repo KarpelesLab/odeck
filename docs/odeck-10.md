@@ -15,10 +15,8 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
  Laptop USB-C ═══ TUSB1064 (UFP mux) ══ USB 10G ══► USB7206C hub
  (data UFP, 10G     │                                 ├─ 10G ─► USB-A #1
   + DP alt C/D,     │                                 ├─ 10G ─► USB-A #2
-  EPR src 140 W)    │                                 ├─ 10G ─► GL3523 5G hub (if 3× USB-A)
-                    │                                 │           ├─► GL3224 ─► SD + microSD
-                    │                                 │           ├─► RTL8156BG ─► RJ45 2.5GbE
-                    │                                 │           └─► USB-A #3 (5G)
+  EPR src 140 W)    │                                 ├─ 10G ─► GL3224 ─► SD + microSD
+                    │                                 ├─ 10G ─► RTL8156BG ─► RJ45 2.5GbE
                     │                                 ├─ 10G ─► TUSB1046 (DFP mux) ═══ downstream USB-C
                     │                                 └─ USB2 ─► RP2350B (UF2, status app)
                     └── DP 2-lane HBR3 + AUX ───────────────────► TUSB1046 (DP alt out, 4K60)
@@ -46,7 +44,6 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
 | Upstream mux | TI TUSB1064 (UFP) | 73 / ~400 | 10G + 2-lane DP HBR3, pin assign C/D/E. **Buy early** |
 | Downstream mux | TI TUSB1046-DCI (DFP) | 59 / 2798 | |
 | USB 10G hub | Microchip USB7206C | 26 / 1950, $8.66 | 5× 10G + 1× USB2; ROM; per-port speed via SMBus (AN2935); ~1.8 W, needs 1.15 V/2 A |
-| Sub-hub (3rd USB-A) | Genesys GL3523 (5G) | 11.9k, $2.46 | Carries card reader + LAN + USB-A #3 |
 | SD + microSD | Genesys GL3224-ONY04 | 1646 | 2 slots, UHS-I, ROM |
 | 2.5GbE | Realtek RTL8156BG-CG | 2915 | LED pins → RP2350 |
 | Input OR / protection | LM74720 (barrel, reverse + OVP), LM74700/LM74800 (PD-in) | 776 / 5k+ | Hardware priority PD-in > barrel. LTC4417 rejected (36 V max) |
@@ -62,6 +59,41 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
 | USB-C (laptop, PD-in; 48 V/5 A/10G) | JAE DX07S024XJ1R1100 | 1626 | |
 | USB-C (downstream, 20 V/5 A/10G) | Amphenol 12401610E4#2A | stock | |
 | SD / microSD sockets | Hanbo SD-111 / Hirose DM3AT | 5209 / 18849 | |
+
+## Decisions (2026-10-02)
+- Display out: **DP alt mode over the downstream USB-C** only (no full-size DP/HDMI on odeck-10).
+- **2× USB-A 10G.** Hub ports: USB-A ×2, downstream C, GL3224, RTL8156BG on the 5× 10G ports; RP2350 on USB2.
+- Board may grow beyond 100×60 mm if thermals need it; prototype carries extensive thermal instrumentation.
+- **RP2350 is the update hub for every other programmable part.** Its firmware bundles images/configs for
+  the other chips and flashes them on first boot and on updates.
+
+## Firmware & update architecture
+RP2350 firmware = its own code + a bundle of component images. On boot it compares versions and
+(re)flashes as needed; updates ship as a single UF2 dropped onto the deck over USB.
+
+| Component | Programmable storage | RP2350 path |
+|---|---|---|
+| PMG1-S3 (laptop + downstream PD) | internal flash | SWD (RP2350 as SWD probe, debugprobe-style) or PMG1 I2C bootloader |
+| TPS26750 (PD-in) | I2C config EEPROM | RP2350 writes EEPROM (WP pin controlled) |
+| USB7206C hub | ROM + runtime SMBus config; optional SPI flash | SMBus config at boot; SPI flash optional |
+| GL3224 card reader | ROM; optional SPI flash | not needed initially |
+| RTL8156BG | ROM; MAC in EEPROM/eFuse | **unique MAC** from a 24AA02E48/24AA025E48 EUI-48 EEPROM (C38987 / C129895) read by RP2350 and programmed into the PHY config |
+| LCD | — | — |
+
+**Safety trade-off:** if the RP2350 can reflash the PD controllers, a bad RP2350 firmware could too.
+Hardware backstops that stay independent of *all* firmware:
+- Independent hardware OVP on laptop VBUS (comparator + gate kill of the source switch above ~30 V), and
+  source switch only enabled with buck-boost power-good.
+- Optional flash interlock (see open questions): SWD / EEPROM-WP gated by a physical button.
+
+## Thermal & power instrumentation (prototype)
+- **I2C temperature sensors** (TMP1075, C2870250, 38k stock, 8 addresses) at: buck-boost FETs/inductor,
+  LM5148 5 V stage, USB7206C, PMG1/TUSB1064 area, laptop USB-C connector, RJ45/RTL8156, LCD, board edge/ambient.
+  Plus a few NTC 0603 (NCP18XH103, C13564) on RP2350 ADC pins for hot spots too small for an SOIC/WSON.
+- **Power monitors:** INA226 (36 V max, C49851) on laptop VBUS and 5 V rail; VIN (up to 48 V) needs an
+  85 V part — INA228/INA238 (0–1 JLC stock → consign from Mouser/DigiKey).
+- RP2350 logs everything over USB (CDC/serial or the status app) and shows it on the LCD; firmware
+  derating policy is tuned from this data. Pads for external thermocouples on key spots.
 
 ## Key design rules
 - **Power safety independent of RP2350 firmware:** PD controllers boot autonomously; buck-boost voltage
@@ -81,15 +113,13 @@ re-check before ordering. Detailed research: `research/pd-controllers.md`, `rese
   heavy copper + via arrays, optional bottom aluminium plate, or slightly larger board.
 
 ## Open questions
-1. **PMG1 first-flash path** that later RP2350 user firmware can't abuse (PMG1 USB/I2C bootloader?
-   one-time flash then lock? JLC post-solder programming via test pads?).
+1. **Flash interlock:** none (trust firmware + hardware OVP), physical-button gate on SWD/EEPROM-WP
+   (first boot needs one button press), or JLC test-pad programming for the first flash + button gate for updates.
 2. Does PMG1-S3 support PR_Swap / Fast Role Swap for bus-powered ↔ external-power transitions, and do
    Macs accept it? Alternative: accept a brief disconnect when external power is plugged/unplugged.
-3. Display out: downstream USB-C DP alt (current plan) vs full-size DP.
-4. 2 vs 3 USB-A ports (3 needs the GL3523 sub-hub).
 5. JLC: foam tape application for the LCD; low stock on RJ45 (111), TUSB1064 (73), USB7206C (26), PMG1 (50)
    → consign from Mouser/DigiKey.
-6. Thermal budget vs board size (100×60 target).
+6. Thermal budget vs board size — board may grow beyond 100×60; decide after prototype heat data.
 7. Stackup: 6-layer standard likely enough for 10G; decide during layout.
 
 ## Notes on a 20 Gbps step
