@@ -382,6 +382,25 @@
         "via_diameter": 0.45,
         "via_drill": 0.25,
         "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.2,
+        "diff_pair_via_gap": 0.2,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "ETH_100",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.09,
+        "tuning_profile": "",
+        "via_diameter": 0.45,
+        "via_drill": 0.25,
+        "wire_width": 6
       }
     ],
     "meta": {
@@ -392,31 +411,203 @@
     "netclass_patterns": [
       {
         "netclass": "HV",
-        "pattern": "/VIN*"
+        "pattern": "VIN"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "*VIN_OR"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "VBUS_PDIN"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "*VBAR"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "VBUS_LAPTOP"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "VBB_OUT"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "VBUS_LSW"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "*BB_SW1"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "*BB_SW2"
+      },
+      {
+        "netclass": "HV",
+        "pattern": "*BAR_SW"
       },
       {
         "netclass": "PWR_HC",
-        "pattern": "/VBUS_*"
+        "pattern": "+5V"
       },
       {
         "netclass": "PWR_HC",
-        "pattern": "/+5V"
+        "pattern": "*5V_BUCK"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "*5V_OR"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "*5V_SW"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "VBUS_DS"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "+5V_USBA1"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "+5V_USBA2"
+      },
+      {
+        "netclass": "PWR_HC",
+        "pattern": "*USBA?_SW_IN"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "+3V3"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "+1V15"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "*3V3_SW"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "*1V15_SW"
+      },
+      {
+        "netclass": "PWR",
+        "pattern": "*ETH_SW"
+      },
+      {
+        "netclass": "ETH_100",
+        "pattern": "*ETH_MDI*"
       },
       {
         "netclass": "HS_85",
-        "pattern": "*DP_ML*"
+        "pattern": "*UP_C_TX*"
       },
       {
         "netclass": "HS_85",
-        "pattern": "*USBC_SS*"
+        "pattern": "*UP_TX?_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*UP_RX?_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DS_C_TX*"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DS_TX?_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DS_RX?_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*UP_SSRX_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DS_SSRX_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DP_ML?_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "DP_AUX_?"
+      },
+      {
+        "netclass": "HS_85",
+        "pattern": "*DS_AUX_?"
       },
       {
         "netclass": "USB_90",
-        "pattern": "*USB*_SS*"
+        "pattern": "HUB_UP_SS_*"
       },
       {
         "netclass": "USB_90",
-        "pattern": "*USB*_D[PN]"
+        "pattern": "HUB_DSC_SS_*"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "*HUB_P?_TX?_IC"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "*HUB_UP_TX?_IC"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "USBA?_SS_*"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "CR_SS_*"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "ETH_SS_*"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "*ETH_TX?_IC"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "LAPTOP_USB_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "HUB_DSC_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "USBA?_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "CR_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "ETH_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "MCU_USB_D?"
+      },
+      {
+        "netclass": "USB_90",
+        "pattern": "*USB_D?_IC"
       }
     ]
   },
