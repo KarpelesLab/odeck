@@ -84,7 +84,8 @@ RP2350 firmware = its own code + a bundle of component images. On boot it compar
 Hardware backstops that stay independent of *all* firmware:
 - Independent hardware OVP on laptop VBUS (comparator + gate kill of the source switch above ~30 V), and
   source switch only enabled with buck-boost power-good.
-- Optional flash interlock (see open questions): SWD / EEPROM-WP gated by a physical button.
+- **No flash interlock** (decided 2026-10-02): prototypes are expendable. A default-closed solder jumper
+  in the PMG1 SWD lines lets anyone who wants it cut the RP2350 off from the PD controller.
 
 ## Thermal & power instrumentation (prototype)
 - **I2C temperature sensors** (TMP1075, C2870250, 38k stock, 8 addresses) at: buck-boost FETs/inductor,
@@ -94,6 +95,20 @@ Hardware backstops that stay independent of *all* firmware:
   85 V part — INA228/INA238 (0–1 JLC stock → consign from Mouser/DigiKey).
 - RP2350 logs everything over USB (CDC/serial or the status app) and shows it on the LCD; firmware
   derating policy is tuned from this data. Pads for external thermocouples on key spots.
+
+## User buttons & forced 5 V charging
+- **Two user buttons** on RP2350 GPIOs (in addition to BOOTSEL/reset); functions defined in firmware
+  (e.g. button A: per-port "charge mode" toggle, button B: LCD page / select). Freely remappable.
+- **Forced 5 V ("dumb charge") mode** per port, user-triggered: powers a port even when the device is
+  non-compliant (USB-C device without Rd on CC, or no host attached to enumerate the hub).
+  - USB-A: TPS2553 load switches (C55266, 58k stock) enabled by RP2350 (OR'd with hub PRTPWR), so ports
+    can be powered with no laptop attached. Check USB7206C BC1.2 DCP/CDP + Apple/Samsung charging profiles.
+  - Downstream USB-C: PMG1 port 1 sources 5 V without Rd on request from RP2350 (our PMG1 firmware;
+    intentionally out-of-spec, user-initiated only).
+- **Per-port power measurement:** shunt + INA180A2 (C192764, 99k stock, $0.19) per USB-A port into RP2350
+  ADC; USB-C port via PMG1 integrated VBUS current sense (verify) or the same shunt + INA180 scheme.
+- **Auto-off:** forced 5 V turns off after 5 min below a low-current threshold (~25 mA, tunable). Per-port
+  watts shown on the LCD.
 
 ## Key design rules
 - **Power safety independent of RP2350 firmware:** PD controllers boot autonomously; buck-boost voltage
@@ -113,8 +128,6 @@ Hardware backstops that stay independent of *all* firmware:
   heavy copper + via arrays, optional bottom aluminium plate, or slightly larger board.
 
 ## Open questions
-1. **Flash interlock:** none (trust firmware + hardware OVP), physical-button gate on SWD/EEPROM-WP
-   (first boot needs one button press), or JLC test-pad programming for the first flash + button gate for updates.
 2. Does PMG1-S3 support PR_Swap / Fast Role Swap for bus-powered ↔ external-power transitions, and do
    Macs accept it? Alternative: accept a brief disconnect when external power is plugged/unplugged.
 5. JLC: foam tape application for the LCD; low stock on RJ45 (111), TUSB1064 (73), USB7206C (26), PMG1 (50)
