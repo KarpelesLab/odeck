@@ -127,7 +127,7 @@ def build(D):
            lcsc=SD_SOCKET, desc="Full-size SD push-push. CD closes to VSS on insert; WP closes to GND when card unlocked")
     s.part("odeck:DM3AT-SF-PEJM5", "J", "DM3AT", at=(x0 + 81.28, y),
            pins={"DAT2": "CR_USD_D2", "CD/DAT3": "CR_USD_D3", "CMD": "CR_USD_CMD", "VDD": "CR_USD_VCC",
-                 "CLK": "CR_USD_CLK", "VSS": "GND", "DAT0": "CR_USD_D0", "DAT1": "CR_USD_D1",
+                 "CLK": "CR_USD_CLK_S", "VSS": "GND", "DAT0": "CR_USD_D0", "DAT1": "CR_USD_D1",
                  "SW_B": "CR_USD_CDZ", "SW_A": "GND", "10": "GND", "12": "GND", "13": "GND", "14": "GND"},
            lcsc=USD_SOCKET, desc="microSD push-push. Detect switch A-B normally open, closes on insert")
     _note(s, "SD-111 (Hanbo drawing): CD switch to pin 3 VSS1 closes with a card; WP switch to GND closes when the card is UNLOCKED, open when\n"
@@ -162,5 +162,8 @@ def build(D):
              "CR_LED: GL3224 LED output (push-pull 3.3 V, active high = access), 1k to the RP2350 GPIO (firmware shows activity on the LCD).",
           (x0 + 60.96, y0 + 12.7))
 
+    # microSD clock series termination (bus is ~90 mm long after the 130x89 re-floorplan); place next to GL3224 pin S2CK
+    s.r("22", "CR_USD_CLK", "CR_USD_CLK_S", lcsc="C25092",
+        desc="microSD CLK source series termination, at the GL3224 pin (tune 22-33 R on the bench)")
     s.build()
     return s

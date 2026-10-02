@@ -81,7 +81,7 @@ def read_netlist(project_dir):
     return comps, pins
 
 
-def sync(project_dir, placer=None):
+def sync(project_dir, placer=None, refresh=()):
     proj = os.path.basename(os.path.normpath(project_dir))
     pcb_path = os.path.join(project_dir, proj + ".kicad_pcb")
     board = pcbnew.LoadBoard(pcb_path)
@@ -104,7 +104,8 @@ def sync(project_dir, placer=None):
             continue
         nick, name = c["fp"].split(":", 1)
         fp = existing.get(ref)
-        if fp is not None and str(fp.GetFPID().GetUniStringLibId()) != c["fp"]:
+        if fp is not None and (str(fp.GetFPID().GetUniStringLibId()) != c["fp"] or ref in refresh
+                               or "*" in refresh):
             pos, rot, side = fp.GetPosition(), fp.GetOrientation(), fp.GetLayer()
             board.Remove(fp)
             fp = None
@@ -146,11 +147,15 @@ def sync(project_dir, placer=None):
 
 
 if __name__ == "__main__":
-    pd = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "hardware", "odeck-10"))
+    args = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith("--") and sys.argv[i - 1] != "--refresh"]
+    pd = os.path.abspath(args[0] if args else os.path.join(HERE, "..", "hardware", "odeck-10"))
     placer = None
     hook = os.path.join(pd, "placement.py")
     if os.path.exists(hook):
         spec = importlib.util.spec_from_file_location("placement", hook)
         mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
         placer = mod.place
-    sync(pd, placer)
+    refresh = ()
+    if "--refresh" in sys.argv:
+        refresh = tuple(sys.argv[sys.argv.index("--refresh") + 1].split(","))
+    sync(pd, placer, refresh)

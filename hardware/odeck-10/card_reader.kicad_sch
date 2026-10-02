@@ -8391,7 +8391,7 @@
 		)
 		(uuid "06629ae2-26bc-57ca-9d9d-c2e9a6e3cf30")
 	)
-	(label "CR_USD_CLK"
+	(label "CR_USD_CLK_S"
 		(at 265.43 148.59 180)
 		(effects
 			(font
@@ -9460,6 +9460,122 @@
 		)
 		(uuid "3dfc072e-480a-5fa6-9574-50463602efac")
 	)
+	(symbol
+		(lib_id "Device:R")
+		(at 20.32 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1b523119-298d-5d43-95b5-c985aa0fcf61")
+		(property "Reference" "R908"
+			(at 22.86 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22"
+			(at 22.86 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 20.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 20.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "microSD CLK source series termination, at the GL3224 pin (tune 22-33 R on the bench)"
+			(at 20.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 20.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b1e0ac88-165e-537e-ab28-ce2cb12fc1b3")
+		)
+		(pin "2"
+			(uuid "5ed4b061-b144-5ff3-93b6-19bc7d57e366")
+		)
+		(instances
+			(project "odeck-10"
+				(path "/ab49eecb-8bd6-4c6e-bedf-bbb6873dcd24/8054b97d-7891-41ee-a434-075092ac292a"
+					(reference "R908")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 20.32 26.67) (xy 20.32 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b898073-927d-545f-8658-0f9c90981997")
+	)
+	(label "CR_USD_CLK"
+		(at 20.32 24.13 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9760708a-deab-5de8-9ee7-108636e208a7")
+	)
+	(wire
+		(pts
+			(xy 20.32 34.29) (xy 20.32 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "951d08f7-6c72-50de-8489-11bd7492377d")
+	)
+	(label "CR_USD_CLK_S"
+		(at 20.32 36.83 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7a743903-42e9-5002-9185-53ed9651e446")
+	)
 	(text "1. GL3224-ONY04  USB 3.1 Gen1 (5 Gbps) 2-LUN card reader, QFN-48 7x7, EP = GND (via array)"
 		(exclude_from_sim no)
 		(at 20.32 15.24 0)
@@ -9469,7 +9585,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2b898073-927d-545f-8658-0f9c90981997")
+		(uuid "6c4ea173-eb90-53c8-8eec-7988af6584cf")
 	)
 	(text "2. POWER  +5V -> VBUS; internal LDOs -> CR_3V3 (pin 25), CR_1V2 (pin 26)"
 		(exclude_from_sim no)
@@ -9480,7 +9596,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9760708a-deab-5de8-9ee7-108636e208a7")
+		(uuid "e24a4826-1ba8-56ea-b538-d21e4e146b57")
 	)
 	(text "VBUS = +5V (4.75-5.25 V). CR_3V3 / CR_1V2 are the GL3224's own LDO outputs: never tie them to +3V3 or any other rail."
 		(exclude_from_sim no)
@@ -9491,7 +9607,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "951d08f7-6c72-50de-8489-11bd7492377d")
+		(uuid "bf471eb7-2887-50da-82f1-34109ab3faee")
 	)
 	(text "Genesys GL3224(E) demo board V3.00 + open GL3224 designs: VBUS 2.2-10 uF, DVDD33 2.2-10 uF, AVDD33/DVDD33 pins 0.1-1 uF, AVDD12 2.2 uF,"
 		(exclude_from_sim no)
@@ -9502,7 +9618,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "7a743903-42e9-5002-9185-53ed9651e446")
+		(uuid "84b4c1f6-a25c-5302-9d3d-d90a4fc7eeb0")
 	)
 	(text "  DVDD12 1 uF, VUHS 0.1-1 uF, card VCC up to 10 uF. Card power is switched by the GL3224's on-chip FETs (S1M1_VCC / S2M2_VCC);"
 		(exclude_from_sim no)
@@ -9513,7 +9629,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "6c4ea173-eb90-53c8-8eec-7988af6584cf")
+		(uuid "ddac8c57-3387-5d1e-a33e-d7647b737770")
 	)
 	(text "  card VCC kept at 4.7 uF + 100 nF so the internal 3.3 V LDO is not dipped at card power-on (proven designs use up to 10 uF)."
 		(exclude_from_sim no)
@@ -9524,7 +9640,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e24a4826-1ba8-56ea-b538-d21e4e146b57")
+		(uuid "fd1e2f4d-3e17-512b-b781-b648b8a5b656")
 	)
 	(text "Budget: GL3224 147 mA (SS U0 active) + up to ~200 mA per UHS-I card, all through the internal 5->3.3 V LDO:"
 		(exclude_from_sim no)
@@ -9535,7 +9651,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "bf471eb7-2887-50da-82f1-34109ab3faee")
+		(uuid "1f002545-7aad-5a62-b914-48020cbf3f17")
 	)
 	(text "  ~(5.1-3.3) V x 0.35 A = 0.63 W in the QFN (theta-JA 33 C/W -> +21 K). Thermal pad via array to inner GND planes."
 		(exclude_from_sim no)
@@ -9546,7 +9662,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "84b4c1f6-a25c-5302-9d3d-d90a4fc7eeb0")
+		(uuid "e3509635-7c67-5979-ae14-0fa3768b04fa")
 	)
 	(text "3. USB / CLOCK / RTERM / ROM OPTIONS"
 		(exclude_from_sim no)
@@ -9557,7 +9673,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "ddac8c57-3387-5d1e-a33e-d7647b737770")
+		(uuid "4a5fc480-9426-5737-a00c-784b5e1b7c23")
 	)
 	(text "Hub link: CR_SS_TX* = hub transmits (220 nF on usb_hub) -> GL3224 RXP/RXN direct. GL3224 TXP/TXN -> 100 nF here -> CR_SS_RX* -> hub."
 		(exclude_from_sim no)
@@ -9568,7 +9684,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "fd1e2f4d-3e17-512b-b781-b648b8a5b656")
+		(uuid "2a97f6b3-63f3-5e4e-a3cd-242e0b9c6a20")
 	)
 	(text "  GL3224 is USB 3.1 Gen1: hub port 1 trains at 5 Gbps (~400 MB/s) - well above UHS-I SDR104 (104 MB/s)."
 		(exclude_from_sim no)
@@ -9579,7 +9695,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "1f002545-7aad-5a62-b914-48020cbf3f17")
+		(uuid "569f814a-8783-5d51-bda8-93c609ca1963")
 	)
 	(text "  Gen1 transmitter AC cap range is 75-200 nF, so 100 nF here (the 220 nF Gen2 value is out of range for a Gen1 TX)."
 		(exclude_from_sim no)
@@ -9590,7 +9706,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e3509635-7c67-5979-ae14-0fa3768b04fa")
+		(uuid "d0b3005e-cabf-54aa-a4e8-2350e99403df")
 	)
 	(text "No reset pin: internal POR. Boots from ROM (no SPI flash). SPI_CS / SPI_MOSI NC, S1D4-7 NC (MMC 8-bit only)."
 		(exclude_from_sim no)
@@ -9601,7 +9717,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4a5fc480-9426-5737-a00c-784b5e1b7c23")
+		(uuid "57c1ccbb-b3fa-53f0-bd1c-30d3d70eef02")
 	)
 	(text "Crystal: GL3224 accepts 25 MHz +-0.03 %; same YXC 3225 part as the hub (JLC basic)."
 		(exclude_from_sim no)
@@ -9612,7 +9728,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "2a97f6b3-63f3-5e4e-a3cd-242e0b9c6a20")
+		(uuid "5dc07aff-d2cc-5903-a796-6f40d1f317a4")
 	)
 	(text "4. CARD SOCKETS  slot 1 = full-size SD (S1*), slot 2 = microSD (S2*). Both push-push."
 		(exclude_from_sim no)
@@ -9623,7 +9739,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "569f814a-8783-5d51-bda8-93c609ca1963")
+		(uuid "f1308859-ffdf-5bdf-9fce-b0f210d7ee97")
 	)
 	(text "SD-111 (Hanbo drawing): CD switch to pin 3 VSS1 closes with a card; WP switch to GND closes when the card is UNLOCKED, open when"
 		(exclude_from_sim no)
@@ -9634,7 +9750,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d0b3005e-cabf-54aa-a4e8-2350e99403df")
+		(uuid "87870b53-709e-5618-a5aa-3b0188007fe8")
 	)
 	(text "  locked or no card -> GL3224 SD1_WP (46k internal pull-up): 0 = write enable, 1 = write protect. Matches directly, no inverter."
 		(exclude_from_sim no)
@@ -9645,7 +9761,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "57c1ccbb-b3fa-53f0-bd1c-30d3d70eef02")
+		(uuid "4b4c1203-87f7-5e71-bbb1-2ef2dc3f5184")
 	)
 	(text "  Pin 2 is MS1_INS/SD1_WP: with no card the WP switch is open (high) so no false Memory Stick insert is seen."
 		(exclude_from_sim no)
@@ -9656,7 +9772,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "5dc07aff-d2cc-5903-a796-6f40d1f317a4")
+		(uuid "e5550531-d9ee-5d90-9926-5e2f925d34eb")
 	)
 	(text "DM3AT: normally-open detect switch SW_A (GND) - SW_B (CDZ). Pin 35 MS2_INS/SD2_WP is tied to CR_USD_CDZ (NOT GND): it is also"
 		(exclude_from_sim no)
@@ -9667,7 +9783,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "f1308859-ffdf-5bdf-9fce-b0f210d7ee97")
+		(uuid "9805422c-bb09-5814-a81e-1b95897df661")
 	)
 	(text "  the Memory Stick insert input (0 = MS inserted). No card: CDZ high -> no MS, no WP. Card: low -> SD present, write enabled"
 		(exclude_from_sim no)
@@ -9678,7 +9794,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "87870b53-709e-5618-a5aa-3b0188007fe8")
+		(uuid "d1f8de11-43d1-5849-8e92-685e6421004a")
 	)
 	(text "  (same state as slot 1 with an unlocked SD). Two 46k internal pull-ups in parallel on the node (~23k) - fine."
 		(exclude_from_sim no)
@@ -9689,7 +9805,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "4b4c1203-87f7-5e71-bbb1-2ef2dc3f5184")
+		(uuid "d1c7afe9-f772-5784-b62b-5e4423907584")
 	)
 	(text "  Bench item: the ROM must give SDx_CDZ = 0 priority over MSx_INS = 0 (DS silent) - unlocked SD in each slot enumerates"
 		(exclude_from_sim no)
@@ -9700,7 +9816,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "e5550531-d9ee-5d90-9926-5e2f925d34eb")
+		(uuid "755636b2-4dfa-5b42-bf4e-5d583f84556b")
 	)
 	(text "  as writable SD, not MS. If not: inverter/strap, ask Genesys FAE."
 		(exclude_from_sim no)
@@ -9711,7 +9827,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "9805422c-bb09-5814-a81e-1b95897df661")
+		(uuid "195a1313-000b-5775-95e4-383c672514e6")
 	)
 	(text "CMD / DAT0-3 pull-ups: GL3224 internal 15k (DS table 5.3) -> no external resistors. Route each slot's CLK/CMD/DAT as a"
 		(exclude_from_sim no)
@@ -9722,7 +9838,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d1f8de11-43d1-5849-8e92-685e6421004a")
+		(uuid "c1d34061-9ce9-5f86-961a-20b68da7143a")
 	)
 	(text "  50 Ohm group, length-matched +-1 mm, CLK with GND guard (SDR104 = 208 MHz), keep stubs to zero."
 		(exclude_from_sim no)
@@ -9733,7 +9849,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "d1c7afe9-f772-5784-b62b-5e4423907584")
+		(uuid "6ce0e9cb-a1b3-5fb4-987b-e1b5ca8d2832")
 	)
 	(text "5. CARD DETECT -> TCA9534 P3/P4, ACTIVITY -> RP2350 (read-only)"
 		(exclude_from_sim no)
@@ -9744,7 +9860,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "755636b2-4dfa-5b42-bf4e-5d583f84556b")
+		(uuid "3568e42d-048b-5fea-b195-d372d276971b")
 	)
 	(text "The GL3224 needs the card-detect switches itself (SD1_CDZ / SD2_CDZ, 46k internal pull-up to CR_3V3, low = card)."
 		(exclude_from_sim no)
@@ -9755,7 +9871,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "195a1313-000b-5775-95e4-383c672514e6")
+		(uuid "b1df9842-8163-5855-9534-51a4efe5d785")
 	)
 	(text "  The TCA9534 (mcu, P3/P4) taps the same nodes through 1k: input only, no internal pulls (TCA9534 DS 8), 5 V tolerant."
 		(exclude_from_sim no)
@@ -9766,7 +9882,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "c1d34061-9ce9-5f86-961a-20b68da7143a")
+		(uuid "607a2624-0368-5c8c-8ddc-558af05a64a8")
 	)
 	(text "  1k limits current if the pin is ever mis-configured as output. CR_3V3 exists whenever +5V does, and +3V3 is derived"
 		(exclude_from_sim no)
@@ -9777,7 +9893,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "6ce0e9cb-a1b3-5fb4-987b-e1b5ca8d2832")
+		(uuid "987117a0-deff-5427-8e24-7219310f599c")
 	)
 	(text "  from +5V, so the expander never sees the node while unpowered in a way that back-feeds the GL3224."
 		(exclude_from_sim no)
@@ -9788,7 +9904,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "3568e42d-048b-5fea-b195-d372d276971b")
+		(uuid "2e8a1735-262e-5bff-952f-3a1bd284cca1")
 	)
 	(text "  CR_USD_CDZ also drives GL3224 pin 35 (MS2_INS/SD2_WP), see section 4."
 		(exclude_from_sim no)
@@ -9799,7 +9915,7 @@
 			)
 			(justify left top)
 		)
-		(uuid "b1df9842-8163-5855-9534-51a4efe5d785")
+		(uuid "9903ba4d-f4a5-5571-834e-ae7d0aa16dad")
 	)
 	(text "CR_LED: GL3224 LED output (push-pull 3.3 V, active high = access), 1k to the RP2350 GPIO (firmware shows activity on the LCD)."
 		(exclude_from_sim no)
@@ -9810,6 +9926,6 @@
 			)
 			(justify left top)
 		)
-		(uuid "607a2624-0368-5c8c-8ddc-558af05a64a8")
+		(uuid "0b463b3b-1371-5f70-84e4-f7db99296fec")
 	)
 )

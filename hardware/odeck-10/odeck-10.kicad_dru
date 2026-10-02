@@ -1,0 +1,22 @@
+(version 1)
+
+# Parts designed to sit at / overhang the board edge (connectors, side-push buttons, Qwiic, barrel jack)
+(rule "edge parts"
+  (condition "A.memberOfFootprint('J101') || B.memberOfFootprint('J101') || A.memberOfFootprint('J102') || B.memberOfFootprint('J102') || A.memberOfFootprint('J501') || B.memberOfFootprint('J501') || A.memberOfFootprint('J502') || B.memberOfFootprint('J502') || A.memberOfFootprint('J701') || B.memberOfFootprint('J701') || A.memberOfFootprint('J702') || B.memberOfFootprint('J702') || A.memberOfFootprint('J801') || B.memberOfFootprint('J801') || A.memberOfFootprint('J901') || B.memberOfFootprint('J901') || A.memberOfFootprint('J902') || B.memberOfFootprint('J902') || A.memberOfFootprint('J1102') || B.memberOfFootprint('J1102') || A.memberOfFootprint('SW1101') || B.memberOfFootprint('SW1101') || A.memberOfFootprint('SW1102') || B.memberOfFootprint('SW1102')")
+  (constraint edge_clearance (min 0mm))
+  (severity ignore))
+
+# Diff pairs: keep 3x-width spacing to other nets when routing (pads exempt so fine-pitch ICs pass)
+(rule "hs pair spacing"
+  (condition "(A.NetClass == 'USB_90' || A.NetClass == 'HS_85') && A.Type == 'Track' && B.Type == 'Track' && !A.isCoupledDiffPair()")
+  (constraint clearance (min 0.3mm)))
+
+# 48 V / 28 V nets
+(rule "high voltage"
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (constraint clearance (min 0.3mm)))
+
+# SKRTLAE010 side-push button: manufacturer land pattern puts its locating NPTH close to the GND tabs
+(rule "button footprint holes"
+  (condition "A.memberOfFootprint('SW110*') && B.memberOfFootprint('SW110*')")
+  (constraint hole_clearance (min 0mm)))

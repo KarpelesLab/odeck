@@ -165,76 +165,6 @@
 		(layer "Cmts.User")
 		(uuid "38024a45-50de-47f3-bc1e-4170b098f034")
 	)
-	(fp_line
-		(start -3 -3)
-		(end -3 -3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "0eab6e9b-4032-4d95-872d-be1b0fd454a2")
-	)
-	(fp_line
-		(start -3 -3)
-		(end -3 3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "35624af1-6a98-4523-92c3-c35294659446")
-	)
-	(fp_line
-		(start -3 3)
-		(end 3 3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "0332b132-fe6d-4c9f-bd2a-f4fbcf5642fb")
-	)
-	(fp_line
-		(start 3 -3)
-		(end -3 -3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "c1553991-8d99-4922-a1e6-5416a193c7eb")
-	)
-	(fp_line
-		(start 3 -3)
-		(end 3 -3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "a12622ba-fea4-475d-8170-314724546c17")
-	)
-	(fp_line
-		(start 3 3)
-		(end 3 -3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "53693724-2c00-4912-915f-7f8d600c52f0")
-	)
-	(fp_line
-		(start 3 3)
-		(end 3 3)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "F.CrtYd")
-		(uuid "5c1694ba-7400-4367-ba62-9aace2b36846")
-	)
 	(fp_circle
 		(center -2.5 -2.5)
 		(end -2.42 -2.5)
@@ -1312,6 +1242,17 @@
 				(thickness 0.15)
 			)
 		)
+	)
+	(fp_rect
+		(start -3.0 -3.0)
+		(end 3.0 3.0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "5c1e3a10-6f0d-4c1e-9a7b-000000000401")
 	)
 	(pad "A1" smd circle
 		(at -2.5 -2.5 270)

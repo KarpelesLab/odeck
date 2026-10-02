@@ -10,9 +10,9 @@ firmware, display, card reader, Ethernet, board shape and silkscreen.
 
 ![odeck-10 rough placement](docs/images/odeck-10-iso.png)
 
-> **Status (2026-10): schematic complete and reviewed, rough placement only — not routed, not
-> fabricated.** The render above is the automatic first placement (`hardware/odeck-10/placement.py`),
-> not a finished layout. The LCD panel and the two JAE USB-C receptacles have no 3D model yet, and the
+> **Status (2026-10): schematic complete and reviewed, placement done (DRC-clean, unrouted) — not routed,
+> not fabricated.** Placement is code: `hardware/odeck-10/layout/*.py` (one script per board region, see
+> `docs/floorplan.md`). The LCD panel and the two JAE USB-C receptacles have no 3D model yet, and the
 > GPIO header is shown although it ships unpopulated. More views: [top](docs/images/odeck-10-top.png) ·
 > [bottom](docs/images/odeck-10-bottom.png).
 
@@ -29,7 +29,7 @@ firmware, display, card reader, Ethernet, board shape and silkscreen.
 | Network | 2.5 GbE (Realtek RTL8156BG) |
 | Brains | RP2350B — drives a 2.0" 320×240 IPS status LCD, reads every PD contract / link speed / temperature / port current, and updates every other chip's firmware from a single UF2 |
 | Hackable | 2 user buttons, unpopulated GPIO header (series-R + ESD protected), Qwiic connector, SWD |
-| Board | 6-layer JLC impedance stack-up (JLC061611-1080A), ~130×85 mm (provisional), ~800 parts, all JLC stock |
+| Board | 6-layer JLC impedance stack-up (JLC061611-1080A), 130×89 mm, ~800 parts (double-sided), all JLC stock |
 
 ### Architecture
 
@@ -59,7 +59,9 @@ firmware, display, card reader, Ethernet, board shape and silkscreen.
 | `hardware/odeck-10/` | KiCad 10 project. Schematic sheets are **generated** from `sheets/*.py` |
 | `hardware/lib/` | Project symbols, footprints (all checked against manufacturer drawings) and 3D models |
 | `tools/schgen/` | Schematics-as-code generator + netlist verification |
-| `tools/pcbsync.py` | Scripted "update PCB from schematic" (keeps placed parts where they are) |
+| `tools/pcbsync.py` | Scripted "update PCB from schematic" (keeps placed parts where they are; `--refresh` reloads footprints) |
+| `tools/apply_layout.py`, `tools/apply_routing.py` | Placement-as-code and routing-as-code runners (`layout/*.py`, `routing/*.py`) |
+| `tools/autoroute.py` | Freerouting wrapper for the non-critical nets |
 | `tools/bom_check.py` | Checks every part against live JLC stock (rule: JLC parts only, ≥ 5 in stock) |
 | `tools/import_lcsc.sh` | Imports LCSC parts (symbol/footprint/3D) via easyeda2kicad |
 
@@ -89,8 +91,8 @@ Inter-sheet nets are declared in `tools/schgen/nets.py`.
 
 ## Roadmap
 
-1. **odeck-10** (10 Gbps, JLC parts only) — schematic ✅ · review ✅ · footprints ✅ · placement ⏳ ·
-   routing · firmware · order prototypes · bring-up
+1. **odeck-10** (10 Gbps, JLC parts only) — schematic ✅ · review ✅ · footprints ✅ · placement ✅ ·
+   routing ⏳ · firmware · order prototypes · bring-up
 2. **20/40 Gbps USB4** — waiting on a USB4 hub controller (and its firmware) that can actually be sourced;
    see `docs/research/usb4-hub.md`.
 
