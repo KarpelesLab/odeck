@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "a832edb4-3ced-459b-a0d8-ca3710c8fdfa")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Ethernet")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+RTL8156BG-CG 2.5GbE, USAKRO DGUK211Q340CD2A4D2 RJ45, LED pins -> RP2350,
+24AA02E48 EUI-48 MAC EEPROM."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "185501da-f65a-4c9b-b355-b636b5528dc0")
+	)
+)

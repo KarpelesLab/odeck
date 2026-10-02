@@ -1,0 +1,27 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "25eb2083-76f4-4a87-bec1-d51d85d4e73a")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — PD controller")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+Infineon PMG1-S3 CYPM1322-97BZXI: port0 = laptop (EPR source, DP UFP_D, TUSB1064 ctrl),
+port1 = downstream USB-C (5V/3A source, DP DFP_D, TUSB1046 ctrl, forced-5V mode), HPD relay.
+SWD to RP2350 through default-closed solder jumper."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "19e5e32b-558f-4a83-99aa-39dd7123737a")
+	)
+)

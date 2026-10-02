@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "7131eb0f-b6a5-418e-98ef-5c787fc35c6e")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Sensors")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+TMP1075 x8 (buck-boost, 5V buck, hub, PMG1/mux, laptop USB-C, RJ45/PHY, LCD, ambient),
+NTC 0603 on RP2350 ADC, thermocouple pads."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "b8412a9b-42b3-4bd4-bafd-6acc54095363")
+	)
+)

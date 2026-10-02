@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "2a5635f0-e9cb-4302-9112-94a6e83f07b4")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — MCU")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+RP2350B + W25Q128 QSPI, 12MHz xtal, USB2 to hub, I2C buses (PD, sensors, hub SMBus),
+SWD master to PMG1, BOOTSEL/RESET buttons, 2 user buttons, status LEDs, SWD pads."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "db48269a-5a8e-4aeb-b4fa-351004f915da")
+	)
+)

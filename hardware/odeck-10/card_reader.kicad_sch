@@ -1,0 +1,25 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "62e17fa8-d7a7-4734-85b1-2e5f880029ce")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Card reader")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+Genesys GL3224-ONY04 (2 LUN), Hanbo SD-111 SD socket, Hirose DM3AT microSD, card detect -> RP2350."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "b4816c48-9744-4f5a-9c4f-865bfea46889")
+	)
+)

@@ -1,0 +1,27 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "8096ce1b-eef4-4a3c-9ca6-1a8e71c8362c")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Power input")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+Inputs & OR-ing: PD-in USB-C (JAE DX07S024XJ1R1100) + TPS26750/TPD4S480 EPR sink,
+barrel PJ-063BH + LM74720 (reverse/OVP), LM74700/LM74800 on PD-in, PD-in>barrel priority,
+laptop-VBUS sink switch for bus-powered mode -> 5V rail."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "088bb89a-0c0d-4326-a8b8-7a9e5143fc5e")
+	)
+)

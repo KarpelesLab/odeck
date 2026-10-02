@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "6d8ee2fa-e68d-44c1-9d7e-f0f8a074f0d4")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Display & UI")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+HS20HS072RX 2.0in 320x240 ST7789 SPI LCD on foam tape, backlight PWM,
+user GPIO header (unpopulated, 2.54mm, series R + ESD), Qwiic JST-SH 4p."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "5c386b47-1f23-468a-8bfc-0cfb53fb769e")
+	)
+)

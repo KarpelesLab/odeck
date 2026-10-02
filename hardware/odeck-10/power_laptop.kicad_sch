@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "02b3f777-5a6b-4e8d-b3ca-1fcb0975f685")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Laptop power out")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+LM51770 buck-boost 9-48V -> 5/9/15/20/28V x5A, voltage steps via PMG1 GPIO feedback switching,
+back-to-back source switch to laptop VBUS (enable = ext power AND PG), independent hardware OVP (~30V)."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "d6dcd5ed-c016-4581-8ee0-840ca7a4b5c8")
+	)
+)

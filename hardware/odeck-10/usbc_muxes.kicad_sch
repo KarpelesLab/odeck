@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "793759cc-5245-4ae0-9438-cbc54850da2c")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — USB-C muxes & DP")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+Laptop USB-C (JAE DX07S024XJ1R1100) + TUSB1064 (UFP), downstream USB-C (Amphenol 12401610E4#2A)
++ TUSB1046-DCI (DFP), DP 2-lane HBR3 + AUX between muxes, ESD."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c5662b31-f1e2-4067-af66-074f819a816a")
+	)
+)

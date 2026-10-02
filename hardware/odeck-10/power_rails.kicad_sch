@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "16ccfc9a-af6d-4390-a492-a3d926d98232")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — Rails")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+LM5148 5V/8A buck, 3.3V (TPS62933/TPS563201), 1.15V/2A hub core, 1.2V/1.1V as needed,
+INA226 on 5V rail + laptop VBUS, INA228/INA238 on VIN (85V)."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "41b7ca1a-c852-4ef1-befd-8105a0557c91")
+	)
+)

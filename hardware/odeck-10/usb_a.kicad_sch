@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "1010ffa3-1f8b-42bf-a2c4-031ee735ee8b")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — USB-A ports")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+2x Amphenol GSB4111312HR (10G), TPS2553 switches (enable = hub PRTPWR OR RP2350),
+shunt + INA180A2 current sense -> RP2350 ADC, ESD."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "dabc4a8d-f96c-4ebe-ba2e-3f7fa36b5fb8")
+	)
+)

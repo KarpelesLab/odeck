@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "b37c18f7-25ae-4edc-857d-e7d88b1f226c")
+	(paper "A4")
+	(title_block
+		(title "odeck-10 — USB hub")
+		(rev "A")
+		(company "odeck")
+	)
+	(lib_symbols)
+	(text "TODO — planned contents:
+Microchip USB7206C: up=TUSB1064 USB, 10G ports -> USB-A x2, downstream C, GL3224, RTL8156BG;
+USB2 port -> RP2350. SMBus 0x2D to RP2350 (pull-ups powered by RP2350 GPIO), reset from RP2350."
+		(exclude_from_sim no)
+		(at 20 20 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c37d33aa-5f3b-4ded-92e7-9037fab81166")
+	)
+)
