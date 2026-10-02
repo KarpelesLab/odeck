@@ -3027,7 +3027,7 @@
 					)
 				)
 				(embedded_fonts no))
-		(symbol "odeck:BSC040N08NS5"
+		(symbol "odeck:BSC026N08NS5ATMA1"
 				(exclude_from_sim no)
 				(in_bom yes)
 				(on_board yes)
@@ -3043,7 +3043,7 @@
 						)
 					)
 				)
-				(property "Value" "BSC040N08NS5"
+				(property "Value" "BSC026N08NS5ATMA1"
 					(at 0 -8.89 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3053,7 +3053,7 @@
 						)
 					)
 				)
-				(property "Footprint" "odeck:PG-TDSON-8_L5.9-W5.1-P1.27-LS6.2-BL"
+				(property "Footprint" "odeck:PG-TDSON-8_L5.0-W6.0-P1.27-BL-EP"
 					(at 0 -11.43 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3064,7 +3064,7 @@
 						)
 					)
 				)
-				(property "Datasheet" "https://lcsc.com/product-detail/MOSFET_Infineon-Technologies-BSC040N08NS5_C534333.html"
+				(property "Datasheet" "https://www.lcsc.com/datasheet/C5955453.pdf"
 					(at 0 -13.97 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3097,7 +3097,7 @@
 						)
 					)
 				)
-				(property "MPN" "BSC040N08NS5"
+				(property "MPN" "BSC026N08NS5ATMA1"
 					(at 0 -19.05 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3108,7 +3108,7 @@
 						)
 					)
 				)
-				(property "LCSC Part" "C534333"
+				(property "LCSC Part" "C5955453"
 					(at 0 -21.59 0)
 					(show_name no)
 					(do_not_autoplace no)
@@ -3130,10 +3130,10 @@
 						)
 					)
 				)
-				(symbol "BSC040N08NS5_0_1"
+				(symbol "BSC026N08NS5ATMA1_0_1"
 					(rectangle
-						(start -5.08 6.35)
-						(end 5.08 -6.35)
+						(start -3.81 6.35)
+						(end 3.81 -6.35)
 						(stroke
 							(width 0)
 							(type default)
@@ -3143,7 +3143,7 @@
 						)
 					)
 					(circle
-						(center -3.81 5.08)
+						(center -2.54 5.08)
 						(radius 0.38)
 						(stroke
 							(width 0)
@@ -3154,7 +3154,7 @@
 						)
 					)
 					(pin passive line
-						(at -7.62 3.81 0)
+						(at -6.35 3.81 0)
 						(length 2.54)
 						(name "S"
 							(effects
@@ -3172,7 +3172,7 @@
 						)
 					)
 					(pin passive line
-						(at -7.62 1.27 0)
+						(at -6.35 1.27 0)
 						(length 2.54)
 						(name "S"
 							(effects
@@ -3190,7 +3190,7 @@
 						)
 					)
 					(pin passive line
-						(at -7.62 -1.27 0)
+						(at -6.35 -1.27 0)
 						(length 2.54)
 						(name "S"
 							(effects
@@ -3208,7 +3208,7 @@
 						)
 					)
 					(pin passive line
-						(at -7.62 -3.81 0)
+						(at -6.35 -3.81 0)
 						(length 2.54)
 						(name "G"
 							(effects
@@ -3226,7 +3226,7 @@
 						)
 					)
 					(pin passive line
-						(at 7.62 -3.81 180)
+						(at 6.35 -3.81 180)
 						(length 2.54)
 						(name "D"
 							(effects
@@ -3244,7 +3244,7 @@
 						)
 					)
 					(pin passive line
-						(at 7.62 -1.27 180)
+						(at 6.35 -1.27 180)
 						(length 2.54)
 						(name "D"
 							(effects
@@ -3262,7 +3262,7 @@
 						)
 					)
 					(pin passive line
-						(at 7.62 1.27 180)
+						(at 6.35 1.27 180)
 						(length 2.54)
 						(name "D"
 							(effects
@@ -3280,7 +3280,7 @@
 						)
 					)
 					(pin passive line
-						(at 7.62 3.81 180)
+						(at 6.35 3.81 180)
 						(length 2.54)
 						(name "D"
 							(effects
@@ -7326,7 +7326,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C844693"
+		(property "LCSC" "C459681"
 			(at 172.72 66.04 0)
 			(effects
 				(font
@@ -7335,7 +7335,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "WSL25124L000FEA"
+		(property "MPN" "RLP25FEGR004"
 			(at 172.72 66.04 0)
 			(effects
 				(font
@@ -11415,7 +11415,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 271.78 190.50 0)
 			(effects
 				(font
@@ -11442,7 +11442,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C15725"
+		(property "LCSC" "C28233"
 			(at 271.78 190.50 0)
 			(effects
 				(font
@@ -13927,7 +13927,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 271.78 241.30 0)
 			(effects
 				(font
@@ -13954,7 +13954,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1542"
+		(property "LCSC" "C1631"
 			(at 271.78 241.30 0)
 			(effects
 				(font
@@ -19034,7 +19034,7 @@
 		(uuid "bcabd58c-a423-5f7c-b6c6-fa01423b2cde")
 	)
 	(symbol
-		(lib_id "odeck:BSC040N08NS5")
+		(lib_id "odeck:BSC026N08NS5ATMA1")
 		(at 421.64 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19050,7 +19050,7 @@
 				)
 			)
 		)
-		(property "Value" "BSC040N08NS5"
+		(property "Value" "BSC026N08NS5"
 			(at 421.64 73.66 0)
 			(effects
 				(font
@@ -19058,7 +19058,7 @@
 				)
 			)
 		)
-		(property "Footprint" "odeck:PG-TDSON-8_L5.9-W5.1-P1.27-LS6.2-BL"
+		(property "Footprint" "odeck:PG-TDSON-8_L5.0-W6.0-P1.27-BL-EP"
 			(at 421.64 66.04 0)
 			(effects
 				(font
@@ -19067,7 +19067,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://lcsc.com/product-detail/MOSFET_Infineon-Technologies-BSC040N08NS5_C534333.html"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C5955453.pdf"
 			(at 421.64 66.04 0)
 			(effects
 				(font
@@ -19085,7 +19085,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C534333"
+		(property "LCSC" "C5955453"
 			(at 421.64 66.04 0)
 			(effects
 				(font
@@ -19094,7 +19094,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "BSC040N08NS5"
+		(property "MPN" "BSC026N08NS5ATMA1"
 			(at 421.64 66.04 0)
 			(effects
 				(font
@@ -19138,7 +19138,7 @@
 	)
 	(wire
 		(pts
-			(xy 414.02 62.23) (xy 411.48 62.23)
+			(xy 415.29 62.23) (xy 412.75 62.23)
 		)
 		(stroke
 			(width 0)
@@ -19148,7 +19148,7 @@
 	)
 	(global_label "VBB_OUT"
 		(shape passive)
-		(at 411.48 62.23 180)
+		(at 412.75 62.23 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19158,7 +19158,7 @@
 		)
 		(uuid "3cbc5e94-0603-5a47-965a-a3c915149ec3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 411.48 62.23 0)
+			(at 412.75 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19169,7 +19169,7 @@
 	)
 	(wire
 		(pts
-			(xy 414.02 64.77) (xy 411.48 64.77)
+			(xy 415.29 64.77) (xy 412.75 64.77)
 		)
 		(stroke
 			(width 0)
@@ -19179,7 +19179,7 @@
 	)
 	(global_label "VBB_OUT"
 		(shape passive)
-		(at 411.48 64.77 180)
+		(at 412.75 64.77 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19189,7 +19189,7 @@
 		)
 		(uuid "43d3bd45-72cb-5cc2-b158-fe5e342ec912")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 411.48 64.77 0)
+			(at 412.75 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19200,7 +19200,7 @@
 	)
 	(wire
 		(pts
-			(xy 414.02 67.31) (xy 411.48 67.31)
+			(xy 415.29 67.31) (xy 412.75 67.31)
 		)
 		(stroke
 			(width 0)
@@ -19210,7 +19210,7 @@
 	)
 	(global_label "VBB_OUT"
 		(shape passive)
-		(at 411.48 67.31 180)
+		(at 412.75 67.31 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19220,7 +19220,7 @@
 		)
 		(uuid "fef20f2f-8a09-5a96-be0c-b1331814ef14")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 411.48 67.31 0)
+			(at 412.75 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19231,7 +19231,7 @@
 	)
 	(wire
 		(pts
-			(xy 414.02 69.85) (xy 411.48 69.85)
+			(xy 415.29 69.85) (xy 412.75 69.85)
 		)
 		(stroke
 			(width 0)
@@ -19240,7 +19240,7 @@
 		(uuid "c3360455-b3dc-575a-843f-f477544ae124")
 	)
 	(label "SRC_DGATE"
-		(at 411.48 69.85 180)
+		(at 412.75 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19251,7 +19251,7 @@
 	)
 	(wire
 		(pts
-			(xy 429.26 69.85) (xy 431.80 69.85)
+			(xy 427.99 69.85) (xy 430.53 69.85)
 		)
 		(stroke
 			(width 0)
@@ -19260,7 +19260,7 @@
 		(uuid "e63697cc-bd03-52fc-adb8-89ff322cc418")
 	)
 	(label "SRC_MID"
-		(at 431.80 69.85 0)
+		(at 430.53 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19271,7 +19271,7 @@
 	)
 	(wire
 		(pts
-			(xy 429.26 67.31) (xy 431.80 67.31)
+			(xy 427.99 67.31) (xy 430.53 67.31)
 		)
 		(stroke
 			(width 0)
@@ -19280,7 +19280,7 @@
 		(uuid "0af803ef-1763-56c7-ab23-56903fca10ba")
 	)
 	(label "SRC_MID"
-		(at 431.80 67.31 0)
+		(at 430.53 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19291,7 +19291,7 @@
 	)
 	(wire
 		(pts
-			(xy 429.26 64.77) (xy 431.80 64.77)
+			(xy 427.99 64.77) (xy 430.53 64.77)
 		)
 		(stroke
 			(width 0)
@@ -19300,7 +19300,7 @@
 		(uuid "644202d3-a022-5b57-b438-405b4414eea2")
 	)
 	(label "SRC_MID"
-		(at 431.80 64.77 0)
+		(at 430.53 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19311,7 +19311,7 @@
 	)
 	(wire
 		(pts
-			(xy 429.26 62.23) (xy 431.80 62.23)
+			(xy 427.99 62.23) (xy 430.53 62.23)
 		)
 		(stroke
 			(width 0)
@@ -19320,7 +19320,7 @@
 		(uuid "bd36dcf8-1407-58f5-814c-61e1371464c1")
 	)
 	(label "SRC_MID"
-		(at 431.80 62.23 0)
+		(at 430.53 62.23 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19330,7 +19330,7 @@
 		(uuid "c99ba6e4-b34d-56af-9c0c-a7c31ac4179f")
 	)
 	(symbol
-		(lib_id "odeck:BSC040N08NS5")
+		(lib_id "odeck:BSC026N08NS5ATMA1")
 		(at 472.44 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19346,7 +19346,7 @@
 				)
 			)
 		)
-		(property "Value" "BSC040N08NS5"
+		(property "Value" "BSC026N08NS5"
 			(at 472.44 73.66 0)
 			(effects
 				(font
@@ -19354,7 +19354,7 @@
 				)
 			)
 		)
-		(property "Footprint" "odeck:PG-TDSON-8_L5.9-W5.1-P1.27-LS6.2-BL"
+		(property "Footprint" "odeck:PG-TDSON-8_L5.0-W6.0-P1.27-BL-EP"
 			(at 472.44 66.04 0)
 			(effects
 				(font
@@ -19363,7 +19363,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://lcsc.com/product-detail/MOSFET_Infineon-Technologies-BSC040N08NS5_C534333.html"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C5955453.pdf"
 			(at 472.44 66.04 0)
 			(effects
 				(font
@@ -19381,7 +19381,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C534333"
+		(property "LCSC" "C5955453"
 			(at 472.44 66.04 0)
 			(effects
 				(font
@@ -19390,7 +19390,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "BSC040N08NS5"
+		(property "MPN" "BSC026N08NS5ATMA1"
 			(at 472.44 66.04 0)
 			(effects
 				(font
@@ -19434,7 +19434,7 @@
 	)
 	(wire
 		(pts
-			(xy 464.82 62.23) (xy 462.28 62.23)
+			(xy 466.09 62.23) (xy 463.55 62.23)
 		)
 		(stroke
 			(width 0)
@@ -19444,7 +19444,7 @@
 	)
 	(global_label "VBUS_LSW"
 		(shape passive)
-		(at 462.28 62.23 180)
+		(at 463.55 62.23 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19454,7 +19454,7 @@
 		)
 		(uuid "86cc5e0d-e01a-5392-9b8c-f28082d24e18")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 462.28 62.23 0)
+			(at 463.55 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19465,7 +19465,7 @@
 	)
 	(wire
 		(pts
-			(xy 464.82 64.77) (xy 462.28 64.77)
+			(xy 466.09 64.77) (xy 463.55 64.77)
 		)
 		(stroke
 			(width 0)
@@ -19475,7 +19475,7 @@
 	)
 	(global_label "VBUS_LSW"
 		(shape passive)
-		(at 462.28 64.77 180)
+		(at 463.55 64.77 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19485,7 +19485,7 @@
 		)
 		(uuid "c635b03d-f79e-56bb-b0c2-a9c77b767bf6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 462.28 64.77 0)
+			(at 463.55 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19496,7 +19496,7 @@
 	)
 	(wire
 		(pts
-			(xy 464.82 67.31) (xy 462.28 67.31)
+			(xy 466.09 67.31) (xy 463.55 67.31)
 		)
 		(stroke
 			(width 0)
@@ -19506,7 +19506,7 @@
 	)
 	(global_label "VBUS_LSW"
 		(shape passive)
-		(at 462.28 67.31 180)
+		(at 463.55 67.31 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19516,7 +19516,7 @@
 		)
 		(uuid "0f2eef24-64ac-5dd6-b9b9-ddf73a4355a5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 462.28 67.31 0)
+			(at 463.55 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19527,7 +19527,7 @@
 	)
 	(wire
 		(pts
-			(xy 464.82 69.85) (xy 462.28 69.85)
+			(xy 466.09 69.85) (xy 463.55 69.85)
 		)
 		(stroke
 			(width 0)
@@ -19536,7 +19536,7 @@
 		(uuid "534c26b0-0fd5-552c-b4c8-f17a09237a68")
 	)
 	(label "SRC_HGATE"
-		(at 462.28 69.85 180)
+		(at 463.55 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19547,7 +19547,7 @@
 	)
 	(wire
 		(pts
-			(xy 480.06 69.85) (xy 482.60 69.85)
+			(xy 478.79 69.85) (xy 481.33 69.85)
 		)
 		(stroke
 			(width 0)
@@ -19556,7 +19556,7 @@
 		(uuid "f1d132fd-197f-5243-a9c8-254ec17b05c1")
 	)
 	(label "SRC_MID"
-		(at 482.60 69.85 0)
+		(at 481.33 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19567,7 +19567,7 @@
 	)
 	(wire
 		(pts
-			(xy 480.06 67.31) (xy 482.60 67.31)
+			(xy 478.79 67.31) (xy 481.33 67.31)
 		)
 		(stroke
 			(width 0)
@@ -19576,7 +19576,7 @@
 		(uuid "c0e3568d-2d4b-559d-a2c5-b37585468f66")
 	)
 	(label "SRC_MID"
-		(at 482.60 67.31 0)
+		(at 481.33 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19587,7 +19587,7 @@
 	)
 	(wire
 		(pts
-			(xy 480.06 64.77) (xy 482.60 64.77)
+			(xy 478.79 64.77) (xy 481.33 64.77)
 		)
 		(stroke
 			(width 0)
@@ -19596,7 +19596,7 @@
 		(uuid "29ea29b9-d8c9-519b-8391-6b63a25f407a")
 	)
 	(label "SRC_MID"
-		(at 482.60 64.77 0)
+		(at 481.33 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19607,7 +19607,7 @@
 	)
 	(wire
 		(pts
-			(xy 480.06 62.23) (xy 482.60 62.23)
+			(xy 478.79 62.23) (xy 481.33 62.23)
 		)
 		(stroke
 			(width 0)
@@ -19616,7 +19616,7 @@
 		(uuid "9148752a-d917-5d71-8889-2da99a7c0ca5")
 	)
 	(label "SRC_MID"
-		(at 482.60 62.23 0)
+		(at 481.33 62.23 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22425,7 +22425,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_2512_6332Metric"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 			(at 421.64 238.76 0)
 			(effects
 				(font
@@ -22443,7 +22443,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "INA226 shunt 5 mOhm 1 % 2512"
+		(property "Description" "INA226 shunt 5 mOhm 1 % 1206 1 W"
 			(at 421.64 238.76 0)
 			(effects
 				(font
@@ -22452,7 +22452,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C844900"
+		(property "LCSC" "C316225"
 			(at 421.64 238.76 0)
 			(effects
 				(font
@@ -22461,7 +22461,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "WSL25125L000FEA"
+		(property "MPN" "RLM12FTCMR005"
 			(at 421.64 238.76 0)
 			(effects
 				(font
@@ -26062,7 +26062,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 538.48 363.22 0)
 			(effects
 				(font
@@ -26089,7 +26089,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1536"
+		(property "LCSC" "C1613"
 			(at 538.48 363.22 0)
 			(effects
 				(font
@@ -28159,7 +28159,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 284.48 309.88 0)
 			(effects
 				(font
@@ -28186,7 +28186,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1531"
+		(property "LCSC" "C1604"
 			(at 284.48 309.88 0)
 			(effects
 				(font
@@ -29605,7 +29605,7 @@
 		)
 		(uuid "9985fae2-fccf-5cc6-8287-2cb2b5db44de")
 	)
-	(text "4. LAPTOP SOURCE SWITCH  VBB_OUT -> VBUS_LSW -> 5 mOhm -> VBUS_LAPTOP\nLM74800-Q1: Q (DGATE) = ideal diode (blocks laptop -> VBB_OUT in < 1 us), Q (HGATE) = on/off,\n  common drain, 2x BSC040N08NS5 (80 V, 4 mOhm @10 V): 5 A -> 0.26 W total.\nHARDWARE ENABLE: SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND (VBB_PG AND LAPTOP_OVP_N AND PG5_DLY)\n  74LVC1G11 3-input AND; VBB_PG and LAPTOP_OVP_N (both open-drain, 10k pull-ups) diode-ANDed by BAT54A;\n  2 FETs pull SRC_PGOK low unless the delayed PG_5V (SNK_PGD) is high: the source can only close after the\n  bus-power sink has been released (same delayed PG_5V) and +5V runs from the LM5148.\n  100k pull-downs: unpowered logic or floating PMG1 GPIO -> switch OFF.\nINTERLOCK: SRC_ON also forces the sink switch off (Q on SNK_ON, us) while the source HGATE needs ms:\n  the sink is released by EXT_PWR_PRESENT AND PG5_DLY, the source needs both too -> never both on.\nBackstop OV on the LM74800 OV pin (independent of logic and +3V3): 255k/10k from VBUS_LAPTOP\n  via VSNS/SW -> HGATE off above 32.6 V (31.7-33.6 V).\nSoft turn-on: HGATE 55 uA into 22 nF -> 2.5 V/ms."
+	(text "4. LAPTOP SOURCE SWITCH  VBB_OUT -> VBUS_LSW -> 5 mOhm -> VBUS_LAPTOP\nLM74800-Q1: Q (DGATE) = ideal diode (blocks laptop -> VBB_OUT in < 1 us), Q (HGATE) = on/off,\n  common drain, 2x BSC026N08NS5 (80 V, 2.6 mOhm @10 V; same FET as power_input): 5 A -> 0.13 W total.\nHARDWARE ENABLE: SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND (VBB_PG AND LAPTOP_OVP_N AND PG5_DLY)\n  74LVC1G11 3-input AND; VBB_PG and LAPTOP_OVP_N (both open-drain, 10k pull-ups) diode-ANDed by BAT54A;\n  2 FETs pull SRC_PGOK low unless the delayed PG_5V (SNK_PGD) is high: the source can only close after the\n  bus-power sink has been released (same delayed PG_5V) and +5V runs from the LM5148.\n  100k pull-downs: unpowered logic or floating PMG1 GPIO -> switch OFF.\nINTERLOCK: SRC_ON also forces the sink switch off (Q on SNK_ON, us) while the source HGATE needs ms:\n  the sink is released by EXT_PWR_PRESENT AND PG5_DLY, the source needs both too -> never both on.\nBackstop OV on the LM74800 OV pin (independent of logic and +3V3): 255k/10k from VBUS_LAPTOP\n  via VSNS/SW -> HGATE off above 32.6 V (31.7-33.6 V).\nSoft turn-on: HGATE 55 uA into 22 nF -> 2.5 V/ms."
 		(exclude_from_sim no)
 		(at 406.4 12.7 0)
 		(effects

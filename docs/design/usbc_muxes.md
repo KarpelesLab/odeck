@@ -213,7 +213,7 @@ rewired as SDA/SCL and pull-ups.
 | D505 | SMAJ6.0A (MDD) | C364284 | 99852 | extended |
 | C (×26) | 220 nF 0402 X7R | C16772 | 2.3 M | basic |
 | C | 100 nF 0402 / 10 µF 0603 / 1 µF 0402 / 100 nF 0603 50 V | C1525 / C19702 / C52923 / C14663 | — | basic |
-| C502 | 100 nF 0603 100 V | C15725 | 701k | extended |
+| C502 | 100 nF 0805 100 V X7R | C28233 | 1.25M | basic |
 | R | 1 k / 10 k / 20 k / 100 k / 1 M 0402, 2 M 0603 | C11702 / C25744 / C25765 / C25741 / C26083 / C22976 | — | basic |
 
 TUSB1064 (53) and TUSB1046 (42) have thin JLC stock: order the prototype run early. Alternates with the same RNQ

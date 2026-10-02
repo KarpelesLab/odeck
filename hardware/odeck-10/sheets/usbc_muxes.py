@@ -15,7 +15,7 @@ C_220N = "C16772"           # 0402 16 V X7R basic (AC coupling, all 10G / HBR3 l
 C_1U = "C52923"             # 0402 25 V basic
 C_10U = "C19702"            # 0603 10 V basic
 C_100N_50V = "C14663"       # 0603 50 V basic
-C_100N_100V = "C15725"      # 0603 100 V (TPD4S480 VBIAS: >= 63 V rated)
+C_100N_100V = "C28233"      # CL21B104KCFNNNE 0805 100 V X7R basic (TPD4S480 VBIAS: >= 63 V rated)
 TVS_LAPTOP = ("SMCJ28A", "C224047", "Diode_SMD:D_SMC")   # Littelfuse, 28 V standoff, VBR 31.1-34.4 V, 1500 W
 TVS_DS = ("SMAJ6.0A", "C364284", "Diode_SMD:D_SMA")      # 6 V standoff, 400 W
 ESD_HS = "odeck:TPD4E02B04DQAR"                           # C106794, 0.25 pF, 10 Gbps, flow-through USON-10
@@ -104,7 +104,7 @@ def build(D):
                  "SBU1": "UP_SBU1", "SBU2": "UP_SBU2", "~{FLT}": "UP_CCPROT_FLT_N", "GND": "GND", "EP": "GND"},
            nc=["VBUS_LV", "EPR_BLK_G"], desc="CC/SBU 63 V short-to-VBUS protection + IEC ESD (laptop port)")
     x, y = 93.98, 152.4
-    s.c("100n/100V", "UP_TPD_VBIAS", "GND", size="0603", at=(x, y), lcsc=C_100N_100V, desc="VBIAS, >= 63 V rated")
+    s.c("100n/100V", "UP_TPD_VBIAS", "GND", size="0805", at=(x, y), lcsc=C_100N_100V, desc="VBIAS, >= 63 V rated")
     s.c("1u", "PMG1_VDDD", "GND", at=(x + 10.16, y), lcsc=C_1U, desc="TPD4S480 VPWR")
     s.r("100k", "UP_CCPROT_FLT_N", "PMG1_VDDD", at=(x + 20.32, y), lcsc=R_100K)
     s.r("2M", "UP_SBU1", "GND", size="0603", at=(x + 30.48, y), lcsc=R_2M_0603, desc="SBU1 2M to GND (TUSB1064 DS)")

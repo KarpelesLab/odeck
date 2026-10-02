@@ -61,7 +61,7 @@ SD1_CDZ ─ 1k ─► CR_CD_SD_N    SD2_CDZ ─ 1k ─► CR_CD_USD_N    LED 21 
   - The GL3224 only needs ±300 ppm (25 MHz ± 0.03 %).
   - The Genesys demo board V3 removed its crystal option. Crystal-less operation is not documented for the -ONY04, so
     the crystal stays.
-- RTERM: 680 Ω 1 % (Yageo RC0402FR-07680RL, C137948) to GND, as DS table 3.1 recommends.
+- RTERM: 680 Ω 1 % (UNI-ROYAL 0603WAF6800T5E 0603, C23228) to GND, as DS table 3.1 recommends.
 - AC coupling, following integration item 14 (the transmitter side owns the cap):
   - Hub TX → CR_SS_TX* (220 nF on usb_hub) → GL3224 RX directly.
   - GL3224 TX → **100 nF** here → CR_SS_RX* → hub RX.
@@ -113,7 +113,7 @@ SD1_CDZ ─ 1k ─► CR_CD_SD_N    SD2_CDZ ─ 1k ─► CR_CD_USD_N    LED 21 
 | J901 | Hanbo SD-111 full-size SD push-push | C410353 | 5209 | ext | 1 |
 | J902 | Hirose DM3AT-SF-PEJM5 microSD push-push | C114218 | 16 792 | ext | 1 |
 | Y901 | YXC X322525MOB4SI 25 MHz 3225 | C9006 | 199 410 | basic | 1 |
-| R901 | Yageo RC0402FR-07680RL 680 Ω 1 % | C137948 | 857 696 | ext | 1 |
+| R901 | UNI-ROYAL 0603WAF6800T5E 680 Ω 1 % 0603 | C23228 | 2 389 645 | basic | 1 |
 | R902, R903 (DNP) | 10 kΩ 0402 | C25744 | 21 M | basic | 2 |
 | R904–R906, R907 (DNP) | 1 kΩ 0402 | C11702 | 7.2 M | basic | 4 |
 | D901 (DNP) | KENTO KT-0805G green LED | C2297 | 3.1 M | basic | 1 |

@@ -258,8 +258,8 @@ Physical port to function, for the LCD: P1 card reader, P2 USB-A #1, P3 USB-A #2
 | U603 | 74LVC1G17W5-7 (Diodes) SOT-25, VBUS_DET buffer | C151394 | ext | 10.8k | 1 |
 | C641 | 100 nF 0402 (U603) | C1525 | basic | — | 1 |
 | R629 | 4.7k 0402 (HUB_SMB_PU pull-down, E9) | C25900 | basic | — | 1 |
-| R626 | 68k 1 % 0402 | C36871 | ext | 245k | 1 |
-| R632, R633 | 15k 0402 (C25756, basic) / 49.9k 1 % 0402 (C25897, ext) | | | | 2 |
+| R626 | 68k 1 % 0603 | C23231 | basic | 1.0M | 1 |
+| R632, R633 | 15k 0402 (C25756, basic) / 49.9k 1 % 0603 (C23184, basic) | | | | 2 |
 | C601–C612 | 220 nF 16 V X7R 0402 | C16772 | basic | 2.3M | 12 |
 | C613–C620, C624–C632, C640 | 100 nF 0402 | C1525 | basic | 21M | 18 |
 | 4.7 µF caps | 4.7 µF 10 V X5R 0402 | C23733 | basic | 2.3M | 5 |

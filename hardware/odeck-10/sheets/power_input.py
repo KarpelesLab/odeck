@@ -8,9 +8,9 @@ from schgen import Sheet
 # --- part numbers (LCSC) -------------------------------------------------------------------------
 R_100K, R_10K, R_1K, R_2K2, R_4K7, R_47K, R_33K, R_15K, R_1M, R_100, R_0 = (
     "C25741", "C25744", "C11702", "C25879", "C25900", "C25792", "C25779", "C25756", "C26083", "C25076", "C17168")
-R_7K5 = "C25918"
+R_7K5 = "C23234"                 # 0603 basic (0402 7.5k is extended)
 R_22K = "C25768"                 # extended (1.2M stock)
-R_39K = "C25783"                 # 0402 basic
+R_39K = "C23153"                 # 0603 basic (0402 39k is extended)
 R_100K_0805 = "C149504"          # 0805 basic, 150 V working voltage (resistors with a terminal on VBUS_PDIN/VBAR)
 R_1M_0805 = "C17514"             # 0805 basic, 150 V working voltage
 C_1U_100V = "C126585"            # 0805 100 V X7S
@@ -19,7 +19,7 @@ TVS_PDIN = ("C2990373", "5.0SMDJ51A")   # Liown 5 kW, SMC (DO-214AB): same footp
 TVS_BAR = ("C2649886", "5.0SMDJ48CA")   # Littelfuse 5 kW bidirectional, SMC
 C_100N_16V = "C1525"             # 0402 basic
 C_100N_50V = "C14663"            # 0603 basic
-C_100N_100V = "C15725"           # 0603 100 V X7R
+C_100N_100V = "C28233"           # CL21B104KCFNNNE 100 nF 100 V X7R 0805 (basic; no basic 100 V 0603)
 C_220P = "C1603"                 # 0603 50 V basic
 C_1U_25V = "C52923"              # 0402 basic
 C_10U_10V = "C19702"             # 0603 basic
@@ -56,7 +56,7 @@ def build(D):
     s.part("odeck:SMCJ51A_C408371", "D", TVS_PDIN[1], at=(91.44, 60.96), pins={"C": "VBUS_PDIN", "A": "GND"},
            lcsc=TVS_PDIN[0], mpn=TVS_PDIN[1], desc="TVS 51 V uni 5 kW (SMC), VBUS_PDIN")
     s.c("2.2u/100V", "VBUS_PDIN", "GND", size="1210", at=(83.82, 81.28), lcsc=C_2U2_100V)
-    s.c("100n/100V", "VBUS_PDIN", "GND", size="0603", at=(93.98, 81.28), lcsc=C_100N_100V)
+    s.c("100n/100V", "VBUS_PDIN", "GND", size="0805", at=(93.98, 81.28), lcsc=C_100N_100V)
     s.flag("VBUS_PDIN", at=(104.14, 81.28))
 
     s.part("odeck:TPD4S480RUKR_C43131250", "U", "TPD4S480", at=(152.4, 76.2),
@@ -65,7 +65,7 @@ def build(D):
                  "RPD_G2": "PDIN_C_CC2", "CC1": "PDIN_CC1", "CC2": "PDIN_CC2", "~{FLT}": "PDIN_FLT_N",
                  "GND": "GND", "EP": "GND"},
            nc=["C_SBU1", "C_SBU2", "SBU1", "SBU2", "EPR_BLK_G"], desc="EPR CC/SBU protection + VBUS scaler")
-    s.c("100n/100V", "PDIN_VBIAS", "GND", size="0603", at=(124.46, 116.84), lcsc=C_100N_100V)   # VBIAS >=63 V rated
+    s.c("100n/100V", "PDIN_VBIAS", "GND", size="0805", at=(124.46, 116.84), lcsc=C_100N_100V)   # VBIAS >=63 V rated
     s.c("1u", "PD_LDO_3V3", "GND", size="0402", at=(134.62, 116.84), lcsc=C_1U_25V)            # VPWR
     s.c("100n/50V", "PDIN_VBUS_LV", "GND", size="0603", at=(144.78, 116.84), lcsc=C_100N_50V)  # VBUS_LV (<=21.2 V)
     s.r("10k", "PDIN_FLT_N", "PD_LDO_3V3", at=(154.94, 116.84), lcsc=R_10K)
@@ -172,7 +172,7 @@ def build(D):
                  "CAP": "PD_CAP", "C": "PD_MID"},
            nc=["RTN"], desc="Ideal diode + load switch controller, PD-in")
     x2, y2 = 419.1, 132.08
-    s.c("100n/100V", "PD_MID", "GND", size="0603", at=(x2, y2), lcsc=C_100N_100V)        # VS
+    s.c("100n/100V", "PD_MID", "GND", size="0805", at=(x2, y2), lcsc=C_100N_100V)        # VS
     s.c("100n/50V", "PD_CAP", "PD_MID", size="0603", at=(x2 + 10.16, y2), lcsc=C_100N_50V)  # CAP-VS (<15 V)
     s.r("100k", "PD_OV_TOP", "PD_OV", size="0805", at=(x2 + 20.32, y2), lcsc=R_100K_0805)
     s.r("2.2k", "PD_OV", "GND", at=(x2 + 30.48, y2), lcsc=R_2K2)
@@ -199,7 +199,7 @@ def build(D):
            pins={"1": "VBAR", "2": "GND"}, nc=["0"], desc="DC jack 5.5x2.5 mm, 8 A")
     s.part("odeck:SMCJ48CA_C408370", "D", TVS_BAR[1], at=(63.5, 246.38), pins={"1": "VBAR", "2": "GND"},
            lcsc=TVS_BAR[0], mpn=TVS_BAR[1], desc="TVS 48 V bidirectional 5 kW (SMC), barrel")
-    s.c("100n/100V", "VBAR", "GND", size="0603", at=(78.74, 261.62), lcsc=C_100N_100V)
+    s.c("100n/100V", "VBAR", "GND", size="0805", at=(78.74, 261.62), lcsc=C_100N_100V)
     s.part(FET, "Q", "BSC026N08NS5", at=(116.84, 246.38), pins={"S": "VBAR", "D": "BAR_MID", "G": "BAR_DGATE"},
            desc="80 V NFET, barrel ideal diode")
     s.part(FET, "Q", "BSC026N08NS5", at=(175.26, 246.38), pins={"S": "VIN_OR", "D": "BAR_MID", "G": "BAR_HGATE"},
@@ -210,7 +210,7 @@ def build(D):
                  "CAP": "BAR_CAP", "C": "BAR_MID"},
            nc=["RTN"], desc="Ideal diode + load switch controller, barrel (RTN pad floating per datasheet)")
     x3, y3 = 195.58, 271.78
-    s.c("100n/100V", "BAR_MID", "GND", size="0603", at=(x3, y3), lcsc=C_100N_100V)        # VS
+    s.c("100n/100V", "BAR_MID", "GND", size="0805", at=(x3, y3), lcsc=C_100N_100V)        # VS
     s.c("100n/50V", "BAR_CAP", "BAR_MID", size="0603", at=(x3 + 10.16, y3), lcsc=C_100N_50V)  # CAP-VS
     s.r("100", "BAR_HGATE", "BAR_DVDT", at=(x3 + 20.32, y3), lcsc=R_100)
     s.c("47n/100V", "BAR_DVDT", "GND", size="0603", at=(x3 + 30.48, y3), lcsc=C_47N_100V)
@@ -241,7 +241,7 @@ def build(D):
     s.part("Device:D", "D", "1N4148W", "Diode_SMD:D_SOD-123", at=(x4 - 30.48, y4 + 27.94), lcsc="C81598",
            pins={"A": "VBAR", "K": "BAR_MON_TOP"})
     s.r("1M", "BAR_MON_TOP", "BAR_MON_UV", size="0805", at=(x4, y4 + 27.94), lcsc=R_1M_0805)
-    s.r("39k", "BAR_MON_UV", "BAR_MON_OV", at=(x4 + 10.16, y4 + 27.94), lcsc=R_39K)
+    s.r("39k", "BAR_MON_UV", "BAR_MON_OV", size="0603", at=(x4 + 10.16, y4 + 27.94), lcsc=R_39K)
     s.r("15k", "BAR_MON_OV", "GND", at=(x4 + 20.32, y4 + 27.94), lcsc=R_15K)
     s.r("100k", "BAR_OK", "+3V3", at=(x4 + 30.48, y4 + 27.94), lcsc=R_100K)
     s.c("100n", "+3V3", "GND", at=(x4 + 40.64, y4 + 27.94), lcsc=C_100N_16V)
@@ -252,7 +252,7 @@ def build(D):
                  "OUTA": "PD_OK", "OUTB": "PD_OK"}, desc="Window comparator, PD-in VBUS present")
     s.r("1M", "VBUS_PDIN", "PD_MON_UV", size="0805", at=(x5, y4 + 27.94), lcsc=R_1M_0805)
     s.r("47k", "PD_MON_UV", "PD_MON_OV", at=(x5 + 10.16, y4 + 27.94), lcsc=R_47K)
-    s.r("7.5k", "PD_MON_OV", "GND", at=(x5 + 20.32, y4 + 27.94), lcsc=R_7K5)
+    s.r("7.5k", "PD_MON_OV", "GND", size="0603", at=(x5 + 20.32, y4 + 27.94), lcsc=R_7K5)
     s.r("100k", "PD_OK", "+3V3", at=(x5 + 30.48, y4 + 27.94), lcsc=R_100K)
     s.c("100n", "+3V3", "GND", at=(x5 + 40.64, y4 + 27.94), lcsc=C_100N_16V)
 
@@ -279,9 +279,9 @@ def build(D):
            pins={"1": "VIN", "2": "GND"}, lcsc=C_47U_100V,
            desc="Alu 47 uF 100 V, VIN damping (only electrolytic on VIN: cSnkBulkPd budget)")
     s.c("1u/100V", "VIN", "GND", size="0805", at=(x6 + 50.8, y6), lcsc=C_1U_100V)
-    s.c("100n/100V", "VIN", "GND", size="0603", at=(x6 + 60.96, y6), lcsc=C_100N_100V)
-    s.r("2m", "VIN_OR", "VIN", size="2512", at=(x6 + 101.6, y6), lcsc="C844691",
-        mpn="WSL25122L000FEA18", desc="Shunt 2 mOhm 1 % 2512, VIN current")
+    s.c("100n/100V", "VIN", "GND", size="0805", at=(x6 + 60.96, y6), lcsc=C_100N_100V)
+    s.r("2m", "VIN_OR", "VIN", size="2512", at=(x6 + 101.6, y6), lcsc="C459679",
+        mpn="RLP25FEGR002", desc="Shunt 2 mOhm 1 % 2512, VIN current")
     s.part("odeck:INA237AIDGSR", "U", "INA237", at=(x6 + 147.32, y6),
            pins={"10": "VIN_OR", "9": "VIN", "VBUS": "VIN", "VS": "+3V3", "GND": "GND", "A0": "+3V3",
                  "A1": "+3V3", "SDA": "I2C_SYS_SDA", "SCL": "I2C_SYS_SCL"},

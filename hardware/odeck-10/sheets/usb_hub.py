@@ -10,7 +10,7 @@ from schgen import Sheet
 # basic parts
 R_0, R_10K, R_12K, R_47K, R_100K, R_200K = "C17168", "C25744", "C25752", "C25792", "C25741", "C25764"
 R_4K7, R_15K = "C25900", "C25756"
-R_68K, R_49K9 = "C36871", "C25897"   # 0402 1 % extended (VBUS_DET divider / output attenuator)
+R_68K, R_49K9 = "C23231", "C23184"   # 0603 1 % basic (VBUS_DET divider / output attenuator)
 C_20P, C_1N, C_100N, C_220N, C_4U7 = "C1554", "C1523", "C1525", "C16772", "C23733"
 XTAL_25M = "C9006"                 # YXC X322525MOB4SI 25 MHz 3225, CL 12 pF, +-10 ppm, +-20 ppm stab., ESR 50 Ohm
 # extended parts
@@ -171,7 +171,7 @@ def build(D):
            desc="Wire-OR: RAILS_PG low (+1V15 not good) holds RESET_N low; RP2350 pulling RESET_N does not load RAILS_PG")
     s.r("47k", "VBUS_LAPTOP", "HUB_VBUS_SNS", size="0402", at=(x0 + 38.1, y), lcsc=R_47K,
         desc="VBUS sense divider top (laptop VBUS 4.4-28 V)")
-    s.r("68k", "HUB_VBUS_SNS", "GND", at=(x0 + 48.26, y), lcsc=R_68K, desc="VBUS sense divider bottom: 4.4 V -> 2.60 V")
+    s.r("68k", "HUB_VBUS_SNS", "GND", size="0603", at=(x0 + 48.26, y), lcsc=R_68K, desc="VBUS sense divider bottom: 4.4 V -> 2.60 V")
     s.part("Device:D_Schottky", "D", "BAT54WS", "Diode_SMD:D_SOD-323", at=(x0 + 60.96, y),
            pins={"A": "HUB_VBUS_SNS", "K": "+3V3"}, lcsc=D_SCHOTTKY,
            desc="Clamps the sense node to ~3.6 V when laptop VBUS is 9-28 V (<0.5 mA into +3V3 at 28 V)")
@@ -249,7 +249,7 @@ def build(D):
     s.c("100n", "+3V3", "GND", at=(434.34, y2), lcsc=C_100N, desc="VBUS_DET buffer decoupling")
     s.r("15k", "HUB_VBUS_BUF", "HUB_VBUS_DET", at=(444.5, y2), lcsc=R_15K,
         desc="VBUS_DET attenuator top (checklist fig. 5-2 topology)")
-    s.r("49.9k", "HUB_VBUS_DET", "GND", at=(454.66, y2), lcsc=R_49K9,
+    s.r("49.9k", "HUB_VBUS_DET", "GND", size="0603", at=(454.66, y2), lcsc=R_49K9,
         desc="VBUS_DET attenuator bottom: 3.33 V -> 2.56 V (<= 2.7 V)")
 
     s.build()

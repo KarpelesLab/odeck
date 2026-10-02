@@ -178,11 +178,14 @@ PMG1 PWM/RC into BB_FBM would add it with limited authority.
 - With VIN absent nothing is pulled; VBB_PG floats high through its pull-up but `EXT_PWR_PRESENT` is low then,
   so the source switch stays off. Treat VBB_PG as valid only while VBB_EN is high (and ≥ 10 ms after it rose).
 
-## 4. Laptop source switch (LM74800-Q1 + 2× BSC040N08NS5)
+## 4. Laptop source switch (LM74800-Q1 + 2× BSC026N08NS5)
 
 - Common-drain back-to-back pair, A = VBB_OUT, OUT = VBUS_LSW. DGATE FET = ideal diode (reverse comparator
   −4.5 mV, 0.5 µs turn-off): the laptop can never back-feed VBB_OUT/the converter (FRS, PR_Swap, faults).
-  HGATE FET = on/off. 80 V/4 mΩ at 10–11 V gate drive: 5 A → 2·25·4 mΩ·1.3 = **0.26 W**.
+  HGATE FET = on/off. 80 V/2.6 mΩ at 10–11 V gate drive: 5 A → 2·25·2.6 mΩ·1.3 = **0.17 W**.
+  (Same FET as the power_input LM74800 pairs; was BSC040N08NS5 before the cost pass. Qg 74 nC vs 43 nC:
+  turn-on is set by the 22 nF dV/dt cap anyway; DGATE 2.6 A pull-down discharges 74 nC in ~30 ns, so the
+  0.5 µs reverse turn-off is unaffected.)
 - EN/UVLO = SRC_ON (100k pull-down). Inrush: HGATE 55 µA into 22 nF (+100 Ω) → 2.5 V/ms; closes at vSafe5V
   into ≤ 20 µF → negligible inrush.
 - OV backstop independent of +3V3 and logic: VSNS = VBUS_LAPTOP, SW → 255k/10k → OV: 1.231·26.5 = **32.6 V**
@@ -256,7 +259,7 @@ Why not a single eFuse: no stocked eFuse combines ≥ 30 V off-state, 3 A and re
 ## 7. VBUS_LAPTOP monitor and capacitance
 
 - **INA226** (C49851, 44k stock) at **0x44** (A1 = VS, A0 = GND; power_rails uses 0x41, power_input INA237 0x45).
-  Shunt 5 mΩ WSL2512 between VBUS_LSW (IN+) and VBUS_LAPTOP (IN−): 5 A → 25 mV of ±81.92 mV, 0.125 W;
+  Shunt 5 mΩ 1206 (RLM12FTCMR005, 1 W) between VBUS_LSW (IN+) and VBUS_LAPTOP (IN−): 5 A → 25 mV of ±81.92 mV, 0.125 W;
   positive = sourcing, negative = bus-powered sink. CURRENT_LSB = 0.5 mA → CAL = 0.00512/(0.5 mA·5 mΩ) = **2048**,
   POWER_LSB 12.5 mW. VBUS pin on the connector side (36 V max). ALERT unused.
 - Connector-side capacitance (VBUS_LAPTOP + VBUS_LSW, no switch between them): 10 µF/50 V X7R + 2× 100 nF →
@@ -286,11 +289,11 @@ Q204 and L201; firmware derates the contract on temperature. Keep the zone away 
 | Q201, Q202 | Infineon BSC0805LS | C534374 | 15000 | 100 V, 7.7 mΩ @4.5 V |
 | Q203, Q204, Q217 | TI CSD18543Q3A | C840100 | 12215 | 60 V, 12 mΩ @4.5 V |
 | L201 | Coilcraft XAL1010-103MED | C6358489 | 707 | 10 µH, Isat 17.5 A |
-| R201 | Vishay WSL25124L000FEA | C844693 | 4059 | 4 mΩ peak sense |
+| R201 | TA-I RLP25FEGR004 2512 | C459681 | 15078 | 4 mΩ peak sense (3 W, 50 ppm; same as R303) |
 | R202 | Yageo PE2512FKE070R008L | C2075410 | 1855 | 8 mΩ output sense |
-| R243 | Vishay WSL25125L000FEA | C844900 | 1591 | 5 mΩ INA226 shunt |
+| R243 | TA-I RLM12FTCMR005 1206 | C316225 | 201600 | 5 mΩ INA226 shunt (1 W; same as R415) |
 | U202 | TI LM74800QDRRRQ1 | C3215600 | 4038 | source switch (also 2× on power_input) |
-| Q213, Q214 | Infineon BSC040N08NS5 | C534333 | 6678 | 80 V, 4 mΩ |
+| Q213, Q214 | Infineon BSC026N08NS5ATMA1 | C5955453 | 5786 | 80 V, 2.6 mΩ (same as Q104–Q107) |
 | U203 | TI SN74LVC1G11DBVR | C22046 | 13937 | 3-input AND |
 | U204 | TI INA226AIDGSR | C49851 | 44390 | 0x44 |
 | U205 | TI LM74502DDFR | C3236215 | 8157 | sink stage 1 |

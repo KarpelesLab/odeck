@@ -14,7 +14,7 @@ C_10U_0603, C_10U_0805 = "C19702", "C15850"                        # 0603 10 V /
 XTAL_25M = "C9006"           # YXC X322525MOB4SI 25 MHz 3225, CL 12 pF, +-10 ppm (same as usb_hub)
 LED_G = "C2297"              # KENTO KT-0805G green 0805 (DNP, bench activity LED)
 # extended parts
-R_680_1PCT = "C137948"       # Yageo RC0402FR-07680RL 680 Ohm 1 % (RTERM)
+R_680_1PCT = "C23228"        # UNI-ROYAL 0603WAF6800T5E 680 Ohm 1 % 0603 basic (RTERM)
 CR_IC = "C157358"            # Genesys GL3224-ONY04 QFN-48 7x7
 SD_SOCKET = "C410353"        # Hanbo SD-111 full-size SD, push-push, CD + WP switches
 USD_SOCKET = "C114218"       # Hirose DM3AT-SF-PEJM5 microSD, push-push, normally-open detect switch
@@ -97,7 +97,7 @@ def build(D):
     y = y0 + 17.78
     s.c("100n", "CR_TXP_IC", "CR_SS_RXP", at=(x0, y), lcsc=C_100N, desc="GL3224 TX+ AC cap (Gen1 TX: 75-200 nF)")
     s.c("100n", "CR_TXN_IC", "CR_SS_RXN", at=(x0 + 10.16, y), lcsc=C_100N, desc="GL3224 TX- AC cap (Gen1 TX: 75-200 nF)")
-    s.r("680", "CR_RTERM", "GND", at=(x0 + 22.86, y), lcsc=R_680_1PCT, desc="RTERM 680 Ohm 1 % (DS table 3.1), short GND return")
+    s.r("680", "CR_RTERM", "GND", size="0603", at=(x0 + 22.86, y), lcsc=R_680_1PCT, desc="RTERM 680 Ohm 1 % (DS table 3.1), short GND return")
     s.part("Device:Crystal_GND24", "Y", "25MHz", "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm", at=(x0 + 40.64, y),
            pins={"1": "CR_XI", "3": "CR_XO", "2": "GND", "4": "GND"}, lcsc=XTAL_25M,
            desc="25 MHz CL 12 pF +-10 ppm (GL3224 needs +-300 ppm)")

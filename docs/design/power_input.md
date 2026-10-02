@@ -160,7 +160,7 @@ so an `EXT_PWR_PRESENT` that rises while VIN is still ramping cannot brown the d
 
 ## 6. VIN: shunt, monitor, bulk
 
-- **Shunt** R137 Vishay WSL25122L000FEA18, 2 mΩ 1 % 2512 (C844691, 29k): 8.3 A → 16.6 mV, P = 0.14 W.
+- **Shunt** R137 TA-I RLP25FEGR002, 2 mΩ 1 % 3 W 50 ppm 2512 (C459679, 52k; same part as R312): 8.3 A → 16.6 mV, P = 0.14 W.
   Placed between VIN_OR and VIN so both sources and any back-feed are measured. Route IN+/IN− as Kelvin pairs.
 - **INA237** (U109, C2864837, JLC stock ~5k; replaced the 0-stock INA228 — same pinout):
   85 V common mode, 16-bit. VBUS pin = VIN. VS = +3V3. Address **0x45**
@@ -213,17 +213,18 @@ so an `EXT_PWR_PRESENT` that rises while VIN is still ramping cannot brown the d
 | D101 | 5.0SMDJ51A (Liown) | C2990373 | 2797 | 5 kW, SMC; same footprint as SMCJ51A |
 | D102 | 5.0SMDJ48CA (Littelfuse) | C2649886 | 1332 | 5 kW bidirectional, SMC |
 | D103 | 1N4148W | C81598 | basic | |
-| R137 | WSL25122L000FEA18 2 mΩ | C844691 | 29410 | |
+| R137 | RLP25FEGR002 2 mΩ 2512 | C459679 | 52095 | same as R312 |
 | C122 | SamYoung MVK 47 µF 100 V alu 10×10 | C371305 | 1847 | VIN damping (only VIN electrolytic) |
 | C123 | 1 µF 100 V X7S 0805 | C126585 | 30k | |
 | C101 | 2.2 µF 100 V X7R 1210 | C153036 | 347k | |
-| C102, C103, C112, C115, C116, C124 | 100 nF 100 V 0603 | C15725 | 707k | |
+| C102, C103, C112, C115, C116, C124 | 100 nF 100 V X7R 0805 | C28233 | 1.25M | basic |
 | C114, C118 | 47 nF 100 V 0603 | C576852 | 233k | |
 | C106–C108 | 10 µF 0603 | C19702 | basic | |
 | R121, R125, R127 | 100 k 0805 (150 V) | C149504 | basic | divider tops on VBUS_PDIN / BAR_SW / VBAR |
 | R129, R133 | 1 M 0805 (150 V) | C17514 | basic | |
-| others | 0402/0603 R & C | C25741, C25744, C25879, C25900, C25076, C25768, C25783, C25756, C25792, C1525, C14663, C52923, C1603 | basic | |
-| R135 | 7.5 k 0402 | C25918 | 1.2M | extended |
+| others | 0402/0603 R & C | C25741, C25744, C25879, C25900, C25076, C25768, C25756, C25792, C1525, C14663, C52923, C1603 | basic | |
+| R135 | 7.5 k 1 % 0603 | C23234 | 1.3M | basic |
+| R130 | 39 k 1 % 0603 | C23153 | 458k | basic |
 
 Approximate cost of the sheet: ≈ $21 incl. INA237 (~$1.9) and TPS26750 (~$3.2).
 

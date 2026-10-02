@@ -17,7 +17,7 @@ XTAL_25M = "C9006"                 # YXC X322525MOB4SI 25 MHz 3225, CL 12 pF, +-
 # extended parts
 R_2K49 = "C25884"                  # 2.49k 1 % 0402 (RSET)
 R_59K = "C32297"                   # 59k 1 % 0402 (0.95 V FB top)
-C_390P = "C76967"                  # Murata GRM1555C1H391JA01D 390 pF C0G 0402 (PHY-side magnetics centre tap)
+C_390P = "C282239"                 # Yageo CC0402JRNPO9BN391 390 pF C0G 50 V 0402 (same part as pd_pmg1 CC caps)
 PHY = "C41376388"                  # Realtek RTL8156BG-CG QFN-56 6x6 0.35 mm
 BUCK = "C5820994"                  # TI TPS62A02ADRLR 2 A forced-PWM 2.4 MHz buck, SOT-563
 L_1U = "C91250"                    # Sunlord SWPA4018S1R0NT 1 uH 4x4x1.8 mm

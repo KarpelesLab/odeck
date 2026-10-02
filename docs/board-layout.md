@@ -1,6 +1,7 @@
 # odeck-10 — Board outline & placement plan
 
-Provisional (2026-10-02). Outline in KiCad: **110 × 75 mm**, 3 mm corner radius, 4× M3 mounting holes
+Provisional (2026-10-02). Outline in KiCad: **130 × 85 mm** (grown from 110 × 75: ~800 parts / ~9,200 mm² of
+courtyards didn't fit; small passives also on the bottom side), 3 mm corner radius, 4× M3 mounting holes
 (4 mm from corners) for rubber feet / standoffs. May grow after thermal data (see power-budget.md).
 
 ## Edge plan (top view)

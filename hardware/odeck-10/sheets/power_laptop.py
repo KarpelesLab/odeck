@@ -18,14 +18,15 @@ R_46K4 = "C5126026"                                # OVP divider bottom (trip 31
 R_200K_0805, R_470K_0805 = "C17539", "C17709"      # 0805, 150 V working voltage (VIN-side)
 R_10_0603 = "C22859"
 R_150_2512 = "C2934049"                            # 1 W, VBB_OUT discharge
-R_SNS_4M = "C844693"                               # Vishay WSL25124L000FEA 4 mOhm 2512 (peak current sense)
+R_SNS_4M = "C459681"                               # TA-I RLP25FEGR004 4 mOhm 1 % 3 W 50 ppm 2512 (peak current sense; same as power_rails)
 R_SNS_8M = "C2075410"                              # Yageo PE2512FKE070R008L 8 mOhm 2512 (avg current limit)
-R_SNS_5M = "C844900"                               # Vishay WSL25125L000FEA 5 mOhm 2512 (INA226 shunt)
+R_SNS_5M = "C316225"                               # TA-I RLM12FTCMR005 5 mOhm 1 % 1 W 1206 (INA226 shunt; same as pd_pmg1)
 # capacitors
 C_100P, C_82P, C_470P, C_1N, C_3N3, C_6N8, C_22N, C_100N = (
-    "C1546", "C45501", "C1537", "C1523", "C1536", "C1542", "C1532", "C1525")
-C_2N2, C_4N7 = "C1531", "C1538"
-C_100N_50V, C_22N_50V, C_100N_100V = "C14663", "C21122", "C15725"     # 0603
+    "C1546", "C45501", "C1537", "C1523", "C1613", "C1631", "C1532", "C1525")   # 3.3n/6.8n: 0603 basic
+C_2N2, C_4N7 = "C1604", "C1538"                    # 2.2 nF: 0603 basic (0402 is extended)
+C_100N_50V, C_22N_50V = "C14663", "C21122"                          # 0603
+C_100N_100V = "C28233"                                              # CL21B104KCFNNNE 0805 100 V X7R (basic)
 C_1U_50V, C_4U7_16V = "C15849", "C19666"                            # 0603
 C_10U_25V, C_22U_25V, C_1U_100V = "C15850", "C45783", "C126585"     # 0805
 C_4U7_100V, C_10U_50V = "C697607", "C432929"                        # 1210
@@ -70,7 +71,7 @@ def build(D):
            desc="100 V NFET, buck high side (HO1)")
     s.part("odeck:BSC0805LS", "Q", "BSC0805LS", at=(144.78, y), pins={"S": "GND", "G": "BB_G2", "D": "BB_SW1", "EP": "BB_SW1"},
            desc="100 V NFET, buck low side (LO1)")
-    s.r("4m", "BB_SW1", "BB_LS", size="2512", at=(172.72, y), lcsc=R_SNS_4M, mpn="WSL25124L000FEA",
+    s.r("4m", "BB_SW1", "BB_LS", size="2512", at=(172.72, y), lcsc=R_SNS_4M, mpn="RLP25FEGR004",
         desc="Peak current sense 4 mOhm 1 % 2512 (CSA/CSB Kelvin)")
     s.part("odeck:XAL1010-103MED", "L", "10u", at=(190.5, y), pins={"1": "BB_LS", "2": "BB_SW2"},
            desc="10 uH 17.5 A shielded inductor")
@@ -123,7 +124,7 @@ def build(D):
                  "HO1": "BB_HO1", "HB1": "BB_HB1", "SW1": "BB_SW1", "CSA": "BB_CSA", "CSB": "BB_CSB", "EP": "GND"},
            nc=["NC", "HO1_LL", "HO2_LL"], desc="78 V 4-switch buck-boost controller")
     ctl = [
-        ("c", "100n/100V", "VIN", "GND", "0603", C_100N_100V, {}), ("c", "1u/100V", "VIN", "GND", "0805", C_1U_100V, {}),
+        ("c", "100n/100V", "VIN", "GND", "0805", C_100N_100V, {}), ("c", "1u/100V", "VIN", "GND", "0805", C_1U_100V, {}),
         ("r", "200k", "VIN", "BB_EN", "0805", R_200K_0805, {}), ("r", "43k", "BB_EN", "GND", "0402", R_43K, {}),
         ("r", "10", "VBB_OUT", "BB_BIAS", "0603", R_10_0603, {}), ("c", "1u/50V", "BB_BIAS", "GND", "0603", C_1U_50V, {}),
         ("c", "22u", "BB_VCC", "GND", "0805", C_22U_25V, {}), ("c", "22u", "BB_VCC", "GND", "0805", C_22U_25V, {}),
@@ -133,7 +134,7 @@ def build(D):
         ("c", "100p", "BB_CSA", "BB_CSB", "0402", C_100P, {}),
         ("r", "86.6k", "BB_RT", "GND", "0402", R_86K6, {}), ("r", "100k", "BB_SLOPE", "GND", "0402", R_100K, {}),
         ("r", "6.49k", "BB_CFG", "GND", "0402", R_6K49, {}), ("c", "22n", "BB_SS", "GND", "0402", C_22N, {}),
-        ("r", "62k", "BB_COMP", "BB_COMPZ", "0402", R_62K, {}), ("c", "6.8n", "BB_COMPZ", "GND", "0402", C_6N8, {}),
+        ("r", "62k", "BB_COMP", "BB_COMPZ", "0402", R_62K, {}), ("c", "6.8n", "BB_COMPZ", "GND", "0603", C_6N8, {}),
         ("c", "82p", "BB_COMP", "GND", "0402", C_82P, {}),
         ("r", "10k", "BB_IMON", "BB_IMONZ", "0402", R_10K, {}), ("c", "1n", "BB_IMONZ", "GND", "0402", C_1N, {}),
         ("r", "0", "BB_MODE", "GND", "0402", R_0, {"desc": "MODE = GND: PSM (default)"}),
@@ -197,7 +198,7 @@ def build(D):
     # =============================================================================================
     _note(s, "4. LAPTOP SOURCE SWITCH  VBB_OUT -> VBUS_LSW -> 5 mOhm -> VBUS_LAPTOP\n"
            "LM74800-Q1: Q (DGATE) = ideal diode (blocks laptop -> VBB_OUT in < 1 us), Q (HGATE) = on/off,\n"
-           "  common drain, 2x BSC040N08NS5 (80 V, 4 mOhm @10 V): 5 A -> 0.26 W total.\n"
+           "  common drain, 2x BSC026N08NS5 (80 V, 2.6 mOhm @10 V; same FET as power_input): 5 A -> 0.13 W total.\n"
            "HARDWARE ENABLE: SRC_ON = LAPTOP_SRC_EN AND EXT_PWR_PRESENT AND (VBB_PG AND LAPTOP_OVP_N AND PG5_DLY)\n"
            "  74LVC1G11 3-input AND; VBB_PG and LAPTOP_OVP_N (both open-drain, 10k pull-ups) diode-ANDed by BAT54A;\n"
            "  2 FETs pull SRC_PGOK low unless the delayed PG_5V (SNK_PGD) is high: the source can only close after the\n"
@@ -210,9 +211,9 @@ def build(D):
            "Soft turn-on: HGATE 55 uA into 22 nF -> 2.5 V/ms.",
            at=(406.4, 12.7))
     x, y = 421.64, 66.04
-    s.part("odeck:BSC040N08NS5", "Q", "BSC040N08NS5", at=(x, y), pins={"S": "VBB_OUT", "D": "SRC_MID", "G": "SRC_DGATE"},
+    s.part("odeck:BSC026N08NS5ATMA1", "Q", "BSC026N08NS5", at=(x, y), pins={"S": "VBB_OUT", "D": "SRC_MID", "G": "SRC_DGATE"},
            desc="80 V NFET, source ideal diode")
-    s.part("odeck:BSC040N08NS5", "Q", "BSC040N08NS5", at=(x + 50.8, y), pins={"S": "VBUS_LSW", "D": "SRC_MID", "G": "SRC_HGATE"},
+    s.part("odeck:BSC026N08NS5ATMA1", "Q", "BSC026N08NS5", at=(x + 50.8, y), pins={"S": "VBUS_LSW", "D": "SRC_MID", "G": "SRC_HGATE"},
            desc="80 V NFET, source on/off")
     s.part("odeck:LM74800QDRRRQ1", "U", "LM74800-Q1", at=(x + 25.4, y + 38.1),
            pins={"DGATE": "SRC_DGATE", "A": "VBB_OUT", "VSNS": "VBUS_LAPTOP", "SW": "SRC_OVT", "OV": "SRC_OV",
@@ -255,8 +256,8 @@ def build(D):
            "  VBUS TVS + connector live on usbc_muxes; PMG1 provides VBUS discharge for down-transitions.",
            at=(406.4, 190.5))
     x, y = 421.64, 238.76
-    s.r("5m", "VBUS_LSW", "VBUS_LAPTOP", size="2512", at=(x, y), lcsc=R_SNS_5M, mpn="WSL25125L000FEA",
-        desc="INA226 shunt 5 mOhm 1 % 2512")
+    s.r("5m", "VBUS_LSW", "VBUS_LAPTOP", size="1206", at=(x, y), lcsc=R_SNS_5M, mpn="RLM12FTCMR005",
+        desc="INA226 shunt 5 mOhm 1 % 1206 1 W")
     s.part("odeck:INA226AIDGSR", "U", "INA226", at=(x + 40.64, y),
            pins={"VIN+": "VBUS_LSW", "VIN-": "VBUS_LAPTOP", "VBUS": "VBUS_LAPTOP", "VS+": "+3V3", "GND": "GND",
                  "A1": "+3V3", "A0": "GND", "SDA": "I2C_SYS_SDA", "SCL": "I2C_SYS_SCL"},
@@ -305,7 +306,7 @@ def build(D):
     s.r("40.2k", "SNK_MID", "SNK_OVLO", at=(x2 + 88.9, y2), lcsc=R_40K2)
     s.r("10k", "SNK_OVLO", "GND", at=(x2 + 101.6, y2), lcsc=R_10K)
     s.r("1k", "SNK_ILM", "GND", at=(x2 + 114.3, y2), lcsc=R_1K)
-    s.c("3.3n", "SNK_DVDT", "GND", at=(x2 + 127, y2), lcsc=C_3N3)
+    s.c("3.3n", "SNK_DVDT", "GND", size="0603", at=(x2 + 127, y2), lcsc=C_3N3)
     s.c("1n", "SNK_ITIMER", "GND", at=(x2 + 139.7, y2), lcsc=C_1N)
     s.c("10u", "+5V", "GND", size="0805", at=(x2 + 152.4, y2), lcsc=C_10U_25V)
     # sink enable logic
@@ -340,7 +341,7 @@ def build(D):
            pins={"1": "VBUS_LAPTOP", "2": "VBB_OUT", "3": "OVP_TOP"}, desc="Dual diode common cathode 100 V")
     s.r("1.1M", "OVP_TOP", "OVP_DIV", at=(x + 20.32, y), lcsc=R_1M1)
     s.r("46.4k", "OVP_DIV", "GND", at=(x + 30.48, y), lcsc=R_46K4)
-    s.c("2.2n", "OVP_DIV", "GND", at=(x + 40.64, y), lcsc=C_2N2)
+    s.c("2.2n", "OVP_DIV", "GND", size="0603", at=(x + 40.64, y), lcsc=C_2N2)
     s.part("odeck:TLV3011AIDBVR", "U", "TLV3011", at=(x + 73.66, y),
            pins={"IN+": "OVP_DIV", "IN-": "OVP_REF", "REF": "OVP_REF", "OUT": "OVP_TRIP", "VCC": "+3V3", "GND": "GND"},
            desc="Comparator + 1.242 V reference, open drain")

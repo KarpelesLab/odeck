@@ -201,7 +201,7 @@ There are no PWR_FLAGs: ETH_3V3 and ETH_0V95 are local and driven by power_out p
 | FB801 | Sunlord GZ2012D101TF 100 Ω bead 0805 | C1015 | 2.3 M | basic |
 | Y801 | YXC X322525MOB4SI 25 MHz | C9006 | 199 k | basic |
 | R | 2.49k 1 % C25884, 59k 1 % C32297 | | > 100 k | ext |
-| C | 390 pF C0G C76967 | | 26 k | ext |
+| C | 390 pF C0G 50 V C282239 (same as pd_pmg1 CC caps) | | 70 k | ext |
 | R/C basic | 0 Ω C17168, 510 Ω C25123, 4.7k C25900, 10k C25744, 100k C25741; 20 pF C1554, 1 nF C1523, 100 nF C1525 (incl. C835/C836 PHY TX AC caps, C841), 1 µF C52923, 2.2 µF C12530, 10 µF 0603 C19702, 22 µF 0603 C59461 | | | basic |
 
 DNP: the CONFIG_SEQ pull-up (10k) and the 100 nF alternate CT cap.

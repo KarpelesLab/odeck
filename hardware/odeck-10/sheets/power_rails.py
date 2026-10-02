@@ -8,19 +8,20 @@ from schgen import Sheet
 
 # --- part numbers (LCSC) -------------------------------------------------------------------------
 # basic parts
-R_0, R_10K, R_12K, R_100K, R_39K = "C17168", "C25744", "C25752", "C25741", "C25783"
+R_0, R_10K, R_12K, R_100K = "C17168", "C25744", "C25752", "C25741"
+R_39K_0603 = "C23153"             # 39k 1 % 0603 (0402 39k is extended)
 C_100P, C_1N, C_10N, C_22N = "C1546", "C1523", "C15195", "C1532"
 C_100N_16V, C_100N_50V, C_1U_25V = "C1525", "C14663", "C52923"
 C_4U7_16V, C_10U_25V, C_22U_25V, C_22U_6V3 = "C19666", "C15850", "C45783", "C59461"
 # extended parts
 R_73K2, R_14K3, R_64K9, R_41K2 = "C26986", "C25855", "C26984", "C100420"
 R_31K6, R_4K42 = "C11463", "C52269"
-R_100K_0805 = "C96346"            # VIN-side divider resistor, 150 V working voltage
+R_100K_0805 = "C149504"           # 0805W8F1003T5E basic, VIN-side divider resistor, 150 V working voltage
 R_4M_2512 = "C459681"             # RLP25FEGR004, 4 mOhm 1 % 2512 (LM5148 current sense)
 R_2M_2512 = "C459679"             # RLP25FEGR002, 2 mOhm 1 % 2512 (INA226 shunt)
 C_4U7_100V = "C697607"            # HMK325C7475KN-TE 4.7 uF 100 V X7S 1210
 C_1U_100V = "C126585"             # GCM21BC72A105KE36L 1 uF 100 V X7S 0805
-C_100N_100V = "C15725"            # CL10B104KC8NNNC 100 nF 100 V X7R 0603
+C_100N_100V = "C28233"            # CL21B104KCFNNNE 100 nF 100 V X7R 0805 (basic)
 C_47U_10V = "C84494"              # GRM32ER71A476KE15L 47 uF 10 V X7R 1210
 C_330U_POLY = "C54321566"         # 330 uF 6.3 V polymer, 6.3x6 (+5V hold-up)
 D_BAT46W = "C83152"               # BAT46W-7-F 100 V Schottky SOD-123
@@ -47,7 +48,7 @@ def build(D):
     for i in range(4):
         s.c("4.7u/100V", "VIN", "GND", size="1210", at=(38.1 + i * 12.7, y), lcsc=C_4U7_100V)
     for i in range(2):
-        s.c("100n/100V", "VIN", "GND", size="0603", at=(88.9 + i * 12.7, y), lcsc=C_100N_100V,
+        s.c("100n/100V", "VIN", "GND", size="0805", at=(88.9 + i * 12.7, y), lcsc=C_100N_100V,
             desc="HF decoupling at Q301 drain")
 
     # power stage
@@ -157,7 +158,7 @@ def build(D):
     s.c("10u", "+5V", "GND", size="0805", at=(x0 + 10.16, y), lcsc=C_10U_25V)
     s.c("100n", "+5V", "GND", at=(x0 + 20.32, y), lcsc=C_100N_16V)
     s.r("100k", "+5V", "3V3_EN", at=(x0 + 30.48, y), lcsc=R_100K, desc="EN divider: on at 4.31 V")
-    s.r("39k", "3V3_EN", "GND", at=(x0 + 40.64, y), lcsc=R_39K)
+    s.r("39k", "3V3_EN", "GND", size="0603", at=(x0 + 40.64, y), lcsc=R_39K_0603)
     s.part("odeck:TPS62933DRLR", "U", "TPS62933F", at=(x0 + 71.12, y),
            pins={"VIN": "+5V", "EN": "3V3_EN", "RT": "GND", "SS": "3V3_SS", "FB": "3V3_FB",
                  "BST": "3V3_BST", "SW": "3V3_SW", "GND": "GND"}, lcsc="C5219272", mpn="TPS62933FDRLR",
