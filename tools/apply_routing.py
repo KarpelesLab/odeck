@@ -2,6 +2,8 @@
 
 Each hardware/<proj>/routing/<name>.py defines:
     NETS = [...]           # nets this script owns: their existing tracks/vias are deleted before place()
+    GROUPED = True         # optional: everything drawn via the Router goes into group "route:<name>", and only that
+                           # group is deleted on re-run (use this when sharing nets with other scripts; NETS = [])
     ZONES = [...]          # optional: zone names (strings) this script owns; same-named zones are replaced
     def route(board, r):   # draw with the Router helper `r`
 Scripts run in file-name order, so later scripts (e.g. the autorouter output) can build on earlier ones.
@@ -50,9 +52,11 @@ def _offset_polyline(pts, d):
 
 
 class Router:
-    def __init__(self, board):
+    def __init__(self, board, group=None, fps=None):
         self.board = board
-        self.fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
+        self.group = group      # PCB_GROUP owning everything this script draws (see clear())
+        # NB: KiCad's SWIG GetFootprints() can crash after items were removed from the board -> pass a cached dict
+        self.fps = fps if fps is not None else {fp.GetReference(): fp for fp in board.GetFootprints()}
         self.nets = {}
 
     # ---- lookup
@@ -91,7 +95,7 @@ class Router:
             t = pcbnew.PCB_TRACK(self.board)
             t.SetStart(V(*a)); t.SetEnd(V(*b)); t.SetWidth(mm(width))
             t.SetLayer(LAYERS[layer]); t.SetNet(ni)
-            self.board.Add(t)
+            self._add(t)
 
     def via(self, net, x, y, size=0.45, drill=0.25, top="F.Cu", bottom="B.Cu"):
         v = pcbnew.PCB_VIA(self.board)
@@ -102,7 +106,7 @@ class Router:
             v.SetViaType(pcbnew.VIATYPE_BLIND_BURIED)
         v.SetLayerPair(LAYERS[top], LAYERS[bottom])
         v.SetNet(self.net(net))
-        self.board.Add(v)
+        self._add(v)
 
     def pair(self, netp, netn, path, layer="F.Cu", width=0.10, gap=0.12, p_from=None, n_from=None,
              p_to=None, n_to=None):
@@ -151,8 +155,29 @@ class Router:
         ol.NewOutline()
         for x, y in poly:
             ol.Append(mm(x), mm(y))
-        self.board.Add(z)
+        self._add(z)
         return z
+
+    def _add(self, item):
+        self.board.Add(item)
+        if self.group is not None:
+            self.group.AddItem(item)
+
+
+def group_for(board, name):
+    """Delete the previous run's items of script `name` (its 'route:<name>' group) and return a fresh group."""
+    gname = "route:" + name
+    for g in list(board.Groups()):
+        if g.GetName() == gname:
+            items = list(g.GetItems())
+            g.RemoveAll()
+            board.Remove(g)
+            for it in items:
+                board.Remove(it)
+    g = pcbnew.PCB_GROUP(board)
+    g.SetName(gname)
+    board.Add(g)
+    return g
 
 
 def clear(board, nets, zones):
@@ -186,6 +211,7 @@ def main():
     proj = os.path.basename(pd)
     pcb = a.pcb or os.path.join(pd, proj + ".kicad_pcb")
     board = pcbnew.LoadBoard(pcb)
+    fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
     only = set(x for x in a.only.split(",") if x)
     for path in sorted(glob.glob(os.path.join(pd, "routing", "*.py"))):
         name = os.path.splitext(os.path.basename(path))[0]
@@ -195,7 +221,8 @@ def main():
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         clear(board, getattr(mod, "NETS", []), set(getattr(mod, "ZONES", [])))
-        mod.route(board, Router(board))
+        grp = group_for(board, name) if getattr(mod, "GROUPED", False) else None
+        mod.route(board, Router(board, grp, fps))
         print(f"applied routing/{name}.py")
     if not a.no_fill:
         pcbnew.ZONE_FILLER(board).Fill(board.Zones())
@@ -210,3 +237,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    sys.stdout.flush(); sys.stderr.flush()
+    os._exit(0)   # skip SWIG destructors: KiCad segfaults at exit after items were removed from a board
